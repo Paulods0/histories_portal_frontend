@@ -11,7 +11,7 @@ const Home = () => {
   const [posts, setPosts] = useState<IPostData[]>([])
   const [currentPage, setCurrentPage] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
-  const postsPerPage = 4
+  const postsPerPage = 6
 
   if (!posts) {
     return (
@@ -44,14 +44,14 @@ const Home = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   return (
-    <main className="w-full min-h-screen px-12 pb-12 flex-col">
+    <main className="w-full min-h-screen px-8 pb-10 flex-col mt-6">
       <div className="w-full flex gap-10 ">
         <div className="flex-[3] min-h-screen">
           {/** FIRST CARD TO SHOW UP */}
           <HighlightedCard />
           <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
             {isLoading ? (
-              <div className="w-full lg:col-span-3 my-12 flex items-center justify-center">
+              <div className="w-full lg:col-span-3 my-12 flex px-12 items-center justify-center">
                 <div>
                   <ClipLoader color="#1a101F" size={100} />
                 </div>

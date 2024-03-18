@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { NAV_LINKS, SOCIAL_MEDIA_LINKS } from "../../constants"
+import { NAV_LINKS, SOCIAL_MEDIA_LINKS } from "../../utils/constants"
 
 const StoreFooter = () => {
   return (

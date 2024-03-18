@@ -1,13 +1,11 @@
-import { API_URL } from "../utils"
-import { ICategoryData, IPostData } from "./types"
-
-export const url = "http://localhost:8080/api/"
+import { url } from "../utils/constants"
+import { API_URL } from "../utils/enums"
+import { ICategoryData, IPostData, IProductData } from "./types"
 
 export async function getAllCategories(): Promise<ICategoryData[] | []> {
   try {
-    const response = await fetch(url + "category/all")
+    const response = await fetch(`${url}${API_URL.GET_ALL_CATEGORIES}`)
     const data: ICategoryData[] = await response.json()
-    // console.log(data)
     return data
   } catch (error) {
     console.log("Error: " + error)
@@ -15,7 +13,7 @@ export async function getAllCategories(): Promise<ICategoryData[] | []> {
   }
 }
 
-export const getAllPosts = async (): Promise<IPostData[]  > => {
+export const getAllPosts = async (): Promise<IPostData[]> => {
   const response = await fetch(url + API_URL.GET_ALL_POSTS)
   const posts = await response.json()
   return posts
@@ -39,4 +37,27 @@ export const getSinglePost = async (
   return post
 }
 
-export const createCategories = async () => {}
+export const getAllProducts = async (): Promise<IProductData[] | []> => {
+  const response = await fetch(`${url}${API_URL.GET_ALL_PRODUCTS}`)
+  const data = await response.json()
+
+  return data
+}
+
+export const getProductById = async (id: string): Promise<IProductData> => {
+  const response = await fetch(`${url}${API_URL.GET_PRODUCT_BY_ID}/${id}`, {
+    method: "GET",
+  })
+  const data = await response.json()
+  return data
+}
+export const getPostByCategory = async (
+  categoryId: string
+): Promise<IPostData[]> => {
+  const response = await fetch(`${url}post/category/${categoryId}`, {
+    method: "GET",
+  })
+  const data = await response.json()
+
+  return data
+}

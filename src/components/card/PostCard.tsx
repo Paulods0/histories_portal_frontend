@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { createMarkup } from "../../utils"
+import { createMarkup } from "../../utils/helpers"
 
 interface PostCardProps {
   post: {
@@ -22,10 +22,11 @@ const PostCard: React.FC<PostCardProps> = ({
 }) => {
   const dataContent = createMarkup(content.substring(0, 220))
   return (
-    <div className="relative w-full h-[600px] flex flex-col items-center justify-center">
-      <div className="inset-0 absolute w-full">
-        <div className=" w-full h-[250px] ">
-          <Link to={`/post/${_id}`}>
+    <div className="relative w-full h-fit flex flex-col items-center justify-center">
+      <div className="w-full relative">
+        <div className="w-full h-[250px] relative">
+          <Link to={`/post/${title}__${_id}`}>
+            <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
             <img
               src={mainImage}
               className="w-full h-full object-cover"
@@ -33,12 +34,15 @@ const PostCard: React.FC<PostCardProps> = ({
             />
           </Link>
         </div>
-        <h1 className="text-center font-bold text-[22px] mt-2 mb-2">{title}</h1>
+
+        <h1 className="text-center font-normal text-[27px] font-Oswald mt-2 mb-2">
+          {title}
+        </h1>
         <p
-          className="text-center text-[15px]"
+          className="text-center text-[15px] font-OpenSans"
           dangerouslySetInnerHTML={dataContent}
         />
-        <h5 className=" text-center text-[#D0D0D0] text-[16px] mt-2">
+        <h5 className=" text-center text-colorGray-light font-OpenSans font-normal text-[15px] mt-2">
           {subtitle}
         </h5>
       </div>

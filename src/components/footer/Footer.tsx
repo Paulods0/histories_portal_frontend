@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-import { SOCIAL_MEDIA_LINKS } from "../../constants"
+import { SOCIAL_MEDIA_LINKS } from "../../utils/constants"
 import { RiArrowUpDoubleLine } from "react-icons/ri"
 
 const Footer = () => {
@@ -29,10 +29,15 @@ const Footer = () => {
         ))}
       </div>
       <div className="w-full h-[250px] flex flex-col items-center justify-center bg-black/30 ">
-        <h1 className="text-white">BANNER GOES HERE!!</h1>
+        <div className="w-full h-full flex items-center justify-center relative">
+          <img
+            src="/logotipo-texto.png"
+            className="text-white w-[450px] h-[200px] absolute object-cover"
+          />
+        </div>
         <div className="cursor-pointer uppercase font-semibold text-sm text-yellow-600 flex flex-col items-center justify-center p-4">
-          <RiArrowUpDoubleLine size={24} color="##ca8a04" />
-          <button onClick={() => window.scrollTo(0, 0)}>back to top</button>
+          {/* <RiArrowUpDoubleLine size={24} color="##ca8a04" />
+          <button onClick={() => window.scrollTo(0, 0)}>back to top</button> */}
         </div>
       </div>
     </footer>

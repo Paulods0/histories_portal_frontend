@@ -1,6 +1,7 @@
 import { Link, Outlet, useLocation } from "react-router-dom"
 import SideBar from "../../components/sidebar/SideBar"
 import HomeCategoryControlller from "../../components/home_category/HomeCategoryControlller"
+import CategoriesNavBar from "../../components/navbar/CategoriesNavBar"
 
 const paths = [
   { path: "jornaloverland", label: "Jornal Overland" },
@@ -13,13 +14,13 @@ const paths = [
 ]
 
 const CategoriesPage = () => {
-  const { pathname } = useLocation()
-  const [{ label }] = paths.filter((cat) => cat.path === pathname.split("/")[2])
+  // const { pathname } = useLocation()
+  // const [{ label }] = paths.filter((cat) => cat.path === pathname.split("/")[2])
 
   return (
     <main className="w-full min-h-screen gap-10 px-12 flex-col">
-      <HomeCategoryControlller text="Arquivos De Categoria:" label={label} />
-
+      {/* <HomeCategoryControlller text="Arquivos De Categoria:" label={label} /> */}
+      {/* <CategoriesNavBar /> */}
       <div className="w-full  flex gap-8">
         <div className="flex-[3] flex justify-center">
           <Outlet />

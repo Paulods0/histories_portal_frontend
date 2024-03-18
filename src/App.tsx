@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom"
+import { Route, Routes, useLocation } from "react-router-dom"
 import Navbar from "./components/navbar/Navbar"
 import Home from "./pages/Home"
 import "./index.css"
@@ -19,11 +19,33 @@ import Reviews from "./pages/categories/Reviews"
 import OverlandJournal from "./pages/categories/OverlandJournal"
 import Parceiros from "./pages/categories/Parceiros"
 import ProductDetail from "./pages/store-pages/ProductDetail"
+import CategoriesNavBar from "./components/navbar/CategoriesNavBar"
+import HomeCategoryControlller from "./components/home_category/HomeCategoryControlller"
 
 function App() {
+  const path = useLocation()
+  let homeCategoryLabel
+
+  if (path.pathname.includes("/post/")) {
+    homeCategoryLabel = decodeURI(path.pathname.split("/")[2].split("_")[0])
+  } else {
+    homeCategoryLabel = path.pathname.split("/")[2]
+  }
   return (
     <main className="min-h-screen">
-      <Navbar />
+      {!path.pathname.includes("/pages/loja") && (
+        <>
+          <Navbar />
+          <div className="z-20 sticky top-0">
+            <CategoriesNavBar />
+          </div>
+          <HomeCategoryControlller
+            hide={homeCategoryLabel === undefined}
+            text="Arquivos de: "
+            label={homeCategoryLabel}
+          />
+        </>
+      )}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/pages/sobre" element={<AboutUs />} />
@@ -34,9 +56,9 @@ function App() {
         <Route path="/pages/loja" element={<Store />} />
         <Route path="/pages/loja/product/:id" element={<ProductDetail />} />
 
-        <Route path="/categoria" element={<CategoriesPage />}>
+        <Route path="/categorias" element={<CategoriesPage />}>
           <Route path="classificados" element={<Classificados />} />
-          <Route path="agenda" element={<AgendaAo />} />
+          <Route path="agendaao" element={<AgendaAo />} />
           <Route path="historias" element={<Historias />} />
           <Route path="passeios" element={<Passeios />} />
           <Route path="reviews" element={<Reviews />} />

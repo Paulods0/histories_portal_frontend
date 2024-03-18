@@ -4,20 +4,30 @@ import { Link } from "react-router-dom"
 import { FAKE_STORE_PRODUCTS } from "../fakedata"
 import StoreFooter from "../components/store-components/StoreFooter"
 import PaginationController from "../components/pagination/PaginationController"
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { getAllProducts } from "../api/apiCalls"
+import { IProductData } from "../api/types"
 
 const Store = () => {
+  const [products, setProducts] = useState<IProductData[]>([])
   const [currentPage, setCurrentPage] = useState(1)
-  const postsPerPage = 6
+  const postsPerPage = 12
 
   const indexOfLastProduct = currentPage * postsPerPage
   const indexOfFirstProduct = indexOfLastProduct - postsPerPage
-  const currentProduct = FAKE_STORE_PRODUCTS.slice(
-    indexOfFirstProduct,
-    indexOfLastProduct
-  )
+  const currentProduct = products.slice(indexOfFirstProduct, indexOfLastProduct)
 
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getAllProducts()
+        setProducts(data)
+      } catch (error) {}
+    }
+    fetchData()
+  }, [])
 
   return (
     <main className="relative h-screen flex flex-col w-full">
@@ -38,7 +48,7 @@ const Store = () => {
           </p>
         </div>
       </section>
-      <div className="w-full flex mt-10 items-center justify-center bg-black  p-4 h-24">
+      <div className="w-full flex mt-10 items-center justify-center bg-black p-4 h-24">
         <h1 className="text-white text-3xl text-center">Bem-vindo à loja</h1>
       </div>
       <section className="w-full py-4 px-8">
@@ -54,7 +64,7 @@ const Store = () => {
             Ve todos
           </Link>
         </div>
-        <section className="w-full grid grid-cols-1 mb-12 md:grid-cols-2 place-items-center mt-12 lg:grid-cols-4 space-y-12 gap-4">
+        <section className="w-full grid grid-cols-1 mb-12 md:grid-cols-2 place-items-center mt-12 lg:grid-cols-3 gap-8">
           {currentProduct.map((product) => (
             <StoreCard product={product} />
           ))}
