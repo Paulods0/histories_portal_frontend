@@ -5,12 +5,15 @@ import "./index.css"
 import { BrowserRouter } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import { CartContextProvider } from "./context/CartContext.tsx"
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <BrowserRouter>
-    <React.StrictMode>
-      <App />
-      <ToastContainer />
-    </React.StrictMode>
-  </BrowserRouter>
+  <CartContextProvider>
+    <BrowserRouter>
+      <React.StrictMode>
+        <App />
+        <ToastContainer />
+      </React.StrictMode>
+    </BrowserRouter>
+  </CartContextProvider>
 )

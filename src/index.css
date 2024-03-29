@@ -30,3 +30,45 @@ body::-webkit-scrollbar {
   height: 6px;
   border-radius: 20px;
 }
+
+.quill h1 {
+  font-family: "Playfair Display", sans-serif;
+  font-size: 36px !important;
+  font-weight: 500;
+}
+.quill h2 {
+  font-family: "Playfair Display", sans-serif;
+  font-size: 28 !important;
+  font-weight: 400;
+}
+.quill ul {
+  list-style: circle;
+}
+.quill iframe {
+  width: 65%;
+  height: 400px;
+}
+
+.leaflet-container {
+  height: 700px;
+  width: 100%;
+  /* z-index: 10; */
+}
+
+.cart-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  background-color: white;
+  z-index: 50;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+
+.cart-container.open {
+  transform: translateX(0);
+}

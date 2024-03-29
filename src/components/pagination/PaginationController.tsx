@@ -24,7 +24,7 @@ const PaginationController: React.FC<PagenationProps> = ({
             key={page}
             onClick={() => {
               paginate(page)
-              window.scrollTo(0, 0)
+              window.scrollTo(0, 800)
             }}
             className={` cursor-pointer mr-6 bg-black/80 px-4 py-2  ${
               page === currentPage ? "bg-yellow-600/70" : ""

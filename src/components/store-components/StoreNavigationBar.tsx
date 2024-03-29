@@ -1,62 +1,72 @@
 import { useState } from "react"
 import { NAV_LINKS } from "../../utils/constants"
-import { Link } from "react-router-dom"
-import { CiShoppingCart } from "react-icons/ci"
-import { CiSearch } from "react-icons/ci"
+import { Link, useLocation } from "react-router-dom"
+import Search from "../search/Search"
+import { useCart } from "../../context/CartContext"
+import { BiCart } from "react-icons/bi"
+import CartContainer from "./CartContainer"
+import { HiOutlineShoppingBag } from "react-icons/hi2"
 
 const StoreNavigationBar = () => {
-  const [canChangeBackgroundColor, setCanChangeBackgroundColor] =
-    useState(false)
+  const path = useLocation()
+  const { cart } = useCart()
+  const [isCartContainerOpen, setIsCartContainerOpen] = useState(false)
 
-  const changeBackgroundColor = () => {
-    if (window.scrollY >= 60) {
-      setCanChangeBackgroundColor(true)
-    } else {
-      setCanChangeBackgroundColor(false)
-    }
+  const openCartContainer = () => {
+    setIsCartContainerOpen(true)
+  }
+  const closeCartContainer = () => {
+    setIsCartContainerOpen(false)
   }
 
-  window.addEventListener("scroll", changeBackgroundColor)
-
   return (
-    <header
-      className={`fixed inset-0 z-20 flex-1 h-[70px] transition-all duration-75 ease-in ${
-        !canChangeBackgroundColor ? "bg-transparent" : "bg-black"
-      }`}
-    >
-      <nav className="w-full flex items-center justify-between px-12 py-4">
-        <ul className="flex w-full mr-16 items-center justify-between">
-          <Link to={"/"} className="relative w-[90px] h-[40px]">
-            <img
-              src="/new-banner.png"
-              className="absolute w-full h-full inset-0 object-contain"
-              alt=""
-            />
-          </Link>
-          {NAV_LINKS.filter((link) => link.name != "Loja").map(
-            (link, index) => (
-              <Link
-                key={index}
-                to={link.link}
-                className="text-white font-Poppins hover:border-b hover:border-white font-normal uppercase text-[16px] hover:text-white/20 duration-200 transition-all ease-in-out"
-              >
-                {link.name}
-              </Link>
-            )
-          )}
-        </ul>
-        <ul className="gap-4 flex items-center justify-center text-white">
-          <div>
-            <CiSearch size={25} color="#FFF" />
+    <header className="fixed inset-0 z-20 flex-1 h-[70px] transition-all duration-75 ease-in">
+      <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-colorGray-medium justify-between">
+        <nav className="h-full w-[720px] justify-between flex">
+          <ul className="gap-3 flex items-center">
+            <Link to={"/"} className="w-24 h-[25px] relative ">
+              <img
+                src="/logotipo-texto.png"
+                alt=""
+                className="w-full absolute h-[30px] object-cover"
+              />
+            </Link>
+            <div className="flex gap-3 ml-2">
+              {NAV_LINKS.map((link, index) => (
+                <Link
+                  key={index}
+                  className={` ${
+                    path.pathname === link.link ? "text-goldenColor" : "#FFF"
+                  } text-white text-[12px] font-Oswald uppercase font-normal hover:text-goldenColor duration-100 transition-all ease-in`}
+                  to={link.link}
+                >
+                  {link.name}
+                </Link>
+              ))}
+            </div>
+          </ul>
+        </nav>
+        <div className="flex gap-3 items-center">
+          <div className="mr-2">
+            <Search />
           </div>
-          <div>
-            <CiShoppingCart size={25} color="#FFF" />
+          <div className="relative flex items-center gap-2 transition-all duration-300">
+            <div className="cursor-pointer " onClick={openCartContainer}>
+              <HiOutlineShoppingBag color="#FFF" size={20} />
+            </div>
+
+            <div className="w-3 h-3 items-center justify-center flex rounded-full bg-zinc-500/40 text-white text-[12px] p-3">
+              {cart.length}
+            </div>
           </div>
-          <div className="w-6 h-6 rounded-full flex items-center justify-center bg-colorGray-light/20">
-            0
-          </div>
-        </ul>
-      </nav>
+        </div>
+      </div>
+      {isCartContainerOpen && (
+        <>
+          <div className="absolute w-full h-screen transition-all ease-linear duration-300 bg-black/60 inset-0" />
+          <CartContainer closeCartContainer={closeCartContainer} />
+        </>
+      )}
     </header>
   )
 }

@@ -36,7 +36,7 @@ function App() {
       {!path.pathname.includes("/pages/loja") && (
         <>
           <Navbar />
-          <div className="z-20 sticky top-0">
+          <div className="z-[99999] sticky top-0">
             <CategoriesNavBar />
           </div>
           <HomeCategoryControlller

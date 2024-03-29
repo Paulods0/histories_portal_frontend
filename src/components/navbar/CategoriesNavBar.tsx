@@ -21,7 +21,7 @@ const CategoriesNavBar = () => {
   }, [])
 
   return (
-    <ul className="md:hidden z-20 hidden mb-0 list-disc sticky top-0 text-colorGray-light/30 w-full shadow-md h-[60px]  bg-white lg:flex gap-12 items-center justify-center py-4">
+    <ul className="md:hidden z-[99999] hidden mb-0 list-disc sticky top-0 text-colorGray-light/30 w-full shadow-md h-[60px]  bg-white lg:flex gap-12 items-center justify-center py-4">
       {categories?.map((link, index) => (
         <li key={index} className={`${index === 0 && "list-none"}`}>
           <Link

@@ -1,12 +1,16 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { createMarkup } from "../../utils/helpers"
+import { createMarkup, formatarData } from "../../utils/helpers"
 
 interface PostCardProps {
   post: {
     _id: string
     title: string
-    subtitle: string
+    author: {
+      _id: string
+      firstname: string
+      lastname: string
+    }
     mainImage: string
     content: string
     isHighlighted: boolean
@@ -18,9 +22,9 @@ interface PostCardProps {
 }
 
 const PostCard: React.FC<PostCardProps> = ({
-  post: { _id, mainImage, content, subtitle, title },
+  post: { _id, mainImage, content, author, title, createdAt },
 }) => {
-  const dataContent = createMarkup(content.substring(0, 220))
+  const dataContent = createMarkup(content)
   return (
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
       <div className="w-full relative">
@@ -35,15 +39,17 @@ const PostCard: React.FC<PostCardProps> = ({
           </Link>
         </div>
 
-        <h1 className="text-center font-normal text-[27px] font-Oswald mt-2 mb-2">
+        <h1 className="text-center font-normal text-[27px] line-clamp-1 font-Oswald mt-2 mb-2">
           {title}
         </h1>
         <p
-          className="text-center text-[15px] font-OpenSans"
+          className="text-center text-[15px] font-OpenSans line-clamp-4"
           dangerouslySetInnerHTML={dataContent}
         />
         <h5 className=" text-center text-colorGray-light font-OpenSans font-normal text-[15px] mt-2">
-          {subtitle}
+          {`${author?.firstname} ${author?.lastname} / ${formatarData(
+            createdAt
+          )}`}
         </h5>
       </div>
     </div>

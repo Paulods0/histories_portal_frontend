@@ -6,13 +6,13 @@ import ResponsiveNavigationBar from "./ResponsiveNavigationBar"
 const Navbar = () => {
   const path = useLocation()
 
-  const isStore = path.pathname.includes("/pages/loja")
-  if (isStore) {
-    return
-  }
+  // const isStore = path.pathname.includes("/pages/loja")
+  // if (isStore) {
+  //   return
+  // }
 
   return (
-    <header className="">
+    <header className="w-full">
       <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-colorGray-medium justify-between">
         <nav className="h-full w-[720px] justify-between flex">
           <ul className="gap-3 flex items-center">

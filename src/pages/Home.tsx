@@ -44,7 +44,7 @@ const Home = () => {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   return (
-    <main className="w-full min-h-screen px-8 pb-10 flex-col mt-6">
+    <main className="w-full min-h-screen px-8 pb-10 flex-col  mt-6">
       <div className="w-full flex gap-10 ">
         <div className="flex-[3] min-h-screen">
           {/** FIRST CARD TO SHOW UP */}
