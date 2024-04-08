@@ -5,7 +5,7 @@ import SwiperPosts from "../components/swiper-posts/SwiperPosts"
 const AboutUs = () => {
   return (
     <main className="px-8 flex py-3 flex-col w-full h-full items-center justify-center">
-      <div className="relative w-full h-[800px]">
+      <div className="relative w-full h-[200px] mb-16">
         <img
           src="/logotipo-tradicional.png"
           alt=""
@@ -13,7 +13,7 @@ const AboutUs = () => {
         />
       </div>
 
-      <div className="flex w-full h-full items-center justify-center flex-col">
+      <div className="flex w-full h-full mt-12 items-center justify-center flex-col">
         <h1 className="font-semibold font-Oswald text-[41px] text-center">
           Sobre nós
         </h1>

@@ -1,40 +1,39 @@
-interface PagenationProps {
-  postsPerPage: number
-  totalPosts: number
-  paginate: (page: number) => void
-  currentPage: number
-}
+import { useLocation, useParams } from "react-router-dom"
 
-const PaginationController: React.FC<PagenationProps> = ({
-  postsPerPage,
-  totalPosts,
-  paginate,
-  currentPage,
+const PaginationController = ({
+  pages,
+  handleNavigate,
+}: {
+  pages: number
+  handleNavigate: (page: number) => void
 }) => {
-  const pageNumbers = []
-  for (let i = 1; i < Math.ceil(totalPosts / postsPerPage); i++) {
-    pageNumbers.push(i)
-  }
+  
+  const { page: currPage } = useParams()
 
   return (
-    <nav className="w-[250px] items-center gap-4 justify-between flex">
-      <ul className="flex">
-        {pageNumbers.map((page) => (
-          <li
-            key={page}
-            onClick={() => {
-              paginate(page)
-              window.scrollTo(0, 800)
-            }}
-            className={` cursor-pointer mr-6 bg-black/80 px-4 py-2  ${
-              page === currentPage ? "bg-yellow-600/70" : ""
-            }`}
-          >
-            <button className="text-white">{page}</button>
-          </li>
-        ))}
-      </ul>
-    </nav>
+    <div className="w-full p-2 flex items-center justify-center mt-24 gap-x-4">
+      <div className="w-full flex items-center justify-between">
+        <div className="w-full p-4  h-12"></div>
+
+        <div className="flex  gap-x-5">
+          {Array.from({ length: pages }).map((_, index) => (
+            <button
+              disabled={currPage === (index + 1).toString()}
+              key={index}
+              onClick={() => handleNavigate(index + 1)}
+              className={`p-3 text-white ${
+                currPage === (index + 1).toString()
+                  ? "bg-goldenColor"
+                  : "bg-colorGray-medium"
+              } w-12 h-12 flex items-center justify-center`}
+            >
+              {index + 1}
+            </button>
+          ))}
+        </div>
+      </div>
+      <div className="w-full p-4 h-12"></div>
+    </div>
   )
 }
 

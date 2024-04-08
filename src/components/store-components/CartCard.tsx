@@ -3,9 +3,11 @@ import { IProductData } from "../../api/types"
 const CartCard = ({
   product,
   removeProduct,
+  addToCart,
 }: {
   product: IProductData
   removeProduct: (id: string) => void
+  addToCart: (product: IProductData) => void
 }) => {
   return (
     <div className="flex w-full border-b-zinc-400 border-b  items-center justify-between gap-3">
@@ -25,9 +27,16 @@ const CartCard = ({
 
         <div className="w-full items-center justify-between flex">
           <div className="px-2 py-3 flex justify-between items-center rounded-md border border-zinc-400">
-            <button className=" w-12">-</button>
-            <span>0</span>
-            <button className="px-2 w-12">+</button>
+            <button
+              onClick={() => removeProduct(product._id)}
+              className=" w-12"
+            >
+              -
+            </button>
+            <span>{product.quantity!!}</span>
+            <button onClick={() => addToCart(product)} className="px-2 w-12">
+              +
+            </button>
           </div>
 
           <button

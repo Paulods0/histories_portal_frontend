@@ -15,11 +15,12 @@ const ProductModal = ({
   name,
   price,
   category,
+  quantity,
   setIsOpen,
 }: IProductModal) => {
   const [amount, setAmount] = useState(0)
   const closeModal = () => setIsOpen!!(false)
-  const { addToCart } = useCart()
+  const { addToCart, cart, removeFromCart } = useCart()
 
   const product = {
     image,
@@ -27,6 +28,7 @@ const ProductModal = ({
     price,
     name,
     category,
+    quantity,
   }
 
   return (
@@ -70,9 +72,9 @@ const ProductModal = ({
               >
                 -
               </button>
-              <span>{amount}</span>
+              <span>{quantity}</span>
               <button
-                onClick={() => setAmount((prev) => prev + 1)}
+                onClick={() => addToCart(product)}
                 className="border border-zinc-300 roudend-md px-2 w-[30px]"
               >
                 +

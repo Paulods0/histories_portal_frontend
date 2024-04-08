@@ -45,12 +45,12 @@ body::-webkit-scrollbar {
   list-style: circle;
 }
 .quill iframe {
-  width: 65%;
+  width: 100%;
   height: 400px;
 }
 
 .leaflet-container {
-  height: 700px;
+  height: 500px;
   width: 100%;
   /* z-index: 10; */
 }

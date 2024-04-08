@@ -3,7 +3,7 @@ import { url } from "../../utils/constants"
 import { useLocation } from "react-router-dom"
 import { IPostData } from "../../api/types"
 import PostCard from "../../components/card/PostCard"
-import { getPostByCategory } from "../../api/apiCalls"
+import { getPostByCategory } from "../../api"
 import { ClipLoader } from "react-spinners"
 
 const Classificados = () => {

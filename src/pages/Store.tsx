@@ -8,7 +8,7 @@ import {
   getAllProducts,
   getAllProductsByCategory,
   getAllProdutCategories,
-} from "../api/apiCalls"
+} from "../api"
 import { ICategoryData, IProductData } from "../api/types"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Autoplay, Pagination, EffectFade } from "swiper/modules"
@@ -19,6 +19,7 @@ import "swiper/css/navigation"
 import "swiper/css/pagination"
 import "swiper/css/effect-fade"
 import { useCart } from "../context/CartContext"
+import GoBackButton from "../components/GoBackButton"
 
 const Store = () => {
   const location = useLocation()
@@ -32,13 +33,12 @@ const Store = () => {
   const postsPerPage = 12
 
   const { cart } = useCart()
-  console.log(cart)
 
   const indexOfLastProduct = currentPage * postsPerPage
   const indexOfFirstProduct = indexOfLastProduct - postsPerPage
   const currentProduct = products.slice(indexOfFirstProduct, indexOfLastProduct)
 
-  const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
+  // const paginate = (pageNumber: number) => setCurrentPage(pageNumber)
 
   const handleChangeSearchParams = (name: string) => {
     setCategoryName(name)
@@ -102,17 +102,28 @@ const Store = () => {
         </div>
 
         <section className="w-full flex py-4 px-8">
-          <aside className="flex flex-col sticky top-16 h-full flex-[1]">
+          <aside className="flex flex-col sticky top-16 h-full w-[150px]">
             <ul className="flex text-[14px] items-start flex-col gap-2 mt-3 justify-center">
               <h1 className="font-bold text-[16px]">Categorias:</h1>
-              <Link to="" onClick={() => handleChangeSearchParams("")}>
-                <li className="underline">Ve todos</li>
-              </Link>
+              <li>
+                <Link
+                  className="underline p-2"
+                  to=""
+                  onClick={() => handleChangeSearchParams("")}
+                >
+                  Ver todos
+                </Link>
+              </li>
               {categories.map((category) => (
                 <li key={category._id}>
                   <Link
                     to={`?cat=${category.name}`}
                     onClick={() => handleChangeSearchParams(category.name)}
+                    className={`${
+                      category.name === cat
+                        ? "bg-colorGray-light text-white rounded-md"
+                        : ""
+                    } px-2 py-1`}
                   >
                     {category.name}
                   </Link>
@@ -121,22 +132,22 @@ const Store = () => {
             </ul>
           </aside>
 
-          <section className="w-full grid grid-cols-1 flex-[5] mb-12 md:grid-cols-2 mt-4 place-items-start lg:grid-cols-4 gap-8">
-            {currentProduct.map((product) => (
-              <StoreCard key={product._id} product={product} />
-            ))}
-          </section>
+          {currentProduct.length === 0 ? (
+            <section className="w-full h-[300px] flex items-center justify-center">
+              <h4>Não há produtos.</h4>
+            </section>
+          ) : (
+            <section className="w-full grid grid-cols-1 flex-[5] pl-2 border-l mb-12 md:grid-cols-2 mt-4 place-items-center lg:grid-cols-4 gap-8">
+              {currentProduct.map((product) => (
+                <StoreCard key={product._id} product={product} />
+              ))}
+            </section>
+          )}
         </section>
-        <div className="p-4">
-          <PaginationController
-            paginate={paginate}
-            postsPerPage={postsPerPage}
-            currentPage={currentPage}
-            totalPosts={products.length}
-          />
-        </div>
+
         <StoreFooter />
       </div>
+      <GoBackButton />
     </main>
   )
 }

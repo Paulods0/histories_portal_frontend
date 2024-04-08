@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import PostCard from "../../components/card/PostCard"
-import { getPostByCategory } from "../../api/apiCalls"
+import { getPostByCategory } from "../../api"
 import { useLocation } from "react-router-dom"
 import { IPostData } from "../../api/types"
 import { ClipLoader } from "react-spinners"

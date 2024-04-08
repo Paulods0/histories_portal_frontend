@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom"
-import { NAV_LINKS, SOCIAL_MEDIA_LINKS } from "../../utils/constants"
+import { NAV_LINKS } from "../../utils/constants"
 import Search from "../search/Search"
 import ResponsiveNavigationBar from "./ResponsiveNavigationBar"
 
@@ -36,14 +36,6 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
-          </ul>
-
-          <ul className="flex gap-3 items-center">
-            {SOCIAL_MEDIA_LINKS.map((link, index) => (
-              <Link key={index} to={`https://${link.link}`} target="_blank">
-                {link.icon}
-              </Link>
-            ))}
           </ul>
         </nav>
 

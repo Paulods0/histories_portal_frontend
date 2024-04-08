@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getPostByCategory } from "../../api/apiCalls"
+import { getPostByCategory } from "../../api"
 import PostCard from "../../components/card/PostCard"
 import { IPostData } from "../../api/types"
 import { useLocation } from "react-router-dom"
@@ -24,7 +24,7 @@ const Reviews = () => {
     fetchData()
   }, [])
   return (
-    <div className="w-full min-h-screen gap-10 px-12 flex-col ">
+    <div className="w-full min-h-screen gap-10 px-12 flex-col">
       <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
         {isLoading ? (
           <div className="col-span-2 flex items-center justify-center">

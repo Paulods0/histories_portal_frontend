@@ -1,8 +1,8 @@
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import PostCard from "../../components/card/PostCard"
 import { useEffect, useState } from "react"
 import { IPostData } from "../../api/types"
-import { getPostByCategory } from "../../api/apiCalls"
+import { getPostByCategory } from "../../api"
 import { ClipLoader } from "react-spinners"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
@@ -14,6 +14,7 @@ const Passeios = () => {
   const [isLoading, setIsLoading] = useState(true)
 
   const [posts, setPosts] = useState<IPostData[]>([])
+  console.log(posts)
 
   const markers = [
     {
@@ -34,6 +35,11 @@ const Passeios = () => {
     iconSize: [38, 38],
   })
 
+  const CENTER_LOCATION = {
+    LATITUDE: -12.35769259509275,
+    LONGITUDE: 17.36914355209709,
+  }
+
   useEffect(() => {
     setIsLoading(true)
     const fetchData = async () => {
@@ -51,31 +57,52 @@ const Passeios = () => {
     <div className="w-full min-h-screen gap-10 px-12 flex-col items-center justify-start flex">
       <MapContainer
         className="leaflet-container"
-        center={[-8.819154381789547, 13.217153548958116]}
-        zoom={13}
+        center={[CENTER_LOCATION.LATITUDE, CENTER_LOCATION.LONGITUDE]}
+        zoom={5}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        {markers.map((loc, index) => (
+        {posts.map((post) => (
           //@ts-ignore
-          <Marker key={index} icon={customIcon} position={loc.geocode}>
+          <Marker
+            key={post._id}
+            icon={customIcon}
+            position={[post.latitude, post.longitude]}
+          >
             <Popup>
-              <div className="flex gap-1 flex-col justify-center h-[250px]  w-[300px] items-center">
-                <div className="relative w-full h-full">
+              <div className="flex gap-1  flex-col justify-start h-[250px] w-[300px] items-center">
+                <div className="relative w-full h-[150px]">
                   <img
-                    src="/1.jpg"
-                    alt=""
+                    src={post.mainImage}
+                    alt="imagem do post"
                     className="absolute w-full h-full object-cover"
                   />
                 </div>
 
-                <div className="flex flex-col h-[60px] w-full">
-                  <h1 className="font-bold font-Oswald uppercase">
-                    título do post
-                  </h1>
-                  <div className="w-full">{loc.popUp}</div>
+                <h1 className="font-bold text-black line-clamp-2 font-Oswald uppercase">
+                  {post.title}
+                </h1>
+
+                <div className="flex flex-col items-center self-end  justify-center w-full">
+                  <div className="w-full flex items-center justify-between">
+                    <div className="text-colorBlack-dark text-[12px] rounded-full flex items-center">
+                      <span className="font-semibold mr-1">Autor:</span>
+                      <div className="flex gap-1">
+                        <span>{post.author.firstname}</span>
+                        <span>{post.author.lastname}</span>
+                      </div>
+                    </div>
+                    <button
+                      onClick={() =>
+                        (window.location.href = `/post/${post.title}__${post._id}`)
+                      }
+                      className="text-white p-2 w-[100px] rounded-full  bg-colorBlack-dark flex  items-center justify-center"
+                    >
+                      Ver post
+                    </button>
+                  </div>
                 </div>
               </div>
             </Popup>

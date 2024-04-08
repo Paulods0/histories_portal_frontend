@@ -3,7 +3,7 @@ import { IoMenu } from "react-icons/io5"
 import { SECOND_NAV_BAR_LINKS } from "../../utils/constants"
 import { Link, useLocation } from "react-router-dom"
 import Search from "../search/Search"
-import { getAllCategories } from "../../api/apiCalls"
+import { getAllCategories } from "../../api"
 import { ICategoryData } from "../../api/types"
 
 const ResponsiveNavigationBar = () => {
@@ -11,7 +11,6 @@ const ResponsiveNavigationBar = () => {
   const [categories, setCategories] = useState<ICategoryData[]>()
   const regex = /[\s\u0300-\u036f]/g
 
-  
   const openModal = () => {
     setisNavigationModalOpen(!isNavigationModalOpen)
   }

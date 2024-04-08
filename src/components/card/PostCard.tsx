@@ -10,6 +10,7 @@ interface PostCardProps {
       _id: string
       firstname: string
       lastname: string
+      image?: string
     }
     mainImage: string
     content: string
@@ -28,29 +29,44 @@ const PostCard: React.FC<PostCardProps> = ({
   return (
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
       <div className="w-full relative">
-        <div className="w-full h-[250px] relative">
-          <Link to={`/post/${title}__${_id}`}>
+        <div className="cursor-pointer relative w-full h-[250px]">
+          <div
+            className="h-full w-full"
+            onClick={() => (window.location.href = `/post/${title}__${_id}`)}
+          >
             <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
             <img
               src={mainImage}
               className="w-full h-full object-cover"
               alt="photo"
             />
-          </Link>
+          </div>
         </div>
 
-        <h1 className="text-center font-normal text-[27px] line-clamp-1 font-Oswald mt-2 mb-2">
-          {title}
-        </h1>
+        <Link to={`/post/${title}__${_id}`}>
+          <h1 className="text-center font-normal text-[27px] line-clamp-1 font-Oswald mt-2 mb-2">
+            {title}
+          </h1>
+        </Link>
         <p
           className="text-center text-[15px] font-OpenSans line-clamp-4"
           dangerouslySetInnerHTML={dataContent}
         />
-        <h5 className=" text-center text-colorGray-light font-OpenSans font-normal text-[15px] mt-2">
-          {`${author?.firstname} ${author?.lastname} / ${formatarData(
-            createdAt
-          )}`}
-        </h5>
+        <div className="flex items-center gap-2 justify-center">
+          <img
+            src={author!!.image}
+            className="w-9 h-9 rounded-full object-contain"
+            alt=""
+          />
+          <button
+            onClick={() => (window.location.href = `/post/user/${author._id}`)}
+            className=" text-center text-colorGray-light font-OpenSans font-normal text-[15px] mt-2"
+          >
+            {`${author?.firstname} ${author?.lastname} / ${formatarData(
+              createdAt
+            )}`}
+          </button>
+        </div>
       </div>
     </div>
   )

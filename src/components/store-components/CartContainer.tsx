@@ -19,7 +19,19 @@ const CartContainer = ({
 }: {
   closeCartContainer: () => void
 }) => {
-  const { cart, removeFromCart } = useCart()
+  const { cart, removeFromCart, addToCart } = useCart()
+
+  const handleSubmitt = async () => {
+    try {
+      cart.forEach((product) => {
+        console.log(
+          `O usuário comprou: ${product.name}, Quantidade: ${product.quantity}`
+        )
+      })
+    } catch (error) {
+      console.error(error)
+    }
+  }
 
   return (
     <motion.div
@@ -38,15 +50,28 @@ const CartContainer = ({
           <TfiClose size={20} color="#111111" />
         </span>
       </div>
-      <div className="w-full my-4 flex flex-col items-center ">
-        {cart.map((product) => (
-          <CartCard
-            key={product._id}
-            removeProduct={removeFromCart}
-            product={product}
-          />
-        ))}
-      </div>
+      {cart.length === 0 ? (
+        <div className="h-[80px] w-full flex items-center justify-start">
+          Não há nenhum produto no carrinho.
+        </div>
+      ) : (
+        <div>
+          <div className="w-full h-[400px] border-b pb-3 overflow-y-auto my-4 flex flex-col items-center ">
+            {cart.map((product) => (
+              <CartCard
+                key={product._id}
+                removeProduct={removeFromCart}
+                addToCart={addToCart}
+                product={product}
+              />
+            ))}
+          </div>
+
+          <button onClick={handleSubmitt} className="mt-10 self-center p-3 bg-colorBlack-light text-white">
+            Efectuar compra
+          </button>
+        </div>
+      )}
     </motion.div>
   )
 }

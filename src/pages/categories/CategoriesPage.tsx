@@ -2,6 +2,7 @@ import { Link, Outlet, useLocation } from "react-router-dom"
 import SideBar from "../../components/sidebar/SideBar"
 import HomeCategoryControlller from "../../components/home_category/HomeCategoryControlller"
 import CategoriesNavBar from "../../components/navbar/CategoriesNavBar"
+import GoBackButton from "../../components/GoBackButton"
 
 const paths = [
   { path: "jornaloverland", label: "Jornal Overland" },
@@ -30,6 +31,7 @@ const CategoriesPage = () => {
           <SideBar />
         </aside>
       </div>
+      <GoBackButton />
     </main>
   )
 }

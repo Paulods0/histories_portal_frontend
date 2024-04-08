@@ -1,11 +1,11 @@
-import { format, Locale } from "date-fns"
+import { format, isValid } from "date-fns"
 import { pt } from "date-fns/locale"
 
 export const createMarkup = (value: string) => {
   return { __html: value }
 }
 
-export const formatarData = (originalDate: Date | string | number) => {
+export const formatarData = (originalDate: string) => {
   const data = format(originalDate, "dd 'de' LLLL 'de' yyyy", {
     locale: pt,
   })

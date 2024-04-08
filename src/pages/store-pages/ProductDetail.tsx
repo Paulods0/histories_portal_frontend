@@ -4,7 +4,7 @@ import { CiSearch, CiShoppingCart } from "react-icons/ci"
 import StoreFooter from "../../components/store-components/StoreFooter"
 import StoreDetailsCard from "../../components/store-components/StoreDetailsCard"
 import { useEffect, useState } from "react"
-import { getProductById } from "../../api/apiCalls"
+import { getProductById } from "../../api"
 import { IProductData } from "../../api/types"
 
 const ProductDetail = () => {

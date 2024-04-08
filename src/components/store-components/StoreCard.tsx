@@ -8,7 +8,7 @@ interface IStoreProducs {
 }
 
 const StoreCard: React.FC<IStoreProducs> = ({
-  product: { _id, image, name, price, category },
+  product: { _id, image, name, price, category, quantity },
 }) => {
   const [isOpen, setIsOpen] = useState(false)
   const openModal = () => {
@@ -19,7 +19,7 @@ const StoreCard: React.FC<IStoreProducs> = ({
     <>
       <div
         onClick={openModal}
-        className=" cursor-pointer border border-colorGray-light/20 rounded-md p-2"
+        className=" cursor-pointer hover:bg-zinc-600/5 duration-200 transition-all ease-in-out border border-colorGray-light/20 rounded-md p-2"
       >
         <div className="relative w-[220px] h-[220px]">
           <img
@@ -38,6 +38,7 @@ const StoreCard: React.FC<IStoreProducs> = ({
           _id={_id}
           image={image}
           name={name}
+          quantity={quantity}
           price={price}
           category={category}
           setIsOpen={setIsOpen}

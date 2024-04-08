@@ -1,20 +1,18 @@
-import { Link, useNavigate } from "react-router-dom"
 import { IPostData } from "../../api/types"
 import { createMarkup } from "../../utils/helpers"
 
 const SwiperCard = ({ post }: { post: IPostData }) => {
   const content = createMarkup(post.content)
-  const navigate = useNavigate()
+
   const navigateToDetailPage = () => {
-    navigate(`/post/${post?.title}__${post?._id}`)
-    window.scrollTo(0, 0)
+    window.location.href = `/post/${post.title}__${post._id}`
   }
   return (
     <div
       onClick={navigateToDetailPage}
-      className="h-[200px] cursor-pointer hover:-translate-y-[2px] duration-200 transition-all ease-linear w-[200px] flex flex-col pb-2 rounded-md border border-colorGray-light/20"
+      className="h-[200px] w-[200px] cursor-pointer hover:-translate-y-[2px] duration-200 transition-all ease-linear flex flex-col pb-2 rounded-md border border-colorGray-light/20"
     >
-      <Link to={`/post/${post.title}__${post._id}`}>
+      <div>
         <div className="relative w-full h-[100px]">
           <img
             src={post?.mainImage}
@@ -34,7 +32,7 @@ const SwiperCard = ({ post }: { post: IPostData }) => {
             dangerouslySetInnerHTML={content}
           />
         </div>
-      </Link>
+      </div>
     </div>
   )
 }

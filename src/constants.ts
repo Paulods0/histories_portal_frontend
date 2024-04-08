@@ -11,3 +11,17 @@ export const storeSwiperImages = [
   "/33.jpg",
   "/55.jpg",
 ]
+
+export const sponsors = [
+  "/pr/arb.png",
+  "/pr/bfgoodrich.png",
+  "/pr/centtro.png",
+  "/pr/continental.png",
+  "/pr/daimic.jpg",
+  "/pr/eeziawn.webp",
+  "/pr/ikamper.webp",
+  "/pr/jetour.png",
+  "/pr/michelin.png",
+  "/pr/toyota2.png",
+  "/pr/yokohama.png",
+]

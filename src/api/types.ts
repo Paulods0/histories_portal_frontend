@@ -15,11 +15,14 @@ export interface IPostData {
   content: string
   isHighlighted: boolean
   author: IAuthor
+  rating: number
   category: {
     name: string
   }
   author_notes?: string
   createdAt: string
+  latitude: number
+  longitude: number
   tag: string[]
 }
 
@@ -32,5 +35,6 @@ export interface IProductData {
   }
   price: string
   image: string
+  quantity?: number
   createdAt?: string
 }

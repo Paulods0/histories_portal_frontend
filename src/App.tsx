@@ -21,13 +21,24 @@ import Parceiros from "./pages/categories/Parceiros"
 import ProductDetail from "./pages/store-pages/ProductDetail"
 import CategoriesNavBar from "./components/navbar/CategoriesNavBar"
 import HomeCategoryControlller from "./components/home_category/HomeCategoryControlller"
+import Search from "./pages/Search"
+import Unsubscribe from "./pages/Unsubscribe"
+import Page from "./pages/Page"
+import UserPosts from "./pages/UserPosts"
 
 function App() {
   const path = useLocation()
+  const searchResult = new URLSearchParams(path.search).get("v")
+  let isInSearchPage = false
   let homeCategoryLabel
 
   if (path.pathname.includes("/post/")) {
     homeCategoryLabel = decodeURI(path.pathname.split("/")[2].split("_")[0])
+  } else if (path.pathname.includes("/search")) {
+    isInSearchPage = true
+    homeCategoryLabel = searchResult!!
+  } else if (path.pathname.includes("/page/")) {
+    homeCategoryLabel = "Página " + path.pathname.split("/")[2]
   } else {
     homeCategoryLabel = path.pathname.split("/")[2]
   }
@@ -41,7 +52,7 @@ function App() {
           </div>
           <HomeCategoryControlller
             hide={homeCategoryLabel === undefined}
-            text="Arquivos de: "
+            text={isInSearchPage ? "Resultados de: " : "Arquivos de: "}
             label={homeCategoryLabel}
           />
         </>
@@ -55,6 +66,9 @@ function App() {
         <Route path="/pages/parceiros" element={<Parceiros />} />
         <Route path="/pages/loja" element={<Store />} />
         <Route path="/pages/loja/product/:id" element={<ProductDetail />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/unsubscribe/:id" element={<Unsubscribe />} />
+        <Route path="/page/:page" element={<Page />} />
 
         <Route path="/categorias" element={<CategoriesPage />}>
           <Route path="classificados" element={<Classificados />} />
@@ -63,11 +77,14 @@ function App() {
           <Route path="passeios" element={<Passeios />} />
           <Route path="reviews" element={<Reviews />} />
           <Route path="jornaloverland" element={<OverlandJournal />} />
+          {/* <Route path="overlandexperience" element={<OverlandExperience />} /> */}
         </Route>
 
         <Route path="/post/:id" element={<PostDetails />} />
+        <Route path="/post/user/:userId" element={<UserPosts />} />
         <Route path="*" element={<PageNotFound />} />
       </Routes>
+
       <Footer />
     </main>
   )

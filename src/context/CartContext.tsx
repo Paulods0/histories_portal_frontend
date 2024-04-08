@@ -3,7 +3,9 @@ import { IProductData } from "../api/types"
 
 type CartContextType = {
   cart: IProductData[]
-  addToCart: (product: IProductData) => void
+  getProductQuantity: (id: string) => number
+  increaseCartQuantity: (product: IProductData) => void
+  decreaseCartQuantity: (product: IProductData) => void
   removeFromCart: (id: string) => void
 }
 
@@ -15,7 +17,7 @@ export const CartContextProvider = ({
   children: React.ReactNode
 }) => {
   const [cart, setCart] = useState<IProductData[]>([])
-  const CART_STORAGE_KEY = "cart"
+  // const CART_STORAGE_KEY = "cart"
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart")
@@ -29,15 +31,54 @@ export const CartContextProvider = ({
     localStorage.setItem("cart", JSON.stringify(cart))
   }, [cart])
 
-  const addToCart = (product: IProductData) => {
-    setCart((prev) => [...prev, product])
+  const getProductQuantity = (id: string) =>
+    cart.find((item) => item._id === id)?.quantity || 0
+  const decreaseCartQuantity = (product: IProductData) => {
+    setCart((currItems) => {
+      if (currItems.find((item) => item._id === product._id)?.quantity === 1) {
+        return currItems.filter((item) => item._id != product._id)
+      } else {
+        return currItems.map((item) => {
+          if (item._id === product._id) {
+            return { ...item, quantity: item.quantity!! - 1 }
+          } else {
+            return item
+          }
+        })
+      }
+    })
+  }
+  const increaseCartQuantity = (product: IProductData) => {
+    setCart((currItems) => {
+      if (currItems.find((item) => item._id === product._id) === null) {
+        return [...currItems, { ...product, quantity: +1 }]
+      } else {
+        return currItems.map((item) => {
+          if (item._id === product._id) {
+            return { ...item, quantity: item.quantity!! + 1 }
+          } else {
+            return item
+          }
+        })
+      }
+    })
   }
   const removeFromCart = (id: string) => {
-    setCart((prev) => prev.filter((item) => item._id != id))
+    setCart((currItem) => {
+      return currItem.filter((item) => item._id != id)
+    })
   }
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart }}>
+    <CartContext.Provider
+      value={{
+        cart,
+        decreaseCartQuantity,
+        getProductQuantity,
+        increaseCartQuantity,
+        removeFromCart,
+      }}
+    >
       {children}
     </CartContext.Provider>
   )

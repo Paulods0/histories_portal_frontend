@@ -14,7 +14,7 @@ const HomeCategoryControlller = ({
       {hide ? (
         ""
       ) : (
-        <div className="w-full px-12 items-center border border-colorGray-light/20 bg-[#F9F9F9] py-3 font-normal mb-12 text-[14px] text-[#9B9B9B] 40 flex">
+        <div className="w-full px-12 items-center border border-colorGray-light/20 bg-[#F9F9F9] py-3 font-normal mb-8 text-[14px] text-[#9B9B9B] 40 flex">
           <Link to="/" className="mr-2">
             Home
           </Link>
