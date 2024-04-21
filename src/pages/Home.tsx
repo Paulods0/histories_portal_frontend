@@ -1,17 +1,18 @@
-import PostCard from "../components/card/PostCard"
-import SideBar from "../components/sidebar/SideBar"
-import PaginationController from "../components/pagination/PaginationController"
+import PostCard from "../components/card/post-card"
+import SideBar from "../components/sidebar/side-bar"
+import PaginationController from "../components/pagination/pagination-controller"
 import { useEffect, useState } from "react"
 import { getPostsAndPagination } from "../api"
 import { IPostData } from "../api/types"
-import HighlightedCard from "../components/card/HighlightedCard"
+import HighlightedCard from "../components/card/highlighted-card"
 import { ClipLoader } from "react-spinners"
-import GoBackButton from "../components/GoBackButton"
+import GoBackButton from "../components/go-back-button"
+import { useGetPosts } from "@/lib/react-query"
+import { QueryCache } from "@tanstack/react-query"
 
 const Home = () => {
-  const [posts, setPosts] = useState<IPostData[]>([])
+  const { data: posts, isLoading } = useGetPosts()
   const [pages, setPages] = useState(1)
-  const [isLoading, setIsLoading] = useState(false)
 
   const handleNavigate = (page: number) => {
     if (page === 1) {
@@ -29,17 +30,6 @@ const Home = () => {
       </div>
     )
   }
-
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true)
-      const data = await getPostsAndPagination(1)
-      setPosts(data.posts)
-      setPages(data.pages)
-      setIsLoading(false)
-    }
-    fetchData()
-  }, [])
 
   if (isLoading) {
     return (

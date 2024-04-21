@@ -1,24 +1,21 @@
 import { Link } from "react-router-dom"
-import HomeCategoryControlller from "../components/home_category/HomeCategoryControlller"
+import HomeCategoryControlller from "../components/home_category/home-category-controlller"
 import SwiperPosts from "../components/swiper-posts/SwiperPosts"
 
 const AboutUs = () => {
   return (
     <main className="px-8 flex py-3 flex-col w-full h-full items-center justify-center">
-      <div className="relative w-full h-[200px] mb-16">
+      <div className="relative w-full h-[800px] mb-8">
         <img
-          src="/logotipo-tradicional.png"
+          src="/logo.jpg"
           alt=""
-          className="absolute inset-0 w-full h-full object-contain"
+          className="absolute inset-0 w-full h-full object-cover"
         />
       </div>
 
-      <div className="flex w-full h-full mt-12 items-center justify-center flex-col">
-        <h1 className="font-semibold font-Oswald text-[41px] text-center">
-          Sobre nós
-        </h1>
+      <div className="flex w-full h-full items-center justify-center flex-col">
         <div className="w-full  mb-6">
-          <h1 className="font-PlayFair text-[36px] font-medium text-left">
+          <h1 className="font-PlayFair text-[36px] font-medium text-center mb-4">
             About Expedition Portal
           </h1>
           <p className="font-OpenSans text-[15px]">
@@ -37,7 +34,7 @@ const AboutUs = () => {
         </div>
 
         <div className="w-full mb-6">
-          <h1 className="font-PlayFair font-medium text-left text-[36px]">
+          <h1 className="font-PlayFair font-medium text-center mb-4 text-[36px]">
             About Overland International
           </h1>
           <p className="font-OpenSans text-[15px]">
@@ -50,7 +47,7 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="w-full">
-          <h1 className="font-PlayFair font-medium text-left text-[36px]">
+          <h1 className="font-PlayFair font-medium text-center mb-4 text-[36px]">
             About Overland Journal
           </h1>
           <p className="font-OpenSans text-[15px]">
@@ -65,7 +62,7 @@ const AboutUs = () => {
           </p>
         </div>
         <div className="w-full mt-6">
-          <h1 className="font-PlayFair font-medium text-left text-[36px]">
+          <h1 className="font-PlayFair font-medium text-center mb-4 text-[36px]">
             What is Overlanding?
           </h1>
           <p className="font-OpenSans text-[15px]">
@@ -82,7 +79,7 @@ const AboutUs = () => {
         </div>
       </div>
 
-      <div className="mt-8 w-full flex flex-col">
+      <div className="mt-20 w-full flex flex-col">
         <div className="text-colorGray font-semibold font-Roboto  uppercase text-[12px] flex self-start gap-1">
           <h1 className="text-colorGray-light">Também em</h1>
           <Link to="/">www.overlandangola.com</Link>

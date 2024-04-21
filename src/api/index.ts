@@ -1,47 +1,48 @@
+import { instance as axios } from "@/config/axios"
 import { url } from "../utils/constants"
 import { API_URL } from "../utils/enums"
-import { ICategoryData, IPostData, IProductData } from "./types"
+import {
+  PostCategory,
+  Post,
+  Product,
+  SchedulePost,
+  ClassifiedPost,
+} from "./types"
+import { AxiosResponse } from "axios"
 
-export async function getAllCategories(): Promise<ICategoryData[] | []> {
+export async function getPostCategories(): Promise<PostCategory[] | []> {
   try {
-    const response = await fetch(`${url}/${API_URL.GET_ALL_CATEGORIES}`)
-    const data: ICategoryData[] = await response.json()
-    return data
+    const response = await axios.get("/post-category/")
+    return response.data
   } catch (error) {
-    console.log("Error: " + error)
+    console.log("Erro: " + error)
     return []
   }
 }
-export const getAllPosts = async (): Promise<IPostData[]> => {
-  const response = await fetch(`${url}/${API_URL.GET_ALL_POSTS}`)
-  const posts = await response.json()
-  return posts
+export const getAllPosts = async (): Promise<Post[]> => {
+  const response = await axios.get("/post")
+  return response.data
+}
+export const getSinglePost = async (id: string): Promise<Post> => {
+  const response = await axios.get(`/post/${id}`)
+  return response.data
 }
 export const getPostsAndPagination = async (
   page: number
-): Promise<{ posts: IPostData[]; pages: number }> => {
+): Promise<{ posts: Post[]; pages: number }> => {
   const result = await fetch(`${url}/post/posts/page/${page}`)
   const data = await result.json()
   const pages = data.pages
-  const posts: IPostData[] = data.posts
+  const posts: Post[] = data.posts
   return { posts, pages }
 }
-export const getSinglePost = async (
-  id: string | undefined
-): Promise<IPostData> => {
-  const response = await fetch(`${url}/post/get/${id}`, {
-    method: "GET",
-  })
-  const post = await response.json()
-  return post
-}
-export const getAllProducts = async (): Promise<IProductData[] | []> => {
+export const getAllProducts = async (): Promise<Product[] | []> => {
   const response = await fetch(`${url}/${API_URL.GET_ALL_PRODUCTS}`)
   const data = await response.json()
 
   return data
 }
-export const getProductById = async (id: string): Promise<IProductData> => {
+export const getProductById = async (id: string): Promise<Product> => {
   const response = await fetch(`${url}/${API_URL.GET_PRODUCT_BY_ID}/${id}`, {
     method: "GET",
   })
@@ -49,36 +50,30 @@ export const getProductById = async (id: string): Promise<IProductData> => {
   return data
 }
 export const getPostByCategory = async (
-  categoryId: string
-): Promise<IPostData[]> => {
-  const response = await fetch(`${url}/post/category/${categoryId}`, {
-    method: "GET",
-  })
-  const data = await response.json()
-
-  return data
+  category_slug: string
+): Promise<Post[]> => {
+  const response = await axios.get(`/post/category/${category_slug}`)
+  return response.data
 }
-export const getAllProdutCategories = async (): Promise<ICategoryData[]> => {
+export const getAllProdutCategories = async (): Promise<PostCategory[]> => {
   const response = await fetch(`${url}/prod-category/categories`)
   const data = await response.json()
   return data
 }
 export const getAllProductsByCategory = async (
   cat: string
-): Promise<IProductData[]> => {
+): Promise<Product[]> => {
   const response = await fetch(`${url}/product/product-cat?cat=${cat}`)
   const data = await response.json()
   return data
 }
-export const getMostViewedPosts = async (): Promise<IPostData[]> => {
-  const response = await fetch(`${url}/post/mostviewed`)
-  const data = await response.json()
-  return data
+export const getMostViewedPosts = async (): Promise<Post[]> => {
+  const response = await axios.get("/post/get/most-views-post")
+  return response.data
 }
-export const getHighlightedPost = async (): Promise<IPostData> => {
-  const response = await fetch(`${url}/${API_URL.GET_HIGHLIGHTED_POST}`)
-  const data = await response.json()
-  return data
+export const getHighlightedPost = async (): Promise<Post> => {
+  const response = await axios.get("/post/get/highlighted-post")
+  return response.data
 }
 export const getSearchedPosts = async (key: string) => {
   const response = await fetch(`${url}/post/search?value=${key}`)
@@ -105,4 +100,16 @@ export const deslikePost = async (postId: string) => {
   })
   const { clicked } = await response.json()
   return clicked
+}
+export const getSchedulePosts = async (): Promise<{ data: SchedulePost[] }> => {
+  const response = await axios.get("/schedule-post")
+  return response.data
+}
+export const getClassifiedPosts = async (): Promise<ClassifiedPost[]> => {
+  const response = await axios.get("/classified-post")
+  return response.data.data
+}
+export const getUserPosts = async (user_id: string): Promise<Post[]> => {
+  const response = await axios.get(`/post/user-posts/${user_id}`)
+  return response.data
 }

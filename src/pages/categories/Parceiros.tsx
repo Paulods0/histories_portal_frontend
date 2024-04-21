@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom"
-import HomeCategoryControlller from "../../components/home_category/HomeCategoryControlller"
+import HomeCategoryControlller from "../../components/home_category/home-category-controlller"
 import { FAKE_PARTNERS } from "../../fakedata"
 
 const Parceiros = () => {
   return (
     <main className="px-8 pb-8">
-      <HomeCategoryControlller label="Parceiros" />
+      <HomeCategoryControlller hide={false} label="Parceiros" />
       <div className="w-full grid md:grid-cols-2 grid-cols-1 lg:grid-cols-4 gap-12 place-items-center">
         {FAKE_PARTNERS.map((partner, index) => (
           <Link

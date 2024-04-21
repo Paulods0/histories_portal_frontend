@@ -1,12 +1,12 @@
 import { useLocation, useNavigate, useParams } from "react-router-dom"
-import GoBackButton from "../components/GoBackButton"
-import SideBar from "../components/sidebar/SideBar"
-import PostCard from "../components/card/PostCard"
+import GoBackButton from "../components/go-back-button"
+import SideBar from "../components/sidebar/side-bar"
+import PostCard from "../components/card/post-card"
 import { IPostData } from "../api/types"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getPostsAndPagination } from "../api"
-import PaginationController from "../components/pagination/PaginationController"
+import PaginationController from "../components/pagination/pagination-controller"
 
 const Page = () => {
   const { page } = useParams()
@@ -45,10 +45,9 @@ const Page = () => {
   }, [page])
   return (
     <main className="w-full h-full">
-      <main className="w-full min-h-screen px-8 pb-3 flex-col mt-6">
+      <main className="w-full px-8 pb-0 flex-col mt-6">
         <div className="w-full flex gap-10 ">
-          <div className="flex-[3] min-h-screen">
-            {/** FIRST CARD TO SHOW UP */}
+          <div className="flex-[3] ">
             <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
               {isLoading ? (
                 <div className="w-full lg:col-span-3 my-12 flex px-12 items-center justify-center">

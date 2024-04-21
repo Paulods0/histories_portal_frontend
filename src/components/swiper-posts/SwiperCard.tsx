@@ -1,12 +1,13 @@
 import { IPostData } from "../../api/types"
-import { createMarkup } from "../../utils/helpers"
+import { createMarkup, formateData } from "../../utils/helpers"
 
 const SwiperCard = ({ post }: { post: IPostData }) => {
   const content = createMarkup(post.content)
-
+  const date = formateData(post?.createdAt)
   const navigateToDetailPage = () => {
-    window.location.href = `/post/${post.title}__${post._id}`
+    window.location.href = `/post/${post._id}`
   }
+
   return (
     <div
       onClick={navigateToDetailPage}
@@ -25,7 +26,7 @@ const SwiperCard = ({ post }: { post: IPostData }) => {
         </div>
         <div className="p-2 w-full flex flex-col  font-Roboto">
           <h1 className="text-colorGray-light font-semibold text-[12px] ">
-            {post.createdAt.split("T")[0]}
+            {date}
           </h1>
           <p
             className="text-colorBlack-dark line-clamp-3 w-full text-[14px] font-normal"

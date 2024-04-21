@@ -1,19 +1,18 @@
-import { useEffect, useState } from "react"
-import { IPostData } from "../../api/types"
+import { ClipLoader } from "react-spinners"
 import SwiperCard from "./SwiperCard"
-import { getMostViewedPosts } from "../../api"
-import { Link } from "react-router-dom"
+import { useGetMostViewsPosts } from "@/lib/react-query"
 
 const SwiperPosts = () => {
-  const [posts, setPosts] = useState<IPostData[]>()
+  const { data: posts, isLoading } = useGetMostViewsPosts()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await getMostViewedPosts()
-      setPosts(data)
-    }
-    fetchData()
-  }, [])
+  if (isLoading) {
+    return (
+      <main className="w-full flex items-center justify-center">
+        <ClipLoader size={40} />
+      </main>
+    )
+  }
+
   return (
     <>
       <div className="lg:w-[65vw] w-[80vw] flex md:w-full self-start scroll mt-2 overflow-x-auto scroll-bar py-3 lg:flex gap-2 ">

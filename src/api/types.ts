@@ -1,32 +1,31 @@
-export interface ICategoryData {
+export type PostCategory = {
   _id: string
   name: string
+  slug: string
 }
-export interface IAuthor {
+export type Author = {
   _id: string
   firstname: string
   lastname: string
   image?: string
 }
-export interface IPostData {
+export type Post = {
   _id: string
   title: string
   mainImage: string
   content: string
-  isHighlighted: boolean
-  author: IAuthor
+  highlighted: boolean
+  author: Author
   rating: number
-  category: {
-    name: string
-  }
+  category: PostCategory
   author_notes?: string
   createdAt: string
   latitude: number
   longitude: number
   tag: string[]
+  category_slug: string
 }
-
-export interface IProductData {
+export type Product = {
   _id: string
   name: string
   category: {
@@ -37,4 +36,26 @@ export interface IProductData {
   image: string
   quantity?: number
   createdAt?: string
+}
+export type SchedulePost = {
+  author: Author
+  title: string
+  file: string
+  createdAt: string
+}
+export type ClassifiedPost = {
+  _id: string
+  title: string
+  author: {
+    firstname: string
+    lastname: string
+    email: string
+    phone: string
+  }
+  mainImage: string
+  content: string
+  category: string
+  price: string
+  category_slug: string
+  createdAt: string
 }

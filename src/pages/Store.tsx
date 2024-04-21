@@ -1,8 +1,8 @@
-import StoreNavigationBar from "../components/store-components/StoreNavigationBar"
-import StoreCard from "../components/store-components/StoreCard"
+import StoreNavigationBar from "../components/store-components/store-navigation-bar"
+import StoreCard from "../components/store-components/store-card"
 import { Link, useLocation } from "react-router-dom"
-import StoreFooter from "../components/store-components/StoreFooter"
-import PaginationController from "../components/pagination/PaginationController"
+import StoreFooter from "../components/store-components/store-footer"
+import PaginationController from "../components/pagination/pagination-controller"
 import { useEffect, useState } from "react"
 import {
   getAllProducts,
@@ -18,8 +18,8 @@ import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
 import "swiper/css/effect-fade"
-import { useCart } from "../context/CartContext"
-import GoBackButton from "../components/GoBackButton"
+import { useCart } from "../context/cart-context"
+import GoBackButton from "../components/go-back-button"
 
 const Store = () => {
   const location = useLocation()

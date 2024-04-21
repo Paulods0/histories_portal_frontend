@@ -1,34 +1,28 @@
-import { useEffect, useState } from "react"
-import { getPostByCategory } from "../../api"
-import PostCard from "../../components/card/PostCard"
-import { IPostData } from "../../api/types"
+import PostCard from "../../components/card/post-card"
 import { useLocation } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
+import { useGetPostByCategory } from "@/lib/react-query"
 
 const Reviews = () => {
   const path = useLocation()
-  const category_id = path.search.split("=")[1]
+  const category_id = path.pathname.split("/")[2]
+  const { data: posts, isLoading } = useGetPostByCategory(category_id!!)
+  // console.log(posts)
 
-  const [posts, setPosts] = useState<IPostData[]>([])
-  const [isLoading, setIsLoading] = useState(true)
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await getPostByCategory(category_id)
-        setPosts(data)
-        setIsLoading(false)
-      } catch (error) {
-        setIsLoading(false)
-      }
-    }
-    fetchData()
-  }, [])
+  if (isLoading) {
+    return (
+      <div className="col-span-2 flex items-center justify-center">
+        <ClipLoader size={80} color="#1A101F" />
+      </div>
+    )
+  }
+
   return (
     <div className="w-full min-h-screen gap-10 px-12 flex-col">
       <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-        {isLoading ? (
+        {posts?.length === 0 ? (
           <div className="col-span-2 flex items-center justify-center">
-            <ClipLoader size={80} color="#1A101F" />
+            <h1>Nenhum post ainda.</h1>
           </div>
         ) : (
           posts?.map((post) => <PostCard key={post._id} post={post} />)

@@ -18,7 +18,7 @@ const Subscribe = () => {
     phone: phone,
   }
 
-  console.log(userInfo)
+  // console.log(userInfo)
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
     try {
@@ -55,6 +55,7 @@ const Subscribe = () => {
             <option disabled value="">
               Selecionar país
             </option>
+            
             {allCountries.map((country: any, index) => (
               <option key={index} value={country.name}>
                 {country.name}
@@ -84,8 +85,8 @@ const Subscribe = () => {
                 key={index}
                 className="w-full flex items-center gap-x-2"
               >
-                <p>{country.name}</p>
                 <p>(+{country.phone})</p>
+                <p>{country.name}</p>
               </option>
             ))}
           </select>
