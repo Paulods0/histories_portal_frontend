@@ -3,9 +3,16 @@ import { NAV_LINKS } from "../../utils/constants"
 import { Link, useLocation } from "react-router-dom"
 import Search from "../search/search"
 import { useCart } from "../../context/cart-context"
-import { BiCart } from "react-icons/bi"
 import CartContainer from "./cart-container"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet"
 
 const StoreNavigationBar = () => {
   const path = useLocation()
@@ -24,11 +31,11 @@ const StoreNavigationBar = () => {
       <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-colorGray-medium justify-between">
         <nav className="h-full w-[720px] justify-between flex">
           <ul className="gap-3 flex items-center">
-            <Link to={"/"} className="w-24 h-[25px] relative ">
+            <Link to={"/"} className="w-24 h-[28px] relative ">
               <img
-                src="/logotipo-texto.png"
-                alt=""
-                className="w-full absolute h-[30px] object-cover"
+                src="/banner-3.png"
+                alt="logotipo"
+                className="w-full absolute h-[38px] object-contain"
               />
             </Link>
             <div className="flex gap-3 ml-2">
@@ -52,7 +59,12 @@ const StoreNavigationBar = () => {
           </div>
           <div className="relative flex items-center gap-2 transition-all duration-300">
             <div className="cursor-pointer " onClick={openCartContainer}>
-              <HiOutlineShoppingBag color="#FFF" size={20} />
+              <Sheet>
+                <SheetTrigger>
+                  <HiOutlineShoppingBag color="#FFF" size={20} />
+                </SheetTrigger>
+                <CartContainer />
+              </Sheet>
             </div>
 
             <div className="w-3 h-3 items-center justify-center flex rounded-full bg-zinc-500/40 text-white text-[12px] p-3">
@@ -61,12 +73,12 @@ const StoreNavigationBar = () => {
           </div>
         </div>
       </div>
-      {isCartContainerOpen && (
+      {/* {isCartContainerOpen && (
         <>
           <div className="absolute w-full h-screen transition-all ease-linear duration-300 bg-black/60 inset-0" />
           <CartContainer closeCartContainer={closeCartContainer} />
         </>
-      )}
+      )} */}
     </header>
   )
 }

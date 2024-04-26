@@ -32,7 +32,7 @@ const ClassifiedCard = ({ post }: ClassifiedCardProps) => {
           <div className="h-full w-full">
             <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
             <img
-              src={`/1.jpg`}
+              src={post.mainImage ?? "/1.jpg"}
               className="w-full h-full object-cover"
               alt="photo"
             />

@@ -3,6 +3,11 @@ export type PostCategory = {
   name: string
   slug: string
 }
+export type ProductCategory = {
+  _id: string
+  name: string
+  slug: string
+}
 export type Author = {
   _id: string
   firstname: string
@@ -44,7 +49,7 @@ export type SchedulePost = {
   createdAt: string
 }
 export type ClassifiedPost = {
-  _id: string
+  _id?: string
   title: string
   author: {
     firstname: string
@@ -54,8 +59,8 @@ export type ClassifiedPost = {
   }
   mainImage: string
   content: string
-  category: string
+  category?: string
   price: string
-  category_slug: string
-  createdAt: string
+  category_slug?: string
+  createdAt?: string
 }

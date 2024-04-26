@@ -8,7 +8,6 @@ import {
   SchedulePost,
   ClassifiedPost,
 } from "./types"
-import { AxiosResponse } from "axios"
 
 export async function getPostCategories(): Promise<PostCategory[] | []> {
   try {
@@ -37,10 +36,8 @@ export const getPostsAndPagination = async (
   return { posts, pages }
 }
 export const getAllProducts = async (): Promise<Product[] | []> => {
-  const response = await fetch(`${url}/${API_URL.GET_ALL_PRODUCTS}`)
-  const data = await response.json()
-
-  return data
+  const response = await axios.get("/product")
+  return response.data
 }
 export const getProductById = async (id: string): Promise<Product> => {
   const response = await fetch(`${url}/${API_URL.GET_PRODUCT_BY_ID}/${id}`, {
@@ -56,9 +53,8 @@ export const getPostByCategory = async (
   return response.data
 }
 export const getAllProdutCategories = async (): Promise<PostCategory[]> => {
-  const response = await fetch(`${url}/prod-category/categories`)
-  const data = await response.json()
-  return data
+  const response = await axios.get("/product-category")
+  return response.data
 }
 export const getAllProductsByCategory = async (
   cat: string
@@ -112,4 +108,8 @@ export const getClassifiedPosts = async (): Promise<ClassifiedPost[]> => {
 export const getUserPosts = async (user_id: string): Promise<Post[]> => {
   const response = await axios.get(`/post/user-posts/${user_id}`)
   return response.data
+}
+
+export const createClassifiedPost = async (data: ClassifiedPost) => {
+  await axios.post("/classified-post/", data)
 }

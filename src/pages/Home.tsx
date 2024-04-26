@@ -3,7 +3,7 @@ import SideBar from "../components/sidebar/side-bar"
 import PaginationController from "../components/pagination/pagination-controller"
 import { useEffect, useState } from "react"
 import { getPostsAndPagination } from "../api"
-import { IPostData } from "../api/types"
+
 import HighlightedCard from "../components/card/highlighted-card"
 import { ClipLoader } from "react-spinners"
 import GoBackButton from "../components/go-back-button"
@@ -40,7 +40,7 @@ const Home = () => {
   }
 
   return (
-    <main className="w-full min-h-screen px-8 pb-3 flex-col mt-6">
+    <main className="relative w-full min-h-screen px-8 pb-3 flex-col mt-6">
       <div className="w-full flex gap-10 ">
         <div className="flex-[3] min-h-screen">
           {/** FIRST CARD TO SHOW UP */}
@@ -60,7 +60,6 @@ const Home = () => {
       <div className="w-full flex items-center justify-center">
         <PaginationController handleNavigate={handleNavigate} pages={pages} />
       </div>
-
       <GoBackButton />
     </main>
   )

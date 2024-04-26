@@ -4,12 +4,13 @@ import Search from "../search/search"
 import ResponsiveNavigationBar from "./responsive-navigation-bar"
 
 const Navbar = () => {
-  const path = useLocation()
+  const { pathname } = useLocation()
+  console.log(pathname)
 
-  // const isStore = path.pathname.includes("/pages/loja")
-  // if (isStore) {
-  //   return
-  // }
+  const isStore = pathname.includes("/pages/loja")
+  if (isStore) {
+    return
+  }
 
   return (
     <header className="w-full">
@@ -19,7 +20,7 @@ const Navbar = () => {
             <Link to={"/"} className="w-24 h-[28px] relative ">
               <img
                 src="/banner-3.png"
-                alt=""
+                alt="logotipo"
                 className="w-full absolute h-[38px] object-contain"
               />
             </Link>
@@ -28,7 +29,7 @@ const Navbar = () => {
                 <Link
                   key={index}
                   className={` ${
-                    path.pathname === link.link ? "text-goldenColor" : "#FFF"
+                    pathname === link.link ? "text-goldenColor" : "#FFF"
                   } text-white text-[12px] font-Oswald uppercase font-normal hover:text-goldenColor duration-100 transition-all ease-in`}
                   to={link.link}
                 >

@@ -1,5 +1,8 @@
 import {
+  createClassifiedPost,
   getAllPosts,
+  getAllProducts,
+  getAllProdutCategories,
   getClassifiedPosts,
   getHighlightedPost,
   getMostViewedPosts,
@@ -10,7 +13,7 @@ import {
   getUserPosts,
 } from "@/api"
 import { PostCategory, Post, ClassifiedPost } from "@/api/types"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery } from "@tanstack/react-query"
 
 export const useGetPosts = () => {
   return useQuery<Post[]>({
@@ -79,5 +82,25 @@ export const useGetSearchResults = (search: string) => {
   return useQuery({
     queryKey: ["get-search-results", search],
     queryFn: getAllPosts,
+  })
+}
+
+export const useGetProduts = () => {
+  return useQuery({
+    queryKey: ["get-products"],
+    queryFn: getAllProducts,
+  })
+}
+
+export const useGetProductCategories = () => {
+  return useQuery({
+    queryKey: ["get-product-category"],
+    queryFn: getAllProdutCategories,
+  })
+}
+
+export const useCreateClassifiedPost = ()=> {
+  return useMutation({
+    mutationFn: createClassifiedPost,
   })
 }

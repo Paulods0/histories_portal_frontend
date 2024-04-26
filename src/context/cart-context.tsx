@@ -1,11 +1,11 @@
 import { createContext, useContext, useEffect, useState } from "react"
-import { IProductData } from "../api/types"
+import { Product } from "../api/types"
 
 type CartContextType = {
-  cart: IProductData[]
+  cart: Product[]
   getProductQuantity: (id: string) => number
-  increaseCartQuantity: (product: IProductData) => void
-  decreaseCartQuantity: (product: IProductData) => void
+  increaseCartQuantity: (product: Product) => void
+  decreaseCartQuantity: (product: Product) => void
   removeFromCart: (id: string) => void
 }
 
@@ -16,7 +16,7 @@ export const CartContextProvider = ({
 }: {
   children: React.ReactNode
 }) => {
-  const [cart, setCart] = useState<IProductData[]>([])
+  const [cart, setCart] = useState<Product[]>([])
 
   useEffect(() => {
     const savedCart = localStorage.getItem("cart")
@@ -33,7 +33,7 @@ export const CartContextProvider = ({
   const getProductQuantity = (id: string) =>
     cart.find((item) => item._id === id)?.quantity || 0
 
-  const increaseCartQuantity = (product: IProductData) => {
+  const increaseCartQuantity = (product: Product) => {
     setCart((curr) => {
       const existingProduct = curr.find((item) => item._id === product._id)
 
@@ -52,7 +52,7 @@ export const CartContextProvider = ({
     })
   }
 
-  const decreaseCartQuantity = (product: IProductData) => {
+  const decreaseCartQuantity = (product: Product) => {
     setCart((currItems) => {
       const existingProduct = currItems.find((item) => item._id === product._id)
 
@@ -93,7 +93,7 @@ export const CartContextProvider = ({
   )
 }
 
-export const useCart = () => {
+export const  useCart = () => {
   const context = useContext(CartContext)
   if (!context) {
     throw new Error("useCart deve ser usado dentro de um CartProvider")

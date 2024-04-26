@@ -6,6 +6,10 @@ const CategoriesNavBar = () => {
   const { pathname } = useLocation()
   const { data: categories } = useGetPostCategories()
 
+  if (pathname.includes("/pages/loja")) {
+    return
+  }
+
   const decodeURL = decodeURIComponent(pathname.split("/")[2])
 
   const handleNavigate = (slug: string) => {

@@ -4,8 +4,22 @@ const SideBar = () => {
   return (
     <div className="flex-[1] flex gap-5 flex-col">
       <SideSearchBar />
-      <main className="text-white h-[100%] flex flex-col gap-12">
-        <div className="relative w-full h-[37%]">
+      <main className="text-white flex flex-col gap-12">
+        <img src="/banners/boldy-1.jpeg" alt="" />
+        <img src="/banners/boldy-2.jpeg" alt="" />
+        <img src="/banners/vert.jpeg" alt="" />
+        <img src="/banners/xm-1.gif" alt="" />
+        <img src="/banners/xm-2.jpeg" alt="" />
+        <img src="/banners/xm-3.jpeg" alt="" />
+      </main>
+    </div>
+  )
+}
+
+export default SideBar
+
+{
+  /* <div className="relative w-full h-[37%]">
           <img
             src="/banners/xm-1.gif"
             className="w-full h-full absolute object-cover inset-0"
@@ -27,10 +41,5 @@ const SideBar = () => {
             className="w-full h-full absolute object-cover  inset-0"
             alt=""
           />
-        </div>
-      </main>
-    </div>
-  )
+        </div> */
 }
-
-export default SideBar

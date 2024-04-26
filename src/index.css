@@ -92,6 +92,7 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar {
   background-color: #fff;
   width: 6px;
+
   border-radius: 20px;
 }
 
@@ -100,8 +101,9 @@ body::-webkit-scrollbar {
   border-radius: 20px;
 }
 .scroll-bar::-webkit-scrollbar {
-  height: 6px;
+  width: 6px;
   border-radius: 20px;
+  height:6px;
 }
 
 .quill h1 {
