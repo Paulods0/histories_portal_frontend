@@ -34,18 +34,18 @@ export const NAV_LINKS = [
 export const SOCIAL_MEDIA_LINKS = [
   {
     icon: <FaFacebookF size={14} color="#FFF" />,
-    link: "facebook.com/clubeoverland.angola",
+    link: "https://facebook.com/clubeoverland.angola",
     name: "facebook",
   },
 
   {
     icon: <FaYoutube size={14} color="#FFF" />,
-    link: "youtube.com/@clubeoverlandangola_1",
+    link: "https://youtube.com/@clubeoverlandangola_1",
     name: "youtube",
   },
   {
     icon: <FaInstagram size={14} color="#FFF" />,
-    link: "instagram.com/clubeoverlandangola/",
+    link: "https://instagram.com/clubeoverlandangola/",
     name: "instagram",
   },
 ]

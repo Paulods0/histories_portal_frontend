@@ -1,18 +1,15 @@
 import PostCard from "../components/card/post-card"
 import SideBar from "../components/sidebar/side-bar"
 import PaginationController from "../components/pagination/pagination-controller"
-// import {  useState } from "react"
-// import { getPostsAndPagination } from "../api"
 
 import HighlightedCard from "../components/card/highlighted-card"
 import { ClipLoader } from "react-spinners"
 import GoBackButton from "../components/go-back-button"
 import { useGetPosts } from "@/lib/react-query"
-// import { QueryCache } from "@tanstack/react-query"
+import FadeInEffect from "@/components/motion/fade-in"
 
 const Home = () => {
   const { data: posts, isLoading } = useGetPosts()
-  // const [pages, setPages] = useState(1)
   const pages = 1
   const handleNavigate = (page: number) => {
     if (page === 1) {
@@ -42,16 +39,17 @@ const Home = () => {
   return (
     <main className="relative w-full min-h-screen px-8 pb-3 flex-col mt-6">
       <div className="w-full flex gap-10 ">
-        <div className="flex-[3] min-h-screen">
-          {/** FIRST CARD TO SHOW UP */}
-          <HighlightedCard />
-          <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-            {posts.map((post) => (
-              <PostCard key={post._id} post={post} />
-            ))}
+        <FadeInEffect>
+          <div className="flex-[3] min-h-screen">
+            <HighlightedCard />
+            <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+              {posts.map((post) => (
+                <PostCard key={post._id} post={post} />
+              ))}
+            </div>
           </div>
-        </div>
-
+        </FadeInEffect>
+        
         <aside className="lg:flex flex-col flex-[1] hidden md:hidden">
           <SideBar />
         </aside>

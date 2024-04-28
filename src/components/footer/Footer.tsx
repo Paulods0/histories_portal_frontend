@@ -35,7 +35,6 @@ const Footer = () => {
   return (
     <footer className="w-full bg-colorGray-medium flex mt-10 flex-col md:flex-col lg:flex-row p-8 lg:p-8 font-Oswald lg:space-x-2">
       <div className=" mx-auto w-[1600px] flex items-start justify-center gap-x-4">
-
         <div className="text-white p-1 flex flex-col justify-center h-full w-full space-y-3">
           <div className="w-full flex items-start justify-center flex-col">
             <h6 className="text-[16px] font-normal uppercase">
@@ -63,9 +62,9 @@ const Footer = () => {
             </h2>
             <div className="w-full flex justify-center lg:justify-start gap-2">
               {SOCIAL_MEDIA_LINKS.map((link, index) => (
-                <Link key={index} to={link.link}>
+                <a key={index} href={link.link} target="_blank">
                   {link.icon}
-                </Link>
+                </a>
               ))}
             </div>
           </div>

@@ -2,6 +2,7 @@ import PostCard from "../../components/card/post-card"
 import { useLocation } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { useGetPostByCategory } from "@/lib/react-query"
+import FadeInEffect from "@/components/motion/fade-in"
 
 const OverlandJournal = () => {
   const { pathname } = useLocation()
@@ -26,15 +27,17 @@ const OverlandJournal = () => {
 
   return (
     <div className="w-full min-h-screen gap-10 px-12 flex-col ">
-      <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-        {isLoading ? (
-          <div className="col-span-2 flex items-center justify-center">
-            <ClipLoader size={80} color="#1A101F" />
-          </div>
-        ) : (
-          posts?.map((post) => <PostCard key={post._id} post={post} />)
-        )}
-      </div>
+      <FadeInEffect>
+        <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+          {isLoading ? (
+            <div className="col-span-2 flex items-center justify-center">
+              <ClipLoader size={80} color="#1A101F" />
+            </div>
+          ) : (
+            posts?.map((post) => <PostCard key={post._id} post={post} />)
+          )}
+        </div>
+      </FadeInEffect>
     </div>
   )
 }

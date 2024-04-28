@@ -3,6 +3,7 @@ import { PiDownloadSimpleThin } from "react-icons/pi"
 import { useGetSchedulePost } from "@/lib/react-query"
 import { ClipLoader } from "react-spinners"
 import { formateData } from "@/utils/helpers"
+import FadeInEffect from "@/components/motion/fade-in"
 
 const AgendaAo = () => {
   const { data: posts, isLoading } = useGetSchedulePost()
@@ -25,38 +26,40 @@ const AgendaAo = () => {
 
   return (
     <div className="w-full min-h-screen gap-8 flex-col ">
-      <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-1 gap-8">
-        {posts?.data.map((post, index) => (
-          <Link
-            key={index}
-            className=" w-full flex relative flex-col group p-4 items-center hover:bg-zinc-100 transition-all duration-200 ease-in-out justify-center  border rounded-md"
-            to={post.file}
-            download
-            target="_blank"
-          >
-            <PiDownloadSimpleThin
-              size={20}
-              className="absolute hidden transition-all duration-200 ease-in-out group-hover:block top-2 right-2"
-            />
-            <div className="relative w-[80px] h-[110px]">
-              <img
-                src="/pdf-image.png"
-                className="absolute w-full h-full object-cover"
-                alt={post.title}
+      <FadeInEffect>
+        <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-1 gap-8">
+          {posts?.data.map((post, index) => (
+            <Link
+              key={index}
+              className=" w-full flex relative flex-col group p-4 items-center hover:bg-zinc-100 transition-all duration-200 ease-in-out justify-center  border rounded-md"
+              to={post.file}
+              download
+              target="_blank"
+            >
+              <PiDownloadSimpleThin
+                size={20}
+                className="absolute hidden transition-all duration-200 ease-in-out group-hover:block top-2 right-2"
               />
-            </div>
-            <div className="relative flex w-full  justify-center">
-              <h3 className="uppercase self-center text-[14px] font-semibold text-goldenColor">
-                {post.title}
-              </h3>
+              <div className="relative w-[80px] h-[110px]">
+                <img
+                  src="/pdf-image.png"
+                  className="absolute w-full h-full object-cover"
+                  alt={post.title}
+                />
+              </div>
+              <div className="relative flex w-full  justify-center">
+                <h3 className="uppercase self-center text-[14px] font-semibold text-goldenColor">
+                  {post.title}
+                </h3>
 
-              <span className="text-[13px] flex absolute right-2 text-goldenColor">
-                {formateData(post.createdAt)}
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
+                <span className="text-[13px] flex absolute right-2 text-goldenColor">
+                  {formateData(post.createdAt)}
+                </span>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </FadeInEffect>
     </div>
   )
 }

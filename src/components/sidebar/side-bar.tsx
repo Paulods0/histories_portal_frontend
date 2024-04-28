@@ -10,7 +10,7 @@ const SideBar = () => {
         <img src="/banners/vert.jpeg" alt="" />
         <img src="/banners/xm-1.gif" alt="" />
         <img src="/banners/xm-2.jpeg" alt="" />
-        <img src="/banners/xm-3.jpeg" alt="" />
+        {/* <img src="/banners/xm-3.jpeg" alt="" /> */}
       </main>
     </div>
   )

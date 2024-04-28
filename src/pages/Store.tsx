@@ -14,23 +14,20 @@ import "swiper/css/effect-fade"
 import GoBackButton from "../components/go-back-button"
 import { useGetProductCategories, useGetProduts } from "@/lib/react-query"
 import { ClipLoader } from "react-spinners"
+import { useEffect, useState } from "react"
+import { Product } from "@/api/types"
 
 const Store = () => {
   const location = useLocation()
-  const cat = new URLSearchParams(location.search).get("cat")
-  // const [s, setS] = useSearchParams()
+  const c = new URLSearchParams(location.search).get("categoria")
+
   const { data: products, isLoading: isProductsLoading } = useGetProduts()
 
   const { data: categories, isLoading: isCategoriesLoading } =
     useGetProductCategories()
 
-  if (products?.length === 0) {
-    return (
-      <section className="w-full h-[300px] flex items-center justify-center">
-        <h4>Não há produtos.</h4>
-      </section>
-    )
-  }
+  const [prods, setProds] = useState<Product[] | undefined>(undefined)
+  const [cat, setCat] = useState("")
 
   if (isProductsLoading || isCategoriesLoading) {
     return (
@@ -40,21 +37,28 @@ const Store = () => {
     )
   }
 
-  // const [categoryName, setCategoryName] = useState(cat)
+  const handleChangeSearchParams = (category: string) => {
+    setCat(category)
+  }
 
-  // const [currentPage, setCurrentPage] = useState(1)
-  // const postsPerPage = 12
+  useEffect(() => {
+    const getProducts = () => {
+      if (cat) {
+        const filteredProducts = products?.filter(
+          (prod) => prod.category.name === c
+        )
 
-  // const indexOfLastProduct = currentPage * postsPerPage
-  // const indexOfFirstProduct = indexOfLastProduct - postsPerPage
-  // const currentProduct = products?.slice(
-  //   indexOfFirstProduct,
-  //   indexOfLastProduct
-  // )
+        console.log(
+          filteredProducts?.length === 0 ? "Is empty" : filteredProducts
+        )
+        setProds(filteredProducts)
+      } else {
+        setProds(products)
+      }
+    }
 
-  // const handleChangeSearchParams = (name: string) => {
-  //   setCategoryName(name)
-  // }
+    getProducts()
+  }, [c])
 
   return (
     <main className="relative font-Poppins h-screen flex flex-col w-full">
@@ -98,7 +102,7 @@ const Store = () => {
                 <Link
                   className="underline p-2"
                   to=""
-                  // onClick={() => handleChangeSearchParams("")}
+                  onClick={() => handleChangeSearchParams("")}
                 >
                   Ver todos
                 </Link>
@@ -106,10 +110,10 @@ const Store = () => {
               {categories?.map((category) => (
                 <li key={category._id}>
                   <Link
-                    to={`?cat=${category.name}`}
-                    // onClick={() => handleChangeSearchParams(category.name)}
+                    to={`?categoria=${category.name}`}
+                    onClick={() => handleChangeSearchParams(category.name)}
                     className={`${
-                      category.name === cat
+                      category.name === c
                         ? "bg-colorGray-light text-white rounded-md"
                         : ""
                     } px-2 py-1`}
@@ -122,16 +126,21 @@ const Store = () => {
           </aside>
 
           <section className="w-full grid grid-cols-1 flex-[5] pl-2 border-l mb-12 md:grid-cols-2 mt-4 place-items-center lg:grid-cols-4 gap-8">
-            {products?.map((product) => (
-              <StoreCard key={product._id} product={product} />
-            ))}
+            {prods?.length === 0 ? (
+              <h1 className="text-center text-xl font-semibold">
+                Não há nada ainda.
+              </h1>
+            ) : (
+              prods?.map((product) => (
+                <StoreCard key={product._id} product={product} />
+              ))
+            )}
           </section>
-          {/* <button onClick={() => setS("category=olá")}>CLICK ME</button> */}
         </section>
 
+        <GoBackButton />
         <StoreFooter />
       </div>
-      <GoBackButton />
     </main>
   )
 }

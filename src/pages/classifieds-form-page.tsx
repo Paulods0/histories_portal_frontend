@@ -1,4 +1,4 @@
-import  { FormEvent, useState } from "react"
+import { FormEvent, useState } from "react"
 import { useCreateClassifiedPost } from "@/lib/react-query"
 import { ClassifiedPost } from "@/api/types"
 import { toast } from "react-toastify"
@@ -46,7 +46,7 @@ const ClassifiedForm = () => {
       mainImage: mainImage,
     }
     console.log(data)
-    mutate(data)
+    // mutate(data)
     toast.success("Enviado", {
       autoClose: 1000,
       hideProgressBar: true,
@@ -126,10 +126,10 @@ const ClassifiedForm = () => {
         <div className="flex flex-col items-start w-full">
           <label htmlFor="content">Imagem</label>
           <input
-          type="text"
+            type="file"
             onChange={(e) => setMainImage(e.target.value)}
             id="content"
-            className="border p-2 w-full h-[120px] resize-none"
+            className="border p-2 w-full"
           />
         </div>
         <button
