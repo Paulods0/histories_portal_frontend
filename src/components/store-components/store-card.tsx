@@ -1,12 +1,10 @@
-import { Link } from "react-router-dom"
 import { Product } from "../../api/types"
-import { useState } from "react"
-import ProductModal from "./product-modal"
+
 import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
+  // DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -18,13 +16,8 @@ interface IStoreProducs {
 }
 
 const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
-  const {
-    decreaseCartQuantity,
-    increaseCartQuantity,
-    cart,
-    removeFromCart,
-    getProductQuantity,
-  } = useCart()
+  const { decreaseCartQuantity, increaseCartQuantity, getProductQuantity } =
+    useCart()
   const productQuantity = getProductQuantity(product._id)
   return (
     <Dialog>

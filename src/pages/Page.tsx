@@ -1,8 +1,8 @@
-import { useLocation, useNavigate, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 import GoBackButton from "../components/go-back-button"
 import SideBar from "../components/sidebar/side-bar"
 import PostCard from "../components/card/post-card"
-import { IPostData } from "../api/types"
+import { Post } from "../api/types"
 import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { getPostsAndPagination } from "../api"
@@ -11,7 +11,7 @@ import PaginationController from "../components/pagination/pagination-controller
 const Page = () => {
   const { page } = useParams()
 
-  const [posts, setPosts] = useState<IPostData[]>([])
+  const [posts, setPosts] = useState<Post[]>([])
   const [pages, setPages] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
 

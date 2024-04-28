@@ -1,5 +1,4 @@
 import { z } from "zod"
-import errorMap from "zod/locales/en.js"
 
 export const ClassifiedFormValidation = z.object({
   fisrtname: z.string().min(1, { message: "*Por favor insira o seu nome." }),

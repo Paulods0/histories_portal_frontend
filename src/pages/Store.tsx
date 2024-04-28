@@ -1,9 +1,9 @@
 import StoreNavigationBar from "../components/store-components/store-navigation-bar"
 import StoreCard from "../components/store-components/store-card"
-import { Link, useLocation, useSearchParams } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import StoreFooter from "../components/store-components/store-footer"
 // import PaginationController from "../components/pagination/pagination-controller"
-import { useState } from "react"
+// import { useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Autoplay, Pagination, EffectFade } from "swiper/modules"
 import { storeSwiperImages } from "../constants"
@@ -43,7 +43,7 @@ const Store = () => {
   // const [categoryName, setCategoryName] = useState(cat)
 
   // const [currentPage, setCurrentPage] = useState(1)
-  const postsPerPage = 12
+  // const postsPerPage = 12
 
   // const indexOfLastProduct = currentPage * postsPerPage
   // const indexOfFirstProduct = indexOfLastProduct - postsPerPage

@@ -1,8 +1,4 @@
-import {
-  ICountryData,
-  getCountryDataList,
-  getCountryData,
-} from "countries-list"
+import { ICountryData, getCountryDataList } from "countries-list"
 import { FormEvent, useEffect, useState } from "react"
 
 const WantToBeYours = () => {

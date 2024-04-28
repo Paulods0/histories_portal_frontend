@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
-import { BsFillStarFill, BsStarFill } from "react-icons/bs"
+import { BsStarFill } from "react-icons/bs"
 import { BsStar } from "react-icons/bs"
 import { deslikePost, getSinglePost, likePost } from "../api"
-import { FaStar, FaUser } from "react-icons/fa"
+// import { FaStar, FaUser } from "react-icons/fa"
 
 const LikeButton = ({ postId }: { postId: string }) => {
   const [clicked, setClicked] = useState(false)

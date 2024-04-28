@@ -1,8 +1,8 @@
-import { IProductData } from "../../api/types"
+import { Product } from "../../api/types"
 import { useCart } from "../../context/cart-context"
 
 type CartCardProps = {
-  product: IProductData
+  product: Product
 }
 
 const CartCard = ({ product }: CartCardProps) => {
@@ -12,7 +12,7 @@ const CartCard = ({ product }: CartCardProps) => {
     decreaseCartQuantity,
     removeFromCart,
   } = useCart()
-  const quantity = getProductQuantity(product._id)
+  // const quantity = getProductQuantity(product._id)
   return (
     <div className="flex w-full border-b-zinc-400 border-b  items-center justify-between gap-3">
       <div className="relative w-[120px] h-[120px]">

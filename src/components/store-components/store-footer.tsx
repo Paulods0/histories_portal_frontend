@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom"
 import { NAV_LINKS, SOCIAL_MEDIA_LINKS } from "../../utils/constants"
 import { sponsors } from "../../constants"
-import { GoArrowUpRight } from "react-icons/go"
 import { ClipLoader } from "react-spinners"
 import { FormEvent, useState } from "react"
 import { subscribeToNewsLetter } from "../../api"

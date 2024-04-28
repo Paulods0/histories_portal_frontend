@@ -1,6 +1,6 @@
 import { ClassifiedPost } from "@/api/types"
 import { formateData } from "@/utils/helpers"
-import { format } from "date-fns"
+// import { format } from "date-fns"
 import {
   WhatsappIcon,
   WhatsappShareButton,
@@ -17,7 +17,7 @@ type ClassifiedCardProps = {
 }
 
 const ClassifiedCard = ({ post }: ClassifiedCardProps) => {
-  const date = formateData(post.createdAt)
+  const date = formateData(post.createdAt!!)
   const price = new Intl.NumberFormat("pt-BR", {
     style: "currency",
     currency: "AKZ",

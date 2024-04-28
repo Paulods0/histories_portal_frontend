@@ -123,6 +123,15 @@ const ClassifiedForm = () => {
             className="border p-2 w-full h-[120px] resize-none"
           />
         </div>
+        <div className="flex flex-col items-start w-full">
+          <label htmlFor="content">Imagem</label>
+          <input
+          type="text"
+            onChange={(e) => setMainImage(e.target.value)}
+            id="content"
+            className="border p-2 w-full h-[120px] resize-none"
+          />
+        </div>
         <button
           type="submit"
           className="text-white bg-colorGray-medium px-3 py-2"

@@ -1,5 +1,5 @@
 import { FormEvent, useEffect, useState } from "react"
-import { ICountryData, countries } from "countries-list"
+import { ICountryData } from "countries-list"
 import { getCountryDataList } from "countries-list"
 
 const Subscribe = () => {
@@ -10,13 +10,13 @@ const Subscribe = () => {
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
 
-  const userInfo = {
-    name: name,
-    country: country,
-    email: email,
-    code: countryPhoneCode,
-    phone: phone,
-  }
+  // const userInfo = {
+  //   name: name,
+  //   country: country,
+  //   email: email,
+  //   code: countryPhoneCode,
+  //   phone: phone,
+  // }
 
   // console.log(userInfo)
   const handleSubmit = async (e: FormEvent) => {
@@ -55,7 +55,7 @@ const Subscribe = () => {
             <option disabled value="">
               Selecionar país
             </option>
-            
+
             {allCountries.map((country: any, index) => (
               <option key={index} value={country.name}>
                 {country.name}

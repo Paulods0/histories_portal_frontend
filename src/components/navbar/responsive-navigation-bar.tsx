@@ -1,13 +1,14 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { IoMenu } from "react-icons/io5"
 // import { SECOND_NAV_BAR_LINKS } from "../../utils/constants"
 import { Link } from "react-router-dom"
 import Search from "../search/search"
-import { ICategoryData } from "../../api/types"
+import { PostCategory } from "../../api/types"
+import { getAllProdutCategories } from "@/api"
 
 const ResponsiveNavigationBar = () => {
   const [isNavigationModalOpen, setisNavigationModalOpen] = useState(false)
-  const [categories, setCategories] = useState<ICategoryData[]>()
+  const [categories, setCategories] = useState<PostCategory[]>()
   const regex = /[\s\u0300-\u036f]/g
 
   const openModal = () => {
@@ -16,15 +17,15 @@ const ResponsiveNavigationBar = () => {
   // const path = useLocation()
   // const decodeURL = decodeURIComponent(path.pathname.split("/")[2])
 
-  // useEffect(() => {
-  //   const fecthCategories = async () => {
-  //     try {
-  //       const data = await getAllCategories()
-  //       setCategories(data)
-  //     } catch (error) {}
-  //   }
-  //   fecthCategories()
-  // }, [])
+  useEffect(() => {
+    const fecthCategories = async () => {
+      try {
+        const data = await getAllProdutCategories()
+        setCategories(data)
+      } catch (error) {}
+    }
+    fecthCategories()
+  }, [])
   return (
     <div className="lg:hidden items-center justify-between relative flex w-full bg-white p-6 shadow-[0px_2px_8px_1px_#dcdcdc] mt-0 h-16">
       <button onClick={openModal}>

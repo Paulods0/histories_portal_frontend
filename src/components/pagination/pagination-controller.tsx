@@ -1,4 +1,4 @@
-import { useLocation, useParams } from "react-router-dom"
+import { useParams } from "react-router-dom"
 
 const PaginationController = ({
   pages,
@@ -7,7 +7,6 @@ const PaginationController = ({
   pages: number
   handleNavigate: (page: number) => void
 }) => {
-  
   const { page: currPage } = useParams()
 
   return (

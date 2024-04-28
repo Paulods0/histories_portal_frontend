@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import HomeCategoryControlller from "../components/home_category/home-category-controlller"
+
 import SwiperPosts from "../components/swiper-posts/SwiperPosts"
 
 const AboutUs = () => {

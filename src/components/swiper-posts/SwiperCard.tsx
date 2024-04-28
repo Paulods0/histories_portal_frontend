@@ -1,7 +1,7 @@
-import { IPostData } from "../../api/types"
+import { Post } from "../../api/types"
 import { createMarkup, formateData } from "../../utils/helpers"
 
-const SwiperCard = ({ post }: { post: IPostData }) => {
+const SwiperCard = ({ post }: { post: Post }) => {
   const content = createMarkup(post.content)
   const date = formateData(post?.createdAt)
   const navigateToDetailPage = () => {

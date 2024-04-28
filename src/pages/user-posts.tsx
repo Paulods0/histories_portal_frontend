@@ -22,7 +22,7 @@ const UserPosts = () => {
       window.location.href = `/page/${page}`
     }
   }
-
+  const h = () => setPages(2)
   if (isLoading) {
     return (
       <div className="w-full my-12 flex items-center justify-center">
@@ -36,7 +36,7 @@ const UserPosts = () => {
   if (posts?.length === 0) {
     return (
       <div className="w-full my-12 flex items-center justify-center">
-        <div className="self-center">
+        <div className="self-center" onClick={() => h}>
           <h1>Não há posts ainda.</h1>
         </div>
       </div>

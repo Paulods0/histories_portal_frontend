@@ -5,11 +5,11 @@ import StoreFooter from "../../components/store-components/store-footer"
 import StoreDetailsCard from "../../components/store-components/store-details-card"
 import { useEffect, useState } from "react"
 import { getProductById } from "../../api"
-import { IProductData } from "../../api/types"
+import {Product } from "../../api/types"
 
 const ProductDetail = () => {
   const { id } = useParams()
-  const [product, setProduct] = useState<IProductData>({
+  const [product, setProduct] = useState<Product>({
     _id: "",
     category: {
       _id: "",

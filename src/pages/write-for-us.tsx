@@ -1,10 +1,6 @@
 import { FormEvent, useEffect, useState } from "react"
-import HomeCategoryControlller from "../components/home_category/home-category-controlller"
 import { ICountryData, getCountryDataList } from "countries-list"
 
-{
-  /* <HomeCategoryControlller label="Escreve para nós" /> */
-}
 const WriteForUs = () => {
   const [allCountries, setAllCountries] = useState<ICountryData[]>([])
   const [countryPhoneCode, setCountryPhoneCode] = useState<any>()
