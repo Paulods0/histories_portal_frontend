@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import { createMarkup, formateData } from "../../utils/helpers"
 import { ClipLoader } from "react-spinners"
 import { useGetHighlightedPost } from "@/lib/react-query"
@@ -22,8 +22,8 @@ const HighlightedCard = () => {
   }
 
   return (
-    <Link
-      to={`/post/${post?._id}`}
+    <a
+      href={`/post/${post?._id}`}
       className="w-full flex flex-col mb-12 items-center justify-center"
     >
       <h1 className="text-[41px] line-clamp-2 text-center text-[#111111] font-Oswald font-normal">
@@ -45,14 +45,12 @@ const HighlightedCard = () => {
       />
 
       <button
-        onClick={() =>
-          (window.location.href = `/post/${post?.title}__${post?._id}`)
-        }
+        onClick={() => (window.location.href = `/post/${post?._id}`)}
         className="py-3 w-[150px] font-OpenSans hover:w-[170px] hover:bg-colorGray-light duration-200 font-semibold transition-all ease-in text-center text-white uppercase text-[14px] bg-colorGray-dark"
       >
-        View Post
+        Ver Post
       </button>
-    </Link>
+    </a>
   )
 }
 

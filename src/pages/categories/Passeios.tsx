@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import PostCard from "../../components/card/post-card"
 import { ClipLoader } from "react-spinners"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
@@ -6,6 +6,7 @@ import "leaflet/dist/leaflet.css"
 import { Icon } from "leaflet"
 import { useGetPostByCategory } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
+import SwiperPosts from "@/components/swiper-posts/SwiperPosts"
 
 const Passeios = () => {
   const { pathname } = useLocation()
@@ -72,14 +73,12 @@ const Passeios = () => {
                           <span>{post.author.lastname}</span>
                         </div>
                       </div>
-                      <button
-                        onClick={() =>
-                          (window.location.href = `/post/${post.title}__${post._id}`)
-                        }
+                      <Link
+                        to={`https://blendagency.biz/post/${post.title}__${post._id}`}
                         className="text-white p-2 w-[100px] rounded-full  bg-colorBlack-dark flex  items-center justify-center"
                       >
                         Ver post
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -87,7 +86,7 @@ const Passeios = () => {
             </Marker>
           ))}
         </MapContainer>
-        <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="place-items-center mt-8 grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
           {posts?.length === 0 ? (
             <div className="col-span-2 flex items-center justify-center">
               <h1>Não há posts ainda.</h1>
@@ -97,6 +96,14 @@ const Passeios = () => {
           )}
         </div>
       </FadeInEffect>
+      <div className="mt-12">
+        <div className="flex flex-col self-start">
+          <div className="text-colorGray font-semibold font-Roboto uppercase text-[12px] flex self-start gap-1">
+            <h1 className="text-colorGray-zinc-900">Os mais vistos:</h1>
+          </div>
+        </div>
+        <SwiperPosts />
+      </div>
     </div>
   )
 }

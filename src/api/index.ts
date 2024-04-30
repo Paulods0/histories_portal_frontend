@@ -86,8 +86,8 @@ export const subscribeToNewsLetter = async (email: string, name: string) => {
   })
 }
 export const likePost = async (postId: string) => {
-  const response = await fetch(`${url}/post/like/${postId}`, { method: "PUT" })
-  const { clicked } = await response.json()
+  const response = await axios.put(`/post/like/${postId}`)
+  const { clicked } = await response.data
   return clicked
 }
 export const deslikePost = async (postId: string) => {

@@ -1,16 +1,17 @@
+import { Link } from "react-router-dom"
 import { Post } from "../../api/types"
 import { createMarkup, formateData } from "../../utils/helpers"
 
 const SwiperCard = ({ post }: { post: Post }) => {
   const content = createMarkup(post.content)
   const date = formateData(post?.createdAt)
-  const navigateToDetailPage = () => {
-    window.location.href = `/post/${post._id}`
-  }
+  // const navigateToDetailPage = () => {
+  //   window.location.href = `/post/${post._id}`
+  // }
 
   return (
-    <div
-      onClick={navigateToDetailPage}
+    <Link
+      to={`/post/${post._id}`}
       className="h-[200px] w-[200px] cursor-pointer hover:-translate-y-[2px] duration-200 transition-all ease-linear flex flex-col pb-2 rounded-md border border-colorGray-light/20"
     >
       <div>
@@ -34,7 +35,7 @@ const SwiperCard = ({ post }: { post: Post }) => {
           />
         </div>
       </div>
-    </div>
+    </Link>
   )
 }
 

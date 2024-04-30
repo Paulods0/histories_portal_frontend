@@ -5,7 +5,7 @@ import ResponsiveNavigationBar from "./responsive-navigation-bar"
 
 const Navbar = () => {
   const { pathname } = useLocation()
-  console.log(pathname)
+  // console.log(pathname)
 
   const isStore = pathname.includes("/pages/loja")
   if (isStore) {
@@ -19,9 +19,9 @@ const Navbar = () => {
           <ul className="gap-3 flex items-center">
             <Link to={"/"} className="w-24 h-[28px] relative ">
               <img
-                src="/banner-3.png"
+                src="/logotipo-texto.png"
                 alt="logotipo"
-                className="w-full absolute h-[38px] object-contain"
+                className="w-full absolute h-[34px] object-contain"
               />
             </Link>
             <div className="flex gap-3 ml-2">
@@ -43,16 +43,17 @@ const Navbar = () => {
         <Search />
       </div>
       <Link to={"/"} className="w-full h-full relative">
-        {/* <div className="w-full flex justify-center absolute top-4">
+        <div className="w-full flex justify-center absolute top-20">
           <img
             src="/logotipo-tradicional.png"
-            alt=""
-            className="w-48 h-48 rounded-full "
+            alt="logo-tipo"
+            className="w-48 h-48 object-contain inset-0 rounded-full "
           />
-        </div> */}
+        </div>
+
         <img
-          src={"/banner-1.png"}
-          className="text-center object-cover text-white w-full h-72 flex items-center justify-center"
+          src={"/banner-2.jpg"}
+          className="text-center object-cover text-white w-full h-80 flex items-center justify-center"
         />
       </Link>
 

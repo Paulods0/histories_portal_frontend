@@ -14,8 +14,8 @@ import "swiper/css/effect-fade"
 import GoBackButton from "../components/go-back-button"
 import { useGetProductCategories, useGetProduts } from "@/lib/react-query"
 import { ClipLoader } from "react-spinners"
-import { useEffect, useState } from "react"
-import { Product } from "@/api/types"
+// import { useEffect, useState } from "react"
+// import { Product } from "@/api/types"
 
 const Store = () => {
   const location = useLocation()
@@ -26,8 +26,8 @@ const Store = () => {
   const { data: categories, isLoading: isCategoriesLoading } =
     useGetProductCategories()
 
-  const [prods, setProds] = useState<Product[] | undefined>(undefined)
-  const [cat, setCat] = useState("")
+  // const [prods, setProds] = useState<Product[] | undefined>(undefined)
+  // const [cat, setCat] = useState("")
 
   if (isProductsLoading || isCategoriesLoading) {
     return (
@@ -37,28 +37,29 @@ const Store = () => {
     )
   }
 
-  const handleChangeSearchParams = (category: string) => {
-    setCat(category)
+  const handleChangeSearchParams = (category?: string) => {
+    console.log("handleChangeSearchParams ~ category", category)
+    // setCat(category)
   }
 
-  useEffect(() => {
-    const getProducts = () => {
-      if (cat) {
-        const filteredProducts = products?.filter(
-          (prod) => prod.category.name === c
-        )
+  // useEffect(() => {
+  //   const getProducts = () => {
+  //     if (cat) {
+  //       const filteredProducts = products?.filter(
+  //         (prod) => prod.category.name === c
+  //       )
 
-        console.log(
-          filteredProducts?.length === 0 ? "Is empty" : filteredProducts
-        )
-        setProds(filteredProducts)
-      } else {
-        setProds(products)
-      }
-    }
+  //       console.log(
+  //         filteredProducts?.length === 0 ? "Is empty" : filteredProducts
+  //       )
+  //       setProds(filteredProducts)
+  //     } else {
+  //       setProds(products)
+  //     }
+  //   }
 
-    getProducts()
-  }, [c])
+  //   getProducts()
+  // }, [c])
 
   return (
     <main className="relative font-Poppins h-screen flex flex-col w-full">
@@ -126,12 +127,12 @@ const Store = () => {
           </aside>
 
           <section className="w-full grid grid-cols-1 flex-[5] pl-2 border-l mb-12 md:grid-cols-2 mt-4 place-items-center lg:grid-cols-4 gap-8">
-            {prods?.length === 0 ? (
+            {products?.length === 0 ? (
               <h1 className="text-center text-xl font-semibold">
                 Não há nada ainda.
               </h1>
             ) : (
-              prods?.map((product) => (
+              products?.map((product) => (
                 <StoreCard key={product._id} product={product} />
               ))
             )}

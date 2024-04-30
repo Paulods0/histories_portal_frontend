@@ -12,16 +12,16 @@ const WriteForUs = () => {
   const [history, setHistory] = useState("")
   const [content, setContent] = useState("")
 
-  const userInfo = {
-    name: name,
-    country: country,
-    email: email,
-    code: countryPhoneCode,
-    phone: phone,
-    history: history,
-    content: content,
-    file: "",
-  }
+  // const userInfo = {
+  //   name: name,
+  //   country: country,
+  //   email: email,
+  //   code: countryPhoneCode,
+  //   phone: phone,
+  //   history: history,
+  //   content: content,
+  //   file: "",
+  // }
 
   // console.log(userInfo)
 

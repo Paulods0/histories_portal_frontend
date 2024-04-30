@@ -18,11 +18,12 @@ const SideSearchBar = () => {
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         placeholder="Pesquise..."
-        className="flex-[4] h-full bg-transparent p-4 outline-none border-none"
+        className="flex-[3] h-full bg-transparent p-4 outline-none border-none"
       />
+
       <button
         onClick={handleSearch}
-        className="flex-[1] bg-black/80 flex items-center justify-center"
+        className="w-[50px] bg-black/80 flex items-center justify-center"
       >
         <FaSearch size={24} color="#FFF" />
       </button>

@@ -4,13 +4,12 @@ const SideBar = () => {
   return (
     <div className="flex-[1] flex gap-5 flex-col">
       <SideSearchBar />
-      <main className="text-white flex flex-col gap-12">
+      <main className="text-white flex flex-col h-full gap-12 ">
         <img src="/banners/boldy-1.jpeg" alt="" />
-        <img src="/banners/boldy-2.jpeg" alt="" />
-        <img src="/banners/vert.jpeg" alt="" />
-        <img src="/banners/xm-1.gif" alt="" />
-        <img src="/banners/xm-2.jpeg" alt="" />
-        {/* <img src="/banners/xm-3.jpeg" alt="" /> */}
+        {/* <img src="/banners/boldy-2.jpeg" alt="" /> */}
+        {/* <img src="/banners/vert.jpeg" alt="" /> */}
+        {/* <img src="/banners/xm-1.gif" alt="" /> */}
+        {/* <img src="/banners/xm-2.jpeg" alt="" /> */}
       </main>
     </div>
   )

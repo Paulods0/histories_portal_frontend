@@ -1,10 +1,10 @@
 import { FormEvent, useState } from "react"
-import { useCreateClassifiedPost } from "@/lib/react-query"
+// import { useCreateClassifiedPost } from "@/lib/react-query"
 import { ClassifiedPost } from "@/api/types"
 import { toast } from "react-toastify"
 
 const ClassifiedForm = () => {
-  const { mutate } = useCreateClassifiedPost()
+  // const { mutate } = useCreateClassifiedPost()
   const [email, setEmail] = useState("")
   const [firstname, setFirstname] = useState("")
   const [lastname, setLastname] = useState("")
