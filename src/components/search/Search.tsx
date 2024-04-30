@@ -1,12 +1,10 @@
 import { useRef, useState } from "react"
 import { FaSearch } from "react-icons/fa"
-// import { Navigate, useNavigate } from "react-router-dom"
 
 const Search = () => {
   const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
   const ref = useRef<HTMLDivElement | null>(null)
   const [search, setSearch] = useState("")
-  // const navigate = useNavigate()
 
   const closeSearchModal = () => {
     setIsSearchBarOpen(false)
@@ -14,8 +12,6 @@ const Search = () => {
 
   const handleSearch = () => {
     console.log(search)
-
-    // navigate(`/search?v=${search}`)
   }
 
   return (

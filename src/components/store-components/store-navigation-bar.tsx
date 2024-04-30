@@ -4,26 +4,11 @@ import Search from "../search/search"
 import { useCart } from "../../context/cart-context"
 import CartContainer from "./cart-container"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
-import {
-  Sheet,
-  // SheetContent,
-  // SheetDescription,
-  // SheetHeader,
-  // SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet"
+import { Sheet, SheetTrigger } from "../ui/sheet"
 
 const StoreNavigationBar = () => {
   const path = useLocation()
   const { cart } = useCart()
-  // const [isCartContainerOpen, setIsCartContainerOpen] = useState(false)
-
-  // const openCartContainer = () => {
-  //   setIsCartContainerOpen(true)
-  // }
-  // const closeCartContainer = () => {
-  //   setIsCartContainerOpen(false)
-  // }
 
   return (
     <header className="fixed inset-0 z-20 flex-1 h-[70px] transition-all duration-75 ease-in">
