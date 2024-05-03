@@ -34,7 +34,7 @@ const StoreCategoryFilter = () => {
           <li key={category._id}>
             <Link
               to={`?categoria=${category.name}`}
-              onClick={() => {}}
+              onClick={() => handleChangeSearchParams}
               className={`${
                 category.name === c
                   ? "bg-colorGray-light text-white rounded-md"
