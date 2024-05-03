@@ -76,15 +76,16 @@ export const getSearchedPosts = async (key: string) => {
   const data = await response.json()
   return data
 }
-export const subscribeToNewsLetter = async (email: string, name: string) => {
-  await fetch(`${url}/newsletter/register`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ email: email, name: name }),
+export const subscribeToNewsletter = async (user: {
+  email: string
+  name: string
+}) => {
+  await axios.post("/newsletter/register", {
+    email: user.email,
+    name: user.name,
   })
 }
+
 export const likePost = async (postId: string) => {
   const response = await axios.put(`/post/like/${postId}`)
   const { clicked } = await response.data

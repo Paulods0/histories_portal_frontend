@@ -30,7 +30,7 @@ function App() {
   return (
     <main className="min-h-screen">
       <Navbar />
-      <div className="z-[99999] sticky top-0">
+      <div className="z-[20] sticky top-0">
         <CategoriesNavBar />
       </div>
 

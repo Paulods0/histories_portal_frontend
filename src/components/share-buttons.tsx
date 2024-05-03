@@ -3,7 +3,7 @@ import {
   EmailShareButton,
   FacebookIcon,
   FacebookShareButton,
-  TwitterIcon,
+  XIcon,
   TwitterShareButton,
   WhatsappIcon,
   WhatsappShareButton,
@@ -21,7 +21,7 @@ const ShareButtons = () => {
           url="https://www.youtube.com/watch?v=x6lMFB3qPbs"
         />
         <TwitterShareButton
-          children={<TwitterIcon size={30} />}
+          children={<XIcon size={30} />}
           url="https://www.youtube.com/watch?v=x6lMFB3qPbs"
         />
         <WhatsappShareButton

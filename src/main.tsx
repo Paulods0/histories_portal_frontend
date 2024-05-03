@@ -16,7 +16,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <QueryClientProvider client={queryClient}>
         <CartContextProvider>
           <App />
-          <ToastContainer />
+          <ToastContainer
+            autoClose={2000}
+            hideProgressBar={true}
+            position="bottom-right"
+          />
         </CartContextProvider>
         {/* <ReactQueryDevtools initialIsOpen={false} /> */}
       </QueryClientProvider>

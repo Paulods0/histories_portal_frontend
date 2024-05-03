@@ -2,8 +2,6 @@ import StoreNavigationBar from "../components/store-components/store-navigation-
 import StoreCard from "../components/store-components/store-card"
 import { Link, useLocation } from "react-router-dom"
 import StoreFooter from "../components/store-components/store-footer"
-// import PaginationController from "../components/pagination/pagination-controller"
-// import { useState } from "react"
 import { Swiper, SwiperSlide } from "swiper/react"
 import { Navigation, Autoplay, Pagination, EffectFade } from "swiper/modules"
 import { storeSwiperImages } from "../constants"
@@ -14,8 +12,6 @@ import "swiper/css/effect-fade"
 import GoBackButton from "../components/go-back-button"
 import { useGetProductCategories, useGetProduts } from "@/lib/react-query"
 import { ClipLoader } from "react-spinners"
-// import { useEffect, useState } from "react"
-// import { Product } from "@/api/types"
 
 const Store = () => {
   const location = useLocation()
@@ -25,9 +21,6 @@ const Store = () => {
 
   const { data: categories, isLoading: isCategoriesLoading } =
     useGetProductCategories()
-
-  // const [prods, setProds] = useState<Product[] | undefined>(undefined)
-  // const [cat, setCat] = useState("")
 
   if (isProductsLoading || isCategoriesLoading) {
     return (
@@ -39,32 +32,13 @@ const Store = () => {
 
   const handleChangeSearchParams = (category?: string) => {
     console.log("handleChangeSearchParams ~ category", category)
-    // setCat(category)
   }
-
-  // useEffect(() => {
-  //   const getProducts = () => {
-  //     if (cat) {
-  //       const filteredProducts = products?.filter(
-  //         (prod) => prod.category.name === c
-  //       )
-
-  //       console.log(
-  //         filteredProducts?.length === 0 ? "Is empty" : filteredProducts
-  //       )
-  //       setProds(filteredProducts)
-  //     } else {
-  //       setProds(products)
-  //     }
-  //   }
-
-  //   getProducts()
-  // }, [c])
 
   return (
     <main className="relative font-Poppins h-screen flex flex-col w-full">
       <div className="relative">
         <StoreNavigationBar />
+        
         <Swiper
           modules={[Autoplay, Navigation, Pagination, EffectFade]}
           navigation

@@ -7,9 +7,10 @@ import { useGetSearchResults } from "@/lib/react-query"
 
 const Search = () => {
   const location = useLocation()
-  const search = new URLSearchParams(location.search).get("v")?.toLowerCase()!!
-
-  const { data, isLoading } = useGetSearchResults(search)
+  const search = new URLSearchParams(location.search).get("v")!!
+  const decodedSearchValue = decodeURIComponent(search)
+  console.log(decodedSearchValue)
+  const { data, isLoading } = useGetSearchResults(decodedSearchValue)
 
   if (isLoading) {
     return (

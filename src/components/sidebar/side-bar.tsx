@@ -2,7 +2,7 @@ import SideSearchBar from "../search/side-search-bar"
 
 const SideBar = () => {
   return (
-    <div className="flex-[1] flex gap-5 flex-col">
+    <div className="flex-[1] hidden lg:flex gap-5 flex-col">
       <SideSearchBar />
       <main className="text-white flex flex-col h-full gap-12 ">
         <img src="/banners/boldy-1.jpeg" alt="" />

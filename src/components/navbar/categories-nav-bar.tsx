@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import { useLocation } from "react-router-dom"
 import { useGetPostCategories } from "@/lib/react-query"
+import SubgroupNav from "./subgroup-nav"
 
 const CategoriesNavBar = () => {
   const { pathname } = useLocation()
@@ -51,30 +52,7 @@ const CategoriesNavBar = () => {
               {category.name}
             </Link>
 
-            <div className="absolute top-6 -right-1/2 border bg-white w-[200px] h-[140px] rounded-md group-hover:block hidden transition-all duration-200 ease-in-out ">
-              <ul className="flex flex-col w-full h-full items-center justify-center text-center gap-y-2">
-                <li className="w-full flex text-goldenColor  hover:text-white cursor-pointer p-3 hover:bg-goldenColor bg-opacity-15">
-                  <Link
-                    to={
-                      category.slug === "classificados"
-                        ? handleNavigate(category.slug)
-                        : "#"
-                    }
-                    className="w-full text-[14px] font-bold "
-                  >
-                    Quero comprar
-                  </Link>
-                </li>
-                <li className="w-full text-goldenColor  hover:text-white cursor-pointer p-3 hover:bg-goldenColor bg-opacity-15">
-                  <Link
-                    to="/formulario"
-                    className="w-full text-[14px] font-bold "
-                  >
-                    Quero vender
-                  </Link>
-                </li>
-              </ul>
-            </div>
+            <SubgroupNav slug={category.slug} />
           </li>
         ))}
       </div>

@@ -1,55 +1,50 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { FaSearch } from "react-icons/fa"
+import {
+  Dialog,
+  DialogTrigger,
+  DialogContent,
+  DialogOverlay,
+  DialogClose,
+} from "@/components/ui/dialog"
+import { useNavigate } from "react-router-dom"
 
 const Search = () => {
-  const [isSearchBarOpen, setIsSearchBarOpen] = useState(false)
-  const ref = useRef<HTMLDivElement | null>(null)
-  const [search, setSearch] = useState("")
-
-  const closeSearchModal = () => {
-    setIsSearchBarOpen(false)
-  }
+  const [searchText, setSearchText] = useState("")
+  const navigate = useNavigate()
 
   const handleSearch = () => {
-    console.log(search)
+    navigate(`/search?v=${searchText}`)
+    setSearchText("")
   }
 
   return (
-    <div className="cursor-pointer ">
-      <FaSearch
-        onClick={() => setIsSearchBarOpen(true)}
-        size={18}
-        color="#FFF"
-      />
+    <Dialog>
+      <DialogTrigger>
+        <FaSearch size={18} color="#FFF" />
+      </DialogTrigger>
 
-      {isSearchBarOpen && (
-        <>
-          <div className="fixed top-0 left-0 z-[999999999] flex items-center h-full w-full justify-center">
-            <div
-              id="background"
-              ref={ref}
-              onClick={closeSearchModal}
-              className="absolute inset-0 bg-black/60 z-10 cursor-pointer flex w-full min-h-screen items-center justify-center"
-            />
-            <div className="z-[999999] justify-self-center w-[680px] flex h-[80px] bg-black/80">
-              <input
-                className="flex-[6] text-[20px] font-medium p-4 outline-none border-none h-full bg-white"
-                type="text"
-                value={search}
-                onChange={(e) => setSearch(e.target.value)}
-                placeholder="O que estás a procura?"
-              />
-              <button
-                onClick={() => handleSearch}
-                className="flex items-center justify-center flex-[1]"
-              >
-                <FaSearch size={24} color="#FFF" />
-              </button>
-            </div>
-          </div>
-        </>
-      )}
-    </div>
+      <DialogContent className="z-[9999999999] py-2 px-4 rounded-none">
+        <div className="flex items-center justify-between pr-6 h-full w-full">
+          <input
+            type="text"
+            value={searchText}
+            placeholder="O que estás a procura?"
+            onChange={(e) => setSearchText(e.target.value)}
+            className="w-full h-full outline-none border-none"
+          />
+          <DialogClose asChild>
+            <button
+              onClick={handleSearch}
+              className="flex items-center bg-zinc-700 p-2 h-full justify-center flex-[1]"
+            >
+              <FaSearch size={24} color="#FFF" />
+            </button>
+          </DialogClose>
+        </div>
+      </DialogContent>
+      <DialogOverlay className="z-[9999] opacity-30" />
+    </Dialog>
   )
 }
 

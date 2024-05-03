@@ -13,16 +13,12 @@ export const storeSwiperImages = [
 ]
 
 export const sponsors = [
-  "/pr/arb.png",
-  "/pr/bggoodrich.png",
-  "/pr/centtro.png",
-  "/pr/ikamper.png",
-  "/pr/jetour.png",
-  "/pr/toyota.png",
-  "/pr/vpa.png",
-  "/pr/yokohama.png",
-  // "/pr/continental.png",
-  // "/pr/eeziawn.webp",
-  // "/pr/toyota2.png",
-  // "/pr/ikamper.webp",
+  "/sponsors/arb.png",
+  "/sponsors/bggoodrich.png",
+  "/sponsors/centtro.png",
+  "/sponsors/ikamper.png",
+  "/sponsors/jetour.png",
+  "/sponsors/toyota.png",
+  "/sponsors/vpa.png",
+  "/sponsors/yokohama.png",
 ]

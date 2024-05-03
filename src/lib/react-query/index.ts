@@ -11,6 +11,7 @@ import {
   getSchedulePosts,
   getSinglePost,
   getUserPosts,
+  subscribeToNewsletter,
 } from "@/api"
 import { PostCategory, Post, ClassifiedPost } from "@/api/types"
 import { useMutation, useQuery } from "@tanstack/react-query"
@@ -99,8 +100,13 @@ export const useGetProductCategories = () => {
   })
 }
 
-export const useCreateClassifiedPost = ()=> {
+export const useCreateClassifiedPost = () => {
   return useMutation({
     mutationFn: createClassifiedPost,
+  })
+}
+export const useSubscribeToNewsletter = () => {
+  return useMutation({
+    mutationFn: subscribeToNewsletter,
   })
 }
