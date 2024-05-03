@@ -15,11 +15,11 @@ const StoreNavigationBar = () => {
       <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-colorGray-medium justify-between">
         <nav className="h-full w-[720px] justify-between flex">
           <ul className="gap-3 flex items-center">
-            <Link to={"/"} className="w-24 h-[28px] relative ">
+            <Link to={"/"} className="w-24 h-[40px] relative ">
               <img
-                src="/banner-3.png"
+                src="/logo/logotipo-texto.png"
                 alt="logotipo"
-                className="w-full absolute h-[38px] object-contain"
+                className="w-full absolute h-full object-contain"
               />
             </Link>
             <div className="flex gap-3 ml-2">

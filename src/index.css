@@ -103,7 +103,7 @@ body::-webkit-scrollbar {
 .scroll-bar::-webkit-scrollbar {
   width: 6px;
   border-radius: 20px;
-  height:6px;
+  height: 6px;
 }
 
 .quill h1 {
@@ -148,4 +148,9 @@ body::-webkit-scrollbar {
 
 .cart-container.open {
   transform: translateX(0);
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: "red" !important;
 }
