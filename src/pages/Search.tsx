@@ -2,7 +2,7 @@ import { useLocation } from "react-router-dom"
 import PostCard from "../components/card/post-card"
 import SideBar from "../components/sidebar/side-bar"
 import { ClipLoader } from "react-spinners"
-import SwiperPosts from "../components/swiper-posts/SwiperPosts"
+import SwiperPosts from "../components/global/SwiperPosts"
 import { useGetSearchResults } from "@/lib/react-query"
 
 const Search = () => {

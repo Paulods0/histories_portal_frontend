@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { useGetPostByCategory } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
-import SwiperPosts from "@/components/swiper-posts/SwiperPosts"
+import SwiperPosts from "@/components/global/SwiperPosts"
 
 const Reviews = () => {
   const path = useLocation()
@@ -37,6 +37,7 @@ const Reviews = () => {
             <h1 className="text-colorGray-zinc-900">Os mais vistos:</h1>
           </div>
         </div>
+
         <SwiperPosts />
       </div>
     </div>

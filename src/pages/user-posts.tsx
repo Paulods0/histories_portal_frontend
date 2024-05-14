@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom"
 import PaginationController from "../components/pagination/pagination-controller"
 import SideBar from "../components/sidebar/side-bar"
 import PostCard from "../components/card/post-card"
-import GoBackButton from "../components/go-back-button"
+import GoBackButton from "../components/global/go-back-button"
 import { useGetUserPosts } from "@/lib/react-query"
 import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 

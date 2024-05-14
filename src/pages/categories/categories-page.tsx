@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom"
 import SideBar from "../../components/sidebar/side-bar"
-import GoBackButton from "../../components/go-back-button"
+import GoBackButton from "../../components/global/go-back-button"
 import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 
 const CategoriesPage = () => {

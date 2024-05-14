@@ -6,7 +6,7 @@ import "leaflet/dist/leaflet.css"
 import { Icon } from "leaflet"
 import { useGetPostByCategory } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
-import SwiperPosts from "@/components/swiper-posts/SwiperPosts"
+import SwiperPosts from "@/components/global/SwiperPosts"
 
 const Passeios = () => {
   const { pathname } = useLocation()

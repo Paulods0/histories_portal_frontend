@@ -1,6 +1,16 @@
 import { FormEvent, useEffect, useState } from "react"
 import { ICountryData, getCountryDataList } from "countries-list"
 import FadeInEffect from "@/components/motion/fade-in"
+// import { z } from "zod"
+
+// const formSchema = z.object({
+//   country: z.string(),
+//   phone: z.string(),
+//   name: z.string(),
+//   email: z.string().email(),
+//   content: z.string().email(),
+//   history: z.string().email(),
+// })
 
 const WriteForUs = () => {
   const [allCountries, setAllCountries] = useState<ICountryData[]>([])
@@ -11,19 +21,6 @@ const WriteForUs = () => {
   const [email, setEmail] = useState("")
   const [history, setHistory] = useState("")
   const [content, setContent] = useState("")
-
-  // const userInfo = {
-  //   name: name,
-  //   country: country,
-  //   email: email,
-  //   code: countryPhoneCode,
-  //   phone: phone,
-  //   history: history,
-  //   content: content,
-  //   file: "",
-  // }
-
-  // console.log(userInfo)
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault()
@@ -36,7 +33,6 @@ const WriteForUs = () => {
         !country ||
         !countryPhoneCode
       ) {
-        // console.log("Por favor, preencha todos os campos obrigatórios.")
         return
       }
     } catch (error) {
@@ -46,6 +42,14 @@ const WriteForUs = () => {
 
   useEffect(() => {
     setAllCountries(getCountryDataList())
+    const defaultCountry = getCountryDataList().find(
+      (country) => country.name === "Angola"
+    )
+
+    if (defaultCountry) {
+      setCountry(defaultCountry.name)
+      setCountryPhoneCode(defaultCountry.phone)
+    }
   }, [])
   return (
     <FadeInEffect>
@@ -65,9 +69,10 @@ const WriteForUs = () => {
               onChange={(e) => setCountry(e.target.value)}
               className="border-none w-full outline-none bg-transparent"
             >
-              <option disabled value="">
-                Selecionar país
+              <option selected disabled defaultValue={country}>
+                {country}
               </option>
+
               {allCountries.map((currentCountry: any, index) => (
                 <option key={index} value={currentCountry.name}>
                   {currentCountry.name}
@@ -89,6 +94,10 @@ const WriteForUs = () => {
               onChange={(e) => setCountryPhoneCode(e.target.value)}
               className="p-2 bg-transparent border h-full w-[100px]"
             >
+              <option defaultValue={countryPhoneCode} disabled selected>
+                {`(+${countryPhoneCode}) ${country}`}
+              </option>
+
               {allCountries.map((country, index) => (
                 <option
                   value={country.phone[0]}

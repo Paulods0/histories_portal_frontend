@@ -3,7 +3,7 @@ import { useLocation } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { useGetPostByCategory } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
-import SwiperPosts from "@/components/swiper-posts/SwiperPosts"
+import SwiperPosts from "@/components/global/SwiperPosts"
 
 const Historias = () => {
   const { pathname } = useLocation()

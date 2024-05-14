@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom"
-import GoBackButton from "../components/go-back-button"
+import GoBackButton from "../components/global/go-back-button"
 import SideBar from "../components/sidebar/side-bar"
 import PostCard from "../components/card/post-card"
 import { Post } from "../api/types"

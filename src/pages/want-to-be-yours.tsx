@@ -17,7 +17,7 @@ const WantToBeYours = () => {
     email,
     country,
     code: countryPhoneCode,
-    phone,
+    phone: `+${countryPhoneCode} ${phone}`,
     choice,
     content,
   }
@@ -45,6 +45,14 @@ const WantToBeYours = () => {
 
   useEffect(() => {
     setAllCountries(getCountryDataList())
+    const defaultCountry = getCountryDataList().find(
+      (country) => country.name === "Angola"
+    )
+
+    if (defaultCountry) {
+      setCountry(defaultCountry.name)
+      setCountryPhoneCode(defaultCountry.phone)
+    }
   }, [])
 
   return (
@@ -65,9 +73,10 @@ const WantToBeYours = () => {
               onChange={(e) => setCountry(e.target.value)}
               className="border-none w-full outline-none bg-transparent"
             >
-              <option disabled value="">
-                Selecionar país
+              <option selected disabled defaultValue={country}>
+                {country}
               </option>
+
               {allCountries.map((currentCountry: any, index) => (
                 <option key={index} value={currentCountry.name}>
                   {currentCountry.name}
@@ -89,6 +98,10 @@ const WantToBeYours = () => {
               onChange={(e) => setCountryPhoneCode(e.target.value)}
               className="p-2 bg-transparent border h-full w-[100px]"
             >
+              <option defaultValue={countryPhoneCode} disabled selected>
+                {`(+${countryPhoneCode}) ${country}`}
+              </option>
+
               {allCountries.map((currentCountry, index) => (
                 <option
                   value={currentCountry.phone[0]}

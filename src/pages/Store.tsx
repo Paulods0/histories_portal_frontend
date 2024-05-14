@@ -1,7 +1,7 @@
 import StoreNavigationBar from "../components/store-components/store-navigation-bar"
 import StoreCard from "../components/store-components/store-card"
 import StoreFooter from "../components/store-components/store-footer"
-import GoBackButton from "../components/go-back-button"
+import GoBackButton from "../components/global/go-back-button"
 import { useGetProduts } from "@/lib/react-query"
 import { ClipLoader } from "react-spinners"
 import StoreCategoryFilter from "@/components/store-components/store-category-filter"
@@ -21,7 +21,6 @@ const Store = () => {
   return (
     <main className="relative font-Poppins h-screen flex flex-col w-full">
       <div className="relative">
-        
         <StoreNavigationBar />
         <StoreSlider />
 

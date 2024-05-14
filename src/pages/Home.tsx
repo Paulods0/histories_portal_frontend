@@ -4,7 +4,7 @@ import PaginationController from "../components/pagination/pagination-controller
 
 import HighlightedCard from "../components/card/highlighted-card"
 import { ClipLoader } from "react-spinners"
-import GoBackButton from "../components/go-back-button"
+import GoBackButton from "../components/global/go-back-button"
 import { useGetPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 
@@ -49,7 +49,7 @@ const Home = () => {
             </div>
           </div>
         </FadeInEffect>
-        
+
         <aside className="lg:flex flex-col flex-[1] hidden md:hidden">
           <SideBar />
         </aside>

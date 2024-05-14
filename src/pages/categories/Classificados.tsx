@@ -1,5 +1,5 @@
 import { ClipLoader } from "react-spinners"
-import ClassifiedCard from "../../components/classified-card"
+import ClassifiedCard from "../../components/global/classified-card"
 import { useGetClassifiedPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 
