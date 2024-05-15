@@ -12,17 +12,17 @@ import BuyProductDialog from "./buy-product-dialog"
 const CartContainer = () => {
   const { cart } = useCart()
 
-  const handleSubmitt = async () => {
-    try {
-      cart.forEach((product) => {
-        console.log(
-          `O usuário comprou: ${product.name}, Quantidade: ${product.quantity}`
-        )
-      })
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  // const handleSubmitt = async () => {
+  //   try {
+  //     cart.forEach((product) => {
+  //       console.log(
+  //         `O usuário comprou: ${product.name}, Quantidade: ${product.quantity}`
+  //       )
+  //     })
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
 
   return (
     <SheetContent>

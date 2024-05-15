@@ -1,11 +1,11 @@
 import { BuyProductType, buyProductFormSchema } from "@/lib/validation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { resolve } from "path"
+// import { resolve } from "path"
 import { useForm } from "react-hook-form"
 
-type Props = {}
+// type Props = {}
 
-const StoreBuyProductForm = (props: Props) => {
+const StoreBuyProductForm = () => {
   const {
     handleSubmit,
     register,

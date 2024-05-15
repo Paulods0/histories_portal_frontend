@@ -12,7 +12,7 @@ const Subscribe = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     setValue,
   } = useForm<SubscribeFormType>({
     resolver: zodResolver(subscribeFormSchema),

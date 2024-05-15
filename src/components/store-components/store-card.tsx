@@ -3,10 +3,10 @@ import { Product } from "../../api/types"
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
+  // DialogDescription,
   // DialogFooter,
-  DialogHeader,
-  DialogTitle,
+  // DialogHeader,
+  // DialogTitle,
   DialogTrigger,
 } from "../ui/dialog"
 import { useCart } from "@/context/cart-context"

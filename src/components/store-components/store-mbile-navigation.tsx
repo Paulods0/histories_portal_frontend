@@ -1,4 +1,3 @@
-import { RiMenu2Fill } from "react-icons/ri"
 import StoreMobileMenu from "./store-mobile-menu"
 import { Link } from "react-router-dom"
 

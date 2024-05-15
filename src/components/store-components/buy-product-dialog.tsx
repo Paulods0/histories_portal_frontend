@@ -1,4 +1,4 @@
-import { Product } from "@/api/types"
+
 import {
   Dialog,
   DialogContent,

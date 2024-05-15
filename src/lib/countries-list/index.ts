@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query"
-import { ICountryData } from "countries-list"
+// import { ICountryData } from "countries-list"
 import { getCountryDataList } from "countries-list"
-import { useState } from "react"
+// import { useState } from "react"
 
 export const getAllCountries = () => {
   const responses = getCountryDataList()

@@ -1,5 +1,5 @@
 import { useGetProductCategories } from "@/lib/react-query"
-import { SetURLSearchParams, useLocation } from "react-router-dom"
+import { SetURLSearchParams } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 
 type Props = {

@@ -1,5 +1,5 @@
 import PostCard from "../components/card/post-card"
-import SideBar from "../components/sidebar/side-bar"
+// import SideBar from "../components/sidebar/side-bar"
 import PaginationController from "../components/pagination/pagination-controller"
 
 import HighlightedCard from "../components/card/highlighted-card"
@@ -7,7 +7,7 @@ import { ClipLoader } from "react-spinners"
 import GoBackButton from "../components/global/go-back-button"
 import { useGetPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
-import { useGetCountryList } from "@/lib/countries-list"
+// import { useGetCountryList } from "@/lib/countries-list"
 import SideBarHome from "@/components/sidebar/side-bar-home"
 
 const Home = () => {

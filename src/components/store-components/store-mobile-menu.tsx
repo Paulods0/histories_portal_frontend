@@ -12,9 +12,9 @@ import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { MdOutlineKeyboardArrowRight } from "react-icons/md"
 import { useCart } from "@/context/cart-context"
 
-type Props = {}
+// type Props = {}
 
-const StoreMobileMenu = (props: Props) => {
+const StoreMobileMenu = () => {
   const { cart } = useCart()
   return (
     <Sheet>

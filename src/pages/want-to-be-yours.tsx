@@ -4,9 +4,8 @@ import {
   wantToBeYoursFormSchema,
 } from "@/lib/validation"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { error } from "console"
 import { ICountryData, getCountryDataList } from "countries-list"
-import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 
 const WantToBeYours = () => {
@@ -15,7 +14,7 @@ const WantToBeYours = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     setValue,
   } = useForm<WantToBeYoursFormType>({
     resolver: zodResolver(wantToBeYoursFormSchema),
