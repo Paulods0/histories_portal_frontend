@@ -11,9 +11,10 @@ const FooterSponsors = () => {
         {sponsors.map((img, i) => (
           <div key={i} className="relative w-20 h-6">
             <img
+              loading="lazy"
               src={img}
               className="absolute w-full h-full inset-0 object-contain"
-              alt=""
+              alt="patrocinador"
             />
           </div>
         ))}

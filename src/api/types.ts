@@ -63,4 +63,8 @@ export type ClassifiedPost = {
   price: string
   category_slug?: string
   createdAt?: string
+  type: ClassifiedPostType
+  status: ClassifiedPostStatus
 }
+type ClassifiedPostStatus = "active" | "suspended" | "inactive"
+type ClassifiedPostType = "sell" | "buy"

@@ -25,6 +25,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
         <div className=" cursor-pointer hover:bg-zinc-600/5 duration-200 transition-all ease-in-out border border-colorGray-light/20 rounded-md p-2">
           <div className="relative w-[220px] h-[220px]">
             <img
+              loading="lazy"
               src={product.image}
               className="object-cover absolute inset-0 p-4 w-full h-full"
               alt="product image"
@@ -36,29 +37,21 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="flex items-center justify-center">
-        <DialogHeader>
+      <DialogContent className="grid grid-cols-2">
+        <div className="w-full h-full items-center flex flex-col">
           <img
             src={product.image}
-            className="w-[250px] h-full object-contain"
+            className="w-[150px] h-52 object-contain"
             alt={product.name}
           />
-          <DialogTitle className="text-center font-Poppins">
-            {product.name}
-          </DialogTitle>
-          <DialogTitle className="text-center text-[16px] font-normal font-Poppins">{`Preço: ${product.price} kz`}</DialogTitle>
-        </DialogHeader>
 
-        <DialogDescription className="h-[250px] pb-3">
-          <div className="flex flex-col items-center h-full justify-center">
+          <h1 className="text-center font-Poppins">{product.name}</h1>
+          <h4 className="text-center text-[16px] font-normal font-Poppins">{`Preço: ${product.price} kz`}</h4>
+        </div>
+
+        <div className="flex-1 grid grid-rows-2">
+          <div className="flex flex-col items-center row-span-2 justify-center">
             <div className="flex flex-col justify-center items-center gap-2">
-              {/* <div className="flex w-full items-center justify-center mb-8 gap-4">
-                <div className="w-6 h-6 rounded-full bg-red-600"></div>
-                <div className="w-6 h-6 rounded-full bg-blue-600"></div>
-                <div className="w-6 h-6 rounded-full bg-green-600"></div>
-                <div className="w-6 h-6 rounded-full bg-yellow-500"></div>
-              </div> */}
-
               <h2 className="text-lg font-medium mb-2">Quantidade</h2>
               <div className="flex gap-3 items-center">
                 <button
@@ -77,13 +70,14 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
               </div>
             </div>
           </div>
+
           <button
             onClick={() => increaseCartQuantity(product)}
-            className="px-3 py-1 text-sm self-end rounded-md bg-black text-white uppercase"
+            className="md:px-3 py-2 lg:py-1 text-xs md:text-sm self-end rounded-md bg-black text-white uppercase"
           >
             Adicionar ao carrinho
           </button>
-        </DialogDescription>
+        </div>
       </DialogContent>
     </Dialog>
   )

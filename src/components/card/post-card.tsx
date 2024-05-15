@@ -15,12 +15,10 @@ const PostCard = ({
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
       <div className="w-full relative">
         <div className="cursor-pointer relative w-full h-[250px]">
-          <a
-            className="h-full w-full"
-            href={`/post/${_id}`}
-          >
+          <a className="h-full w-full" href={`/post/${_id}`}>
             <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
             <img
+              loading="lazy"
               src={mainImage}
               className="w-full h-full object-cover"
               alt="photo"
@@ -40,9 +38,10 @@ const PostCard = ({
 
         <div className="flex items-center gap-2 justify-center mt-4">
           <img
+            loading="lazy"
             src={author!!.image}
             className="w-9 h-9 rounded-full object-contain"
-            alt=""
+            alt="user-profile-image"
           />
           <a
             href={`/post/user/${author._id}`}

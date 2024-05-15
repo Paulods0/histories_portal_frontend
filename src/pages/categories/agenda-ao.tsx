@@ -25,7 +25,7 @@ const AgendaAo = () => {
   }
 
   return (
-    <div className="w-full min-h-screen gap-8 flex-col ">
+    <div className="w-full min-h-screen gap-8 flex-col mb-4">
       <FadeInEffect>
         <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-1 gap-8">
           {posts?.data.map((post, index) => (
@@ -42,7 +42,7 @@ const AgendaAo = () => {
               />
               <div className="relative w-[80px] h-[110px]">
                 <img
-                  src="/pdf-image.png"
+                  src="/others/pdf-image.png"
                   className="absolute w-full h-full object-cover"
                   alt={post.title}
                 />

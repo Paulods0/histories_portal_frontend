@@ -1,4 +1,4 @@
-import { instance as axios } from "@/config/axios"
+import axios from "@/config/axios"
 import { url } from "../utils/constants"
 import { API_URL } from "../utils/enums"
 import {
@@ -9,14 +9,9 @@ import {
   ClassifiedPost,
 } from "./types"
 
-export async function getPostCategories(): Promise<PostCategory[] | []> {
-  try {
-    const response = await axios.get("/post-category/")
-    return response.data
-  } catch (error) {
-    console.log("Erro: " + error)
-    return []
-  }
+export const getPostCategories = async (): Promise<PostCategory[]> => {
+  const response = await axios.get("/post-category")
+  return response.data
 }
 export const getAllPosts = async (): Promise<Post[]> => {
   const response = await axios.get("/post")

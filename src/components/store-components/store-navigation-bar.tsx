@@ -5,6 +5,7 @@ import { useCart } from "../../context/cart-context"
 import CartContainer from "./cart-container"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { Sheet, SheetTrigger } from "../ui/sheet"
+import StoreMobileNavigation from "./store-mbile-navigation"
 
 const StoreNavigationBar = () => {
   const path = useLocation()
@@ -17,6 +18,7 @@ const StoreNavigationBar = () => {
           <ul className="gap-3 flex items-center">
             <Link to={"/"} className="w-24 h-[40px] relative ">
               <img
+                loading="lazy"
                 src="/logo/logotipo-texto.png"
                 alt="logotipo"
                 className="w-full absolute h-full object-contain"
@@ -57,12 +59,6 @@ const StoreNavigationBar = () => {
           </div>
         </div>
       </div>
-      {/* {isCartContainerOpen && (
-        <>
-          <div className="absolute w-full h-screen transition-all ease-linear duration-300 bg-black/60 inset-0" />
-          <CartContainer closeCartContainer={closeCartContainer} />
-        </>
-      )} */}
     </header>
   )
 }

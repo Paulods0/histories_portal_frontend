@@ -9,7 +9,7 @@ type CartContextType = {
   removeFromCart: (id: string) => void
 }
 
-const CartContext = createContext<CartContextType | undefined>(undefined)
+const CartContext = createContext<CartContextType>({} as CartContextType)
 
 export const CartContextProvider = ({
   children,
@@ -25,7 +25,6 @@ export const CartContextProvider = ({
     }
   }, [])
 
-  // Salva o estado do carrinho no localStorage sempre que ele for atualizado
   useEffect(() => {
     localStorage.setItem("cart", JSON.stringify(cart))
   }, [cart])
@@ -93,7 +92,7 @@ export const CartContextProvider = ({
   )
 }
 
-export const  useCart = () => {
+export const useCart = () => {
   const context = useContext(CartContext)
   if (!context) {
     throw new Error("useCart deve ser usado dentro de um CartProvider")

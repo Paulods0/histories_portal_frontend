@@ -6,9 +6,12 @@ import { useGetProduts } from "@/lib/react-query"
 import { ClipLoader } from "react-spinners"
 import StoreCategoryFilter from "@/components/store-components/store-category-filter"
 import StoreSlider from "@/components/store-components/store-slider"
+import StoreMobileNavigation from "@/components/store-components/store-mbile-navigation"
+import { useSearchParams } from "react-router-dom"
 
 const Store = () => {
   const { data: products, isLoading: isProductsLoading } = useGetProduts()
+  const [filter, setFilter] = useSearchParams({ filter: "" })
 
   if (isProductsLoading) {
     return (
@@ -17,32 +20,47 @@ const Store = () => {
       </section>
     )
   }
+  const filterValue = filter.get("filter")
+  const filteredCategories =
+    filterValue === "Todos" || filterValue === ""
+      ? products
+      : products?.filter((product) => product.category._id === filterValue)
 
   return (
     <main className="relative font-Poppins h-screen flex flex-col w-full">
       <div className="relative">
-        <StoreNavigationBar />
-        <StoreSlider />
+        <>
+          <StoreNavigationBar />
+          <StoreMobileNavigation />
+        </>
 
-        <div className="w-full flex items-center justify-center h-24 bg-black p-4">
+        <div className="hidden lg:flex">
+          <StoreSlider />
+        </div>
+
+        <div className="w-full hidden lg:flex items-center justify-center h-24 bg-black p-4">
           <div className="relative size-[90px]">
             <img
               src="/logo/logotipo-tradicional.png"
               className="absolute inset-0 w-full h-full object-contain"
-              alt=""
+              alt="imagem-loja"
+              loading="lazy"
             />
           </div>
         </div>
 
-        <section className="w-full flex py-4 px-8">
-          <StoreCategoryFilter />
+        <section className="relative w-full flex gap-10 flex-col lg:flex-row lg:py-4 lg:px-8">
+          <StoreCategoryFilter urlQuery={filterValue} setFilter={setFilter} />
+
           <section className="w-full grid grid-cols-1 flex-[5] pl-2 border-l mb-12 md:grid-cols-2 mt-4 place-items-center lg:grid-cols-4 gap-8">
-            {products?.length === 0 ? (
-              <h1 className="text-center text-xl font-semibold">
-                Não há nada ainda.
-              </h1>
+            {filteredCategories?.length === 0 ? (
+              <div className="lg:col-span-4 md:col-span-2 col-span-1">
+                <h1 className="text-center text-xl font-semibold">
+                  Não há nada ainda.
+                </h1>
+              </div>
             ) : (
-              products?.map((product) => (
+              filteredCategories?.map((product) => (
                 <StoreCard key={product._id} product={product} />
               ))
             )}

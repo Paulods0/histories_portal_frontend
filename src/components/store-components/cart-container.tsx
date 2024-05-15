@@ -7,6 +7,7 @@ import {
   SheetHeader,
   SheetTitle,
 } from "../ui/sheet"
+import BuyProductDialog from "./buy-product-dialog"
 
 const CartContainer = () => {
   const { cart } = useCart()
@@ -42,12 +43,7 @@ const CartContainer = () => {
             ))}
           </div>
           <SheetFooter>
-            <button
-              onClick={handleSubmitt}
-              className="mt-10 self-center p-3 bg-colorBlack-light text-white"
-            >
-              Efectuar compra
-            </button>
+            <BuyProductDialog />
           </SheetFooter>
         </>
       )}

@@ -22,7 +22,7 @@ const Passeios = () => {
   }
 
   const customIcon = new Icon({
-    iconUrl: "/pin.png",
+    iconUrl: "/others/pin.png",
     iconSize: [38, 38],
   })
 
@@ -32,7 +32,7 @@ const Passeios = () => {
   }
 
   return (
-    <div className="w-full min-h-screen gap-10 px-12 flex-col items-center justify-start flex">
+    <div className="w-full min-h-screen gap-10 lg:px-12 flex-col items-center justify-start flex">
       <FadeInEffect>
         <MapContainer
           className="leaflet-container"

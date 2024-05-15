@@ -26,13 +26,13 @@ const HighlightedCard = () => {
       href={`/post/${post?._id}`}
       className="w-full flex flex-col mb-12 items-center justify-center"
     >
-      <h1 className="text-[41px] line-clamp-2 text-center text-[#111111] font-Oswald font-normal">
+      <h1 className="text-[41px] lg:line-clamp-2 text-center text-[#111111] font-Oswald font-normal">
         {post?.title}
       </h1>
       <h5 className="text-[15px] mb-6 text-[#AAAAAA] font-OpenSans font-normal text-center">
         {`${post?.author?.firstname} ${post?.author?.lastname} / ${formatedDate}`}
       </h5>
-      <div className="w-full h-[415px] relative">
+      <div className="w-full h-[300px] md:h-[415px] relative">
         <img
           src={post?.mainImage}
           alt="photo"

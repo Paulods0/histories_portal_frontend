@@ -1,5 +1,4 @@
 import { Link, useLocation } from "react-router-dom"
-import ResponsiveNavigationBar from "./responsive-navigation-bar"
 import NavbarTop from "./navbar-top"
 
 const Navbar = () => {
@@ -19,19 +18,17 @@ const Navbar = () => {
           <img
             src="/logo/logotipo-tradicional.png"
             alt="logo-tipo"
-            className="w-48 h-36 object-contain inset-0 rounded-full "
+            className="w-48 h-36 object-contain inset-0 rounded-full"
+            loading="lazy"
           />
         </div>
 
         <img
+          loading="lazy"
           src={"/banners/banner-2.jpg"}
           className="text-center object-cover text-white w-full h-64 flex items-center justify-center"
         />
       </Link>
-
-      <div className="w-full ">
-        <ResponsiveNavigationBar />
-      </div>
     </header>
   )
 }

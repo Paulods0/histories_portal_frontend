@@ -25,6 +25,8 @@ import CategoriesPage from "./pages/categories/categories-page"
 import ClassifiedsFormPage from "./pages/classifieds-form-page"
 import OverlandJournal from "./pages/categories/overland-journal"
 import CategoriesNavBar from "./components/navbar/categories-nav-bar"
+import MobileCartPage from "./pages/store-pages/mobile-cart-page"
+import ResponsiveNavigationBar from "./components/navbar/responsive-navigation-bar"
 
 function App() {
   return (
@@ -32,6 +34,7 @@ function App() {
       <Navbar />
       <div className="z-[20] sticky top-0">
         <CategoriesNavBar />
+        <ResponsiveNavigationBar />
       </div>
 
       <Routes>
@@ -46,6 +49,7 @@ function App() {
         <Route path="/pages/escreveparanos" element={<WriteForUs />} />
         <Route path="/pages/queroservosso" element={<QueroSerVosso />} />
         <Route path="/pages/loja/product/:id" element={<ProductDetail />} />
+        <Route path="/pages/loja/cart" element={<MobileCartPage />} />
 
         <Route path="/categorias" element={<CategoriesPage />}>
           <Route path="reviews" element={<Reviews />} />

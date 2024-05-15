@@ -2,7 +2,7 @@ import { SOCIAL_MEDIA_LINKS } from "@/utils/constants"
 
 const FooterOverland = () => {
   return (
-    <div className="text-white flex flex-row lg:flex-col items-start justify-between h-full w-full lg:w-fit">
+    <div className="text-white flex gap-4 lg:gap-0 flex-col items-start justify-between h-full w-full lg:w-fit">
       <div className="flex flex-col">
         <h4 className="text-base font-normal uppercase">overland angola</h4>
 
@@ -12,6 +12,7 @@ const FooterOverland = () => {
       </div>
 
       <img
+        loading="lazy"
         src="/logo/logotipo-texto.png"
         alt="logotipo"
         className="relative md:-left-4 lg:-left-2 self-start w-28 md:w-44 lg:w-32 lg:h-14 object-contain"

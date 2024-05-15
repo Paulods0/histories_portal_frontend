@@ -20,7 +20,6 @@ const GoBackButton = () => {
   }, [visible])
   return (
     <button
-      // disabled={visible}
       onClick={scrollToTop}
       className={`bg-goldenColor hover:bg-colorGray-dark/70 cursor-pointer left-24 flex sticky bottom-4 duration-200 transition-all ease-in-out z-50 p-2 w-12 h-12 items-center justify-center ${
         visible ? "block" : "hidden"

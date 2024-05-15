@@ -19,7 +19,7 @@ const Reviews = () => {
   }
 
   return (
-    <div className="w-full min-h-screen gap-10 px-12 flex-col">
+    <div className="w-full min-h-screen gap-10 lg:px-12 flex-col">
       <FadeInEffect>
         <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
           {posts?.length === 0 ? (
@@ -31,6 +31,7 @@ const Reviews = () => {
           )}
         </div>
       </FadeInEffect>
+
       <div className="mt-12">
         <div className="flex flex-col self-start">
           <div className="text-colorGray font-semibold font-Roboto uppercase text-[12px] flex self-start gap-1">

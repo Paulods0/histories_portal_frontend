@@ -13,7 +13,10 @@ const Classificados = () => {
       </main>
     )
   }
-  if (posts?.length === 0) {
+
+  const filteredPosts = posts?.filter((post) => post.status === "active")
+
+  if (filteredPosts?.length === 0) {
     return (
       <main className="w-full flex items-center justify-center h-full">
         <h1>Não há nenhum post ainda.</h1>
@@ -22,16 +25,18 @@ const Classificados = () => {
   }
 
   return (
-    <div className="w-full min-h-screen gap-10 px-12 flex-col ">
+    <div className="w-full min-h-screen gap-10 lg:px-12 flex-col ">
       <div className="w-full items-center gap-x-3 flex mb-4"></div>
       <FadeInEffect>
-        <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="place-items-center grid md:grid-cols-2 grid-cols-1 w-full lg:grid-cols-2 gap-8">
           {isLoading ? (
             <div className="col-span-2 flex items-center justify-center">
               <ClipLoader size={80} color="#1A101F" />
             </div>
           ) : (
-            posts!!.map((post) => <ClassifiedCard key={post._id} post={post} />)
+            filteredPosts!!.map((post) => (
+              <ClassifiedCard key={post._id} post={post} />
+            ))
           )}
         </div>
       </FadeInEffect>

@@ -17,9 +17,10 @@ const SwiperCard = ({ post }: { post: Post }) => {
       <div>
         <div className="relative w-full h-[100px]">
           <img
+            loading="lazy"
             src={post?.mainImage}
             className="absolute w-full h-full object-cover rounded-t-md inset-0"
-            alt=""
+            alt="post-imagem"
           />
           <h1 className="absolute line-clamp-2 bottom-1 text-[16px] left-2 text-white font-Roboto font-semibold">
             {post.title}

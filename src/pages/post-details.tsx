@@ -47,6 +47,7 @@ const PostDetails = () => {
               </h4>
               <div className="relative w-full mt-4 mb-8 h-[410.7px]">
                 <img
+                  loading="lazy"
                   src={post?.mainImage}
                   alt="photo"
                   className="object-cover w-full h-full"

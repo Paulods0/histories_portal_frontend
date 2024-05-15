@@ -7,10 +7,11 @@ const AboutUs = () => {
   return (
     <FadeInEffect>
       <main className="px-8 flex py-3 flex-col w-full h-full items-center justify-center">
-        <div className="relative w-full h-[800px] mb-8">
+        <div className="relative w-full h-[500px] mb-8">
           <img
             src="/logo/about.jpg"
-            alt=""
+            alt="nós"
+            loading="lazy"
             className="absolute inset-0 w-full h-full object-cover"
           />
         </div>

@@ -18,7 +18,7 @@ const CategoriesNavBar = () => {
   }
 
   return (
-    <ul className="md:hidden z-[999] hidden mb-0 list-disc sticky top-0 text-colorGray-light/30 w-full shadow-md h-[60px]  bg-white lg:flex gap-12 items-center justify-between py-4">
+    <ul className="md:hidden z-[8888] hidden mb-0 list-disc sticky top-0 text-colorGray-light/30 w-full shadow-md h-[60px] bg-white lg:flex gap-12 items-center justify-between py-4">
       <div className="w-[1000px] mx-auto flex items-center justify-between">
         <li className="list-none">
           <Link
