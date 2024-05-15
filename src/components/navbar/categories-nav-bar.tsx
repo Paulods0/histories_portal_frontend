@@ -40,7 +40,7 @@ const CategoriesNavBar = () => {
             }`}
           >
             <Link
-              className={`text-[15px] font-Oswald  text-colorBlack-dark uppercase ${
+              className={`text-[15px] font-Oswald text-colorBlack-dark uppercase ${
                 category.slug === decodeURL ? "text-goldenColor" : ""
               } hover:text-goldenColor duration-100 transition-all ease-in `}
               to={

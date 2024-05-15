@@ -35,9 +35,9 @@ const PostDetails = () => {
         hide={false}
       />
       <SlideDownEffect>
-        <main className="px-6">
+        <main className="lg:px-6">
           <div className=" gap-6 flex p-8">
-            <div className=" flex-[4] items-center flex-col flex">
+            <div className="lg:flex-[4] w-full items-center flex-col flex">
               <h1 className="text-[41px] font-Oswald font-normal text-center">
                 {post?.title}
               </h1>
@@ -45,7 +45,7 @@ const PostDetails = () => {
               <h4 className="text-center font-OpenSans text-colorGray-light text-[15px]">
                 {`${post?.author.firstname} ${post?.author.lastname} / ${createdAt}`}
               </h4>
-              <div className="relative w-full mt-4 mb-8 h-[410.7px]">
+              <div className="relative w-full mt-4 mb-8 h-[240px] lg:h-[410.7px]">
                 <img
                   loading="lazy"
                   src={post?.mainImage}
@@ -53,6 +53,7 @@ const PostDetails = () => {
                   className="object-cover w-full h-full"
                 />
               </div>
+
               <div
                 className="text-left font-OpenSans quill text-[15px] text-colorBlack-dark text-base pb-8"
                 dangerouslySetInnerHTML={content}
@@ -62,8 +63,8 @@ const PostDetails = () => {
                 <AuthorNotes author={post.author} notes={post.author_notes} />
               )}
 
-              <div className="w-full items-start justify-between gap-1 mb-6 px-6 flex">
-                <div className="flex items-center">
+              <div className="w-full flex lg:flex-row gap-4 mg flex-col items-start justify-between lg:gap-1 mb-6 px-6 ">
+                <div className="flex items-center flex-wrap">
                   <CiShoppingTag color="#AAAAAA" />
                   {post?.tag.map((tag, index) => (
                     <span
@@ -76,7 +77,7 @@ const PostDetails = () => {
                 </div>
 
                 <div className="flex flex-col items-end gap-y-4">
-                  <ShareButtons />
+                  <ShareButtons image={post!!.mainImage} />
                   <LikeButton postId={id!!} />
                 </div>
               </div>

@@ -17,7 +17,6 @@ import PageNotFound from "./pages/page-not-found"
 import Passeios from "./pages/categories/passeios"
 import AgendaAo from "./pages/categories/agenda-ao"
 import Historias from "./pages/categories/historias"
-import Parceiros from "./pages/categories/parceiros"
 import QueroSerVosso from "./pages/want-to-be-yours"
 import Classificados from "./pages/categories/classificados"
 import ProductDetail from "./pages/store-pages/product-detail"
@@ -27,6 +26,7 @@ import OverlandJournal from "./pages/categories/overland-journal"
 import CategoriesNavBar from "./components/navbar/categories-nav-bar"
 import MobileCartPage from "./pages/store-pages/mobile-cart-page"
 import ResponsiveNavigationBar from "./components/navbar/responsive-navigation-bar"
+import OverlandExperience from "./pages/overland-experience"
 
 function App() {
   return (
@@ -43,7 +43,6 @@ function App() {
         <Route path="/page/:page" element={<Page />} />
         <Route path="/pages/loja" element={<Store />} />
         <Route path="/pages/sobre" element={<AboutUs />} />
-        <Route path="/pages/parceiros" element={<Parceiros />} />
         <Route path="/pages/subscrever" element={<Subscribe />} />
         <Route path="/unsubscribe/:id" element={<Unsubscribe />} />
         <Route path="/pages/escreveparanos" element={<WriteForUs />} />
@@ -58,6 +57,7 @@ function App() {
           <Route path="histórias" element={<Historias />} />
           <Route path="classificados" element={<Classificados />} />
           <Route path="jornal-overland" element={<OverlandJournal />} />
+          <Route path="overland-experience" element={<OverlandExperience />} />
         </Route>
 
         <Route path="*" element={<PageNotFound />} />

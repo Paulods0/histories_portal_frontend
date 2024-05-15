@@ -12,7 +12,6 @@ const CategoriesPage = () => {
     <>
       <HomeCategoryControlller text="Arquivos De Categoria:" label={path} />
       <main className="w-full  gap-10 px-12 flex-col">
-        {/* <CategoriesNavBar /> */}
         <div className="w-full  flex gap-8">
           <div className="flex-[3] flex justify-center">
             <Outlet />

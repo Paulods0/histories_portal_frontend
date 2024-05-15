@@ -51,6 +51,10 @@ export const SOCIAL_MEDIA_LINKS = [
 ]
 export const SECOND_NAV_BAR_LINKS = [
   {
+    name: "Overland Experience",
+    link: "/categoria/overland-experience",
+  },
+  {
     name: "Classificados",
     link: "/categoria/classificados",
   },

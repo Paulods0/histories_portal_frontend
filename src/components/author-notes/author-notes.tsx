@@ -6,11 +6,11 @@ const AuthorNotes = ({
   notes: string
 }) => {
   return (
-    <div className="flex mt-2 w-full px-8 py-4 gap-4 self-start mb-10 border border-colorGray-light/30 rounded-sm bg-colorGray-light/10">
+    <div className="flex mt-2 w-full px-8 py-4 gap-4 lg:flex-row items-center flex-col lg:self-start mb-10 border border-colorGray-light/30 rounded-sm bg-colorGray-light/10">
       <img
         src={`${author.image ? author.image : "/user.png"}`}
         alt="Imagem do author"
-        className="relative w-36 h-36 object-contain rounded-full"
+        className="relative size-28 md:size-36 object-contain rounded-full"
       />
 
       <div className="flex flex-col">
@@ -18,7 +18,7 @@ const AuthorNotes = ({
           {`${author.firstname} ${author.lastname}`}
         </h1>
 
-        <p className=" text-[15px] text-colorBlack-dark font-OpenSans">
+        <p className="text-sm md:text-[15px] text-colorBlack-dark font-OpenSans">
           {notes}
         </p>
       </div>

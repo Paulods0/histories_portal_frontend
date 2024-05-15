@@ -3,13 +3,16 @@ import {
   EmailShareButton,
   FacebookIcon,
   FacebookShareButton,
-  XIcon,
-  TwitterShareButton,
   WhatsappIcon,
   WhatsappShareButton,
+  PinterestShareButton,
+  PinterestIcon,
 } from "react-share"
-
-const ShareButtons = () => {
+type Props = {
+  image: string
+}
+const ShareButtons = ({ image }: Props) => {
+  const location = window.location.href
   return (
     <div className="flex items-center w-full gap-x-2">
       <span className="font-semibold text-[14px] italic text-colorGray-light capitalize">
@@ -18,20 +21,18 @@ const ShareButtons = () => {
       <div className="flex items-center gap-x-2">
         <FacebookShareButton
           children={<FacebookIcon size={30} />}
-          url="https://www.youtube.com/watch?v=x6lMFB3qPbs"
+          url={location}
         />
-        <TwitterShareButton
-          children={<XIcon size={30} />}
-          url="https://www.youtube.com/watch?v=x6lMFB3qPbs"
+        <PinterestShareButton
+          children={<PinterestIcon size={30} />}
+          url={location}
+          media={image}
         />
         <WhatsappShareButton
           children={<WhatsappIcon size={30} />}
-          url="https://www.youtube.com/watch?v=x6lMFB3qPbs"
+          url={location}
         />
-        <EmailShareButton
-          children={<EmailIcon size={30} />}
-          url="https://www.youtube.com/watch?v=x6lMFB3qPbs"
-        />
+        <EmailShareButton children={<EmailIcon size={30} />} url={location} />
       </div>
     </div>
   )

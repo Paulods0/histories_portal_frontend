@@ -74,7 +74,7 @@ const Passeios = () => {
                         </div>
                       </div>
                       <Link
-                        to={`https://blendagency.biz/post/${post.title}__${post._id}`}
+                        to={`/post/${post._id}`}
                         className="text-white p-2 w-[100px] rounded-full  bg-colorBlack-dark flex  items-center justify-center"
                       >
                         Ver post
