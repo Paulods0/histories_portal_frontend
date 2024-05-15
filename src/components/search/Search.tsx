@@ -20,8 +20,11 @@ const Search = () => {
 
   return (
     <Dialog>
-      <DialogTrigger>
-        <FaSearch size={18} color="#FFF" />
+      <DialogTrigger
+        className="bg-black/80 size-10 cursor-pointer text-xl p-2 rounded-md"
+        asChild
+      >
+        <FaSearch color="#FFF" />
       </DialogTrigger>
 
       <DialogContent className="z-[9999999999] py-2 px-4 rounded-none">

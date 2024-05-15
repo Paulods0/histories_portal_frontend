@@ -1,104 +1,107 @@
-import { FormEvent, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
 import { ICountryData, getCountryDataList } from "countries-list"
 import FadeInEffect from "@/components/motion/fade-in"
-// import { z } from "zod"
-
-// const formSchema = z.object({
-//   country: z.string(),
-//   phone: z.string(),
-//   name: z.string(),
-//   email: z.string().email(),
-//   content: z.string().email(),
-//   history: z.string().email(),
-// })
+import { WriteForUsFormType, writeForUsSchemaType } from "@/lib/validation"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
 
 const WriteForUs = () => {
-  const [allCountries, setAllCountries] = useState<ICountryData[]>([])
-  const [countryPhoneCode, setCountryPhoneCode] = useState<any>()
-  const [country, setCountry] = useState("Angola")
-  const [phone, setPhone] = useState("")
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [history, setHistory] = useState("")
-  const [content, setContent] = useState("")
+  const [countries, setCountries] = useState<ICountryData[]>([])
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+    setValue,
+  } = useForm<WriteForUsFormType>({
+    resolver: zodResolver(writeForUsSchemaType),
+    defaultValues: {
+      country: "Angola",
+      countryCode: "244",
+    },
+  })
+
+  const handleSelectCountry = (e: ChangeEvent<HTMLSelectElement>) => {
+    setValue("country", e.target.value)
+  }
+
+  const handleSelectCode = (e: ChangeEvent<HTMLSelectElement>) => {
+    setValue("countryCode", e.target.value)
+  }
+
+  const handleSubmitForm = (data: WriteForUsFormType) => {
+    console.log(data)
     try {
-      if (
-        !name ||
-        !email ||
-        phone ||
-        !content ||
-        !country ||
-        !countryPhoneCode
-      ) {
-        return
-      }
     } catch (error) {
       console.error(error)
     }
   }
 
   useEffect(() => {
-    setAllCountries(getCountryDataList())
-    const defaultCountry = getCountryDataList().find(
-      (country) => country.name === "Angola"
-    )
-
-    if (defaultCountry) {
-      setCountry(defaultCountry.name)
-      setCountryPhoneCode(defaultCountry.phone)
-    }
+    setCountries(getCountryDataList())
   }, [])
+
   return (
     <FadeInEffect>
       <main className="w-full flex items-start justify-center">
-        <form onSubmit={handleSubmit} className="w-[60%] p-4 space-y-4">
-          <div className="p-2 border">
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              type="text"
-              placeholder="Nome"
-              className="border-none w-full outline-none bg-transparent"
-            />
-          </div>
+        <form
+          onSubmit={handleSubmit(handleSubmitForm)}
+          className="w-full p-4 lg:w-[800px] lg:mx-auto space-y-6"
+        >
+          <>
+            <div className="p-2 border">
+              <input
+                {...register("name")}
+                type="text"
+                placeholder="Nome"
+                className="border-none md:placeholder:text-base placeholder:text-xs md:text-base text-xs w-full outline-none bg-transparent"
+              />
+            </div>
+            {errors.name && (
+              <span className="text-xs text-red-600">
+                {errors.name.message}
+              </span>
+            )}
+          </>
           <div className="p-2 border">
             <select
-              onChange={(e) => setCountry(e.target.value)}
-              className="border-none w-full outline-none bg-transparent"
+              defaultValue={"Angola"}
+              onChange={handleSelectCountry}
+              className="border-none md:placeholder:text-base placeholder:text-xs md:text-base text-xs w-full outline-none bg-transparent"
             >
-              <option selected disabled defaultValue={country}>
-                {country}
-              </option>
+              <option defaultValue={"Angola"}>Angola</option>
 
-              {allCountries.map((currentCountry: any, index) => (
+              {countries.map((currentCountry: any, index) => (
                 <option key={index} value={currentCountry.name}>
                   {currentCountry.name}
                 </option>
               ))}
             </select>
           </div>
-          <div className="p-2 border">
-            <input
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              type="text"
-              placeholder="Endereço de email"
-              className="border-none w-full outline-none bg-transparent"
-            />
-          </div>
+          <>
+            <div className="p-2 border">
+              <input
+                {...register("email")}
+                type="text"
+                placeholder="Endereço de email"
+                className="border-none md:placeholder:text-base placeholder:text-xs md:text-base text-xs w-full outline-none bg-transparent"
+              />
+            </div>
+            {errors.email && (
+              <span className="text-xs text-red-600">
+                {errors.email.message}
+              </span>
+            )}
+          </>
           <div className="flex w-full items-center gap-x-2">
             <select
-              onChange={(e) => setCountryPhoneCode(e.target.value)}
-              className="p-2 bg-transparent border h-full w-[100px]"
+              defaultValue={"+244"}
+              onChange={handleSelectCode}
+              className="p-3 bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs border h-full w-[150px]"
             >
-              <option defaultValue={countryPhoneCode} disabled selected>
-                {`(+${countryPhoneCode}) ${country}`}
-              </option>
+              <option defaultValue={"244"}>Angola (+244) </option>
 
-              {allCountries.map((country, index) => (
+              {countries.map((country, index) => (
                 <option
                   value={country.phone[0]}
                   key={index}
@@ -110,44 +113,62 @@ const WriteForUs = () => {
               ))}
             </select>
 
-            <div className="p-2 border w-full">
+            <div className="relative p-2 border w-full">
               <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                type="number"
+                {...register("phone")}
                 placeholder="Número de telefone"
-                className="border-none w-full outline-none bg-transparent"
+                className="border-none md:placeholder:text-base placeholder:text-xs md:text-base text-xs w-full outline-none bg-transparent"
               />
+              {errors.phone && (
+                <span className="text-xs text-red-600 absolute right-2 -bottom-5">
+                  {errors.phone.message}
+                </span>
+              )}
             </div>
           </div>
-          <div className="p-2 border h-[150px]">
-            <input
-              value={history}
-              onChange={(e) => setHistory(e.target.value)}
-              type="text"
-              placeholder="Contextualiza a sua história (limite máximo de caracteres 400)"
-              className="border-none w-full outline-none bg-transparent"
-            />
-          </div>
-          <div className="p-2 border h-[150px]">
-            <input
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              type="text"
-              placeholder="Escreve (limite máximo de caracteres 400)"
-              className="border-none w-full outline-none bg-transparent"
-            />
-          </div>
+
+          <>
+            <div className="p-2 border h-[150px]">
+              <input
+                {...register("contextualize")}
+                type="text"
+                placeholder="Contextualiza a sua história (limite máximo de caracteres 400)"
+                className="border-none md:placeholder:text-base placeholder:text-xs md:text-base text-xs w-full outline-none bg-transparent"
+              />
+            </div>
+            {errors.contextualize && (
+              <span className="text-xs text-red-600">
+                {errors.contextualize.message}
+              </span>
+            )}
+          </>
+          <>
+            <div className="p-2 border h-[150px]">
+              <input
+                {...register("write")}
+                type="text"
+                placeholder="Escreve (limite máximo de caracteres 400)"
+                className="border-none md:placeholder:text-base placeholder:text-xs md:text-base text-xs w-full outline-none bg-transparent"
+              />
+            </div>
+            {errors.write && (
+              <span className="text-xs text-red-600">
+                {errors.write.message}
+              </span>
+            )}
+          </>
+
           <div className="p-2 border ">
             <input
               id="file"
               type="file"
-              className="border-none w-full outline-none bg-transparent"
+              className="border-none w-full md:file:text-base file:text-xs outline-none bg-transparent"
             />
           </div>
 
           <button
-            className="p-2 w-32 bg-zinc-900 text-white uppercase"
+            className="p-2 w-32 bg-zinc-900 text-white uppercase md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
             type="submit"
           >
             Enviar

@@ -1,18 +1,17 @@
-import { useState } from "react"
 import { IoMenu } from "react-icons/io5"
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Search from "../search/search"
 import { useGetPostCategories } from "@/lib/react-query"
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../ui/sheet"
 import { MdOutlineKeyboardArrowRight } from "react-icons/md"
+import { NAV_LINKS } from "@/utils/constants"
 
 const ResponsiveNavigationBar = () => {
   const { data: categories } = useGetPostCategories()
-  const [isNavigationModalOpen, setisNavigationModalOpen] = useState(false)
-  const regex = /[\s\u0300-\u036f]/g
+  const location = useLocation()
 
-  const openModal = () => {
-    setisNavigationModalOpen(!isNavigationModalOpen)
+  if (location.pathname.includes("/pages/loja")) {
+    return
   }
 
   return (
@@ -25,18 +24,34 @@ const ResponsiveNavigationBar = () => {
         </SheetTrigger>
 
         <SheetContent>
-          <img
+          {/* <img
             src="/logo/logotipo-texto.png"
             className="object-contain h-14 w-full"
-          />
-          <ul className="w-full bg-white gap-4 mt-8 flex flex-col items-start justify-between">
+          /> */}
+          <ul className="w-full bg-white gap-4 mt-2 flex flex-col items-start justify-between">
             {categories?.map((link) => (
               <li key={link._id} className="flex items-center gap-1">
                 <MdOutlineKeyboardArrowRight />
                 <SheetClose asChild>
                   <Link
-                    className="font-semibold text-base md:text-lg uppercase"
+                    className="font-semibold text-xs md:text-lg uppercase"
                     to={`categorias/${link.slug}`}
+                  >
+                    {link.name}
+                  </Link>
+                </SheetClose>
+              </li>
+            ))}
+          </ul>
+          <hr className="w-full h-[1px] my-2 bg-goldenColor" />
+          <ul className="w-full bg-white gap-4 flex flex-col items-start justify-between">
+            {NAV_LINKS?.map((link, index) => (
+              <li key={index} className="flex items-center gap-1">
+                <MdOutlineKeyboardArrowRight />
+                <SheetClose asChild>
+                  <Link
+                    className="font-semibold text-xs md:text-lg uppercase"
+                    to={`${link.link}`}
                   >
                     {link.name}
                   </Link>
@@ -47,9 +62,7 @@ const ResponsiveNavigationBar = () => {
         </SheetContent>
       </Sheet>
 
-      <button className="bg-black/80 size-12 text-2xl p-2 rounded-md">
-        <Search />
-      </button>
+      <Search />
     </div>
   )
 }

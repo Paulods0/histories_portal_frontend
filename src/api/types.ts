@@ -66,5 +66,18 @@ export type ClassifiedPost = {
   type: ClassifiedPostType
   status: ClassifiedPostStatus
 }
+export type NewClassifiedPost = {
+  title: string
+  author: {
+    firstname: string
+    lastname: string
+    email: string
+    phone: string
+  }
+  content: string
+  mainImage: string
+  price: string
+  type: string
+}
 type ClassifiedPostStatus = "active" | "suspended" | "inactive"
 type ClassifiedPostType = "sell" | "buy"

@@ -7,9 +7,12 @@ import { ClipLoader } from "react-spinners"
 import GoBackButton from "../components/global/go-back-button"
 import { useGetPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
+import { useGetCountryList } from "@/lib/countries-list"
+import SideBarHome from "@/components/sidebar/side-bar-home"
 
 const Home = () => {
   const { data: posts, isLoading } = useGetPosts()
+
   const pages = 1
   const handleNavigate = (page: number) => {
     if (page === 1) {
@@ -51,7 +54,7 @@ const Home = () => {
         </FadeInEffect>
 
         <aside className="lg:flex flex-col flex-[1] hidden md:hidden">
-          <SideBar />
+          <SideBarHome />
         </aside>
       </div>
 

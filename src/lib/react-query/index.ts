@@ -5,6 +5,7 @@ import {
   getAllProdutCategories,
   getClassifiedPosts,
   getHighlightedPost,
+  getMostLikedPosts,
   getMostViewedPosts,
   getPostByCategory,
   getPostCategories,
@@ -48,6 +49,13 @@ export const useGetPostCategories = () => {
   return useQuery<PostCategory[] | []>({
     queryKey: ["get-post-categories"],
     queryFn: getPostCategories,
+  })
+}
+
+export const useGetMostLikedPosts = () => {
+  return useQuery<Post[] | []>({
+    queryKey: ["get-most-liked-posts"],
+    queryFn: getMostLikedPosts,
   })
 }
 

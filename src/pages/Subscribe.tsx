@@ -1,32 +1,36 @@
-import { useEffect, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 import { ICountryData } from "countries-list"
 import { getCountryDataList } from "countries-list"
 import FadeInEffect from "@/components/motion/fade-in"
-import { z } from "zod"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
-
-const formSchema = z.object({
-  country: z.string(),
-  phone: z.string(),
-  name: z.string(),
-  email: z.string().email(),
-})
-
-type FormSchemaType = z.infer<typeof formSchema>
+import { SubscribeFormType, subscribeFormSchema } from "@/lib/validation"
 
 const Subscribe = () => {
-  const [allCountries, setAllCountries] = useState<ICountryData[]>([])
+  const [countries, setCountries] = useState<ICountryData[]>([])
 
-  const { handleSubmit, register } = useForm<FormSchemaType>({
-    resolver: zodResolver(formSchema),
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+    setValue,
+  } = useForm<SubscribeFormType>({
+    resolver: zodResolver(subscribeFormSchema),
+    defaultValues: {
+      countryCode: "+244",
+      country: "Angola",
+    },
   })
 
-  const [phone, setPhone] = useState<number | string>()
-  const [country, setCountry] = useState("")
-  const [countryPhoneCode, setCountryPhoneCode] = useState<any>()
+  const handleSelectCountry = (value: ChangeEvent<HTMLSelectElement>) => {
+    setValue("country", value.target.value)
+  }
 
-  const handleSubmitForm = async (data: FormSchemaType) => {
+  const handleSelectCountryCode = (value: ChangeEvent<HTMLSelectElement>) => {
+    setValue("countryCode", value.target.value)
+  }
+
+  const handleSubmitForm = async (data: SubscribeFormType) => {
     try {
       console.log(data)
       return
@@ -36,15 +40,7 @@ const Subscribe = () => {
   }
 
   useEffect(() => {
-    setAllCountries(getCountryDataList())
-    const defaultCountry = getCountryDataList().find(
-      (country) => country.name === "Angola"
-    )
-
-    if (defaultCountry) {
-      setCountry(defaultCountry.name)
-      setCountryPhoneCode(defaultCountry.phone)
-    }
+    setCountries(getCountryDataList())
   }, [])
 
   return (
@@ -52,27 +48,35 @@ const Subscribe = () => {
       <main className="w-full flex items-start justify-center">
         <form
           onSubmit={handleSubmit(handleSubmitForm)}
-          className="lg:w-[60%]  w-full p-4 space-y-4"
+          className="w-full lg:w-[800px] lg:mx-auto p-4 space-y-4"
         >
-          <div className="p-2 border">
-            <input
-              {...register("name")}
-              type="text"
-              placeholder="Nome"
-              className="border-none w-full outline-none bg-transparent"
-            />
-          </div>
+          <>
+            <div className="p-2 border">
+              <input
+                {...register("name")}
+                type="text"
+                placeholder="Nome"
+                className="border-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
+              />
+            </div>
+            {errors.name && (
+              <span className="text-xs text-red-600">
+                {errors.name.message}
+              </span>
+            )}
+          </>
 
           <div className="p-2 border">
             <select
-              onChange={(e) => setCountry(e.target.value)}
-              className="border-none w-full outline-none bg-transparent"
+              defaultValue={"Angola"}
+              onChange={handleSelectCountry}
+              className="border-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
             >
-              <option selected disabled defaultValue={country}>
-                {country}
+              <option disabled defaultValue={"Angola"}>
+                Angola
               </option>
 
-              {allCountries.map((country: any, index) => (
+              {countries?.map((country: ICountryData, index) => (
                 <option key={index} value={country.name}>
                   {country.name}
                 </option>
@@ -80,50 +84,60 @@ const Subscribe = () => {
             </select>
           </div>
 
-          <div className="p-2 border">
-            <input
-              {...register("email")}
-              type="email"
-              placeholder="Endereço de email"
-              className="border-none w-full outline-none bg-transparent"
-            />
-          </div>
+          <>
+            <div className="p-2 border">
+              <input
+                {...register("email")}
+                type="email"
+                placeholder="Endereço de email"
+                className="border-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
+              />
+            </div>
+            {errors.email && (
+              <span className="text-xs text-red-600">
+                {errors.email.message}
+              </span>
+            )}
+          </>
 
           <div className="flex w-full items-center gap-x-2">
             <select
-              value={countryPhoneCode}
-              onChange={(e) => setCountryPhoneCode(e.target.value)}
-              className="p-2 bg-transparent border h-full w-[100px]"
+              defaultValue={"244"}
+              onChange={handleSelectCountryCode}
+              className="p-3 bg-transparent border h-full w-[150px] md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
             >
-              <option defaultValue={countryPhoneCode} disabled selected>
-                {`(+${countryPhoneCode}) ${country}`}
-              </option>
+              <option value={"244"}>(+244) Angola</option>
 
-              {allCountries.map((country, index) => (
+              {countries?.map((country, index) => (
                 <option
-                  value={country.phone[0]}
+                  value={country.phone[0]!!}
                   key={index}
                   className="w-full flex items-center gap-x-2"
                 >
-                  <p>(+{country.phone})</p>
-                  <p>{country.name}</p>
+                  <p>(+{country.phone[0]!!})</p>
+                  <p>{country.name!!}</p>
                 </option>
               ))}
             </select>
 
-            <div className="p-2 border w-full">
+            <div className="relative p-2 border w-full">
               <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                type="number"
+                {...register("phone")}
                 placeholder="Número de telefone"
-                className="border-none w-full outline-none bg-transparent"
+                className="border-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
               />
+
+              {errors.phone && (
+                <span className="text-xs absolute -bottom-6 right-1 text-start text-red-600">
+                  {errors.phone.message}
+                </span>
+              )}
             </div>
           </div>
 
           <button
-            className="p-2 w-32 bg-zinc-900 text-white uppercase"
+            className="p-2 w-32 bg-zinc-900 text-white uppercase md:text-base text-xs"
             type="submit"
           >
             Enviar

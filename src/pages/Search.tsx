@@ -9,7 +9,7 @@ const Search = () => {
   const location = useLocation()
   const search = new URLSearchParams(location.search).get("v")!!
   const decodedSearchValue = decodeURIComponent(search)
-  console.log(decodedSearchValue)
+
   const { data, isLoading } = useGetSearchResults(decodedSearchValue)
 
   if (isLoading) {

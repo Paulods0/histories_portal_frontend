@@ -1,108 +1,118 @@
 import FadeInEffect from "@/components/motion/fade-in"
+import {
+  WantToBeYoursFormType,
+  wantToBeYoursFormSchema,
+} from "@/lib/validation"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { error } from "console"
 import { ICountryData, getCountryDataList } from "countries-list"
-import { FormEvent, useEffect, useState } from "react"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { useForm } from "react-hook-form"
 
 const WantToBeYours = () => {
-  const [allCountries, setAllCountries] = useState<ICountryData[]>([])
-  const [countryPhoneCode, setCountryPhoneCode] = useState<any>()
-  const [country, setCountry] = useState("Angola")
-  const [phone, setPhone] = useState<number | string>()
-  const [name, setName] = useState("")
-  const [email, setEmail] = useState("")
-  const [choice, setChoice] = useState("Particular")
-  const [content, setContent] = useState("")
+  const [countries, setCountries] = useState<ICountryData[]>([])
 
-  const userInfo = {
-    name,
-    email,
-    country,
-    code: countryPhoneCode,
-    phone: `+${countryPhoneCode} ${phone}`,
-    choice,
-    content,
+  const {
+    handleSubmit,
+    register,
+    formState: { errors, isSubmitting },
+    setValue,
+  } = useForm<WantToBeYoursFormType>({
+    resolver: zodResolver(wantToBeYoursFormSchema),
+    defaultValues: {
+      countryCode: "+244",
+      country: "Angola",
+    },
+  })
+
+  const handleSelectCountry = (value: ChangeEvent<HTMLSelectElement>) => {
+    setValue("country", value.target.value)
   }
-  console.log(userInfo)
 
-  const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault()
+  const handleSelectCountryCode = (value: ChangeEvent<HTMLSelectElement>) => {
+    setValue("countryCode", value.target.value)
+  }
+  const handleSelectChoice = (value: ChangeEvent<HTMLSelectElement>) => {
+    setValue("type", value.target.value)
+  }
+
+  const handleSubmitForm = async (data: WantToBeYoursFormType) => {
     try {
-      if (
-        !name ||
-        !email ||
-        phone ||
-        !choice ||
-        !content ||
-        !country ||
-        !countryPhoneCode
-      ) {
-        console.log("Por favor, preencha todos os campos obrigatórios.")
-        return
-      }
+      console.log(data)
+      return
     } catch (error) {
       console.error(error)
     }
   }
 
   useEffect(() => {
-    setAllCountries(getCountryDataList())
-    const defaultCountry = getCountryDataList().find(
-      (country) => country.name === "Angola"
-    )
-
-    if (defaultCountry) {
-      setCountry(defaultCountry.name)
-      setCountryPhoneCode(defaultCountry.phone)
-    }
+    setCountries(getCountryDataList())
   }, [])
 
   return (
     <FadeInEffect>
       <main className="w-full flex items-start justify-center">
-        <form onSubmit={handleSubmit} className="w-[60%] p-4 space-y-4">
-          <div className="p-2 border">
-            <input
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              type="text"
-              placeholder="Nome"
-              className="border-none w-full outline-none bg-transparent"
-            />
-          </div>
+        <form
+          onSubmit={handleSubmit(handleSubmitForm)}
+          className="w-full lg:w-[800px] lg:mx-auto p-4 space-y-6"
+        >
+          <>
+            <div className="p-2 border">
+              <input
+                {...register("name")}
+                type="text"
+                placeholder="Nome"
+                className="border-none w-full md:text-base text-xs md:placeholder:text-base placeholder:text-xs outline-none bg-transparent"
+              />
+            </div>
+            {errors.name && (
+              <span className="text-xs text-red-600">
+                {errors.name?.message}
+              </span>
+            )}
+          </>
+
           <div className="p-2 border">
             <select
-              onChange={(e) => setCountry(e.target.value)}
-              className="border-none w-full outline-none bg-transparent"
+              onChange={handleSelectCountry}
+              className="border-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
             >
-              <option selected disabled defaultValue={country}>
-                {country}
+              <option selected defaultValue={"Angola"}>
+                Angola
               </option>
 
-              {allCountries.map((currentCountry: any, index) => (
+              {countries.map((currentCountry: any, index) => (
                 <option key={index} value={currentCountry.name}>
                   {currentCountry.name}
                 </option>
               ))}
             </select>
           </div>
-          <div className="p-2 border">
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Endereço de email"
-              className="border-none w-full outline-none bg-transparent"
-            />
-          </div>
+
+          <>
+            <div className="p-2 border">
+              <input
+                type="text"
+                {...register("email")}
+                placeholder="Endereço de email"
+                className="border-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
+              />
+            </div>
+            {errors.email && (
+              <span className="text-xs text-red-600">
+                {errors.email?.message}
+              </span>
+            )}
+          </>
+
           <div className="flex w-full items-center gap-x-2">
             <select
-              onChange={(e) => setCountryPhoneCode(e.target.value)}
-              className="p-2 bg-transparent border h-full w-[100px]"
+              onChange={handleSelectCountryCode}
+              className="p-3 bg-transparent border h-full w-[150px] md:text-base text-xs"
             >
-              <option defaultValue={countryPhoneCode} disabled selected>
-                {`(+${countryPhoneCode}) ${country}`}
-              </option>
+              <option defaultValue={"+244"}>Angola (+244)</option>
 
-              {allCountries.map((currentCountry, index) => (
+              {countries.map((currentCountry, index) => (
                 <option
                   value={currentCountry.phone[0]}
                   key={index}
@@ -113,39 +123,60 @@ const WantToBeYours = () => {
               ))}
             </select>
 
-            <div className="p-2 border w-full">
+            <div className="relative p-2 border w-full">
               <input
-                type="tel"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
+                {...register("phone")}
                 placeholder="Número de telefone"
-                className="border-none w-full outline-none bg-transparent"
+                className="border-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
               />
+              {errors.phone && (
+                <span className="absolute right-2 -bottom-5 text-xs text-red-600">
+                  {errors.phone?.message}
+                </span>
+              )}
             </div>
           </div>
-          <div className="p-2 border">
-            <select
-              onChange={(e) => setChoice(e.target.value)}
-              className="border-none w-full outline-none bg-transparent"
-            >
-              <option selected value={""} disabled>
-                Empresa ou particular
-              </option>
-              <option value="Empresa">Empresa</option>
-              <option value="Particular">Particular</option>
-            </select>
+          <>
+            <div className="p-2 border">
+              <select
+                onChange={handleSelectChoice}
+                className="border-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
+              >
+                <option
+                  disabled
+                  selected
+                  defaultValue={"Empresa ou particular"}
+                >
+                  Empresa ou particular
+                </option>
+
+                <option value="empresa">Empresa</option>
+                <option value="particular">Particular</option>
+              </select>
+            </div>
+            {errors.type && (
+              <span className="text-xs text-red-600">
+                {errors.type?.message}
+              </span>
+            )}
+          </>
+          <div className="flex flex-col">
+            <div className="p-2 border h-[150px]">
+              <textarea
+                {...register("description")}
+                placeholder="Descreva que tipo de parceria gostaria de establecer connosco."
+                className="border-none resize-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
+              />
+            </div>
+            {errors.description && (
+              <span className="text-xs text-red-600">
+                {errors.description?.message}
+              </span>
+            )}
           </div>
-          <div className="p-2 border h-[150px]">
-            <textarea
-              onChange={(e) => setContent(e.target.value)}
-              value={content}
-              maxLength={500}
-              placeholder="Descreva que tipo de parceria gostaria de establecer connosco."
-              className="border-none resize-none w-full outline-none bg-transparent"
-            ></textarea>
-          </div>
+
           <button
-            className="p-2 w-32 bg-zinc-900 text-white uppercase"
+            className="p-2 w-32 bg-zinc-900 text-white uppercase md:text-base text-xs"
             type="submit"
           >
             Enviar

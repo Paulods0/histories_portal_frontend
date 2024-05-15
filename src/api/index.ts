@@ -7,6 +7,7 @@ import {
   Product,
   SchedulePost,
   ClassifiedPost,
+  NewClassifiedPost,
 } from "./types"
 
 export const getPostCategories = async (): Promise<PostCategory[]> => {
@@ -106,6 +107,11 @@ export const getUserPosts = async (user_id: string): Promise<Post[]> => {
   return response.data
 }
 
-export const createClassifiedPost = async (data: ClassifiedPost) => {
+export const getMostLikedPosts = async (): Promise<Post[]> => {
+  const response = await axios.get("/post/get/most-liked")
+  return response.data
+}
+
+export const createClassifiedPost = async (data: NewClassifiedPost) => {
   await axios.post("/classified-post/", data)
 }

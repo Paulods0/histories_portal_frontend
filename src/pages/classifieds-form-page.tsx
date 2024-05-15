@@ -1,145 +1,171 @@
-import { FormEvent, useState } from "react"
-// import { useCreateClassifiedPost } from "@/lib/react-query"
-import { ClassifiedPost } from "@/api/types"
+import { useCreateClassifiedPost } from "@/lib/react-query"
 import { toast } from "react-toastify"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { ClassifiedFormType, classifiedFormSchema } from "@/lib/validation"
+import { NewClassifiedPost } from "@/api/types"
+import { uploadImageToFirebaseStorage } from "@/utils/helpers"
 
 const ClassifiedForm = () => {
-  // const { mutate } = useCreateClassifiedPost()
-  const [email, setEmail] = useState("")
-  const [firstname, setFirstname] = useState("")
-  const [lastname, setLastname] = useState("")
-  const [phone, setPhone] = useState("")
-  const [title, setTitle] = useState("")
-  const [mainImage, setMainImage] = useState("teste")
-  const [content, setContent] = useState("")
-  const [price, setPrice] = useState("")
+  const { mutate } = useCreateClassifiedPost()
 
-  const sendEmail = async (e: FormEvent) => {
-    e.preventDefault()
-    if (
-      !title ||
-      !firstname ||
-      !email ||
-      !phone ||
-      !lastname ||
-      !content ||
-      !mainImage ||
-      !price
-    ) {
-      toast.error("Por favor preencha todos os campos obrigatórios.", {
-        autoClose: 2000,
-        hideProgressBar: true,
-        position: "bottom-right",
-      })
-      return
+  const {
+    register,
+    formState: { errors, isSubmitting },
+    handleSubmit,
+    reset,
+  } = useForm<ClassifiedFormType>({
+    resolver: zodResolver(classifiedFormSchema),
+    defaultValues: {
+      type: "sell",
+    },
+  })
+
+  const handleSubmitForm = async (data: ClassifiedFormType) => {
+    try {
+      let imageURL = await uploadImageToFirebaseStorage(data.image!!)
+
+      const newPostData: NewClassifiedPost = {
+        author: {
+          firstname: data.author.firstname,
+          lastname: data.author.lastname,
+          email: data.author.email,
+          phone: data.author.phone,
+        },
+        content: data.content,
+        mainImage: imageURL,
+        price: data.price,
+        title: data.name,
+        type: data.type!!,
+      }
+      mutate(newPostData)
+      toast.success("O seu produto será analisado pela equipa Overland Angola")
+      console.log(data)
+      reset()
+    } catch (error) {
+      console.log(error)
+      toast.error("Erro ao submeter o formulário")
+      reset()
     }
-    const data: ClassifiedPost = {
-      author: {
-        firstname: firstname,
-        email: email,
-        lastname: lastname,
-        phone: phone,
-      },
-      content: content,
-      price: price,
-      title: title,
-      mainImage: mainImage,
-    }
-    console.log(data)
-    // mutate(data)
-    toast.success("Enviado", {
-      autoClose: 1000,
-      hideProgressBar: true,
-      position: "bottom-right",
-    })
   }
 
   return (
-    <>
-      <form
-        onSubmit={sendEmail}
-        className="relative space-y-3 mx-auto w-[400px] bg-white p-4"
-      >
-        <div className="flex flex-col items-start">
-          <label htmlFor="firstname">Nome</label>
-          <input
-            id="firstname"
-            type="text"
-            onChange={(e) => setFirstname(e.target.value)}
-            className="border p-2 w-full"
-          />
-        </div>
-        <div className="flex flex-col items-start">
-          <label htmlFor="lastname">Sobrenome</label>
-          <input
-            id="lastname"
-            type="text"
-            onChange={(e) => setLastname(e.target.value)}
-            className="border p-2 w-full"
-          />
-        </div>
-        <div className="flex flex-col items-start">
-          <label htmlFor="email">Email</label>
-          <input
-            id="email"
-            onChange={(e) => setEmail(e.target.value)}
-            type="email"
-            className="border p-2 w-full"
-          />
-        </div>
-        <div className="flex flex-col items-start">
-          <label htmlFor="phone">Numero de telefone</label>
-          <input
-            onChange={(e) => setPhone(e.target.value)}
-            id="phone"
-            type="number"
-            className="border p-2 w-full"
-          />
-        </div>
-        <div className="flex flex-col items-start w-full">
-          <label htmlFor="price">Preço do artigo</label>
-          <input
-            onChange={(e) => setPrice(e.target.value)}
-            id="price"
-            type="number"
-            className="border p-2 w-full"
-          />
-        </div>
+    <form
+      onSubmit={handleSubmit(handleSubmitForm)}
+      className="relative space-y-3 mx-auto w-full lg:w-[800px] bg-white p-4"
+    >
+      <div className="flex flex-col items-start">
+        <input
+          type="text"
+          placeholder="Nome"
+          {...register("author.firstname")}
+          className="border p-2 w-full"
+        />
+        {errors.author?.firstname && (
+          <span className="text-xs text-red-600">
+            {errors.author.firstname.message}
+          </span>
+        )}
+      </div>
 
-        <div className="flex flex-col items-start w-full">
-          <label htmlFor="title">Nome do artigo</label>
-          <input
-            onChange={(e) => setTitle(e.target.value)}
-            id="title"
-            type="text"
-            className="border p-2 w-full"
-          />
-        </div>
-        <div className="flex flex-col items-start w-full">
-          <label htmlFor="content">Descrição</label>
-          <textarea
-            onChange={(e) => setContent(e.target.value)}
-            id="content"
-            className="border p-2 w-full h-[120px] resize-none"
-          />
-        </div>
-        <div className="flex flex-col items-start w-full">
-          <label htmlFor="content">Imagem</label>
-          <input
-            type="file"
-            onChange={(e) => setMainImage(e.target.value)}
-            id="content"
-            className="border p-2 w-full"
-          />
-        </div>
-        <button
-          type="submit"
-          className="text-white bg-colorGray-medium px-3 py-2"
-        >
-          Submeter formulário
-        </button>
-      </form>
-    </>
+      <div className="flex flex-col items-start">
+        <input
+          type="text"
+          placeholder="Sobreome"
+          {...register("author.lastname")}
+          className="border p-2 w-full"
+        />
+        {errors.author?.lastname && (
+          <span className="text-xs text-red-600">
+            {errors.author.lastname.message}
+          </span>
+        )}
+      </div>
+
+      <div className="flex flex-col items-start">
+        <input
+          type="email"
+          placeholder="Email"
+          {...register("author.email")}
+          className="border p-2 w-full"
+        />
+        {errors.author?.email && (
+          <span className="text-xs text-red-600">
+            {errors.author.email.message}
+          </span>
+        )}
+      </div>
+
+      <div className="flex flex-col items-start">
+        <input
+          type="number"
+          placeholder="Número de telefone"
+          {...register("author.phone")}
+          className="border p-2 w-full"
+        />
+        {errors.author?.phone && (
+          <span className="text-xs text-red-600">
+            {errors.author.phone.message}
+          </span>
+        )}
+      </div>
+
+      <div className="flex flex-col items-start">
+        <input
+          type="number"
+          placeholder="Preço do produto"
+          {...register("price")}
+          className="border p-2 w-full"
+        />
+        {errors.price && (
+          <span className="text-xs text-red-600">{errors.price.message}</span>
+        )}
+      </div>
+
+      <div className="flex flex-col items-start">
+        <input
+          type="text"
+          placeholder="Nome do produto"
+          {...register("name")}
+          className="border p-2 w-full"
+        />
+        {errors.name && (
+          <span className="text-xs text-red-600">{errors.name.message}</span>
+        )}
+      </div>
+
+      <div className="flex flex-col items-start">
+        <textarea
+          rows={6}
+          placeholder="Nome do produto"
+          {...register("content")}
+          className="border p-2 w-full resize-none"
+        />
+        {errors.content && (
+          <span className="text-xs text-red-600">{errors.content.message}</span>
+        )}
+      </div>
+
+      <div className="flex flex-col items-start">
+        <input
+          type="file"
+          accept=".jpg, .png, .jpeg"
+          {...register("image")}
+          className="border p-2 file:text-colorGray-medium w-full"
+        />
+        {errors.image && (
+          <span className="text-xs text-red-600">{errors.image.message}</span>
+        )}
+      </div>
+
+      <button
+        type="submit"
+        disabled={isSubmitting}
+        className="text-white bg-colorGray-medium px-3 py-2"
+      >
+        {isSubmitting ? "Enviando..." : "Submeter formulário"}
+      </button>
+    </form>
   )
 }
 
