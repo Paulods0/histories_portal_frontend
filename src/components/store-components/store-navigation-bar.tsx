@@ -5,7 +5,7 @@ import { useCart } from "../../context/cart-context"
 import CartContainer from "./cart-container"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { Sheet, SheetTrigger } from "../ui/sheet"
-import StoreMobileNavigation from "./store-mbile-navigation"
+// import StoreMobileNavigation from "./store-mbile-navigation"
 
 const StoreNavigationBar = () => {
   const path = useLocation()

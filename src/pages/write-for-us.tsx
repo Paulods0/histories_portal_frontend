@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { ChangeEvent, useEffect, useState } from "react"
 import { ICountryData, getCountryDataList } from "countries-list"
 import FadeInEffect from "@/components/motion/fade-in"
 import { WriteForUsFormType, writeForUsSchemaType } from "@/lib/validation"
@@ -11,7 +11,7 @@ const WriteForUs = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     setValue,
   } = useForm<WriteForUsFormType>({
     resolver: zodResolver(writeForUsSchemaType),
