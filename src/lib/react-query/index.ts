@@ -8,7 +8,6 @@ import {
   getMostLikedPosts,
   getMostViewedPosts,
   getPostByCategory,
-  getPostCategories,
   getSchedulePosts,
   getSinglePost,
   getUserPosts,
@@ -42,13 +41,6 @@ export const useGetMostViewsPosts = () => {
   return useQuery<Post[]>({
     queryKey: ["get-most-view"],
     queryFn: getMostViewedPosts,
-  })
-}
-
-export const useGetPostCategories = () => {
-  return useQuery<PostCategory[] | []>({
-    queryKey: ["get-post-categories"],
-    queryFn: getPostCategories,
   })
 }
 

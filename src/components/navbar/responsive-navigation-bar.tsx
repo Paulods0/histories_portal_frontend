@@ -1,13 +1,12 @@
-import { IoMenu } from "react-icons/io5"
-import { Link, useLocation } from "react-router-dom"
 import Search from "../search/search"
-import { useGetPostCategories } from "@/lib/react-query"
+import { IoMenu } from "react-icons/io5"
+import { CATEGORIES } from "@/constants"
+import { NAV_LINKS } from "@/utils/constants"
+import { Link, useLocation } from "react-router-dom"
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../ui/sheet"
 import { MdOutlineKeyboardArrowRight } from "react-icons/md"
-import { NAV_LINKS } from "@/utils/constants"
 
 const ResponsiveNavigationBar = () => {
-  const { data: categories } = useGetPostCategories()
   const location = useLocation()
 
   if (location.pathname.includes("/pages/loja")) {
@@ -29,15 +28,15 @@ const ResponsiveNavigationBar = () => {
             className="object-contain h-14 w-full"
           /> */}
           <ul className="w-full bg-white gap-4 mt-2 flex flex-col items-start justify-between">
-            {categories?.map((link) => (
-              <li key={link._id} className="flex items-center gap-1">
+            {CATEGORIES.map((link, index) => (
+              <li key={index} className="flex items-center gap-1">
                 <MdOutlineKeyboardArrowRight />
                 <SheetClose asChild>
                   <Link
                     className="font-semibold text-xs md:text-lg uppercase"
-                    to={`categorias/${link.slug}`}
+                    to={`categorias/${link.link}`}
                   >
-                    {link.name}
+                    {link.label}
                   </Link>
                 </SheetClose>
               </li>

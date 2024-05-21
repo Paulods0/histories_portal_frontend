@@ -10,10 +10,6 @@ import {
   NewClassifiedPost,
 } from "./types"
 
-export const getPostCategories = async (): Promise<PostCategory[]> => {
-  const response = await axios.get("/post-category")
-  return response.data
-}
 export const getAllPosts = async (): Promise<Post[]> => {
   const response = await axios.get("/post")
   return response.data

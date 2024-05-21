@@ -4,6 +4,7 @@ import SideBar from "../components/sidebar/side-bar"
 import { ClipLoader } from "react-spinners"
 import SwiperPosts from "../components/global/SwiperPosts"
 import { useGetSearchResults } from "@/lib/react-query"
+import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 
 const Search = () => {
   const location = useLocation()
@@ -32,23 +33,29 @@ const Search = () => {
   )
 
   return (
-    <main className="w-full min-h-screen px-8 pb-10 flex-col mt-6">
-      <div className="w-full flex gap-10 ">
-        <div className="flex-[3] min-h-screen">
-          <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-            {posts?.map((post) => (
-              <PostCard key={post._id} post={post} />
-            ))}
+    <>
+      <HomeCategoryControlller
+        text="Pesquisou por:"
+        label={decodedSearchValue}
+      />
+      <main className="w-full min-h-screen px-8 pb-10 flex-col mt-6">
+        <div className="w-full flex gap-10 ">
+          <div className="flex-[3] min-h-screen">
+            <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+              {posts?.map((post) => (
+                <PostCard key={post._id} post={post} />
+              ))}
+            </div>
           </div>
+
+          <aside className="lg:flex flex-col flex-[1] hidden md:hidden">
+            <SideBar />
+          </aside>
         </div>
 
-        <aside className="lg:flex flex-col flex-[1] hidden md:hidden">
-          <SideBar />
-        </aside>
-      </div>
-
-      <SwiperPosts />
-    </main>
+        <SwiperPosts />
+      </main>
+    </>
   )
 }
 

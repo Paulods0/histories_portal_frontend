@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom"
 import { createMarkup, formateData } from "../../utils/helpers"
 import { Post } from "@/api/types"
+import LazyImage from "../global/lazy-image"
 
 type Props = {
   post: Post
 }
-//
+
 const PostCard = ({
   post: { _id, mainImage, content, author, title, createdAt },
 }: Props) => {
@@ -17,12 +18,17 @@ const PostCard = ({
         <div className="cursor-pointer relative w-full h-[250px]">
           <a className="h-full w-full" href={`/post/${_id}`}>
             <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
-            <img
+            <LazyImage
+              id={_id}
+              image={mainImage}
+              className="w-full h-full object-cover"
+            />
+            {/* <img
               loading="lazy"
               src={mainImage}
               className="w-full h-full object-cover"
-              alt="photo"
-            />
+              
+            /> */}
           </a>
         </div>
 

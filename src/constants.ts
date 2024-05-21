@@ -16,3 +16,34 @@ export const sponsors = [
   "/sponsors/vpa.png",
   "/sponsors/yokohama.png",
 ]
+
+export const CATEGORIES = [
+  {
+    label: "reviews",
+    link: "reviews",
+  },
+  {
+    label: "jornal overland",
+    link: "jornal-overland",
+  },
+  {
+    label: "histórias",
+    link: "histórias",
+  },
+  {
+    label: "passeios",
+    link: "passeios",
+  },
+  {
+    label: "agenda ao",
+    link: "agenda-ao",
+  },
+  {
+    label: "classificados",
+    link: "classificados",
+  },
+  {
+    label: "overland experience",
+    link: "overland-experience",
+  },
+]
