@@ -22,7 +22,7 @@ export type Post = {
   highlighted: boolean
   author: Author
   rating: number
-  category: PostCategory
+  category: string
   author_notes?: string
   createdAt: string
   latitude: number

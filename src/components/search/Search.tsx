@@ -24,7 +24,9 @@ const Search = () => {
         className="bg-colorGray-dark size-10 cursor-pointer text-xl lg:text-base p-2 lg:p-3 rounded-md"
         asChild
       >
-        <FaSearch color="#FFF" />
+        <div>
+          <FaSearch color="#FFF" />
+        </div>
       </DialogTrigger>
 
       <DialogContent className="z-[9999999999] py-2 px-4 rounded-none">

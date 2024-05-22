@@ -1,13 +1,16 @@
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 
-const PaginationController = ({
-  pages,
-  handleNavigate,
-}: {
+type Props = {
   pages: number
-  handleNavigate: (page: number) => void
-}) => {
-  const { page: currPage } = useParams()
+  paginate: (newPage: number) => void
+}
+
+const PaginationController = ({ pages, paginate }: Props) => {
+  const { page: currPageId } = useParams()
+  const { search } = useLocation()
+  const pageQuery = search.split("=")[1]
+
+  const currPage = currPageId || pageQuery
 
   return (
     <div className="w-full p-2 flex items-center justify-center mt-16 gap-x-4">
@@ -17,9 +20,9 @@ const PaginationController = ({
         <div className="flex  gap-x-5">
           {Array.from({ length: pages }).map((_, index) => (
             <button
-              disabled={currPage === (index + 1).toString()}
               key={index}
-              onClick={() => handleNavigate(index + 1)}
+              disabled={currPage === (index + 1).toString()}
+              onClick={() => paginate(index + 1)}
               className={`p-3 text-white ${
                 currPage === (index + 1).toString()
                   ? "bg-goldenColor"

@@ -1,21 +1,32 @@
+import { useCart } from "@/context/cart-context"
 import { BuyProductType, buyProductFormSchema } from "@/lib/validation"
 import { zodResolver } from "@hookform/resolvers/zod"
-// import { resolve } from "path"
 import { useForm } from "react-hook-form"
 
-// type Props = {}
-
 const StoreBuyProductForm = () => {
+  const { cart } = useCart()
+  let products: { name: string; price: string; quantity: number }[] = []
+
+  for (let product of cart) {
+    products.push({
+      name: product.name,
+      price: product.price,
+      quantity: product.quantity!!,
+    })
+  }
   const {
     handleSubmit,
     register,
     formState: { errors, isSubmitting },
   } = useForm<BuyProductType>({
     resolver: zodResolver(buyProductFormSchema),
+    defaultValues: {
+      products: products,
+    },
   })
 
   const handleSubmitForm = (data: BuyProductType) => {
-    console.log(data)
+    console.log({ ...data, products: products })
   }
 
   return (

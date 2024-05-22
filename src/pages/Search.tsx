@@ -21,14 +21,14 @@ const Search = () => {
     )
   }
 
-  if (data?.length == 0) {
+  if (data?.posts.length == 0) {
     return (
       <main className="w-full flex items-center justify-center">
         <h1>Não há posts ainda.</h1>
       </main>
     )
   }
-  const posts = data?.filter((post) =>
+  const posts = data?.posts.filter((post) =>
     post.title.toLowerCase().includes(search!!)
   )
 

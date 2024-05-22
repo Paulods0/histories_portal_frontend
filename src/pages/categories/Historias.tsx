@@ -1,29 +1,28 @@
 import PostCard from "../../components/card/post-card"
 import { useLocation } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
-import { useGetPostByCategory } from "@/lib/react-query"
+import { useGetPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 import SwiperPosts from "@/components/global/SwiperPosts"
+import PaginationController from "@/components/pagination/pagination-controller"
 
 const Historias = () => {
-  const { pathname } = useLocation()
-  const category_slug = pathname.split("/")[2]
-  const { data: posts, isLoading } = useGetPostByCategory(category_slug!!)
+  const path = useLocation()
+  const category = path.pathname.split("/")[2]!!
+  const currPage = parseInt(path.search.split("=")[1]) || 1
+
+  const { data: posts, isLoading } = useGetPosts(currPage, category)
 
   if (isLoading) {
     return (
-      <main className="w-full flex items-center justify-center h-full">
-        <ClipLoader size={40} color="#111111" />
-      </main>
+      <div className="col-span-2 flex items-center justify-center">
+        <ClipLoader size={80} color="#1A101F" />
+      </div>
     )
   }
 
-  if (posts?.length === 0) {
-    return (
-      <main className="w-full flex items-center justify-center">
-        <h1>Não há posts ainda.</h1>
-      </main>
-    )
+  const handlePaginate = (newPage: number) => {
+    window.location.href = `?page=${newPage}`
   }
 
   return (
@@ -35,13 +34,17 @@ const Historias = () => {
               <ClipLoader size={80} color="#1A101F" />
             </div>
           ) : (
-            posts?.map((post) => <PostCard key={post._id} post={post} />)
+            posts?.posts.map((post) => <PostCard key={post._id} post={post} />)
           )}
         </div>
       </FadeInEffect>
 
       <div className="mt-12">
         <div className="flex flex-col self-start">
+          <PaginationController
+            paginate={handlePaginate}
+            pages={posts!!.pages}
+          />
           <div className="text-colorGray font-semibold font-Roboto uppercase text-[12px] flex self-start gap-1">
             <h1 className="text-colorGray-zinc-900">Os mais vistos:</h1>
           </div>

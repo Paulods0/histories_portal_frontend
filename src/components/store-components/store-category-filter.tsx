@@ -1,6 +1,5 @@
-import { useGetProductCategories } from "@/lib/react-query"
+import { PRODUCT_CATEGORIES } from "@/constants"
 import { SetURLSearchParams } from "react-router-dom"
-import { ClipLoader } from "react-spinners"
 
 type Props = {
   setFilter: SetURLSearchParams
@@ -8,20 +7,9 @@ type Props = {
 }
 
 const StoreCategoryFilter = ({ urlQuery, setFilter }: Props) => {
-  const { data: categories, isLoading: isCategoriesLoading } =
-    useGetProductCategories()
-
-  if (isCategoriesLoading) {
-    return (
-      <section className="w-full h-[300px] flex items-center justify-center">
-        <ClipLoader />
-      </section>
-    )
-  }
-
   const handleFilter = (category: string = "Todos") => {
     setFilter((prev) => {
-      prev.set("filter", category)
+      prev.set("category", category)
       return prev
     })
   }
@@ -33,24 +21,25 @@ const StoreCategoryFilter = ({ urlQuery, setFilter }: Props) => {
         <li>
           <button
             className={`${
-              urlQuery === "Todos" || urlQuery === null
-                ? "text-goldenColor"
-                : ""
+              urlQuery === "" ? "text-goldenColor" : ""
             } border-r-2 border-r-goldenColor pr-1 lg:border-none`}
-            onClick={() => handleFilter("Todos")}
+            onClick={() => handleFilter("")}
           >
             Ver todos
           </button>
         </li>
-        {categories?.map((category) => (
+        {PRODUCT_CATEGORIES.map((category, index) => (
           <li
-            key={category._id}
+            key={index}
             className={`lg:border-none border-r-2 border-r-goldenColor pr-1 ${
-              urlQuery === category._id ? "text-goldenColor" : ""
+              urlQuery === category.slug ? "text-goldenColor" : ""
             } `}
           >
-            <button onClick={() => handleFilter(category._id)}>
-              {category.name}
+            <button
+              onClick={() => handleFilter(category.slug)}
+              className="capitalize"
+            >
+              {category.label}
             </button>
           </li>
         ))}

@@ -4,21 +4,29 @@ import { ClipLoader } from "react-spinners"
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet"
 import "leaflet/dist/leaflet.css"
 import { Icon } from "leaflet"
-import { useGetPostByCategory } from "@/lib/react-query"
+import { useGetPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 import SwiperPosts from "@/components/global/SwiperPosts"
+import PaginationController from "@/components/pagination/pagination-controller"
 
 const Passeios = () => {
-  const { pathname } = useLocation()
-  const category_slug = pathname.split("/")[2]
-  const { data: posts, isLoading } = useGetPostByCategory(category_slug!!)
+  const path = useLocation()
+  const category = path.pathname.split("/")[2]!!
+  const currPage = parseInt(path.search.split("=")[1]) || 1
+
+  const { data: postsMaps } = useGetPosts(currPage, category, 0)
+  const { data: posts, isLoading } = useGetPosts(currPage, category)
 
   if (isLoading) {
     return (
-      <main className="w-full flex items-center justify-center h-full">
-        <ClipLoader size={40} color="#111111" />
-      </main>
+      <div className="col-span-2 flex items-center justify-center">
+        <ClipLoader size={80} color="#1A101F" />
+      </div>
     )
+  }
+
+  const handlePaginate = (newPage: number) => {
+    window.location.href = `?page=${newPage}`
   }
 
   const customIcon = new Icon({
@@ -43,7 +51,7 @@ const Passeios = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
-          {posts?.map((post) => (
+          {postsMaps?.posts.map((post) => (
             //@ts-ignore
             <Marker
               key={post._id}
@@ -86,18 +94,24 @@ const Passeios = () => {
             </Marker>
           ))}
         </MapContainer>
+
         <div className="place-items-center mt-8 grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-          {posts?.length === 0 ? (
+          {posts?.posts.length === 0 ? (
             <div className="col-span-2 flex items-center justify-center">
               <h1>Não há posts ainda.</h1>
             </div>
           ) : (
-            posts?.map((post) => <PostCard key={post._id} post={post} />)
+            posts?.posts.map((post) => <PostCard key={post._id} post={post} />)
           )}
         </div>
       </FadeInEffect>
+
       <div className="mt-12">
         <div className="flex flex-col self-start">
+          <PaginationController
+            paginate={handlePaginate}
+            pages={posts!!.pages}
+          />
           <div className="text-colorGray font-semibold font-Roboto uppercase text-[12px] flex self-start gap-1">
             <h1 className="text-colorGray-zinc-900">Os mais vistos:</h1>
           </div>

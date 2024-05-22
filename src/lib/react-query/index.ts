@@ -1,4 +1,5 @@
 import {
+  PostResponseData,
   createClassifiedPost,
   getAllPosts,
   getAllProducts,
@@ -13,13 +14,17 @@ import {
   getUserPosts,
   subscribeToNewsletter,
 } from "@/api"
-import { PostCategory, Post, ClassifiedPost } from "@/api/types"
+import { Post, ClassifiedPost } from "@/api/types"
 import { useMutation, useQuery } from "@tanstack/react-query"
 
-export const useGetPosts = () => {
-  return useQuery<Post[]>({
-    queryKey: ["get-posts"],
-    queryFn: getAllPosts,
+export const useGetPosts = (
+  page: number,
+  category?: string,
+  limit?: number
+) => {
+  return useQuery<PostResponseData>({
+    queryKey: ["get-posts", page, category, limit],
+    queryFn: () => getAllPosts(page, category, limit),
   })
 }
 
@@ -58,10 +63,10 @@ export const useGetPostByCategory = (slug: string) => {
   })
 }
 
-export const useGetSchedulePost = () => {
+export const useGetSchedulePost = (page: number) => {
   return useQuery({
     queryKey: ["get-schedule"],
-    queryFn: getSchedulePosts,
+    queryFn: () => getSchedulePosts(page),
   })
 }
 
@@ -82,14 +87,18 @@ export const useGetUserPosts = (user_id: string) => {
 export const useGetSearchResults = (search: string) => {
   return useQuery({
     queryKey: ["get-search-results", search],
-    queryFn: getAllPosts,
+    queryFn: () => getAllPosts(1),
   })
 }
 
-export const useGetProduts = () => {
+export const useGetProduts = (
+  page: number = 0,
+  category: string = "",
+  limit: number = 0
+) => {
   return useQuery({
-    queryKey: ["get-products"],
-    queryFn: getAllProducts,
+    queryKey: ["get-products", page, category, limit],
+    queryFn: () => getAllProducts(page, category, limit),
   })
 }
 

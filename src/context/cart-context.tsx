@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from "react"
 import { Product } from "../api/types"
+import { toast } from "react-toastify"
 
 type CartContextType = {
   cart: Product[]
@@ -49,6 +50,7 @@ export const CartContextProvider = ({
         )
       }
     })
+    toast.success("Produto adicionado ao carrinho")
   }
 
   const decreaseCartQuantity = (product: Product) => {

@@ -2,18 +2,14 @@ import { useParams } from "react-router-dom"
 import GoBackButton from "../components/global/go-back-button"
 import SideBar from "../components/sidebar/side-bar"
 import PostCard from "../components/card/post-card"
-import { Post } from "../api/types"
-import { useEffect, useState } from "react"
 import { ClipLoader } from "react-spinners"
-import { getPostsAndPagination } from "../api"
 import PaginationController from "../components/pagination/pagination-controller"
+import { useGetPosts } from "@/lib/react-query"
+import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 
 const Page = () => {
   const { page } = useParams()
-
-  const [posts, setPosts] = useState<Post[]>([])
-  const [pages, setPages] = useState(1)
-  const [isLoading, setIsLoading] = useState(false)
+  const { data: posts, isLoading } = useGetPosts(parseInt(page!!))
 
   const handleNavigate = (page: number) => {
     if (page === 1) {
@@ -23,7 +19,7 @@ const Page = () => {
     }
   }
 
-  if (!posts) {
+  if (!posts?.posts) {
     return (
       <div className="w-full my-12 flex items-center justify-center">
         <div className="self-center">
@@ -33,30 +29,24 @@ const Page = () => {
     )
   }
 
-  useEffect(() => {
-    const fetchData = async () => {
-      setIsLoading(true)
-      const data = await getPostsAndPagination(Number(page))
-      setPosts(data.posts)
-      setPages(data.pages)
-      setIsLoading(false)
-    }
-    fetchData()
-  }, [page])
   return (
     <main className="w-full h-full">
-      <main className="w-full px-8 pb-0 flex-col mt-6">
+      <HomeCategoryControlller text="Arquivos da página:" label={page} />
+
+      <main className="w-full h-full px-8 pb-0 flex-col mt-6">
         <div className="w-full flex gap-10 ">
-          <div className="flex-[3] ">
+          <div className="flex-[3]">
             <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
               {isLoading ? (
-                <div className="w-full lg:col-span-3 my-12 flex px-12 items-center justify-center">
+                <div className="h-full w-full lg:col-span-3 my-12 flex px-12 items-center justify-center">
                   <div>
                     <ClipLoader color="#1a101F" size={100} />
                   </div>
                 </div>
               ) : (
-                posts.map((post) => <PostCard key={post._id} post={post} />)
+                posts.posts.map((post) => (
+                  <PostCard key={post._id} post={post} />
+                ))
               )}
             </div>
           </div>
@@ -67,7 +57,7 @@ const Page = () => {
         </div>
 
         <div className="w-full flex items-center justify-center">
-          <PaginationController handleNavigate={handleNavigate} pages={pages} />
+          <PaginationController paginate={handleNavigate} pages={posts.pages} />
         </div>
       </main>
       <GoBackButton />

@@ -33,10 +33,10 @@ const SideBarHome = () => {
           </ul>
         </div>
 
-        <img src="/ads/boldy-2.jpeg" alt="" />
+        {/* <img src="/ads/boldy-2.jpeg" alt="" />
         <img src="/ads/vert.jpeg" alt="" />
         <img src="/ads/xm-1.gif" alt="" />
-        <img src="/ads/xm-2.jpeg" alt="" />
+        <img src="/ads/xm-2.jpeg" alt="" /> */}
       </main>
     </div>
   )

@@ -10,8 +10,19 @@ import {
   NewClassifiedPost,
 } from "./types"
 
-export const getAllPosts = async (): Promise<Post[]> => {
-  const response = await axios.get("/post")
+export type PostResponseData = {
+  posts: Post[]
+  pages: number
+}
+export const getAllPosts = async (
+  page: number,
+  category: string = "",
+  limit?: number
+): Promise<PostResponseData> => {
+  const response = await axios.get(
+    `/post?page=${page}&category=${category}&limit=${limit}`
+  )
+
   return response.data
 }
 export const getSinglePost = async (id: string): Promise<Post> => {
@@ -27,8 +38,20 @@ export const getPostsAndPagination = async (
   const posts: Post[] = data.posts
   return { posts, pages }
 }
-export const getAllProducts = async (): Promise<Product[] | []> => {
-  const response = await axios.get("/product")
+
+type ProductsResponse = {
+  products: Product[]
+  pages: number
+}
+
+export const getAllProducts = async (
+  page?: number,
+  category?: string,
+  limit?: number
+): Promise<ProductsResponse> => {
+  const response = await axios.get(
+    `/product?page=${page}&category=${category}&limit=${limit}`
+  )
   return response.data
 }
 export const getProductById = async (id: string): Promise<Product> => {
@@ -90,8 +113,15 @@ export const deslikePost = async (postId: string) => {
   const { clicked } = await response.json()
   return clicked
 }
-export const getSchedulePosts = async (): Promise<{ data: SchedulePost[] }> => {
-  const response = await axios.get("/schedule-post")
+
+export type SchedulePostResponse = {
+  posts: SchedulePost[]
+  pages: number
+}
+export const getSchedulePosts = async (
+  page: number
+): Promise<SchedulePostResponse> => {
+  const response = await axios.get(`/schedule-post?page=${page}`)
   return response.data
 }
 export const getClassifiedPosts = async (): Promise<ClassifiedPost[]> => {

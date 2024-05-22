@@ -11,7 +11,7 @@ const HighlightedCard = () => {
 
   if (isLoading) {
     return (
-      <main className="w-full h-44 flex items-center justify-center">
+      <main className="w-full h-screen flex items-start justify-center">
         <ClipLoader size={40} color="#111111" />
       </main>
     )
@@ -40,7 +40,7 @@ const HighlightedCard = () => {
         />
       </div>
       <div
-        className="text-center line-clamp-4 text-[15px] font-OpenSans my-6"
+        className="text-center line-clamp-3 text-[15px] font-OpenSans my-6"
         dangerouslySetInnerHTML={dataContent}
       />
 

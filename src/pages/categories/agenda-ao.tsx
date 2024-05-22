@@ -4,9 +4,12 @@ import { useGetSchedulePost } from "@/lib/react-query"
 import { ClipLoader } from "react-spinners"
 import { formateData } from "@/utils/helpers"
 import FadeInEffect from "@/components/motion/fade-in"
+import { useState } from "react"
+import PaginationController from "@/components/pagination/pagination-controller"
 
 const AgendaAo = () => {
-  const { data: posts, isLoading } = useGetSchedulePost()
+  const [page, setPage] = useState(1)
+  const { data: posts, isLoading } = useGetSchedulePost(page)
 
   if (isLoading) {
     return (
@@ -16,7 +19,7 @@ const AgendaAo = () => {
     )
   }
 
-  if (posts?.data.length === 0) {
+  if (posts?.posts.length === 0) {
     return (
       <main className="w-full flex items-center justify-center">
         <h1>Não há posts ainda.</h1>
@@ -24,11 +27,15 @@ const AgendaAo = () => {
     )
   }
 
+  const handlePaginate = (newPage: number) => {
+    setPage(newPage)
+  }
+
   return (
     <div className="w-full min-h-screen gap-8 flex-col mb-4">
       <FadeInEffect>
         <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-1 gap-8">
-          {posts?.data.map((post, index) => (
+          {posts?.posts.map((post, index) => (
             <Link
               key={index}
               className=" w-full flex relative flex-col group p-4 items-center hover:bg-zinc-100 transition-all duration-200 ease-in-out justify-center  border rounded-md"
@@ -60,6 +67,7 @@ const AgendaAo = () => {
           ))}
         </div>
       </FadeInEffect>
+      <PaginationController paginate={handlePaginate} pages={posts!!.pages} />
     </div>
   )
 }

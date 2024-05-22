@@ -24,7 +24,7 @@ const StoreSlider = () => {
             loading="lazy"
             src={image}
             alt="hero-section-image"
-            className="w-full h-screen object-cover scale-150 aspect-square hover:scale-100 transition-all duration-200 ease-in-out"
+            className="w-full h-screen object-cover"
           />
         </SwiperSlide>
       ))}

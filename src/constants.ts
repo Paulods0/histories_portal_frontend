@@ -47,3 +47,26 @@ export const CATEGORIES = [
     link: "overland-experience",
   },
 ]
+
+export const PRODUCT_CATEGORIES = [
+  {
+    label: "merchandising",
+    slug: "merchandising",
+  },
+  {
+    label: "camping gear",
+    slug: "camping-gear",
+  },
+  {
+    label: "car gear",
+    slug: "car-gear",
+  },
+  {
+    label: "vestuário",
+    slug: "vestuário",
+  },
+  {
+    label: "cursos",
+    slug: "cursos",
+  },
+]

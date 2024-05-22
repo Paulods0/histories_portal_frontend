@@ -28,10 +28,16 @@ export const ClassifiedFormValidation = z.object({
   ),
 })
 
+const product = z.object({
+  name: z.string(),
+  quantity: z.number(),
+  price: z.coerce.string(),
+})
 export const buyProductFormSchema = z.object({
   name: z.string().min(1, "*Insira o seu nome"),
   email: z.string().min(1, "*Insira o seu email").email(),
   phone: z.coerce.string().min(1, "*Insira o seu número de telefone"),
+  products: z.array(product),
 })
 
 export const subscribeFormSchema = z.object({
