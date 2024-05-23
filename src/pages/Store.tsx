@@ -7,7 +7,7 @@ import { ClipLoader } from "react-spinners"
 import StoreCategoryFilter from "@/components/store-components/store-category-filter"
 import StoreSlider from "@/components/store-components/store-slider"
 import StoreMobileNavigation from "@/components/store-components/store-mbile-navigation"
-import { useLocation, useSearchParams } from "react-router-dom"
+import { useSearchParams } from "react-router-dom"
 
 const Store = () => {
   const [filter, setFilter] = useSearchParams({
