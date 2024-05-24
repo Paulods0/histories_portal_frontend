@@ -1,14 +1,6 @@
 import { Product } from "../../api/types"
 
-import {
-  Dialog,
-  DialogContent,
-  // DialogDescription,
-  // DialogFooter,
-  // DialogHeader,
-  // DialogTitle,
-  DialogTrigger,
-} from "../ui/dialog"
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
 import { useCart } from "@/context/cart-context"
 
 interface IStoreProducs {
@@ -16,9 +8,20 @@ interface IStoreProducs {
 }
 
 const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
+
   const { decreaseCartQuantity, increaseCartQuantity, getProductQuantity } =
     useCart()
+
   const productQuantity = getProductQuantity(product._id)
+
+  function formatPrice(price: string) {
+    const formatedPrice = new Intl.NumberFormat("pt-PT", {
+      style: "currency",
+      currency: "AKZ",
+    }).format(Number(price))
+    return formatedPrice
+  }
+
   return (
     <Dialog>
       <DialogTrigger>
@@ -33,7 +36,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
           </div>
           <div className="w-full flex flex-col items-center justify-center">
             <h1>{product.name}</h1>
-            <h3 className="text-[#9D9D9D]">{product.price} Kz</h3>
+            <h3 className="text-[#9D9D9D]">{formatPrice(product.price)}</h3>
           </div>
         </div>
       </DialogTrigger>
