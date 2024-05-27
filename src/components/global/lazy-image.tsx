@@ -30,9 +30,10 @@ const LazyImage = (props: Props) => {
 
   return isInview ? (
     <img
+      loading="lazy"
       ref={ref}
       id={props.id}
-      alt="image"
+      alt="imagem"
       src={props.image}
       className={props.className}
     />

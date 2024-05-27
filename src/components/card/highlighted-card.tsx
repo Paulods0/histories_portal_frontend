@@ -1,7 +1,7 @@
-// import { Link } from "react-router-dom"
 import { createMarkup, formateData } from "../../utils/helpers"
 import { ClipLoader } from "react-spinners"
 import { useGetHighlightedPost } from "@/lib/react-query"
+import { Link } from "react-router-dom"
 
 const HighlightedCard = () => {
   const { data: post, isLoading } = useGetHighlightedPost()
@@ -22,8 +22,9 @@ const HighlightedCard = () => {
   }
 
   return (
-    <a
-      href={`/post/${post?._id}`}
+    <Link
+      reloadDocument
+      to={`/post/${post?._id}`}
       className="w-full flex flex-col mb-12 items-center justify-center"
     >
       <h1 className="text-[41px] lg:line-clamp-2 text-center text-[#111111] font-Oswald font-normal">
@@ -35,7 +36,7 @@ const HighlightedCard = () => {
       <div className="w-full h-[300px] md:h-[415px] relative">
         <img
           src={post?.mainImage}
-          alt="photo"
+          alt={post?.title}
           className="absolute object-cover inset-0 w-full h-full"
         />
       </div>
@@ -44,13 +45,10 @@ const HighlightedCard = () => {
         dangerouslySetInnerHTML={dataContent}
       />
 
-      <button
-        onClick={() => (window.location.href = `/post/${post?._id}`)}
-        className="py-3 w-[150px] font-OpenSans hover:w-[170px] hover:bg-colorGray-light duration-200 font-semibold transition-all ease-in text-center text-white uppercase text-[14px] bg-colorGray-dark"
-      >
-        Ver Post
+      <button className="py-3 w-[150px] font-OpenSans hover:w-[170px] hover:bg-colorGray-light duration-200 font-semibold transition-all ease-in text-center text-white uppercase text-[14px] bg-colorGray-dark">
+        <Link to={`/post/${post?._id}`}>Ver Post</Link>
       </button>
-    </a>
+    </Link>
   )
 }
 

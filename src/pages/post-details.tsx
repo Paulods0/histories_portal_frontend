@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import SideBar from "../components/sidebar/side-bar"
 import { createMarkup, formateData } from "../utils/helpers"
 import SwiperPosts from "../components/global/SwiperPosts"
@@ -11,9 +11,17 @@ import { ClipLoader } from "react-spinners"
 import { useGetSinglePost } from "@/lib/react-query"
 import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 import SlideDownEffect from "@/components/motion/slide-down"
+import { useEffect } from "react"
 
 const PostDetails = () => {
   const { id } = useParams()
+  
+  const { pathname } = useLocation()
+
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [pathname])
+
   const { data: post, isLoading } = useGetSinglePost(id!!)
 
   if (isLoading) {

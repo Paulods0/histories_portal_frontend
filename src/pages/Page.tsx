@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import GoBackButton from "../components/global/go-back-button"
 import SideBar from "../components/sidebar/side-bar"
 import PostCard from "../components/card/post-card"
@@ -8,14 +8,15 @@ import { useGetPosts } from "@/lib/react-query"
 import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 
 const Page = () => {
+  const navigate = useNavigate()
   const { page } = useParams()
   const { data: posts, isLoading } = useGetPosts(parseInt(page!!))
 
   const handleNavigate = (page: number) => {
     if (page === 1) {
-      window.location.href = "/"
+      navigate("/")
     } else {
-      window.location.href = `/page/${page}`
+      navigate(`/page/${page}`)
     }
   }
 

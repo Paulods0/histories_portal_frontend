@@ -4,7 +4,7 @@ import StoreFooter from "../components/store-components/store-footer"
 import GoBackButton from "../components/global/go-back-button"
 import { useGetProduts } from "@/lib/react-query"
 import { ClipLoader } from "react-spinners"
-import StoreCategoryFilter from "@/components/store-components/store-category-filter"
+import StoreFilter from "@/components/store-components/store-filter"
 import StoreSlider from "@/components/store-components/store-slider"
 import StoreMobileNavigation from "@/components/store-components/store-mbile-navigation"
 import { useSearchParams } from "react-router-dom"
@@ -14,11 +14,13 @@ const Store = () => {
     page: "1",
     category: "",
     limit: "",
+    price: "",
   })
 
   const category = filter.get("category")!!
   const page = filter.get("page")!!
   const limit = filter.get("limit")!!
+  const price = filter.get("price")!!
 
   const { data: products, isLoading: isProductsLoading } = useGetProduts(
     parseInt(page),
@@ -52,13 +54,16 @@ const Store = () => {
               src="/logo/logotipo-tradicional.png"
               className="absolute inset-0 w-full h-full object-contain"
               alt="imagem-loja"
-              loading="lazy"
             />
           </div>
         </div>
 
         <section className="relative w-full flex gap-10 flex-col lg:flex-row lg:py-4 lg:px-8">
-          <StoreCategoryFilter urlQuery={category} setFilter={setFilter} />
+          <StoreFilter
+            price={price}
+            urlQuery={category}
+            setFilter={setFilter}
+          />
 
           <section className="w-full grid grid-cols-1 flex-[5] pl-2 border-l mb-12 md:grid-cols-2 mt-4 place-items-center lg:grid-cols-4 gap-8">
             {products?.products.length === 0 ? (

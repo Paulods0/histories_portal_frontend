@@ -30,53 +30,49 @@ export const CartContextProvider = ({
     localStorage.setItem("cart", JSON.stringify(cart))
   }, [cart])
 
-  const getProductQuantity = (id: string) =>
-    cart.find((item) => item._id === id)?.quantity || 0
+  const getProductQuantity = (id: string) => {
+    return cart.find((item) => item._id === id)?.storequantity || 0
+  }
 
   const increaseCartQuantity = (product: Product) => {
-    setCart((curr) => {
-      const existingProduct = curr.find((item) => item._id === product._id)
-
+    setCart((products) => {
+      const existingProduct = cart.find((item) => item._id === product._id)
       if (!existingProduct) {
-        return [...curr, { ...product, quantity: 1 }]
+        const addedProduct = { ...product, storequantity: 1 }
+        localStorage.setItem("cart", JSON.stringify([...cart, addedProduct]))
+        return [...products, addedProduct]
       } else {
-        const newQuantity = existingProduct.quantity!! + 1
-        const newPrice = Number(existingProduct.price) * newQuantity
+        let newQuantity = existingProduct.storequantity!! + 1
+        console.log("newQuantity: ", newQuantity)
 
-        return curr.map((item) =>
-          item._id === product._id
-            ? { ...item, quantity: newQuantity, price: newPrice.toString() } // Price remains the same
-            : item
+        let newPrice = Number(parseInt(existingProduct.price)) * newQuantity
+        console.log("newPrice: ", newPrice)
+
+        const priceToString = newPrice.toString()
+
+        let updatedProduct = {
+          ...product,
+          storequantity: newQuantity,
+          price: priceToString,
+        }
+        console.log("updatedProduct: ", updatedProduct)
+
+        localStorage.setItem("cart", JSON.stringify([...cart, updatedProduct]))
+        return products.map((item) =>
+          item._id === product._id ? updatedProduct : item
         )
       }
     })
     toast.success("Produto adicionado ao carrinho")
   }
 
-  const decreaseCartQuantity = (product: Product) => {
-    setCart((currItems) => {
-      const existingProduct = currItems.find((item) => item._id === product._id)
+  const decreaseCartQuantity = (product: Product) => {}
 
-      if (!existingProduct) return currItems
-
-      const newQuantity = existingProduct.quantity!! - 1
-      const newPrice = Number(existingProduct.price) * newQuantity
-
-      if (newQuantity <= 0) {
-        return currItems.filter((item) => item._id !== product._id)
-      } else {
-        return currItems.map((item) =>
-          item._id === product._id
-            ? { ...item, quantity: newQuantity, price: newPrice.toString() } // Price remains the same
-            : item
-        )
-      }
-    })
-  }
   const removeFromCart = (id: string) => {
     setCart((currItem) => {
       return currItem.filter((item) => item._id != id)
     })
+    toast.success("Produto removido do carrinho")
   }
 
   return (

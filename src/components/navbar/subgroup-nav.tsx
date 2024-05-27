@@ -10,23 +10,22 @@ const SubgroupNav = ({ slug }: { slug: string }) => {
       initial={{ opacity: 0, y: -20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, ease: "easeIn" }}
-      className="absolute top-6 shadow-md bg-white w-[200px] h-auto rounded-sm group-hover:block hidden"
+      className="absolute top-13 shadow-md bg-white h-auto rounded-sm group-hover:flex hidden"
     >
-      <ul className="flex flex-col font-Oswald w-full h-full items-center justify-center text-center gap-y-2">
-        <li className="w-full flex text-goldenColor  hover:text-white cursor-pointer p-3 hover:bg-goldenColor bg-opacity-15">
-          <Link
-            to={slug === "classificados" ? handleNavigate(slug) : "#"}
-            className="w-full text-[14px] font-bold "
-          >
-            Quero comprar
-          </Link>
-        </li>
+      <ul className="flex flex-col font-Oswald w-[200px] h-full items-center justify-center text-center gap-y-2">
+        <Link
+          to={handleNavigate(slug)}
+          className="w-full text-sm font-bold py-3  text-goldenColor hover:text-white cursor-pointer hover:bg-goldenColor bg-opacity-15"
+        >
+          Quero comprar
+        </Link>
 
-        <li className="w-full text-goldenColor  hover:text-white cursor-pointer p-3 hover:bg-goldenColor bg-opacity-15">
-          <Link to="/formulario" className="w-full text-[14px] font-bold ">
-            Quero vender
-          </Link>
-        </li>
+        <Link
+          to="/formulario"
+          className="w-full text-sm font-bold py-3 text-goldenColor  hover:text-white cursor-pointer hover:bg-goldenColor bg-opacity-15"
+        >
+          Quero vender
+        </Link>
       </ul>
     </motion.div>
   )

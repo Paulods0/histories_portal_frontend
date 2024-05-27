@@ -1,13 +1,9 @@
 import { lazy, Suspense } from "react"
-import { Route, Routes } from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import "./index.css"
 
-import Navbar from "./components/navbar/navbar"
-import Footer from "./components/footer/footer"
-
-import CategoriesNavBar from "./components/navbar/categories-nav-bar"
 import MobileCartPage from "./pages/store-pages/mobile-cart-page"
-import ResponsiveNavigationBar from "./components/navbar/responsive-navigation-bar"
+import RootLayout from "./components/root-layout"
 import Fallback from "./components/global/fallback"
 
 const Home = lazy(() => import("./pages/home"))
@@ -36,49 +32,112 @@ const OverlandJournal = lazy(
 )
 
 function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <RootLayout />,
+      children: [
+        {
+          index: true,
+          element: <Home />,
+        },
+        {
+          path: "search",
+          element: <Search />,
+        },
+        {
+          path: "page/:page",
+          element: <Page />,
+        },
+        {
+          path: "pages/loja",
+          element: <Store />,
+        },
+        {
+          path: "pages/sobre",
+          element: <AboutUs />,
+        },
+        {
+          path: "pages/subscrever",
+          element: <Subscribe />,
+        },
+        {
+          path: "unsubscribe/:id",
+          element: <Unsubscribe />,
+        },
+        {
+          path: "pages/escreveparanos",
+          element: <WriteForUs />,
+        },
+        {
+          path: "pages/queroservosso",
+          element: <QueroSerVosso />,
+        },
+        {
+          path: "pages/loja/product/:id",
+          element: <ProductDetail />,
+        },
+        {
+          path: "pages/loja/cart",
+          element: <MobileCartPage />,
+        },
+        {
+          path: "categorias",
+          element: <CategoriesPage />,
+          children: [
+            {
+              path: "reviews",
+              element: <Reviews />,
+            },
+            {
+              path: "passeios",
+              element: <Passeios />,
+            },
+            {
+              path: "agenda-ao",
+              element: <AgendaAo />,
+            },
+            {
+              path: "histórias",
+              element: <Historias />,
+            },
+            {
+              path: "classificados",
+              element: <Classificados />,
+            },
+            {
+              path: "jornal-overland",
+              element: <OverlandJournal />,
+            },
+            {
+              path: "overland-experience",
+              element: <OverlandExperience />,
+            },
+          ],
+        },
+        {
+          path: "formulario",
+          element: <ClassifiedsFormPage />,
+        },
+        {
+          path: "post/:id",
+          element: <PostDetails />,
+        },
+        {
+          path: "post/user/:userId",
+          element: <UserPosts />,
+        },
+        {
+          path: "*",
+          element: <PageNotFound />,
+        },
+      ],
+    },
+  ])
   return (
-    <main className="min-h-screen">
-      <Navbar />
-      <div className="z-[20] sticky top-0">
-        <CategoriesNavBar />
-        <ResponsiveNavigationBar />
-      </div>
-      <Suspense fallback={<Fallback />}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/search" element={<Search />} />
-          <Route path="/page/:page" element={<Page />} />
-          <Route path="/pages/loja" element={<Store />} />
-          <Route path="/pages/sobre" element={<AboutUs />} />
-          <Route path="/pages/subscrever" element={<Subscribe />} />
-          <Route path="/unsubscribe/:id" element={<Unsubscribe />} />
-          <Route path="/pages/escreveparanos" element={<WriteForUs />} />
-          <Route path="/pages/queroservosso" element={<QueroSerVosso />} />
-          <Route path="/pages/loja/product/:id" element={<ProductDetail />} />
-          <Route path="/pages/loja/cart" element={<MobileCartPage />} />
-
-          <Route path="/categorias" element={<CategoriesPage />}>
-            <Route path="reviews" element={<Reviews />} />
-            <Route path="passeios" element={<Passeios />} />
-            <Route path="agenda-ao" element={<AgendaAo />} />
-            <Route path="histórias" element={<Historias />} />
-            <Route path="classificados" element={<Classificados />} />
-            <Route path="jornal-overland" element={<OverlandJournal />} />
-            <Route
-              path="overland-experience"
-              element={<OverlandExperience />}
-            />
-          </Route>
-
-          <Route path="*" element={<PageNotFound />} />
-          <Route path="/post/:id" element={<PostDetails />} />
-          <Route path="/post/user/:userId" element={<UserPosts />} />
-          <Route path="/formulario" element={<ClassifiedsFormPage />} />
-        </Routes>
-      </Suspense>
-
-      <Footer />
-    </main>
+    <Suspense fallback={<Fallback />}>
+      <RouterProvider router={router} />
+    </Suspense>
   )
 }
 

@@ -8,14 +8,16 @@ import { useGetPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 import SideBarHome from "@/components/sidebar/side-bar-home"
 import { useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const Home = () => {
+  const navigate = useNavigate()
   const [page, setPage] = useState(1)
   const { data: posts, isLoading } = useGetPosts(page, "")
 
   const handlePaginate = (newPage: number) => {
-    window.location.href = `/page/${newPage}`
     setPage(newPage)
+    navigate(`/page/${newPage}`)
   }
 
   if (isLoading) {

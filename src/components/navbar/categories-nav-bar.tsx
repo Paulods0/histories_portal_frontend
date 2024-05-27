@@ -32,7 +32,7 @@ const CategoriesNavBar = () => {
         {CATEGORIES?.map((category, index) => (
           <li
             key={index}
-            className={`relative list-none ${
+            className={`relative list-none py-3 ${
               category.label === "classificados"
                 ? "group transition-all duration-200 ease-in-out"
                 : ""
@@ -45,7 +45,7 @@ const CategoriesNavBar = () => {
               to={
                 category.link !== "classificados"
                   ? handleNavigate(category.link)
-                  : "#"
+                  : "/categorias/classificados"
               }
             >
               {category.label}

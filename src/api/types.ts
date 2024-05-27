@@ -40,6 +40,7 @@ export type Product = {
   price: string
   image: string
   quantity?: number
+  storequantity?: number
   createdAt?: string
 }
 export type SchedulePost = {

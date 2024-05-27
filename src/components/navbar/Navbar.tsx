@@ -19,7 +19,6 @@ const Navbar = () => {
             src="/logo/logotipo-tradicional.png"
             alt="logo-tipo"
             className="w-48 h-36 object-contain inset-0 rounded-full"
-            loading="lazy"
           />
         </div>
 

@@ -15,21 +15,15 @@ const PostCard = ({
   return (
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
       <div className="w-full relative">
-        <div className="cursor-pointer relative w-full h-[250px]">
-          <a className="h-full w-full" href={`/post/${_id}`}>
+        <div className="cursor-pointer relative w-full md:h-[350px] lg:h-[250px]">
+          <Link className="h-full w-full" to={`/post/${_id}`}>
             <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
             <LazyImage
               id={_id}
               image={mainImage}
               className="w-full h-full object-cover"
             />
-            {/* <img
-              loading="lazy"
-              src={mainImage}
-              className="w-full h-full object-cover"
-              
-            /> */}
-          </a>
+          </Link>
         </div>
 
         <Link to={`/post/${_id}`}>
@@ -47,14 +41,14 @@ const PostCard = ({
             loading="lazy"
             src={author!!.image}
             className="w-9 h-9 rounded-full object-contain"
-            alt="user-profile-image"
+            alt={title}
           />
-          <a
-            href={`/post/user/${author._id}`}
+          <Link
+            to={`/post/user/${author._id}`}
             className=" text-center text-colorGray-light font-OpenSans font-normal text-[15px]"
           >
             {`${author?.firstname} ${author?.lastname} / ${date}`}
-          </a>
+          </Link>
         </div>
       </div>
     </div>

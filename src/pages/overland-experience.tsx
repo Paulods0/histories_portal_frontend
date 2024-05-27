@@ -3,7 +3,7 @@ import FadeInEffect from "@/components/motion/fade-in"
 import { useGetPosts } from "@/lib/react-query"
 
 const OverlandExperience = () => {
-  const { data } = useGetPosts()
+  const { data } = useGetPosts(1)
   return (
     <div className="w-full min-h-screen gap-10 lg:px-12 flex-col ">
       <FadeInEffect>
@@ -12,7 +12,7 @@ const OverlandExperience = () => {
             Esta seccção está sendo atualizada.
           </h1> */}
 
-          {data?.map((post) => (
+          {data?.posts.map((post) => (
             <LazyImage
               className="h-[250px] w-full object-cover"
               id={post._id}
