@@ -1,76 +1,99 @@
-import { createContext, useContext, useEffect, useState } from "react"
-import { Product } from "../api/types"
+import { Product } from "@/api/types"
+import { FC, createContext, useContext, useState } from "react"
 import { toast } from "react-toastify"
 
-type CartContextType = {
-  cart: Product[]
-  getProductQuantity: (id: string) => number
-  increaseCartQuantity: (product: Product) => void
-  decreaseCartQuantity: (product: Product) => void
-  removeFromCart: (id: string) => void
+type CartContextProviderProps = {
+  children: React.ReactNode
 }
 
-const CartContext = createContext<CartContextType>({} as CartContextType)
+type TCartContext = {
+  getItemQuantity: (id: string) => number
+  addProduct: (product: Product) => void
+  removeProduct: (product: Product) => void
+  deleteProductFromCart: (id: string) => void
+  cartItems: Product[] | []
+  cartQuantity: number
+}
 
-export const CartContextProvider = ({
-  children,
-}: {
-  children: React.ReactNode
-}) => {
-  const [cart, setCart] = useState<Product[]>([])
+const CartContext = createContext({} as TCartContext)
 
-  useEffect(() => {
-    const savedCart = localStorage.getItem("cart")
-    if (savedCart) {
-      setCart(JSON.parse(savedCart))
-    }
-  }, [])
+export function useCartContext() {
+  return useContext(CartContext)
+}
 
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart))
-  }, [cart])
+const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
+  const [cartItems, setCartItems] = useState<Product[]>(() => {
+    const items = localStorage.getItem("cart")
+    return items ? JSON.parse(items) : []
+  })
 
-  const getProductQuantity = (id: string) => {
-    return cart.find((item) => item._id === id)?.storequantity || 0
+  const cartQuantity = cartItems.length
+
+  function getItemQuantity(id: string) {
+    return cartItems.find((item) => item._id === id)?.storequantity || 0
   }
 
-  const increaseCartQuantity = (product: Product) => {
-    setCart((products) => {
-      const existingProduct = cart.find((item) => item._id === product._id)
-      if (!existingProduct) {
-        const addedProduct = { ...product, storequantity: 1 }
-        localStorage.setItem("cart", JSON.stringify([...cart, addedProduct]))
-        return [...products, addedProduct]
+  function addProduct(product: Product) {
+    setCartItems((products) => {
+      const current = products.find((item) => item._id === product._id)
+      if (!current) {
+        const updatedProducts = [
+          ...products,
+          {
+            ...product,
+            storequantity: 1,
+          },
+        ]
+        localStorage.setItem("cart", JSON.stringify(updatedProducts))
+        return updatedProducts
       } else {
-        let newQuantity = existingProduct.storequantity!! + 1
-        console.log("newQuantity: ", newQuantity)
-
-        let newPrice = Number(parseInt(existingProduct.price)) * newQuantity
-        console.log("newPrice: ", newPrice)
-
-        const priceToString = newPrice.toString()
-
-        let updatedProduct = {
-          ...product,
-          storequantity: newQuantity,
-          price: priceToString,
-        }
-        console.log("updatedProduct: ", updatedProduct)
-
-        localStorage.setItem("cart", JSON.stringify([...cart, updatedProduct]))
-        return products.map((item) =>
-          item._id === product._id ? updatedProduct : item
+        const updatedProducts = products.map((item) =>
+          item._id === product._id
+            ? {
+                ...item,
+                storequantity: (item.storequantity || 0) + 1,
+              }
+            : item
         )
+        localStorage.setItem("cart", JSON.stringify(updatedProducts))
+        return updatedProducts
       }
     })
+
     toast.success("Produto adicionado ao carrinho")
   }
 
-  const decreaseCartQuantity = (product: Product) => {}
+  function removeProduct(product: Product) {
+    setCartItems((products) => {
+      const item = products.find((item) => item._id === product._id)
+      if (item && (item.storequantity || 0) === 1) {
+        const updatedProducts = products.filter(
+          (item) => item._id !== product._id
+        )
+        localStorage.setItem("cart", JSON.stringify(updatedProducts))
+        return updatedProducts
+      } else {
+        const updatedProducts = products.map((item) =>
+          item._id === product._id
+            ? {
+                ...item,
+                storequantity: (item.storequantity || 0) - 1,
+              }
+            : item
+        )
+        localStorage.setItem("cart", JSON.stringify(updatedProducts))
+        return updatedProducts
+      }
+    })
 
-  const removeFromCart = (id: string) => {
-    setCart((currItem) => {
-      return currItem.filter((item) => item._id != id)
+    toast.success("Produto removido do carrinho")
+  }
+
+  function deleteProductFromCart(id: string) {
+    setCartItems((products) => {
+      const updatedProducts = products.filter((product) => product._id !== id)
+      localStorage.removeItem("cart")
+      return updatedProducts
     })
     toast.success("Produto removido do carrinho")
   }
@@ -78,11 +101,12 @@ export const CartContextProvider = ({
   return (
     <CartContext.Provider
       value={{
-        cart,
-        decreaseCartQuantity,
-        getProductQuantity,
-        increaseCartQuantity,
-        removeFromCart,
+        cartItems,
+        addProduct,
+        cartQuantity,
+        removeProduct,
+        getItemQuantity,
+        deleteProductFromCart,
       }}
     >
       {children}
@@ -90,10 +114,4 @@ export const CartContextProvider = ({
   )
 }
 
-export const useCart = () => {
-  const context = useContext(CartContext)
-  if (!context) {
-    throw new Error("useCart deve ser usado dentro de um CartProvider")
-  }
-  return context
-}
+export default CartContextProvider

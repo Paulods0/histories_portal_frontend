@@ -1,12 +1,12 @@
-import { useCreateClassifiedPost } from "@/lib/react-query"
-import { toast } from "react-toastify"
-import { useForm } from "react-hook-form"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { ClassifiedFormType, classifiedFormSchema } from "@/lib/validation"
 import { NewClassifiedPost } from "@/api/types"
+import { useCreateClassifiedPost } from "@/lib/react-query"
+import { ClassifiedFormType, classifiedFormSchema } from "@/lib/validation"
 import { uploadImageToFirebaseStorage } from "@/utils/helpers"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
+import { toast } from "react-toastify"
 
-const ClassifiedForm = () => {
+const ClassifiedFormBuyPage = () => {
   const { mutate } = useCreateClassifiedPost()
 
   const {
@@ -17,7 +17,7 @@ const ClassifiedForm = () => {
   } = useForm<ClassifiedFormType>({
     resolver: zodResolver(classifiedFormSchema),
     defaultValues: {
-      type: "sell",
+      type: "buy",
     },
   })
 
@@ -55,9 +55,8 @@ const ClassifiedForm = () => {
       className="relative space-y-3 mx-auto w-full lg:w-[800px] bg-white p-4"
     >
       <h1 className="text-3xl font-semibold mb-8 mt-4 font-Oswald text-center">
-        Adicione o produto que pretende colocar à venda
+        Adicione o produto que pretende comprar
       </h1>
-
       <div className="flex flex-col items-start">
         <input
           type="text"
@@ -173,4 +172,4 @@ const ClassifiedForm = () => {
   )
 }
 
-export default ClassifiedForm
+export default ClassifiedFormBuyPage

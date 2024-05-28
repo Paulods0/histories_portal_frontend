@@ -159,12 +159,16 @@ const WriteForUs = () => {
             )}
           </>
 
-          <div className="p-2 border ">
-            <input
-              id="file"
-              type="file"
-              className="border-none w-full md:file:text-base file:text-xs outline-none bg-transparent"
-            />
+          <div className="p-2 flex flex-col gap-2">
+            {Array.from({ length: 5 }).map((_, i) => (
+              <input
+                key={i}
+                id="file"
+                {...register("image")}
+                type="file"
+                className="w-full file:bg-white file:border-none px-3 py-2 border md:file:text-base file:text-xs outline-none bg-transparent file:font-semibold file:capitalize text-goldenColor cursor-pointer"
+              />
+            ))}
           </div>
 
           <button

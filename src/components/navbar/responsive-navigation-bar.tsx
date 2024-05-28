@@ -23,10 +23,6 @@ const ResponsiveNavigationBar = () => {
         </SheetTrigger>
 
         <SheetContent>
-          {/* <img
-            src="/logo/logotipo-texto.png"
-            className="object-contain h-14 w-full"
-          /> */}
           <ul className="w-full bg-white gap-4 mt-2 flex flex-col items-start justify-between">
             {CATEGORIES.map((link, index) => (
               <li key={index} className="flex items-center gap-1">
@@ -58,6 +54,10 @@ const ResponsiveNavigationBar = () => {
               </li>
             ))}
           </ul>
+          <img
+            src="/logo/logotipo-tradicional.png"
+            className="object-contain h-32 w-full mt-12"
+          />
         </SheetContent>
       </Sheet>
 

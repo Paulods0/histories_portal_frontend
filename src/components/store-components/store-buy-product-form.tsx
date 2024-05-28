@@ -1,17 +1,25 @@
-import { useCart } from "@/context/cart-context"
+import { useCartContext } from "@/context/cart-context"
 import { BuyProductType, buyProductFormSchema } from "@/lib/validation"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
+import { toast } from "react-toastify"
 
 const StoreBuyProductForm = () => {
-  const { cart } = useCart()
-  let products: { name: string; price: string; quantity: number }[] = []
+  const { cartItems } = useCartContext()
 
-  for (let product of cart) {
+  let products: {
+    name: string
+    price: string
+    quantity: number
+    storeQuantity: number
+  }[] = []
+
+  for (let product of cartItems) {
     products.push({
       name: product.name,
       price: product.price,
       quantity: product.quantity!!,
+      storeQuantity: product.storequantity!!,
     })
   }
   const {
@@ -27,6 +35,7 @@ const StoreBuyProductForm = () => {
 
   const handleSubmitForm = (data: BuyProductType) => {
     console.log({ ...data, products: products })
+    toast.success("Pedido enviado")
   }
 
   return (

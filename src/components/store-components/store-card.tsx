@@ -1,18 +1,14 @@
 import { Product } from "../../api/types"
 
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
-import { useCart } from "@/context/cart-context"
+import { useCartContext } from "@/context/cart-context"
 
 interface IStoreProducs {
   product: Product
 }
 
 const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
-
-  const { decreaseCartQuantity, increaseCartQuantity, getProductQuantity } =
-    useCart()
-
-  const productQuantity = getProductQuantity(product._id)
+  const { addProduct, getItemQuantity, removeProduct } = useCartContext()
 
   function formatPrice(price: string) {
     const formatedPrice = new Intl.NumberFormat("pt-PT", {
@@ -58,14 +54,14 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
               <h2 className="text-lg font-medium mb-2">Quantidade</h2>
               <div className="flex gap-3 items-center">
                 <button
-                  onClick={() => decreaseCartQuantity(product)}
+                  onClick={() => removeProduct(product)}
                   className="border border-zinc-300 roudend-md px-2 w-[30px]"
                 >
                   -
                 </button>
-                <span>{productQuantity}</span>
+                {/* <span>{getItemQuantity(product._id)}</span> */}
                 <button
-                  onClick={() => increaseCartQuantity(product)}
+                  onClick={() => addProduct(product)}
                   className="border border-zinc-300 roudend-md px-2 w-[30px]"
                 >
                   +
@@ -75,7 +71,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
           </div>
 
           <button
-            onClick={() => increaseCartQuantity(product)}
+            onClick={() => addProduct(product)}
             className="md:px-3 py-2 lg:py-1 text-xs md:text-sm self-end rounded-md bg-black text-white uppercase"
           >
             Adicionar ao carrinho

@@ -1,7 +1,7 @@
 import BuyProductDialog from "@/components/store-components/buy-product-dialog"
 // import BuyproductDialog from "@/components/store-components/buy-product-dialog"
 import CartCard from "@/components/store-components/cart-card"
-import { useCart } from "@/context/cart-context"
+import { useCartContext } from "@/context/cart-context"
 import { BsArrowLeft } from "react-icons/bs"
 import { HiOutlineShoppingBag } from "react-icons/hi"
 import { Link } from "react-router-dom"
@@ -9,7 +9,8 @@ import { Link } from "react-router-dom"
 // type Props = {}
 
 const MobileCartPage = () => {
-  const { cart } = useCart()
+  // const { cart } = useCartContext()
+  let cart: any[] = []
   return (
     <main className="w-full flex flex-col">
       <div className="bg-colorBlack-dark px-8 py-4 w-full flex items-center justify-between">

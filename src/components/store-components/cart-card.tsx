@@ -1,18 +1,16 @@
 import { Product } from "../../api/types"
-import { useCart } from "../../context/cart-context"
+import { useCartContext } from "../../context/cart-context"
 
 type CartCardProps = {
   product: Product
 }
 
 const CartCard = ({ product }: CartCardProps) => {
-  const {
-    getProductQuantity,
-    increaseCartQuantity,
-    decreaseCartQuantity,
-    removeFromCart,
-  } = useCart()
-  // const quantity = getProductQuantity(product._id)
+  const { addProduct, deleteProductFromCart, getItemQuantity, removeProduct } =
+    useCartContext()
+
+  let quantity = getItemQuantity(product._id)
+
   return (
     <div className="flex flex-col lg:flex-row w-full border-b-zinc-400 lg:pb-0 pb-4 border-b items-center justify-between gap-3">
       <div className="relative size-24 lg:size-[120px]">
@@ -32,24 +30,18 @@ const CartCard = ({ product }: CartCardProps) => {
 
         <div className="w-full items-center justify-around lg:justify-between flex">
           <div className="px-2 py-3 flex justify-between items-center rounded-md border border-zinc-400">
-            <button
-              onClick={() => decreaseCartQuantity(product)}
-              className=" w-12"
-            >
+            <button onClick={() => removeProduct(product)} className=" w-12">
               -
             </button>
-            <span>{getProductQuantity(product._id)}</span>
-            <button
-              onClick={() => increaseCartQuantity(product)}
-              className="px-2 w-12"
-            >
+            <span>{quantity}</span>
+            <button onClick={() => addProduct(product)} className="px-2 w-12">
               +
             </button>
           </div>
 
           <button
             className=" text-red-600 text-[14px] py-2 px-1"
-            onClick={() => removeFromCart(product._id)}
+            onClick={() => deleteProductFromCart(product._id)}
           >
             Remover
           </button>

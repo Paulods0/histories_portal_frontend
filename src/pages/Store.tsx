@@ -8,25 +8,31 @@ import StoreFilter from "@/components/store-components/store-filter"
 import StoreSlider from "@/components/store-components/store-slider"
 import StoreMobileNavigation from "@/components/store-components/store-mbile-navigation"
 import { useSearchParams } from "react-router-dom"
+import PaginationController from "@/components/pagination/pagination-controller"
+import { useCartContext } from "@/context/cart-context"
 
 const Store = () => {
+  // const { cartItems } = useCartContext()
+
   const [filter, setFilter] = useSearchParams({
     page: "1",
     category: "",
-    limit: "",
-    price: "",
   })
 
   const category = filter.get("category")!!
   const page = filter.get("page")!!
-  const limit = filter.get("limit")!!
-  const price = filter.get("price")!!
 
   const { data: products, isLoading: isProductsLoading } = useGetProduts(
     parseInt(page),
-    category,
-    parseInt(limit)
+    category
   )
+
+  const handlePaginate = (newPage: number) => {
+    setFilter((prev) => {
+      prev.set("page", newPage.toString())
+      return prev
+    })
+  }
 
   if (isProductsLoading) {
     return (
@@ -59,11 +65,7 @@ const Store = () => {
         </div>
 
         <section className="relative w-full flex gap-10 flex-col lg:flex-row lg:py-4 lg:px-8">
-          <StoreFilter
-            price={price}
-            urlQuery={category}
-            setFilter={setFilter}
-          />
+          <StoreFilter urlQuery={category} setFilter={setFilter} />
 
           <section className="w-full grid grid-cols-1 flex-[5] pl-2 border-l mb-12 md:grid-cols-2 mt-4 place-items-center lg:grid-cols-4 gap-8">
             {products?.products.length === 0 ? (
@@ -79,6 +81,10 @@ const Store = () => {
             )}
           </section>
         </section>
+        <PaginationController
+          pages={products!!.pages}
+          paginate={handlePaginate}
+        />
 
         <GoBackButton />
         <StoreFooter />

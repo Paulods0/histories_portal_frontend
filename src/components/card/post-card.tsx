@@ -15,7 +15,7 @@ const PostCard = ({
   return (
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
       <div className="w-full relative">
-        <div className="cursor-pointer relative w-full md:h-[350px] lg:h-[250px]">
+        <div className="cursor-pointer relative w-full md:h-[350px] lg:h-[320px]">
           <Link className="h-full w-full" to={`/post/${_id}`}>
             <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
             <LazyImage

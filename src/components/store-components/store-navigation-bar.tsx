@@ -1,7 +1,7 @@
 import { NAV_LINKS } from "../../utils/constants"
 import { Link, useLocation } from "react-router-dom"
 import Search from "../search/search"
-import { useCart } from "../../context/cart-context"
+import { useCartContext } from "../../context/cart-context"
 import CartContainer from "./cart-container"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { Sheet, SheetTrigger } from "../ui/sheet"
@@ -9,7 +9,7 @@ import { Sheet, SheetTrigger } from "../ui/sheet"
 
 const StoreNavigationBar = () => {
   const path = useLocation()
-  const { cart } = useCart()
+  const { cartQuantity, cartItems } = useCartContext()
 
   return (
     <header className="fixed inset-0 z-20 flex-1 h-[70px] transition-all duration-75 ease-in">
@@ -54,7 +54,7 @@ const StoreNavigationBar = () => {
             </div>
 
             <div className="w-3 h-3 items-center justify-center flex rounded-full bg-zinc-500/40 text-white text-[12px] p-3">
-              {cart.length}
+              {cartItems.length}
             </div>
           </div>
         </div>

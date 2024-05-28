@@ -14,7 +14,7 @@ const SwiperPosts = () => {
   }
 
   return (
-    <div className="lg:w-[65vw] shadow-inner py-2 px-3 rounded-md w-[80vw] flex md:w-full self-start scroll-bar mt-2 mb-4 overflow-x-auto scroll-bar py-3 lg:flex gap-2 ">
+    <div className="lg:w-[65vw] shadow-inner px-3 rounded-md w-[80vw] flex md:w-full self-start scroll-bar mt-2 mb-4 overflow-x-auto scroll-bar py-3 lg:flex gap-2 ">
       {posts?.map((post, index) => (
         <div key={index}>
           <SwiperCard post={post} />

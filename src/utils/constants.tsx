@@ -30,6 +30,10 @@ export const NAV_LINKS = [
     name: "Quero ser vosso",
     link: "/pages/queroservosso",
   },
+  {
+    name: "Contactos",
+    link: "/pages/contactos",
+  },
 ]
 export const SOCIAL_MEDIA_LINKS = [
   {

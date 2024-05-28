@@ -2,9 +2,6 @@ import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 
 const SubgroupNav = ({ slug }: { slug: string }) => {
-  const handleNavigate = (slug: string) => {
-    return `/categorias/${slug}`
-  }
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
@@ -14,7 +11,7 @@ const SubgroupNav = ({ slug }: { slug: string }) => {
     >
       <ul className="flex flex-col font-Oswald w-[200px] h-full items-center justify-center text-center gap-y-2">
         <Link
-          to={handleNavigate(slug)}
+          to="/formulario-compra"
           className="w-full text-sm font-bold py-3  text-goldenColor hover:text-white cursor-pointer hover:bg-goldenColor bg-opacity-15"
         >
           Quero comprar

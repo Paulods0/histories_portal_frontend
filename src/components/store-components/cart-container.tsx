@@ -1,4 +1,4 @@
-import { useCart } from "../../context/cart-context"
+import { useCartContext } from "../../context/cart-context"
 import CartCard from "./cart-card"
 import {
   SheetContent,
@@ -8,9 +8,10 @@ import {
   SheetTitle,
 } from "../ui/sheet"
 import BuyProductDialog from "./buy-product-dialog"
+import { Product } from "@/api/types"
 
 const CartContainer = () => {
-  const { cart } = useCart()
+  const { cartItems } = useCartContext()
 
   // const handleSubmitt = async () => {
   //   try {
@@ -29,7 +30,7 @@ const CartContainer = () => {
       <SheetHeader>
         <SheetTitle className="text-2xl uppercase">Cart</SheetTitle>
       </SheetHeader>
-      {cart.length === 0 ? (
+      {cartItems.length === 0 ? (
         <SheetHeader>
           <SheetDescription>
             Não há nenhum produto no carrinho.
@@ -38,7 +39,7 @@ const CartContainer = () => {
       ) : (
         <>
           <div className="w-full lg:h-[450px] border-b scroll-bar pb-3 overflow-y-auto my-4 flex flex-col items-center ">
-            {cart.map((product) => (
+            {cartItems?.map((product: Product) => (
               <CartCard key={product._id} product={product} />
             ))}
           </div>

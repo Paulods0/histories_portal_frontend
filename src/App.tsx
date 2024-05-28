@@ -11,6 +11,7 @@ const Page = lazy(() => import("./pages/Page"))
 const Store = lazy(() => import("./pages/store"))
 const Search = lazy(() => import("./pages/search"))
 const AboutUs = lazy(() => import("./pages/aboutUs"))
+const Contactos = lazy(() => import("./pages/contactos"))
 const Subscribe = lazy(() => import("./pages/subscribe"))
 const UserPosts = lazy(() => import("./pages/user-posts"))
 const Unsubscribe = lazy(() => import("./pages/unsubscribe"))
@@ -26,6 +27,9 @@ const Classificados = lazy(() => import("./pages/categories/classificados"))
 const OverlandExperience = lazy(() => import("./pages/overland-experience"))
 const ProductDetail = lazy(() => import("./pages/store-pages/product-detail"))
 const ClassifiedsFormPage = lazy(() => import("./pages/classifieds-form-page"))
+const ClassifiedsFormBuyPage = lazy(
+  () => import("./pages/classified-form-buy-page")
+)
 const CategoriesPage = lazy(() => import("./pages/categories/categories-page"))
 const OverlandJournal = lazy(
   () => import("./pages/categories/overland-journal")
@@ -74,6 +78,10 @@ function App() {
           element: <QueroSerVosso />,
         },
         {
+          path: "pages/contactos",
+          element: <Contactos />,
+        },
+        {
           path: "pages/loja/product/:id",
           element: <ProductDetail />,
         },
@@ -118,6 +126,10 @@ function App() {
         {
           path: "formulario",
           element: <ClassifiedsFormPage />,
+        },
+        {
+          path: "formulario-compra",
+          element: <ClassifiedsFormBuyPage />,
         },
         {
           path: "post/:id",

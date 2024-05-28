@@ -10,12 +10,11 @@ import { NAV_LINKS, SOCIAL_MEDIA_LINKS } from "@/utils/constants"
 import { Link } from "react-router-dom"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { MdOutlineKeyboardArrowRight } from "react-icons/md"
-import { useCart } from "@/context/cart-context"
-
-// type Props = {}
+import { useCartContext } from "@/context/cart-context"
 
 const StoreMobileMenu = () => {
-  const { cart } = useCart()
+  // const { cart } = useCartContext()
+  let cart = []
   return (
     <Sheet>
       <SheetTrigger asChild className="text-white text-3xl cursor-pointer">
@@ -30,7 +29,9 @@ const StoreMobileMenu = () => {
             <Link to={"cart"}>
               <HiOutlineShoppingBag />
             </Link>
-            <span className="absolute -top-3 right-0 text-base">{cart.length}</span>
+            <span className="absolute -top-3 right-0 text-base">
+              {cart.length}
+            </span>
           </div>
           <ul className="w-full text-xl uppercase space-y-4 mb-4">
             {NAV_LINKS.map((link, index) => (

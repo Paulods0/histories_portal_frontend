@@ -91,14 +91,10 @@ export const useGetSearchResults = (search: string) => {
   })
 }
 
-export const useGetProduts = (
-  page: number = 0,
-  category: string = "",
-  limit: number = 0
-) => {
+export const useGetProduts = (page: number = 0, category: string = "") => {
   return useQuery({
-    queryKey: ["get-products", page, category, limit],
-    queryFn: () => getAllProducts(page, category, limit),
+    queryKey: ["get-products", page, category],
+    queryFn: () => getAllProducts(page, category),
   })
 }
 
