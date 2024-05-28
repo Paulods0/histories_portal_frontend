@@ -1,12 +1,11 @@
 import ContactBlock from "@/components/contact-block"
 import FadeInEffect from "@/components/motion/fade-in"
-import { SiYoutube, SiInstagram, SiFacebook } from "react-icons/si"
 
 const Contactos = () => {
   return (
-    <main className="flex items-center h-[300px] justify-center mx-auto w-[900px] my-12">
+    <main className="flex items-center lg:h-[300px] justify-center mx-auto w-full md:w-[900px] my-12">
       <FadeInEffect>
-        <div className="grid grid-cols-3 gap-12 place-items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 place-items-center">
           <ContactBlock
             title="Email"
             content="overlandagola@gmail.com"
