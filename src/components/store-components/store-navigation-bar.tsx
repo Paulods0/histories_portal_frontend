@@ -9,7 +9,7 @@ import { Sheet, SheetTrigger } from "../ui/sheet"
 
 const StoreNavigationBar = () => {
   const path = useLocation()
-  const { cartQuantity, cartItems } = useCartContext()
+  const { cartItems } = useCartContext()
 
   return (
     <header className="fixed inset-0 z-20 flex-1 h-[70px] transition-all duration-75 ease-in">

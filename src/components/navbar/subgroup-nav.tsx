@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { Link } from "react-router-dom"
 
-const SubgroupNav = ({ slug }: { slug: string }) => {
+const SubgroupNav = () => {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}

@@ -1,7 +1,5 @@
 import BuyProductDialog from "@/components/store-components/buy-product-dialog"
-// import BuyproductDialog from "@/components/store-components/buy-product-dialog"
 import CartCard from "@/components/store-components/cart-card"
-import { useCartContext } from "@/context/cart-context"
 import { BsArrowLeft } from "react-icons/bs"
 import { HiOutlineShoppingBag } from "react-icons/hi"
 import { Link } from "react-router-dom"

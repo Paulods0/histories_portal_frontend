@@ -10,7 +10,6 @@ import { NAV_LINKS, SOCIAL_MEDIA_LINKS } from "@/utils/constants"
 import { Link } from "react-router-dom"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { MdOutlineKeyboardArrowRight } from "react-icons/md"
-import { useCartContext } from "@/context/cart-context"
 
 const StoreMobileMenu = () => {
   // const { cart } = useCartContext()

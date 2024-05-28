@@ -65,7 +65,7 @@ const UserPosts = () => {
         </div>
 
         <div className="w-full flex items-center justify-center">
-          <PaginationController handleNavigate={handleNavigate} pages={pages} />
+          <PaginationController paginate={handleNavigate} pages={pages} />
         </div>
       </main>
       <GoBackButton />

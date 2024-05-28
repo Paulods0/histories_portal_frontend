@@ -8,7 +8,7 @@ interface IStoreProducs {
 }
 
 const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
-  const { addProduct, getItemQuantity, removeProduct } = useCartContext()
+  const { addProduct, removeProduct } = useCartContext()
 
   function formatPrice(price: string) {
     const formatedPrice = new Intl.NumberFormat("pt-PT", {
