@@ -9,11 +9,8 @@ import StoreSlider from "@/components/store-components/store-slider"
 import StoreMobileNavigation from "@/components/store-components/store-mbile-navigation"
 import { useSearchParams } from "react-router-dom"
 import PaginationController from "@/components/pagination/pagination-controller"
-import { useCartContext } from "@/context/cart-context"
 
 const Store = () => {
-  // const { cartItems } = useCartContext()
-
   const [filter, setFilter] = useSearchParams({
     page: "1",
     category: "",
