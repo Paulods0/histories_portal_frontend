@@ -51,7 +51,7 @@ const CategoriesNavBar = () => {
               {category.label}
             </Link>
 
-            <SubgroupNav slug={category.link} />
+            <SubgroupNav />
           </li>
         ))}
       </div>
