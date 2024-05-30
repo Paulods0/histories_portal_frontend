@@ -17,8 +17,8 @@ const ResponsiveNavigationBar = () => {
     <div className="lg:hidden sticky shadow-md  top-0 items-center justify-between flex w-full bg-white p-6 mt-0 h-16">
       <Sheet>
         <SheetTrigger asChild>
-          <span className="text-4xl">
-            <IoMenu color="#8c6e3c" />
+          <span className="text-4xl text-orangeColor">
+            <IoMenu />
           </span>
         </SheetTrigger>
 
@@ -38,7 +38,7 @@ const ResponsiveNavigationBar = () => {
               </li>
             ))}
           </ul>
-          <hr className="w-full h-[1px] my-2 bg-goldenColor" />
+          <hr className="w-full h-[1px] my-2 bg-orangeColor" />
           <ul className="w-full bg-white gap-4 flex flex-col items-start justify-between">
             {NAV_LINKS?.map((link, index) => (
               <li key={index} className="flex items-center gap-1">

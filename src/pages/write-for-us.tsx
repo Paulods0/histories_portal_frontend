@@ -166,7 +166,7 @@ const WriteForUs = () => {
                 id="file"
                 {...register("image")}
                 type="file"
-                className="w-full file:bg-white file:border-none px-3 py-2 border md:file:text-base file:text-xs outline-none bg-transparent file:font-semibold file:capitalize text-goldenColor cursor-pointer"
+                className="w-full file:bg-white file:border-none px-3 py-2 border md:file:text-base file:text-xs outline-none bg-transparent file:font-semibold file:capitalize text-orangeColor cursor-pointer"
               />
             ))}
           </div>

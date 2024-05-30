@@ -29,8 +29,8 @@ const StoreNavigationBar = () => {
                 <Link
                   key={index}
                   className={` ${
-                    path.pathname === link.link ? "text-goldenColor" : "#FFF"
-                  } text-white text-[12px] font-Oswald uppercase font-normal hover:text-goldenColor duration-100 transition-all ease-in`}
+                    path.pathname === link.link ? "text-orangeColor" : "#FFF"
+                  } text-white text-[12px] font-Oswald uppercase font-normal hover:text-orangeColor duration-100 transition-all ease-in`}
                   to={link.link}
                 >
                   {link.name}

@@ -55,11 +55,11 @@ const AgendaAo = () => {
                 />
               </div>
               <div className="relative flex w-full  justify-center">
-                <h3 className="uppercase self-center text-[14px] font-semibold text-goldenColor">
+                <h3 className="uppercase self-center text-[14px] font-semibold text-orangeColor">
                   {post.title}
                 </h3>
 
-                <span className="text-[13px] flex absolute right-2 text-goldenColor">
+                <span className="text-[13px] flex absolute right-2 text-orangeColor">
                   {formateData(post.createdAt)}
                 </span>
               </div>

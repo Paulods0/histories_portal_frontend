@@ -22,8 +22,8 @@ const StoreFilter = ({ urlQuery, setFilter }: Props) => {
         <h1 className="text-lg font-bold uppercase">Filtros</h1>
         <button
           className={`${
-            urlQuery === "" ? "text-goldenColor" : ""
-          } border-r-2 border-r-goldenColor text-left pr-1 lg:border-none`}
+            urlQuery === "" ? "text-orangeColor" : ""
+          } border-r-2 border-r-orangeColor text-left pr-1 lg:border-none`}
           onClick={() => handleFilter("")}
         >
           Ver todos
@@ -32,8 +32,8 @@ const StoreFilter = ({ urlQuery, setFilter }: Props) => {
         {PRODUCT_CATEGORIES.map((category, index) => (
           <li
             key={index}
-            className={`lg:border-none flex items-center border-r-2 gap-2 border-r-goldenColor pr-1 ${
-              urlQuery === category.slug ? "text-goldenColor" : ""
+            className={`lg:border-none flex items-center border-r-2 gap-2 border-r-orangeColor pr-1 ${
+              urlQuery === category.slug ? "text-orangeColor" : ""
             } `}
           >
             <input

@@ -13,7 +13,7 @@ const FooterNavigation = () => {
         <ul className="text-colorGray-light grid grid-cols-2 w-full place-items-start lg:flex lg:gap-0 lg:flex-col text-base capitalize list-none">
           {NAV_LINKS.map((link, index) => (
             <li key={index}>
-              <Link to={link.link}>{link.name}</Link>
+              <Link className="text-white" to={link.link}>{link.name}</Link>
             </li>
           ))}
         </ul>

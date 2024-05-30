@@ -23,7 +23,7 @@ const CategoriesNavBar = () => {
           <Link
             to={"/"}
             className={`text-[15px] font-Oswald ${
-              pathname === "/" ? "text-goldenColor" : "text-colorBlack-dark"
+              pathname === "/" ? "text-orangeColor" : "text-colorBlack-dark"
             } uppercase`}
           >
             home
@@ -40,8 +40,8 @@ const CategoriesNavBar = () => {
           >
             <Link
               className={`text-[15px] font-Oswald text-colorBlack-dark uppercase ${
-                category.link === decodeURL ? "text-goldenColor" : ""
-              } hover:text-goldenColor duration-100 transition-all ease-in `}
+                category.link === decodeURL ? "text-orangeColor" : ""
+              } hover:text-orangeColor duration-100 transition-all ease-in `}
               to={
                 category.link !== "classificados"
                   ? handleNavigate(category.link)

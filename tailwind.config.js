@@ -25,16 +25,9 @@ module.exports = {
         Poppins: ["Poppins", "sans-serif"],
       },
       colors: {
-        colorGray: {
-          light: "#AAAAAA",
-          medium: "#272626",
-          dark: "#333333",
-        },
-        colorBlack: {
-          light: "#111111",
-          dark: "#000000",
-        },
-        goldenColor: "#C7A770",
+        blueColor: "#02232b",
+        colorBlack: "#000000",
+        orangeColor: "#f59d37",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

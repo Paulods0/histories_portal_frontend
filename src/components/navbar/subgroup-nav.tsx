@@ -11,15 +11,21 @@ const SubgroupNav = () => {
     >
       <ul className="flex flex-col font-Oswald w-[200px] h-full items-center justify-center text-center gap-y-2">
         <Link
+          to="/categorias/classificados"
+          className="w-full text-sm font-bold py-3  text-orangeColor hover:text-white cursor-pointer hover:bg-orangeColor bg-opacity-15"
+        >
+          Ver classificados
+        </Link>
+        <Link
           to="/formulario-compra"
-          className="w-full text-sm font-bold py-3  text-goldenColor hover:text-white cursor-pointer hover:bg-goldenColor bg-opacity-15"
+          className="w-full text-sm font-bold py-3  text-orangeColor hover:text-white cursor-pointer hover:bg-orangeColor bg-opacity-15"
         >
           Quero comprar
         </Link>
 
         <Link
           to="/formulario"
-          className="w-full text-sm font-bold py-3 text-goldenColor  hover:text-white cursor-pointer hover:bg-goldenColor bg-opacity-15"
+          className="w-full text-sm font-bold py-3 text-orangeColor  hover:text-white cursor-pointer hover:bg-orangeColor bg-opacity-15"
         >
           Quero vender
         </Link>

@@ -25,7 +25,7 @@ const PaginationController = ({ pages, paginate }: Props) => {
               onClick={() => paginate(index + 1)}
               className={`p-3 text-white ${
                 currPage === (index + 1).toString()
-                  ? "bg-goldenColor"
+                  ? "bg-orangeColor"
                   : "bg-colorGray-medium"
               } w-12 h-12 flex hover:bg-colorGray-dark/70 cursor-pointer duration-200 transition-all ease-in-out items-center justify-center`}
             >
