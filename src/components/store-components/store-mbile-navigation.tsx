@@ -5,7 +5,7 @@ type Props = {}
 
 const StoreMobileNavigation = ({}: Props) => {
   return (
-    <header className="bg-colorGray-medium sticky top-0 z-50 flex lg:hidden w-full items-center justify-between">
+    <header className="bg-blueColor sticky top-0 z-50 flex lg:hidden w-full items-center justify-between">
       <section className="mx-8 w-full flex items-center justify-between">
         <Link to={"/"}>
           <img

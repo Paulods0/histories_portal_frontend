@@ -1,11 +1,5 @@
 import { RiMenu2Fill } from "react-icons/ri"
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "../ui/sheet"
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet"
 import { NAV_LINKS, SOCIAL_MEDIA_LINKS } from "@/utils/constants"
 import { Link } from "react-router-dom"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
@@ -20,18 +14,24 @@ const StoreMobileMenu = () => {
         <RiMenu2Fill />
       </SheetTrigger>
       <SheetContent>
-        <SheetHeader>
-          <SheetTitle>Menu Overland Angola</SheetTitle>
+        <SheetHeader className="flex items-center">
+          <img
+            src="/logo/logotipo-texto.png"
+            className="object-cover w-32 h-16"
+            alt="logotipo"
+          />
         </SheetHeader>
+
         <div className="w-full flex flex-col mt-4">
           <div className="relative uppercase font-bold bg-colorGray-dark/20 rounded-full p-2 w-fit self-end text-2xl">
-            <Link to={"cart"}>
+            <Link to={"cart"} className="text-black">
               <HiOutlineShoppingBag />
             </Link>
             <span className="absolute -top-3 right-0 text-base">
               {cart.length}
             </span>
           </div>
+
           <ul className="w-full text-xl uppercase space-y-4 mb-4">
             {NAV_LINKS.map((link, index) => (
               <li key={index} className="border-b flex items-center gap-1">

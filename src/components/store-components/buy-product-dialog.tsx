@@ -17,7 +17,7 @@ const BuyProductDialog = ({}: Props) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <button className="mt-10 self-center p-3 bg-colorBlack-light text-white">
+        <button className="mt-10 self-center p-3 bg-colorBlack text-white">
           Efectuar compra
         </button>
       </DialogTrigger>

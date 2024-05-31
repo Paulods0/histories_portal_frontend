@@ -13,7 +13,7 @@ const StoreNavigationBar = () => {
 
   return (
     <header className="fixed inset-0 z-20 flex-1 h-[70px] transition-all duration-75 ease-in">
-      <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-colorGray-medium justify-between">
+      <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-blueColor justify-between">
         <nav className="h-full w-[720px] justify-between flex">
           <ul className="gap-3 flex items-center">
             <Link to={"/"} className="w-24 h-[40px] relative ">

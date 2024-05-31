@@ -7,7 +7,7 @@ const SubgroupNav = () => {
       initial={{ opacity: 0, y: -20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2, ease: "easeIn" }}
-      className="absolute top-13 shadow-md bg-white h-auto rounded-sm group-hover:flex hidden"
+      className="absolute top-16 shadow-lg bg-white h-auto rounded-sm group-hover:flex hidden"
     >
       <ul className="flex flex-col font-Oswald w-[200px] h-full items-center justify-center text-center gap-y-2">
         <Link

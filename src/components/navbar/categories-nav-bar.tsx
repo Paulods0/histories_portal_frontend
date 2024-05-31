@@ -32,7 +32,7 @@ const CategoriesNavBar = () => {
         {CATEGORIES?.map((category, index) => (
           <li
             key={index}
-            className={`relative list-none py-3 ${
+            className={`relative list-none py-6 ${
               category.label === "classificados"
                 ? "group transition-all duration-200 ease-in-out"
                 : ""

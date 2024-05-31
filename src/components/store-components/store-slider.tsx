@@ -9,26 +9,14 @@ import "swiper/css/effect-fade"
 
 const StoreSlider = () => {
   return (
-    <Swiper
-      modules={[Autoplay, Navigation, Pagination, EffectFade]}
-      navigation
-      loop={true}
-      effect="fade"
-      pagination={{ clickable: true }}
-      autoplay
-      slidesPerView={1}
-    >
-      {storeSwiperImages.map((image, index) => (
-        <SwiperSlide key={index}>
-          <img
-            loading="lazy"
-            src={image}
-            alt="hero-section-image"
-            className="w-full h-screen object-cover"
-          />
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className="relative w-full h-[50vh]">
+      <img
+        loading="lazy"
+        src="/banners/banner-1.jpg"
+        alt="hero-section-image"
+        className="absolute inset-0 w-full h-full object-cover"
+      />
+    </div>
   )
 }
 

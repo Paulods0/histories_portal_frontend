@@ -79,7 +79,7 @@ const StoreBuyProductForm = () => {
       <button
         disabled={isSubmitting}
         type="submit"
-        className="w-full disabled:bg-colorGray-medium px-3 py-2 text-white capitalize bg-colorBlack-light"
+        className="w-full disabled:bg-colorGray-medium px-3 py-2 text-white capitalize bg-colorBlack"
       >
         {isSubmitting ? "enviando..." : "Enviar"}
       </button>

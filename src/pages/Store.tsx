@@ -51,16 +51,6 @@ const Store = () => {
           <StoreSlider />
         </div>
 
-        <div className="w-full hidden lg:flex items-center justify-center h-24 bg-black p-4">
-          <div className="relative size-[90px]">
-            <img
-              src="/logo/logotipo-tradicional.png"
-              className="absolute inset-0 w-full h-full object-contain"
-              alt="imagem-loja"
-            />
-          </div>
-        </div>
-
         <section className="relative w-full flex gap-10 flex-col lg:flex-row lg:py-4 lg:px-8">
           <StoreFilter urlQuery={category} setFilter={setFilter} />
 

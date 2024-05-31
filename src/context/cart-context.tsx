@@ -45,6 +45,7 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
           },
         ]
         localStorage.setItem("cart", JSON.stringify(updatedProducts))
+        toast.success("Produto adicionado ao carrinho")
         return updatedProducts
       } else {
         const updatedProducts = products.map((item) =>
@@ -59,8 +60,6 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
         return updatedProducts
       }
     })
-
-    toast.success("Produto adicionado ao carrinho")
   }
 
   function removeProduct(product: Product) {
@@ -71,6 +70,7 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
           (item) => item._id !== product._id
         )
         localStorage.setItem("cart", JSON.stringify(updatedProducts))
+        toast.success("Produto removido do carrinho")
         return updatedProducts
       } else {
         const updatedProducts = products.map((item) =>
@@ -85,8 +85,6 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
         return updatedProducts
       }
     })
-
-    toast.success("Produto removido do carrinho")
   }
 
   function deleteProductFromCart(id: string) {

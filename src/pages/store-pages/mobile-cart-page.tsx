@@ -14,7 +14,7 @@ const MobileCartPage = () => {
       <div className="bg-colorBlack-dark px-8 py-4 w-full flex items-center justify-between">
         <Link
           to={"/pages/loja"}
-          className="text-white flex items-center text-xl gap-2"
+          className="text-colorBlack flex items-center text-xl gap-2"
         >
           <BsArrowLeft />
           Voltar

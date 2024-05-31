@@ -6,8 +6,8 @@ import {
   WhatsappShareButton,
   FacebookIcon,
   FacebookShareButton,
-  TwitterIcon,
-  TwitterShareButton,
+  EmailIcon,
+  EmailShareButton,
   PinterestShareButton,
   PinterestIcon,
 } from "react-share"
@@ -68,18 +68,18 @@ const ClassifiedCard = ({ post }: ClassifiedCardProps) => {
         <div className="flex items-center mt-2 gap-x-4">
           <WhatsappShareButton
             url={post.author.phone}
-            children={<WhatsappIcon size={22} />}
+            children={<WhatsappIcon size={26} />}
           />
 
           <div className="flex items-center w-full gap-x-3">
             <span className="font-semibold text-colorGray-medium italic">
               share:
             </span>
-            <FacebookShareButton children={<FacebookIcon size={20} />} url="" />
-            <TwitterShareButton children={<TwitterIcon size={20} />} url="" />
+            <FacebookShareButton children={<FacebookIcon size={26} />} url="" />
+            <EmailShareButton children={<EmailIcon size={26} />} url="" />
             <PinterestShareButton
               url=""
-              children={<PinterestIcon size={20} />}
+              children={<PinterestIcon size={26} />}
               media="/1.jpg"
             />
           </div>
