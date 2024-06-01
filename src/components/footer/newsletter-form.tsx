@@ -28,8 +28,8 @@ const NewsletterForm = () => {
       await mutateAsync(data)
       reset()
       toast.success("Subscrição bem sucedida, por favor verifique o seu email.")
-    } catch (error) {
-      toast.error("Erro ao subscrever, por favor tente novamente")
+    } catch (error: any) {
+      toast.error(error.response.data.message)
     }
   }
   return (

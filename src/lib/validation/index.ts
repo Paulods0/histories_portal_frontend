@@ -41,10 +41,10 @@ export const buyProductFormSchema = z.object({
 })
 
 export const subscribeFormSchema = z.object({
+  country: z.string(),
+  countryCode: z.string(),
   name: z.string().min(1, "*Insira o seu nome"),
-  country: z.string().optional(),
   email: z.string().min(1, "*Insira o seu email").email(),
-  countryCode: z.string().optional(),
   phone: z.coerce.string().min(1, "*Insira o seu número de telefone"),
 })
 

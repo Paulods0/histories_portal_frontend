@@ -1,4 +1,5 @@
 import FadeInEffect from "@/components/motion/fade-in"
+import axios from "@/config/axios"
 import {
   WantToBeYoursFormType,
   wantToBeYoursFormSchema,
@@ -7,8 +8,10 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { ICountryData, getCountryDataList } from "countries-list"
 import { ChangeEvent, useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
+import { toast } from "react-toastify"
 
 const WantToBeYours = () => {
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [countries, setCountries] = useState<ICountryData[]>([])
 
   const {
@@ -16,6 +19,7 @@ const WantToBeYours = () => {
     register,
     formState: { errors },
     setValue,
+    reset,
   } = useForm<WantToBeYoursFormType>({
     resolver: zodResolver(wantToBeYoursFormSchema),
     defaultValues: {
@@ -37,10 +41,15 @@ const WantToBeYours = () => {
 
   const handleSubmitForm = async (data: WantToBeYoursFormType) => {
     try {
-      console.log(data)
-      return
+      setIsSubmitting(true)
+      await axios.post("/newsletter/want-to-be-yours", data)
+      toast.success("Email enviado com sucesso")
+      reset()
     } catch (error) {
       console.error(error)
+      toast.success("Erro ao enviar o email")
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -160,11 +169,11 @@ const WantToBeYours = () => {
             )}
           </>
           <div className="flex flex-col">
-            <div className="p-2 border h-[150px]">
+            <div className="p-2 border h-[180px]">
               <textarea
                 {...register("description")}
                 placeholder="Descreva que tipo de parceria gostaria de establecer connosco."
-                className="border-none resize-none w-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
+                className="border-none resize-none w-full h-full outline-none bg-transparent md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
               />
             </div>
             {errors.description && (
@@ -175,10 +184,11 @@ const WantToBeYours = () => {
           </div>
 
           <button
-            className="p-2 w-32 bg-zinc-900 text-white uppercase md:text-base text-xs"
+            disabled={isSubmitting}
+            className="p-2 w-32 disabled:bg-zinc-400 bg-zinc-900 text-white uppercase md:text-base text-xs"
             type="submit"
           >
-            Enviar
+            {isSubmitting ? "Enviando..." : "Enviar "}
           </button>
         </form>
       </main>

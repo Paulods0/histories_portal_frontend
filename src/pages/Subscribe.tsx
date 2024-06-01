@@ -5,6 +5,8 @@ import FadeInEffect from "@/components/motion/fade-in"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubscribeFormType, subscribeFormSchema } from "@/lib/validation"
+import { subscribeToNewsletter } from "@/api"
+import { toast } from "react-toastify"
 
 const Subscribe = () => {
   const [countries, setCountries] = useState<ICountryData[]>([])
@@ -12,8 +14,9 @@ const Subscribe = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     setValue,
+    reset,
   } = useForm<SubscribeFormType>({
     resolver: zodResolver(subscribeFormSchema),
     defaultValues: {
@@ -32,10 +35,12 @@ const Subscribe = () => {
 
   const handleSubmitForm = async (data: SubscribeFormType) => {
     try {
-      console.log(data)
-      return
-    } catch (error) {
-      console.error(error)
+      await subscribeToNewsletter(data)
+      toast.success("Subscrição realizada com sucesso")
+      reset()
+    } catch (error: any) {
+      console.error(error.response.data.message)
+      toast.error(error.response.data.message)
     }
   }
 
@@ -137,10 +142,11 @@ const Subscribe = () => {
           </div>
 
           <button
-            className="p-2 w-32 bg-zinc-900 text-white uppercase md:text-base text-xs"
+            disabled={isSubmitting}
+            className="p-2 w-32 disabled:bg-zinc-400 bg-zinc-900 text-white uppercase md:text-base text-xs"
             type="submit"
           >
-            Enviar
+            {isSubmitting ? "Enviando..." : "Enviar "}
           </button>
         </form>
       </main>

@@ -1,9 +1,11 @@
 import { NAV_LINKS } from "@/utils/constants"
-import { Link, useLocation } from "react-router-dom"
+import { Link, NavLink, useLocation } from "react-router-dom"
 import Search from "../search/search"
 
 const NavbarTop = () => {
   const { pathname } = useLocation()
+  const path = pathname.split("/")[2]
+  console.log(path)
   return (
     <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-blueColor justify-between">
       <nav className="h-full w-[720px] justify-between flex">
@@ -20,10 +22,12 @@ const NavbarTop = () => {
             {NAV_LINKS.map((link, index) => (
               <Link
                 key={index}
-                className={` ${
-                  pathname === link.link ? "text-orangeColor" : "#FFF"
-                } text-white text-[12px] font-Oswald uppercase font-normal hover:text-orangeColor duration-100 transition-all ease-in`}
                 to={link.link}
+                className={`${
+                  path === link.link.split("/")[2]
+                    ? "text-orangeColor"
+                    : "text-white"
+                }  text-[12px] font-Oswald uppercase font-normal hover:text-orangeColor duration-100 transition-all ease-in`}
               >
                 {link.name}
               </Link>

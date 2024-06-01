@@ -9,6 +9,7 @@ import {
   ClassifiedPost,
   NewClassifiedPost,
 } from "./types"
+import { toast } from "react-toastify"
 
 export type PostResponseData = {
   posts: Post[]
@@ -89,13 +90,13 @@ export const getSearchedPosts = async (key: string) => {
   return data
 }
 export const subscribeToNewsletter = async (user: {
-  email: string
   name: string
+  phone?: string
+  email: string
+  country?: string
+  countryCode?: string
 }) => {
-  await axios.post("/newsletter/register", {
-    email: user.email,
-    name: user.name,
-  })
+  await axios.post("/newsletter/register", user)
 }
 
 export const likePost = async (postId: string) => {
