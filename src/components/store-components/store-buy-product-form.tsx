@@ -1,3 +1,4 @@
+import axios from "@/config/axios"
 import { useCartContext } from "@/context/cart-context"
 import { BuyProductType, buyProductFormSchema } from "@/lib/validation"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -33,9 +34,23 @@ const StoreBuyProductForm = () => {
     },
   })
 
-  const handleSubmitForm = (data: BuyProductType) => {
-    console.log({ ...data, products: products })
-    toast.success("Pedido enviado")
+  async function handleSubmitForm(data: BuyProductType) {
+    try {
+      const payload = {
+        user: {
+          email: data.email,
+          name: data.name,
+          phone: data.phone,
+        },
+        products: data.products,
+      }
+      await axios.post("/product/buy-product", payload)
+      console.log(payload)
+      toast.success("Pedido enviado")
+    } catch (error: any) {
+      console.log("handleSubmitForm ~ error", error)
+      toast.error(error.response.data.message)
+    }
   }
 
   return (
