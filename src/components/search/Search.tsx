@@ -21,7 +21,7 @@ const Search = () => {
   return (
     <Dialog>
       <DialogTrigger
-        className="bg-colorGray-dark size-10 cursor-pointer text-xl lg:text-base p-2 lg:p-3 rounded-md"
+        className="bg-blueColor flex items-center justify-center size-10 cursor-pointer text-xl lg:text-base p-2 lg:p-3 rounded-md"
         asChild
       >
         <div>

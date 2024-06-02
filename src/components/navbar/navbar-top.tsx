@@ -1,11 +1,12 @@
 import { NAV_LINKS } from "@/utils/constants"
-import { Link, NavLink, useLocation } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 import Search from "../search/search"
+import ThemeButton from "../global/theme-button"
 
 const NavbarTop = () => {
   const { pathname } = useLocation()
   const path = pathname.split("/")[2]
-  console.log(path)
+
   return (
     <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-blueColor justify-between">
       <nav className="h-full w-[720px] justify-between flex">
@@ -35,8 +36,10 @@ const NavbarTop = () => {
           </div>
         </ul>
       </nav>
-
-      <Search />
+      <div className="flex items-center gap-4">
+        <ThemeButton />
+        <Search />
+      </div>
     </div>
   )
 }

@@ -12,6 +12,7 @@ const Search = () => {
   const decodedSearchValue = decodeURIComponent(search)
 
   const { data, isLoading } = useGetSearchResults(decodedSearchValue)
+  // const {data:posts, isLoading } = useGetPosts(1)
 
   if (isLoading) {
     return (

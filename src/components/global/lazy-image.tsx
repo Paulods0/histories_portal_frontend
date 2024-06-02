@@ -41,7 +41,7 @@ const LazyImage = (props: Props) => {
     <div
       ref={ref}
       id={props.id}
-      className="h-[250px] w-full object-cover bg-[#ededed]"
+      className="h-[250px] w-full object-cover bg-[#ddd]"
     />
   )
 }

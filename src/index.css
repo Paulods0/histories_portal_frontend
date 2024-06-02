@@ -133,24 +133,6 @@ body::-webkit-scrollbar {
   z-index: 10 !important;
 }
 
-.cart-container {
-  position: absolute;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 300px;
-  background-color: white;
-  z-index: 50;
-  overflow-y: auto;
-  border: 1px solid #ccc;
-  transform: translateX(100%);
-  transition: transform 0.3s ease-in-out;
-}
-
-.cart-container.open {
-  transform: translateX(0);
-}
-
 .swiper-button-prev,
 .swiper-button-next {
   color: "red" !important;

@@ -43,6 +43,8 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
 
           <h1 className="text-center font-Poppins">{product.name}</h1>
           <h4 className="text-center text-[16px] font-normal font-Poppins">{`Preço: ${formatedPrice}`}</h4>
+          <hr className="w-full h-[1px] my-2 bg-zinc-300" />
+          <p className="text-center">{product.description}</p>
         </div>
 
         <div className="flex-1 grid grid-rows-2">

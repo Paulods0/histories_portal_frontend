@@ -26,7 +26,7 @@ const StoreFilter = ({ urlQuery, setFilter }: Props) => {
           <button
             className={`${
               urlQuery === "" ? "text-orangeColor" : ""
-            } pr-1 px-3 py-2 w-fit border rounded-lg text-center`}
+            } px-3 py-2 w-fit border rounded-lg text-center`}
             onClick={() => handleFilter("")}
           >
             Ver todos

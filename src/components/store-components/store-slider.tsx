@@ -1,21 +1,38 @@
-import { storeSwiperImages } from "@/constants"
-import { Swiper, SwiperSlide } from "swiper/react"
-import { Navigation, Autoplay, Pagination, EffectFade } from "swiper/modules"
+import { motion } from "framer-motion"
 
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-import "swiper/css/effect-fade"
+const bannerImages = [
+  "/banners/banner-1.jpg",
+  "/banners/banner-2.jpg",
+  "/banners/banner-3.jpg",
+  "/banners/banner-4.jpg",
+  "/banners/banner-5.jpg",
+  "/banners/banner-6.jpg",
+]
 
 const StoreSlider = () => {
   return (
-    <div className="relative w-full h-[50vh]">
-      <img
-        loading="lazy"
-        src="/banners/banner-1.jpg"
-        alt="hero-section-image"
-        className="absolute inset-0 w-full h-full object-cover"
-      />
+    <div className="relative w-[100vw] bg-red-200 overflow-x-clip h-[50vh]">
+      <motion.div
+        animate={{
+          x: "-200%",
+          transition: {
+            duration: 10,
+            repeatDelay: 0.4,
+            repeat: Infinity,
+          },
+        }}
+        className="inset-0 w-full h-full flex"
+      >
+        {bannerImages.map((image, index) => (
+          <img
+            key={index}
+            src={image}
+            loading="lazy"
+            alt="hero-section-image"
+            className="w-full h-full object-cover"
+          />
+        ))}
+      </motion.div>
     </div>
   )
 }

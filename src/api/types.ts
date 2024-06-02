@@ -40,6 +40,7 @@ export type Product = {
   price: string
   image: string
   quantity?: number
+  description:string
   createdAt?: string
   totalPrice?:string
   storequantity?: number

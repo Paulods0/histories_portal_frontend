@@ -11,8 +11,11 @@ const HighlightedCard = () => {
 
   if (isLoading) {
     return (
-      <main className="w-full h-screen flex items-start justify-center">
-        <ClipLoader size={40} color="#111111" />
+      <main className="w-full h-[300px] md:h-[415px] flex items-start gap-4 flex-col justify-center mb-4">
+        <div className="w-full h-20 bg-zinc-200" />
+        <div className="w-full h-full relative flex items-center bg-zinc-200  justify-center">
+          <ClipLoader size={24} color="#fff" />
+        </div>
       </main>
     )
   }
@@ -45,7 +48,7 @@ const HighlightedCard = () => {
         dangerouslySetInnerHTML={dataContent}
       />
 
-      <button className="py-3 w-[150px] font-OpenSans hover:w-[170px] hover:bg-colorGray-light duration-200 font-semibold transition-all ease-in text-center text-white uppercase text-[14px] bg-colorGray-dark">
+      <button className="py-3 w-[150px] font-OpenSans hover:w-[170px] hover:bg-blueColor/80 duration-200 font-semibold transition-all ease-in text-center text-white uppercase text-[14px] bg-blueColor">
         <Link to={`/post/${post?._id}`}>Ver Post</Link>
       </button>
     </Link>

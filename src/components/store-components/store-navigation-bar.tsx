@@ -5,17 +5,18 @@ import { useCartContext } from "../../context/cart-context"
 import CartContainer from "./cart-container"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
 import { Sheet, SheetTrigger } from "../ui/sheet"
-// import StoreMobileNavigation from "./store-mbile-navigation"
 
 const StoreNavigationBar = () => {
-  const path = useLocation()
+  const { pathname } = useLocation()
+  const currentPath = pathname
+
   const { cartItems } = useCartContext()
 
   return (
     <header className="fixed inset-0 z-20 flex-1 h-[70px] transition-all duration-75 ease-in">
       <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-blueColor justify-between">
         <nav className="h-full w-[720px] justify-between flex">
-          <ul className="gap-3 flex items-center">
+          <div className="gap-3 flex items-center">
             <Link to={"/"} className="w-24 h-[40px] relative ">
               <img
                 loading="lazy"
@@ -25,20 +26,29 @@ const StoreNavigationBar = () => {
               />
             </Link>
             <div className="flex gap-3 ml-2">
+              <Link
+                to="/"
+                className="text-[12px] font-Oswald uppercase font-normal text-white hover:text-orangeColor duration-100 transition-all ease-in"
+              >
+                Home
+              </Link>
               {NAV_LINKS.map((link, index) => (
                 <Link
                   key={index}
                   className={` ${
-                    path.pathname === link.link ? "text-orangeColor" : "#FFF"
-                  } text-white text-[12px] font-Oswald uppercase font-normal hover:text-orangeColor duration-100 transition-all ease-in`}
+                    currentPath === link.link.toLowerCase()
+                      ? "text-orangeColor"
+                      : "text-white"
+                  } text-[12px] font-Oswald uppercase font-normal hover:text-orangeColor duration-100 transition-all ease-in`}
                   to={link.link}
                 >
                   {link.name}
                 </Link>
               ))}
             </div>
-          </ul>
+          </div>
         </nav>
+
         <div className="flex gap-3 items-center">
           <div className="mr-2">
             <Search />

@@ -8,9 +8,20 @@ const SideBarHome = () => {
 
   if (isLoading) {
     return (
-      <main className="w-full text-colorBlack-light flex items-center justify-center">
-        <ClipLoader size={20} />
-      </main>
+      <section className="w-[270px] flex flex-col gap-4 mt-2">
+        <SideSearchBar />
+        {Array.from({ length: 3 })?.map((_, index) => (
+          <div key={index} className="border-b pb-1 w-full">
+            <div className="relative w-full bg-zinc-300 h-[250px]">
+              <ClipLoader
+                size={20}
+                color="#fff"
+                className="absolute top-1/2 -translate-y-1/2 left-1/2 translate-x-1/2 z-20"
+              />
+            </div>
+          </div>
+        ))}
+      </section>
     )
   }
 
@@ -32,11 +43,6 @@ const SideBarHome = () => {
             ))}
           </ul>
         </div>
-
-        {/* <img src="/ads/boldy-2.jpeg" alt="" />
-        <img src="/ads/vert.jpeg" alt="" />
-        <img src="/ads/xm-1.gif" alt="" />
-        <img src="/ads/xm-2.jpeg" alt="" /> */}
       </main>
     </div>
   )

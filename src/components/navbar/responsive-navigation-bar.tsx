@@ -15,6 +15,8 @@ const ResponsiveNavigationBar = () => {
 
   return (
     <div className="lg:hidden sticky shadow-md  top-0 items-center justify-between flex w-full bg-white p-6 mt-0 h-16">
+      <Search />
+      
       <Sheet>
         <SheetTrigger asChild>
           <span className="text-4xl text-orangeColor">
@@ -60,8 +62,6 @@ const ResponsiveNavigationBar = () => {
           />
         </SheetContent>
       </Sheet>
-
-      <Search />
     </div>
   )
 }
