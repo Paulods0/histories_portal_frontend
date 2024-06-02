@@ -11,7 +11,7 @@ const StoreBuyProductForm = () => {
   let products: {
     name: string
     price: string
-    quantity: number
+    totalPrice: string
     storeQuantity: number
   }[] = []
 
@@ -19,7 +19,7 @@ const StoreBuyProductForm = () => {
     products.push({
       name: product.name,
       price: product.price,
-      quantity: product.quantity!!,
+      totalPrice: product.totalPrice!!,
       storeQuantity: product.storequantity!!,
     })
   }

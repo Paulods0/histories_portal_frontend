@@ -8,15 +8,12 @@ interface IStoreProducs {
 }
 
 const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
-  const { addProduct, removeProduct } = useCartContext()
+  const { addProduct, removeProduct, getItemQuantity } = useCartContext()
 
-  function formatPrice(price: string) {
-    const formatedPrice = new Intl.NumberFormat("pt-PT", {
-      style: "currency",
-      currency: "AKZ",
-    }).format(Number(price))
-    return formatedPrice
-  }
+  const formatedPrice = new Intl.NumberFormat("pt-PT", {
+    style: "currency",
+    currency: "AKZ",
+  }).format(Number(product.price))
 
   return (
     <Dialog>
@@ -32,7 +29,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
           </div>
           <div className="w-full flex flex-col items-center justify-center">
             <h1>{product.name}</h1>
-            <h3 className="text-[#9D9D9D]">{formatPrice(product.price)}</h3>
+            <h3 className="text-[#9D9D9D]">{formatedPrice}</h3>
           </div>
         </div>
       </DialogTrigger>
@@ -45,7 +42,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
           />
 
           <h1 className="text-center font-Poppins">{product.name}</h1>
-          <h4 className="text-center text-[16px] font-normal font-Poppins">{`Preço: ${product.price}`}</h4>
+          <h4 className="text-center text-[16px] font-normal font-Poppins">{`Preço: ${formatedPrice}`}</h4>
         </div>
 
         <div className="flex-1 grid grid-rows-2">
@@ -59,7 +56,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
                 >
                   -
                 </button>
-                {/* <span>{getItemQuantity(product._id)}</span> */}
+                <span>{getItemQuantity(product._id)}</span>
                 <button
                   onClick={() => addProduct(product)}
                   className="border border-zinc-300 roudend-md px-2 w-[30px]"

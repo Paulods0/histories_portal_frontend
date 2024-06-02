@@ -42,6 +42,7 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
           {
             ...product,
             storequantity: 1,
+            totalPrice: product.price,
           },
         ]
         localStorage.setItem("cart", JSON.stringify(updatedProducts))
@@ -53,6 +54,10 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
             ? {
                 ...item,
                 storequantity: (item.storequantity || 0) + 1,
+                totalPrice: (
+                  (Number(item.storequantity) + 1) *
+                  Number(item.price)
+                ).toString(),
               }
             : item
         )
@@ -78,6 +83,9 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
             ? {
                 ...item,
                 storequantity: (item.storequantity || 0) - 1,
+                totalPrice: (
+                  Number(item.totalPrice) - Number(item.price)
+                ).toString(),
               }
             : item
         )

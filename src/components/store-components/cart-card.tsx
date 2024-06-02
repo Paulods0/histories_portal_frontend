@@ -11,6 +11,11 @@ const CartCard = ({ product }: CartCardProps) => {
 
   let quantity = getItemQuantity(product._id)
 
+  const newPrice = new Intl.NumberFormat("pt-PT", {
+    style: "currency",
+    currency: "AKZ",
+  }).format(Number(product.totalPrice))
+
   return (
     <div className="flex flex-col lg:flex-row w-full border-b-zinc-400 lg:pb-0 pb-4 border-b items-center justify-between gap-3">
       <div className="relative size-24 lg:size-[120px]">
@@ -25,7 +30,7 @@ const CartCard = ({ product }: CartCardProps) => {
       <div className="flex flex-col justify-between gap-4 w-full">
         <div className="w-full flex items-center justify-around lg:justify-between">
           <span className="text-base lg:text-sm">{product.name}</span>
-          <span className="text-base lg:text-sm">{product.price} kz</span>
+          <span className="text-base lg:text-sm">{newPrice}</span>
         </div>
 
         <div className="w-full items-center justify-around lg:justify-between flex">
