@@ -40,9 +40,9 @@ export type Product = {
   price: string
   image: string
   quantity?: number
-  description:string
+  description: string
   createdAt?: string
-  totalPrice?:string
+  totalPrice?: string
   storequantity?: number
 }
 export type SchedulePost = {
@@ -51,15 +51,18 @@ export type SchedulePost = {
   file: string
   createdAt: string
 }
+export type ClasssifiedAuthor = {
+  firstname: string
+  lastname: string
+  email: string
+  phone: string
+}
+
 export type ClassifiedPost = {
   _id?: string
   title: string
-  author: {
-    firstname: string
-    lastname: string
-    email: string
-    phone: string
-  }
+  author: ClasssifiedAuthor
+  images?: string[]
   mainImage: string
   content: string
   category?: string
@@ -77,6 +80,7 @@ export type NewClassifiedPost = {
     email: string
     phone: string
   }
+  images?: string[]
   content: string
   mainImage: string
   price: string

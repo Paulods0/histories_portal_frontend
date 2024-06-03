@@ -1,4 +1,14 @@
 import { FC } from "react"
+import {
+  WhatsappIcon,
+  WhatsappShareButton,
+  FacebookIcon,
+  FacebookShareButton,
+  EmailIcon,
+  EmailShareButton,
+  PinterestShareButton,
+  PinterestIcon,
+} from "react-share"
 
 import {
   Carousel,
@@ -7,32 +17,41 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "../ui/carousel"
+import { GoArrowRight } from "react-icons/go"
 
 type Props = {
-  images?: string[]
+  images: string[]
 }
 
-const ClassifiedCarousel: FC<Props> = ({}) => {
+const ClassifiedCarousel: FC<Props> = ({ images }) => {
+  if (!images.length) {
+    return <div className="p-6">Não há imagens</div>
+  }
   return (
     <Carousel>
       <CarouselContent className="p-4">
-        {Array.from({ length: 3 }).map((_, index) => (
+        {images?.map((image, index) => (
           <CarouselItem key={index}>
-            <div className="bg-red-200 w-full h-[300px] p-4"></div>
+            <img src={image} className="w-full h-[300px] p-4" />
           </CarouselItem>
         ))}
       </CarouselContent>
       <CarouselPrevious className="size-14" />
       <CarouselNext className="size-14" />
-      <div className="w-full h-12 flex items-center justify-between">
+      <div className="w-full h-12 flex items-center justify-center gap-4">
+        <h2 className="text-colorBlack flex items-center gap-2">
+          Entrar em contacto <GoArrowRight />
+        </h2>
         <div className="flex items-center gap-4">
-          <span className="text-blue-700">Facebook</span>
-          <span className="text-green-600">Whatsapp</span>
-          <span className="text-zinc-400">Email</span>
+          <WhatsappShareButton url="" children={<WhatsappIcon size={30} />} />
+          <FacebookShareButton url="" children={<FacebookIcon size={30} />} />
+          <EmailShareButton url="" children={<EmailIcon size={30} />} />
+          <PinterestShareButton
+            media=""
+            url=""
+            children={<PinterestIcon size={30} />}
+          />
         </div>
-        <button className="bg-colorBlack text-white px-3 py-2">
-          Estou interessado
-        </button>
       </div>
     </Carousel>
   )

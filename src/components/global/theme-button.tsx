@@ -4,7 +4,7 @@ import { MdOutlineLightMode } from "react-icons/md"
 
 const ThemeButton = () => {
   const { theme, toggleTheme } = useThemeContext()
-  const textColor = theme === "dark" ? "text-white" : "text-colorBlack"
+  const textColor = theme === "dark-mode" ? "text-white" : "text-colorBlack"
   return (
     <motion.button
       onClick={toggleTheme}

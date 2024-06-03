@@ -1,6 +1,5 @@
 import { ClassifiedPost } from "@/api/types"
 import { formateData } from "@/utils/helpers"
-// import { format } from "date-fns"
 import {
   WhatsappIcon,
   WhatsappShareButton,
@@ -31,6 +30,9 @@ const ClassifiedCard = ({ post }: ClassifiedCardProps) => {
       <DialogTrigger asChild>
         <div className="relative w-full h-fit flex flex-col items-center justify-center border pb-4">
           <div className="cursor-pointer relative w-full h-[170px]">
+            <h1 className="absolute top-2 left-2 capitalize bg-zinc-300 text-white rounded-lg px-2 py-1">
+              {post.type === "buy" ? "comprar" : "à venda"}
+            </h1>
             <img
               loading="lazy"
               src={post.mainImage}
@@ -94,7 +96,7 @@ const ClassifiedCard = ({ post }: ClassifiedCardProps) => {
         </div>
       </DialogTrigger>
       <DialogContent>
-        <ClassifiedCarousel />
+        {post.images && <ClassifiedCarousel images={post.images} />}
       </DialogContent>
     </Dialog>
   )

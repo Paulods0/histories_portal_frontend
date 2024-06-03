@@ -62,7 +62,7 @@ const ClassifiedFormBuyPage = () => {
           type="text"
           placeholder="Nome"
           {...register("author.firstname")}
-          className="border p-2 w-full"
+          className="border p-2 w-full outline-none"
         />
         {errors.author?.firstname && (
           <span className="text-xs text-red-600">
@@ -76,7 +76,7 @@ const ClassifiedFormBuyPage = () => {
           type="text"
           placeholder="Sobreome"
           {...register("author.lastname")}
-          className="border p-2 w-full"
+          className="border p-2 w-full outline-none"
         />
         {errors.author?.lastname && (
           <span className="text-xs text-red-600">
@@ -90,7 +90,7 @@ const ClassifiedFormBuyPage = () => {
           type="email"
           placeholder="Email"
           {...register("author.email")}
-          className="border p-2 w-full"
+          className="border p-2 w-full outline-none"
         />
         {errors.author?.email && (
           <span className="text-xs text-red-600">
@@ -104,7 +104,7 @@ const ClassifiedFormBuyPage = () => {
           type="number"
           placeholder="Número de telefone"
           {...register("author.phone")}
-          className="border p-2 w-full"
+          className="border p-2 w-full outline-none"
         />
         {errors.author?.phone && (
           <span className="text-xs text-red-600">
@@ -118,7 +118,7 @@ const ClassifiedFormBuyPage = () => {
           type="number"
           placeholder="Preço do produto"
           {...register("price")}
-          className="border p-2 w-full"
+          className="border p-2 w-full outline-none"
         />
         {errors.price && (
           <span className="text-xs text-red-600">{errors.price.message}</span>
@@ -130,7 +130,7 @@ const ClassifiedFormBuyPage = () => {
           type="text"
           placeholder="Nome do produto"
           {...register("name")}
-          className="border p-2 w-full"
+          className="border p-2 w-full outline-none"
         />
         {errors.name && (
           <span className="text-xs text-red-600">{errors.name.message}</span>
@@ -142,7 +142,7 @@ const ClassifiedFormBuyPage = () => {
           rows={6}
           placeholder="Nome do produto"
           {...register("content")}
-          className="border p-2 w-full resize-none"
+          className="border p-2 w-full resize-none outline-none"
         />
         {errors.content && (
           <span className="text-xs text-red-600">{errors.content.message}</span>
@@ -152,9 +152,8 @@ const ClassifiedFormBuyPage = () => {
       <div className="flex flex-col items-start">
         <input
           type="file"
-          accept=".jpg, .png, .jpeg"
           {...register("image")}
-          className="border p-2 file:text-colorGray-medium w-full"
+          className="w-full file:bg-white file:border-none px-3 py-2 border md:file:text-base file:text-xs outline-none bg-transparent file:font-semibold file:capitalize text-orangeColor cursor-pointer"
         />
         {errors.image && (
           <span className="text-xs text-red-600">{errors.image.message}</span>
@@ -164,7 +163,7 @@ const ClassifiedFormBuyPage = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="text-white bg-colorGray-medium px-3 py-2"
+        className="text-white bg-colorBlack px-3 py-2"
       >
         {isSubmitting ? "Enviando..." : "Submeter formulário"}
       </button>

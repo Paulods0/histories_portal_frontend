@@ -122,9 +122,14 @@ export const getSchedulePosts = async (
   const response = await axios.get(`/schedule-post?page=${page}`)
   return response.data
 }
-export const getClassifiedPosts = async (): Promise<ClassifiedPost[]> => {
+
+export type ClassifiedResponse = {
+  pages: number
+  posts: ClassifiedPost[]
+}
+export const getClassifiedPosts = async (): Promise<ClassifiedResponse> => {
   const response = await axios.get("/classified-post")
-  return response.data.data
+  return response.data
 }
 export const getUserPosts = async (user_id: string): Promise<Post[]> => {
   const response = await axios.get(`/post/user-posts/${user_id}`)
@@ -138,4 +143,12 @@ export const getMostLikedPosts = async (): Promise<Post[]> => {
 
 export const createClassifiedPost = async (data: NewClassifiedPost) => {
   await axios.post("/classified-post/", data)
+}
+
+export const unsubscribeNewsletter = async (email: string) => {
+  try {
+    await axios.put("/newsletter/unregister", { email: email })
+  } catch (error) {
+    console.log(error)
+  }
 }

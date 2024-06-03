@@ -18,7 +18,7 @@ export const formateData = (originalDate: string) => {
 
 export async function handleImageUpload(img: File) {
   const imageFile = img
-  console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`)
+  // console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`)
 
   const options = {
     maxSizeMB: 1,
@@ -28,7 +28,7 @@ export async function handleImageUpload(img: File) {
 
   try {
     const compressedFile = await imageCompression(imageFile, options)
-    console.log(`newFile size ${compressedFile.size / 1024 / 1024} MB`)
+    // console.log(`newFile size ${compressedFile.size / 1024 / 1024} MB`)
     return compressedFile
   } catch (error) {
     console.log(error)

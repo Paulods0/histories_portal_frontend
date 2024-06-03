@@ -17,7 +17,7 @@ const CategoriesNavBar = () => {
   }
 
   return (
-    <ul className="md:hidden z-[8888] hidden mb-0 list-disc sticky top-0 text-colorGray-light/30 w-full shadow-md h-[60px] bg-white lg:flex gap-12 items-center justify-between py-4">
+    <ul className="md:hidden bg-white z-[8888] hidden mb-0 list-disc sticky top-0 w-full shadow-md h-[60px]  lg:flex gap-12 items-center justify-between py-4">
       <div className="w-[1000px] mx-auto flex items-center justify-between">
         <li className="list-none">
           <Link
@@ -39,7 +39,7 @@ const CategoriesNavBar = () => {
             }`}
           >
             <Link
-              className={`text-[15px] font-Oswald text-colorBlack-dark uppercase ${
+              className={`text-[15px] font-Oswald uppercase ${
                 category.link === decodeURL ? "text-orangeColor" : ""
               } hover:text-orangeColor duration-100 transition-all ease-in `}
               to={

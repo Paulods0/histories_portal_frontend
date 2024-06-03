@@ -66,7 +66,7 @@ function App() {
           element: <Subscribe />,
         },
         {
-          path: "unsubscribe/:id",
+          path: "unsubscribe/",
           element: <Unsubscribe />,
         },
         {

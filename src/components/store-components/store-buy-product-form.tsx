@@ -10,6 +10,7 @@ const StoreBuyProductForm = () => {
 
   let products: {
     name: string
+    image: string
     price: string
     totalPrice: string
     storeQuantity: number
@@ -18,6 +19,7 @@ const StoreBuyProductForm = () => {
   for (let product of cartItems) {
     products.push({
       name: product.name,
+      image: product.image,
       price: product.price,
       totalPrice: product.totalPrice!!,
       storeQuantity: product.storequantity!!,
@@ -29,9 +31,6 @@ const StoreBuyProductForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<BuyProductType>({
     resolver: zodResolver(buyProductFormSchema),
-    defaultValues: {
-      products: products,
-    },
   })
 
   async function handleSubmitForm(data: BuyProductType) {
@@ -42,10 +41,10 @@ const StoreBuyProductForm = () => {
           name: data.name,
           phone: data.phone,
         },
-        products: data.products,
+        products: products,
       }
       await axios.post("/product/buy-product", payload)
-      console.log(payload)
+      // console.log(payload)
       toast.success("Pedido enviado")
     } catch (error: any) {
       console.log("handleSubmitForm ~ error", error)

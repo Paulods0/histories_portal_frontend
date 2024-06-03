@@ -1,4 +1,5 @@
 import {
+  ClassifiedResponse,
   PostResponseData,
   createClassifiedPost,
   getAllPosts,
@@ -71,7 +72,7 @@ export const useGetSchedulePost = (page: number) => {
 }
 
 export const useGetClassifiedPosts = () => {
-  return useQuery<ClassifiedPost[]>({
+  return useQuery<ClassifiedResponse>({
     queryKey: ["get-classified-posts"],
     queryFn: getClassifiedPosts,
   })

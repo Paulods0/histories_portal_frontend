@@ -6,17 +6,15 @@ import { Outlet } from "react-router-dom"
 import { useThemeContext } from "@/context/theme-context"
 
 const RootLayout = () => {
-  // const { theme } = useThemeContext()
+  const { theme } = useThemeContext()
   return (
-    <main className={`min-h-screen`}>
+    <main className={`min-h-screen ${theme}`}>
       <Navbar />
       <div className="z-[20] sticky top-0">
         <CategoriesNavBar />
         <ResponsiveNavigationBar />
       </div>
-
       <Outlet />
-
       <Footer />
     </main>
   )

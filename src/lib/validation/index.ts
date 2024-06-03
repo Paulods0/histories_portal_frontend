@@ -1,5 +1,4 @@
 import { handleImageUpload } from "@/utils/helpers"
-// import { fi } from "date-fns/locale"
 import { z } from "zod"
 
 export const ClassifiedFormValidation = z.object({
@@ -28,16 +27,12 @@ export const ClassifiedFormValidation = z.object({
   ),
 })
 
-const product = z.object({
-  name: z.string(),
-  storeQuantity: z.number(),
-  totalPrice: z.coerce.string(),
-})
+
 export const buyProductFormSchema = z.object({
   name: z.string().min(1, "*Insira o seu nome"),
   email: z.string().min(1, "*Insira o seu email").email(),
   phone: z.coerce.string().min(1, "*Insira o seu número de telefone"),
-  products: z.array(product),
+  
 })
 
 export const subscribeFormSchema = z.object({
@@ -85,6 +80,19 @@ export const classifiedFormSchema = z.object({
     email: z.string().min(1, "*Insira o seu sobrenome").email(),
     phone: z.coerce.string().min(1, "*Insira o seu número de telefone"),
   }),
+  images: z
+    .array(
+      z.object({
+        image: z.instanceof(FileList).transform((file) => {
+          if (file.item(0) !== null) {
+            return handleImageUpload(file.item(0)!!)
+          }
+        }),
+      })
+    )
+    .max(3, "Não deve ter mais que 3 imagens")
+    .optional(),
+
   image: z
     .instanceof(FileList)
     .refine((image) => {

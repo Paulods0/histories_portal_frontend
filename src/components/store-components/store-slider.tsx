@@ -16,8 +16,8 @@ const StoreSlider = () => {
         animate={{
           x: "-200%",
           transition: {
-            duration: 10,
-            repeatDelay: 0.4,
+            duration: 25,
+            repeatDelay: 0.7,
             repeat: Infinity,
           },
         }}

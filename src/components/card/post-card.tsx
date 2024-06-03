@@ -31,7 +31,7 @@ const PostCard = ({
             {title}
           </h1>
         </Link>
-        <p
+        <div
           className="text-center text-[15px] font-OpenSans line-clamp-4"
           dangerouslySetInnerHTML={dataContent}
         />

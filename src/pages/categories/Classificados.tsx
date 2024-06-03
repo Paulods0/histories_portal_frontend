@@ -14,7 +14,7 @@ const Classificados = () => {
     )
   }
 
-  const filteredPosts = posts?.filter((post) => post.status === "active")
+  const filteredPosts = posts?.posts.filter((post) => post.status === "active")
 
   if (filteredPosts?.length === 0) {
     return (
@@ -25,7 +25,7 @@ const Classificados = () => {
   }
 
   return (
-    <div className="w-full min-h-screen gap-10 lg:px-12 flex-col ">
+    <div className="w-full min-h-screen gap-10 lg:px-12 lg:mb-12 flex-col ">
       <div className="w-full items-center gap-x-3 flex mb-4"></div>
       <FadeInEffect>
         <div className="place-items-center grid md:grid-cols-2 grid-cols-1 w-full lg:grid-cols-2 gap-8">
@@ -34,7 +34,7 @@ const Classificados = () => {
               <ClipLoader size={80} color="#1A101F" />
             </div>
           ) : (
-            filteredPosts!!.map((post) => (
+            filteredPosts?.map((post) => (
               <ClassifiedCard key={post._id} post={post} />
             ))
           )}

@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 
 type Props = {
   children: React.ReactNode
-  index: number
+  index?: number
 }
 
 const fadeInAnimationVariant = {
