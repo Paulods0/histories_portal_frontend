@@ -15,7 +15,7 @@ import {
   getUserPosts,
   subscribeToNewsletter,
 } from "@/api"
-import { Post, ClassifiedPost } from "@/api/types"
+import { Post } from "@/api/types"
 import { useMutation, useQuery } from "@tanstack/react-query"
 
 export const useGetPosts = (

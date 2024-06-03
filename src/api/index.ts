@@ -9,7 +9,6 @@ import {
   ClassifiedPost,
   NewClassifiedPost,
 } from "./types"
-import { toast } from "react-toastify"
 
 export type PostResponseData = {
   posts: Post[]
