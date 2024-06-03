@@ -25,7 +25,7 @@ const QueroSerVosso = lazy(() => import("./pages/want-to-be-yours"))
 const Historias = lazy(() => import("./pages/categories/historias"))
 const Classificados = lazy(() => import("./pages/categories/classificados"))
 const OverlandExperience = lazy(() => import("./pages/overland-experience"))
-const ProductDetail = lazy(() => import("./pages/store-pages/product-detail"))
+// const ProductDetail = lazy(() => import("./pages/store-pages/product-detail"))
 const ClassifiedsFormPage = lazy(() => import("./pages/classifieds-form-page"))
 const ClassifiedsFormBuyPage = lazy(
   () => import("./pages/classified-form-buy-page")
@@ -80,10 +80,6 @@ function App() {
         {
           path: "pages/contactos",
           element: <Contactos />,
-        },
-        {
-          path: "pages/loja/product/:id",
-          element: <ProductDetail />,
         },
         {
           path: "pages/loja/cart",
