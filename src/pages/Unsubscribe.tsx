@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router-dom"
-import axios from "@/config/axios"
 import {
   Dialog,
   DialogContent,

@@ -1,37 +1,25 @@
 import { motion } from "framer-motion"
 
-const bannerImages = [
-  "/banners/banner-1.jpg",
-  "/banners/banner-2.jpg",
-  "/banners/banner-3.jpg",
-  "/banners/banner-4.jpg",
-  "/banners/banner-5.jpg",
-  "/banners/banner-6.jpg",
-]
-
 const StoreSlider = () => {
   return (
-    <div className="relative w-[100vw] bg-red-200 overflow-x-clip h-[50vh]">
+    <div className="relative mt-14 w-[100vw] overflow-hidden h-[25vh]">
       <motion.div
+        initial={{ x: "0%" }}
         animate={{
-          x: "-200%",
+          x: "-100%",
           transition: {
-            duration: 25,
-            repeatDelay: 0.7,
+            duration: 140,
             repeat: Infinity,
+            repeatType: "loop",
+            ease: "linear",
           },
         }}
-        className="inset-0 w-full h-full flex"
+        className="absolute mt-1 w-[5000px] h-full bg-red-400"
       >
-        {bannerImages.map((image, index) => (
-          <img
-            key={index}
-            src={image}
-            loading="lazy"
-            alt="hero-section-image"
-            className="w-full h-full object-cover"
-          />
-        ))}
+        <img
+          src="/banners/banner-movel-loja.jpg"
+          className="h-full w-full object-cover"
+        />
       </motion.div>
     </div>
   )
