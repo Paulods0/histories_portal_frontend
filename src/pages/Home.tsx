@@ -1,14 +1,15 @@
-import PostCard from "../components/card/post-card"
-import PaginationController from "../components/pagination/pagination-controller"
-
-import HighlightedCard from "../components/card/highlighted-card"
 import { ClipLoader } from "react-spinners"
-import GoBackButton from "../components/global/go-back-button"
+import { useNavigate } from "react-router-dom"
+import { memo, useMemo, useState } from "react"
 import { useGetPosts } from "@/lib/react-query"
+import PostCard from "../components/card/post-card"
 import FadeInEffect from "@/components/motion/fade-in"
 import SideBarHome from "@/components/sidebar/side-bar-home"
-import { useState } from "react"
-import { useNavigate } from "react-router-dom"
+import GoBackButton from "../components/global/go-back-button"
+import HighlightedCard from "../components/card/highlighted-card"
+import PaginationController from "../components/pagination/pagination-controller"
+
+const MemoizedPostCard = memo(PostCard)
 
 const Home = () => {
   const navigate = useNavigate()
@@ -20,6 +21,14 @@ const Home = () => {
     navigate(`/page/${newPage}`)
   }
 
+  const memoizedPosts = useMemo(() => {
+    return posts?.posts
+      .filter((post) => !post.highlighted)
+      .map((post) => {
+        return <MemoizedPostCard post={post} key={post._id} />
+      })
+  }, [posts?.posts])
+
   if (isLoading) {
     return (
       <div className="w-full h-screen flex items-center justify-center">
@@ -28,18 +37,6 @@ const Home = () => {
     )
   }
 
-  if (!posts?.posts) {
-    return (
-      <div className="w-full my-12 flex items-start h-screen justify-center">
-        <div className="self-center">
-          <ClipLoader color="#1a101F" size={100} />
-        </div>
-      </div>
-    )
-  }
-
-  const filteredPosts = posts?.posts.filter((post) => !post.highlighted)
-
   return (
     <main className="relative w-full min-h-screen px-8 pb-3 flex-col mt-6">
       <div className="w-full flex gap-10 ">
@@ -47,9 +44,7 @@ const Home = () => {
           <div className="flex-[3] min-h-screen">
             <HighlightedCard />
             <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-              {filteredPosts.map((post) => (
-                <PostCard key={post._id} post={post} />
-              ))}
+              {memoizedPosts}
             </div>
           </div>
         </FadeInEffect>
@@ -60,7 +55,7 @@ const Home = () => {
       </div>
 
       <div className="w-full flex items-center justify-center">
-        <PaginationController paginate={handlePaginate} pages={posts.pages} />
+        <PaginationController paginate={handlePaginate} pages={posts!!.pages} />
       </div>
       <GoBackButton />
     </main>

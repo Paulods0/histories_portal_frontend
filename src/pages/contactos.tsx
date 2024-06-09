@@ -1,7 +1,7 @@
-import ContactBlock, { IconTypes } from "@/components/contact-block"
 import FadeInEffect from "@/components/motion/fade-in"
+import ContactBlock, { IconTypes } from "@/components/contact-block"
 
-const contacts = [
+export const contacts = [
   {
     id: 1,
     title: "Email",

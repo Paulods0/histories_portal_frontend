@@ -1,11 +1,10 @@
-import { createMarkup, formateData } from "../../utils/helpers"
+import { Link } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
 import { useGetHighlightedPost } from "@/lib/react-query"
-import { Link } from "react-router-dom"
+import { createMarkup, formateData } from "../../utils/helpers"
 
 const HighlightedCard = () => {
   const { data: post, isLoading } = useGetHighlightedPost()
-
   const dataContent = createMarkup(post?.content)
   const formatedDate = post?.createdAt ? formateData(post?.createdAt) : ""
 
@@ -23,11 +22,10 @@ const HighlightedCard = () => {
   if (!post) {
     return
   }
-
   return (
     <Link
       reloadDocument
-      to={`/post/${post?._id}`}
+      to={`/post/${post!!._id}`}
       className="w-full flex flex-col mb-12 items-center justify-center"
     >
       <h1 className="text-[41px] lg:line-clamp-2 text-center text-[#111111] font-Oswald font-normal">
