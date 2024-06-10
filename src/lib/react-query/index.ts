@@ -1,6 +1,8 @@
 import {
   ClassifiedResponse,
+  PartnerResponseData,
   PostResponseData,
+  TipsResponseData,
   createClassifiedPost,
   getAllPosts,
   getAllProducts,
@@ -81,14 +83,14 @@ export const useGetClassifiedPosts = (page: number = 1) => {
 }
 
 export const useGetTips = (page: number = 1) => {
-  return useQuery<PostResponseData>({
+  return useQuery<TipsResponseData>({
     queryKey: ["get-tips", page],
     queryFn: () => getTips(page),
   })
 }
 
 export const useGetPartners = (page: number = 1) => {
-  return useQuery<PostResponseData>({
+  return useQuery<PartnerResponseData>({
     queryKey: ["get-partners", page],
     queryFn: () => getPartners(page),
   })

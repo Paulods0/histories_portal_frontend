@@ -2,12 +2,12 @@ import { memo, useMemo } from "react"
 import { ClipLoader } from "react-spinners"
 import { useGetTips } from "@/lib/react-query"
 import { useSearchParams } from "react-router-dom"
-import PostCard from "@/components/card/post-card"
+import TipCard from "@/components/card/tip-card"
 import FadeInEffect from "@/components/motion/fade-in"
 import SwiperPosts from "@/components/global/SwiperPosts"
 import PaginationController from "@/components/pagination/pagination-controller"
 
-const MemoPostCard = memo(PostCard)
+const MemoTipCard = memo(TipCard)
 
 const TipsPage = () => {
   const [page, setPage] = useSearchParams({ page: "1" })
@@ -17,7 +17,7 @@ const TipsPage = () => {
 
   const memoPosts = useMemo(() => {
     return posts?.posts.map((post) => (
-      <MemoPostCard post={post} key={post._id} />
+      <MemoTipCard post={post} key={post._id} />
     ))
   }, [posts?.posts])
 
@@ -45,7 +45,7 @@ const TipsPage = () => {
             <h1>Não há nada ainda.</h1>
           </div>
         ) : (
-          <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="place-items-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-12 gap-8">
             {memoPosts}
           </div>
         )}

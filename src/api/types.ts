@@ -30,6 +30,15 @@ export type Post = {
   tag: string[]
   category_slug: string
 }
+export type Tip = {
+  _id: string
+  title: string
+  image: string
+  content: string
+  author: Author
+  category: string
+  createdAt: string
+}
 export type Product = {
   _id: string
   name: string

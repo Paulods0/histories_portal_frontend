@@ -8,10 +8,19 @@ import {
   SchedulePost,
   ClassifiedPost,
   NewClassifiedPost,
+  Tip,
 } from "./types"
 
 export type PostResponseData = {
   posts: Post[]
+  pages: number
+}
+export type TipsResponseData = {
+  posts: Tip[]
+  pages: number
+}
+export type PartnerResponseData = {
+  partners: Tip[]
   pages: number
 }
 export const getAllPosts = async (
@@ -137,12 +146,14 @@ export const getUserPosts = async (user_id: string): Promise<Post[]> => {
   return response.data
 }
 
-export const getTips = async (page: number = 1): Promise<PostResponseData> => {
+export const getTips = async (page: number = 1): Promise<TipsResponseData> => {
   const response = await axios.get(`/tip?page=${page}`)
   return response.data
 }
 
-export const getPartners = async (page: number = 1): Promise<PostResponseData> => {
+export const getPartners = async (
+  page: number = 1
+): Promise<PartnerResponseData> => {
   const response = await axios.get(`/partner?page=${page}`)
   return response.data
 }
