@@ -5,6 +5,9 @@ import { useGetPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 import SwiperPosts from "@/components/global/SwiperPosts"
 import PaginationController from "@/components/pagination/pagination-controller"
+import { memo, useMemo } from "react"
+
+const MemoizedPostCard = memo(PostCard)
 
 const Historias = () => {
   const path = useLocation()
@@ -12,6 +15,12 @@ const Historias = () => {
   const currPage = parseInt(path.search.split("=")[1]) || 1
 
   const { data: posts, isLoading } = useGetPosts(currPage, category)
+
+  const memoizedPosts = useMemo(() => {
+    return posts?.posts.map((post) => (
+      <MemoizedPostCard post={post} key={post._id} />
+    ))
+  }, [posts?.posts])
 
   if (isLoading) {
     return (
@@ -28,15 +37,15 @@ const Historias = () => {
   return (
     <div className="w-full min-h-screen gap-10 lg:px-12 flex-col ">
       <FadeInEffect>
-        <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-          {isLoading ? (
-            <div className="col-span-2 flex items-center justify-center">
-              <ClipLoader size={80} color="#1A101F" />
-            </div>
-          ) : (
-            posts?.posts.map((post) => <PostCard key={post._id} post={post} />)
-          )}
-        </div>
+        {memoizedPosts?.length === 0 ? (
+          <div className="w-full flex items-center justify-center mt-6">
+            <h1>Não há nenhum post ainda.</h1>
+          </div>
+        ) : (
+          <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+            {memoizedPosts}
+          </div>
+        )}
       </FadeInEffect>
 
       <div className="mt-12">
@@ -45,9 +54,6 @@ const Historias = () => {
             paginate={handlePaginate}
             pages={posts!!.pages}
           />
-          <div className="text-colorGray font-semibold font-Roboto uppercase text-[12px] flex self-start gap-1">
-            <h1 className="text-colorGray-zinc-900">Os mais vistos:</h1>
-          </div>
         </div>
         <SwiperPosts />
       </div>

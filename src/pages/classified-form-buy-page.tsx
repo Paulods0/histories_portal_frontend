@@ -3,7 +3,8 @@ import { useCreateClassifiedPost } from "@/lib/react-query"
 import { ClassifiedFormType, classifiedFormSchema } from "@/lib/validation"
 import { uploadImageToFirebaseStorage } from "@/utils/helpers"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
+import { useFieldArray, useForm } from "react-hook-form"
+import { LuImagePlus } from "react-icons/lu"
 import { toast } from "react-toastify"
 
 const ClassifiedFormBuyPage = () => {
@@ -11,6 +12,7 @@ const ClassifiedFormBuyPage = () => {
 
   const {
     register,
+    control,
     formState: { errors, isSubmitting },
     handleSubmit,
     reset,
@@ -21,10 +23,30 @@ const ClassifiedFormBuyPage = () => {
     },
   })
 
+  const { append, remove, fields } = useFieldArray({
+    control,
+    name: "images",
+  })
+
+  function addImages() {
+    append({
+      image: undefined,
+    })
+  }
+  function removeImage(index: number) {
+    remove(index)
+  }
+
   const handleSubmitForm = async (data: ClassifiedFormType) => {
     try {
       let imageURL = await uploadImageToFirebaseStorage(data.image!!)
-
+      let imagesURL: string[] = []
+      if (data?.images) {
+        for (let image of data.images) {
+          const file = await uploadImageToFirebaseStorage(image.image!! as File)
+          imagesURL.push(file)
+        }
+      }
       const newPostData: NewClassifiedPost = {
         author: {
           firstname: data.author.firstname,
@@ -34,6 +56,7 @@ const ClassifiedFormBuyPage = () => {
         },
         content: data.content,
         mainImage: imageURL,
+        images: imagesURL,
         price: data.price,
         title: data.name,
         type: data.type!!,
@@ -140,7 +163,7 @@ const ClassifiedFormBuyPage = () => {
       <div className="flex flex-col items-start">
         <textarea
           rows={6}
-          placeholder="Nome do produto"
+          placeholder="Descrição"
           {...register("content")}
           className="border p-2 w-full resize-none outline-none"
         />
@@ -159,7 +182,33 @@ const ClassifiedFormBuyPage = () => {
           <span className="text-xs text-red-600">{errors.image.message}</span>
         )}
       </div>
-
+      <h2>Adicionar mais imagens (opcional)</h2>
+      <div className="w-full justify-start flex">
+        <button
+          type="button"
+          className="text-colorBlack text-xl hover:text-zinc-400 duration-200 transition-all bg-zinc-300 p-4 rounded-lg"
+          onClick={addImages}
+        >
+          <LuImagePlus />
+        </button>
+      </div>
+      {fields.map((field, index) => (
+        <div key={index} className="flex flex-col w-full gap-2 items-end">
+          <button
+            type="button"
+            className="w-fit text-red-600 hover:underline duration-300 transition-all"
+            onClick={() => removeImage(index)}
+          >
+            Remover
+          </button>
+          <input
+            type="file"
+            key={field.id}
+            {...register(`images.${index}.image`)}
+            className="w-full file:bg-white file:border-none px-3 py-2 border md:file:text-base file:text-xs outline-none bg-transparent file:font-semibold file:capitalize text-orangeColor cursor-pointer"
+          />
+        </div>
+      ))}
       <button
         type="submit"
         disabled={isSubmitting}

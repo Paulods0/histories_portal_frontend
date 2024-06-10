@@ -1,23 +1,22 @@
+import { memo, useMemo } from "react"
 import { ClipLoader } from "react-spinners"
-import { useLocation } from "react-router-dom"
-import { useGetPosts } from "@/lib/react-query"
-import PostCard from "../../components/card/post-card"
+import { useSearchParams } from "react-router-dom"
+import PostCard from "@/components/card/post-card"
+import { useGetPartners } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 import SwiperPosts from "@/components/global/SwiperPosts"
 import PaginationController from "@/components/pagination/pagination-controller"
-import { memo, useMemo } from "react"
 
 const MemoPostCard = memo(PostCard)
 
-const Reviews = () => {
-  const path = useLocation()
-  const category = path.pathname.split("/")[2]!!
-  const currPage = parseInt(path.search.split("=")[1]) || 1
+const PartnersPage = () => {
+  const [page, setPage] = useSearchParams({ page: "1" })
+  const currPage = Number(page.get("page"))
 
-  const { data: posts, isLoading } = useGetPosts(currPage, category)
+  const { data: posts, isLoading } = useGetPartners(currPage)
 
   const memoPosts = useMemo(() => {
-    return posts?.posts.map((post) => (
+    return posts?.posts?.map((post) => (
       <MemoPostCard post={post} key={post._id} />
     ))
   }, [posts?.posts])
@@ -30,24 +29,26 @@ const Reviews = () => {
     )
   }
 
-  if (posts?.posts.length === 0) {
-    return (
-      <div className="col-span-2 flex items-center justify-center">
-        <h1>Nenhum post ainda.</h1>
-      </div>
-    )
-  }
-
   const handlePaginate = (newPage: number) => {
-    window.location.href = `?page=${newPage}`
+    setPage((prev) => {
+      prev.set("page", String(newPage))
+      return prev
+    })
+    window.scrollTo(0, 0)
   }
 
   return (
     <div className="w-full min-h-screen gap-10 lg:px-12 flex-col">
       <FadeInEffect>
-        <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-          {memoPosts}
-        </div>
+        {memoPosts?.length === 0 ? (
+          <div className="w-full flex items-center justify-center mt-6">
+            <h1>Nenhum post ainda.</h1>
+          </div>
+        ) : (
+          <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+            {memoPosts}
+          </div>
+        )}
       </FadeInEffect>
 
       <div className="mt-12">
@@ -64,4 +65,4 @@ const Reviews = () => {
   )
 }
 
-export default Reviews
+export default PartnersPage

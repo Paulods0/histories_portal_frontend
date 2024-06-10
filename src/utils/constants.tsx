@@ -36,25 +36,7 @@ export const NAV_LINKS = [
   },
   {
     name: "Parceiros",
-    link: "/pages/parceiros/oficinas",
-    children: [
-      {
-        name: "Oficinas",
-        link: "/pages/parceiros/oficinas",
-      },
-      {
-        name: "Lojas",
-        link: "/pages/parceiros/lojas",
-      },
-      {
-        name: "Onde ficar",
-        link: "/pages/parceiros/onde-ficar",
-      },
-      {
-        name: "Onde comer",
-        link: "/pages/parceiros/onde-comer",
-      },
-    ],
+    link: "/pages/parceiros",
   },
   {
     name: "Contactos",

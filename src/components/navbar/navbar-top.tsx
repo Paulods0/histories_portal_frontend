@@ -1,7 +1,6 @@
 import { NAV_LINKS } from "@/utils/constants"
 import { Link, useLocation } from "react-router-dom"
 import Search from "../search/search"
-import ThemeButton from "../global/theme-button"
 
 const NavbarTop = () => {
   const { pathname } = useLocation()
@@ -37,7 +36,6 @@ const NavbarTop = () => {
         </ul>
       </nav>
       <div className="flex items-center gap-4">
-        <ThemeButton />
         <Search />
       </div>
     </div>

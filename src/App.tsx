@@ -6,6 +6,7 @@ import MobileCartPage from "./pages/store-pages/mobile-cart-page"
 import RootLayout from "./components/root-layout"
 import Fallback from "./components/global/fallback"
 import TipsPage from "./pages/tips-page"
+import PartnersPage from "./pages/partners-page"
 
 const Home = lazy(() => import("./pages/home"))
 const Page = lazy(() => import("./pages/Page"))
@@ -81,6 +82,10 @@ function App() {
         {
           path: "pages/dicas",
           element: <TipsPage />,
+        },
+        {
+          path: "pages/parceiros",
+          element: <PartnersPage />,
         },
         {
           path: "pages/contactos",

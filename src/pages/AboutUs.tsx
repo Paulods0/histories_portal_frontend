@@ -16,68 +16,53 @@ const AboutUs = () => {
           />
         </div>
 
-        <div className="flex w-full h-full items-center justify-center flex-col">
+        <div className="flex w-[70vw] mx-auto text-center h-full items-center justify-center flex-col">
           <div className="w-full  mb-6">
             <h1 className="font-PlayFair text-[36px] font-medium text-center mb-4">
-              About Expedition Portal
+              Quem somos?
             </h1>
-            <p className="font-OpenSans text-[15px]">
-              Expedition Portal is a community of adventure travelers, where the
-              primary means of exploration is by 4wd and motorcycle. Founded in
-              2005 by Scott Brady, CEO of Overland International, Expedition
-              Portal is operated by a team of experienced adventurers, our staff
-              having completed expeditions on all seven continents and travels
-              in 140+ countries. With the growing popularity of overland travel,
-              Expedition Portal has expanded in membership and content to
-              represent the single-largest repository of online overland
-              resources on the web. This includes 4,000+ feature editorials,
-              180,000+ community members on the forum with over 2.5 million
-              forum posts. Most know us as ExPo.
+            <p className="font-OpenSans text-lg">
+              Em 2019, nasceu da união de amigos apaixonados por aventura o
+              Clube Overland Angola. Mais do que um mero grupo, somos uma
+              irmandade que pulsa com a vontade de explorar, conhecer e celebrar
+              a beleza de Angola. Juntos, percorremos trilhas desafiadoras,
+              equipamos nossos veículos com autonomia e desfrutamos da alegria
+              de compartilhar experiências inesquecíveis. O Overland Angola
+              transcende os limites do comum. Somos um estilo de vida, uma
+              filosofia que valoriza a liberdade, a amizade e a conexão com a
+              natureza. Cada expedição é uma oportunidade de desbravar novos
+              horizontes, superar limites e fortalecer os vínculos que nos unem.
+              O Clube Overland Angola abre suas portas para todos que desejam
+              compartilhar a paixão por viagens, offroad e a beleza incomparável
+              de Angola. Venha fazer parte da nossa família e juntos, vamos
+              escrever histórias épicas nas estradas do nosso país! Overland
+              Angola, a aventura começa aqui.
             </p>
           </div>
 
           <div className="w-full mb-6">
             <h1 className="font-PlayFair font-medium text-center mb-4 text-[36px]">
-              About Overland International
+              O que é o overland?
             </h1>
-            <p className="font-OpenSans text-[15px]">
-              Overland International, Inc. is the parent company for the
-              Overland Journal magazine, the Expedition Portal website and the
-              Overland Rally event series. Along with these channels, our team
-              also produces high-quality video for the web and television. The
-              company is an employee-owned, veteran-owned business headquartered
-              in Prescott, Arizona.
-            </p>
-          </div>
-          <div className="w-full">
-            <h1 className="font-PlayFair font-medium text-center mb-4 text-[36px]">
-              About Overland Journal
-            </h1>
-            <p className="font-OpenSans text-[15px]">
-              Started in 2007, Overland Journal is an archive quality, journal
-              format publication dedicated to expedition travel and exploration
-              in North America and around the world. The magazine is published
-              five times per year with a print and digital circulation of 20,000
-              copies. Overland Journal features over 140 pages of expedition
-              vehicles, travel stories, equipment reviews and breathtaking
-              photography. Learn more about Overland Journal at
-              overlandjournal.com.
-            </p>
-          </div>
-          <div className="w-full mt-6">
-            <h1 className="font-PlayFair font-medium text-center mb-4 text-[36px]">
-              What is Overlanding?
-            </h1>
-            <p className="font-OpenSans text-[15px]">
-              Overlanding is about exploration and adventure travel. While the
-              roads and trails we travel might be rough or technically
-              challenging, they are the means to an end, not the goal itself.
-              The pursuit is to see and learn about our world, whether on a
-              weekend trip 100 miles from home or a 10,000-mile expedition
-              across another continent. The vehicle and equipment can be simple
-              or extravagant – they, too, are simply means to an end. History,
-              wildlife, culture, scenery, self-sufficiency – these are the
-              rewards of overlanding. Click here for a complete definition.
+            <p className="font-OpenSans text-lg">
+              Overland não é só um passeio de Jipe. É um hino à liberdade, um
+              desafio para a alma aventureira que pulsa em nós. É a melodia que
+              os nossos pés, as nossas rodas, por caminhos inexploradas, que
+              conecta-nos com a sinfonia da natureza e a batida pulsante de
+              diferentes culturas, paisagens, a nossa terra ao nosso olhar. Em
+              cada quilômetro desbravado, compõe tua própria história. Acampar
+              sob as estrelas, cozinhar ao som dos grilos e equipando-se para os
+              desafios da estrada, tu reges a tua própria aventura. Destinos
+              remotos, como notas musicais exóticas, convidam a descobrir
+              paisagens secretas e culturas autênticas, longe dos acordes
+              repetitivos do turismo convencional. Liberdade e aventura são os
+              instrumentos que temos disponíveis. Cria o teu próprio ritmo,
+              improvisa rotas e viva cada momento com a intensidade nas mãos da
+              tua máquina. Overland é a fusão perfeita entre nós, a natureza e a
+              máquina offroad, o teu fiel companheiro. Juntos, para explorar o
+              inexplorado, desafiar os limites e criar memórias que ecoarão para
+              sempre em nossos corações. Então, aventureiro overlander,
+              prepara-te, ajusta o teu setup, embarca na aventura Overland!
             </p>
           </div>
         </div>

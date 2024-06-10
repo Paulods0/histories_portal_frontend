@@ -126,12 +126,24 @@ export type ClassifiedResponse = {
   pages: number
   posts: ClassifiedPost[]
 }
-export const getClassifiedPosts = async (): Promise<ClassifiedResponse> => {
-  const response = await axios.get("/classified-post")
+export const getClassifiedPosts = async (
+  page: number = 1
+): Promise<ClassifiedResponse> => {
+  const response = await axios.get(`/classified-post?page=${page}`)
   return response.data
 }
 export const getUserPosts = async (user_id: string): Promise<Post[]> => {
   const response = await axios.get(`/post/user-posts/${user_id}`)
+  return response.data
+}
+
+export const getTips = async (page: number = 1): Promise<PostResponseData> => {
+  const response = await axios.get(`/tip?page=${page}`)
+  return response.data
+}
+
+export const getPartners = async (page: number = 1): Promise<PostResponseData> => {
+  const response = await axios.get(`/partner?page=${page}`)
   return response.data
 }
 

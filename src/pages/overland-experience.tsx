@@ -40,9 +40,6 @@ const OverlandExperience = () => {
             paginate={handlePaginate}
             pages={data!!.pages!!}
           />
-          <div className="text-colorGray font-semibold font-Roboto uppercase text-[12px] flex self-start gap-1">
-            <h1 className="text-colorGray-zinc-900">Os mais vistos:</h1>
-          </div>
         </div>
 
         <SwiperPosts />

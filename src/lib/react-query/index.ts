@@ -9,9 +9,11 @@ import {
   getHighlightedPost,
   getMostLikedPosts,
   getMostViewedPosts,
+  getPartners,
   getPostByCategory,
   getSchedulePosts,
   getSinglePost,
+  getTips,
   getUserPosts,
   subscribeToNewsletter,
 } from "@/api"
@@ -71,10 +73,24 @@ export const useGetSchedulePost = (page: number) => {
   })
 }
 
-export const useGetClassifiedPosts = () => {
+export const useGetClassifiedPosts = (page: number = 1) => {
   return useQuery<ClassifiedResponse>({
-    queryKey: ["get-classified-posts"],
-    queryFn: getClassifiedPosts,
+    queryKey: ["get-classified-posts", page],
+    queryFn: () => getClassifiedPosts(page),
+  })
+}
+
+export const useGetTips = (page: number = 1) => {
+  return useQuery<PostResponseData>({
+    queryKey: ["get-tips", page],
+    queryFn: () => getTips(page),
+  })
+}
+
+export const useGetPartners = (page: number = 1) => {
+  return useQuery<PostResponseData>({
+    queryKey: ["get-partners", page],
+    queryFn: () => getPartners(page),
   })
 }
 

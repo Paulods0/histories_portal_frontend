@@ -5,28 +5,27 @@ export const contacts = [
   {
     id: 1,
     title: "Email",
-    content: "overlandagola@gmail.com",
-    link: "mailto:overlandagola@gmail.com",
+    content: "webmaster.overlandangola@aol.com",
+    link: "mailto:webmaster.overlandangola@aol.com",
   },
-  { id: 2, title: "Residência", content: "Angola, Luanda", link: "#" },
-  { id: 3, title: "Telemóvel", content: "+244 123 456", link: "+244123456" },
+
   {
-    id: 4,
+    id: 2,
     icon: "facebook" as IconTypes,
     title: "Facebook",
-    link: "https://facebook.com",
+    link: "https://www.facebook.com/clubeoverland.angola",
   },
   {
-    id: 5,
+    id: 3,
     title: "Instagram",
     icon: "instagram" as IconTypes,
-    link: "https://instagram.com",
+    link: "https://www.instagram.com/clubeoverlandangola/",
   },
   {
-    id: 6,
+    id: 4,
     title: "Youtube",
     icon: "youtube" as IconTypes,
-    link: "https://youtube.com",
+    link: "https://www.youtube.com/@OverlandAngola",
   },
 ]
 

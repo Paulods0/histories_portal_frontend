@@ -165,7 +165,7 @@ const ClassifiedForm = () => {
       <div className="flex flex-col items-start">
         <textarea
           rows={6}
-          placeholder="Nome do produto"
+          placeholder="Descrição"
           {...register("content")}
           className="border p-2 w-full resize-none outline-none"
         />

@@ -9,6 +9,9 @@ import StoreSlider from "@/components/store-components/store-slider"
 import StoreMobileNavigation from "@/components/store-components/store-mbile-navigation"
 import { useSearchParams } from "react-router-dom"
 import PaginationController from "@/components/pagination/pagination-controller"
+import { memo, useMemo } from "react"
+
+const MemoStoreCard = memo(StoreCard)
 
 const Store = () => {
   const [filter, setFilter] = useSearchParams({
@@ -23,6 +26,12 @@ const Store = () => {
     parseInt(page),
     category
   )
+
+  const memoProducts = useMemo(() => {
+    return products?.products.map((product) => (
+      <MemoStoreCard product={product} key={product._id} />
+    ))
+  }, [products?.products])
 
   const handlePaginate = (newPage: number) => {
     setFilter((prev) => {
@@ -55,16 +64,14 @@ const Store = () => {
           <StoreFilter urlQuery={category} setFilter={setFilter} />
 
           <section className="w-full grid grid-cols-1 flex-[5] pl-2 border-l mb-12 md:grid-cols-2 mt-4 place-items-center lg:grid-cols-4 gap-8">
-            {products?.products.length === 0 ? (
+            {memoProducts?.length === 0 ? (
               <div className="lg:col-span-4 md:col-span-2 col-span-1">
                 <h1 className="text-center text-xl font-semibold">
                   Não há nada ainda.
                 </h1>
               </div>
             ) : (
-              products?.products?.map((product) => (
-                <StoreCard key={product._id} product={product} />
-              ))
+              memoProducts
             )}
           </section>
         </section>
