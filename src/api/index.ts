@@ -47,12 +47,10 @@ export const getPostsAndPagination = async (
   const posts: Post[] = data.posts
   return { posts, pages }
 }
-
 type ProductsResponse = {
   products: Product[]
   pages: number
 }
-
 export const getAllProducts = async (
   page?: number,
   category?: string
@@ -106,7 +104,6 @@ export const subscribeToNewsletter = async (user: {
 }) => {
   await axios.post("/newsletter/register", user)
 }
-
 export const likePost = async (postId: string) => {
   const response = await axios.put(`/post/like/${postId}`)
   const { clicked } = await response.data
@@ -119,7 +116,6 @@ export const deslikePost = async (postId: string) => {
   const { clicked } = await response.json()
   return clicked
 }
-
 export type SchedulePostResponse = {
   posts: SchedulePost[]
   pages: number
@@ -130,7 +126,6 @@ export const getSchedulePosts = async (
   const response = await axios.get(`/schedule-post?page=${page}`)
   return response.data
 }
-
 export type ClassifiedResponse = {
   pages: number
   posts: ClassifiedPost[]
@@ -145,28 +140,31 @@ export const getUserPosts = async (user_id: string): Promise<Post[]> => {
   const response = await axios.get(`/post/user-posts/${user_id}`)
   return response.data
 }
-
 export const getTips = async (page: number = 1): Promise<TipsResponseData> => {
   const response = await axios.get(`/tip?page=${page}`)
   return response.data
 }
-
+export const getSingleTip = async (id: string): Promise<Tip> => {
+  const response = await axios.get(`/tip/${id}`)
+  return response.data
+}
 export const getPartners = async (
   page: number = 1
 ): Promise<PartnerResponseData> => {
   const response = await axios.get(`/partner?page=${page}`)
   return response.data
 }
-
+export const getSinglePartner = async (id: string): Promise<Tip> => {
+  const response = await axios.get(`/partner/${id}`)
+  return response.data
+}
 export const getMostLikedPosts = async (): Promise<Post[]> => {
   const response = await axios.get("/post/get/most-liked")
   return response.data
 }
-
 export const createClassifiedPost = async (data: NewClassifiedPost) => {
   await axios.post("/classified-post/", data)
 }
-
 export const unsubscribeNewsletter = async (email: string) => {
   try {
     await axios.put("/newsletter/unregister", { email: email })

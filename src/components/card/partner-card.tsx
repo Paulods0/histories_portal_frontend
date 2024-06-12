@@ -8,17 +8,17 @@ type Props = {
   post: Tip
 }
 
-const TipCard: FC<Props> = ({ post }) => {
+const PartnerCard: FC<Props> = ({ post }) => {
   const dataContent = createMarkup(post.content)
 
   return (
     <Link
-      to={`/dica/${post._id}`}
+      to={`/parceiro/${post._id}`}
       className="relative w-full h-fit flex flex-col items-center justify-center"
     >
       <div className="w-full relative">
         <div className="cursor-pointer relative w-full md:h-[350px] lg:h-[270px]">
-          <Link className="h-full w-full" to={`/dica/${post._id}`}>
+          <Link className="h-full w-full" to={`/parceiro/${post._id}`}>
             <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
             <LazyImage
               id={post._id}
@@ -54,4 +54,4 @@ const TipCard: FC<Props> = ({ post }) => {
   )
 }
 
-export default TipCard
+export default PartnerCard

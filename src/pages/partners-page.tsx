@@ -1,13 +1,13 @@
 import { memo, useMemo } from "react"
 import { ClipLoader } from "react-spinners"
 import { useSearchParams } from "react-router-dom"
-import TipCard from "@/components/card/tip-card"
 import { useGetPartners } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
+import PartnerCard from "@/components/card/partner-card"
 import SwiperPosts from "@/components/global/SwiperPosts"
 import PaginationController from "@/components/pagination/pagination-controller"
 
-const MemoPostCard = memo(TipCard)
+const MemoPostCard = memo(PartnerCard)
 
 const PartnersPage = () => {
   const [page, setPage] = useSearchParams({ page: "1" })

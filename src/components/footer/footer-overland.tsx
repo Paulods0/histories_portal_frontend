@@ -23,11 +23,11 @@ const FooterOverland = () => {
           segue-nos
         </h2>
 
-        <ul className="flex mt-2 lg:mt-0 items-center gap-3 justify-start">
+        <ul className="flex mt-3 items-center gap-3 justify-start">
           {SOCIAL_MEDIA_LINKS.map((link, index) => (
             <li key={index}>
               <a
-                className="text-xl lg:p-0 lg:text-base"
+                className="text-xl lg:p-0 lg:text-lg"
                 key={index}
                 href={link.link}
                 target="_blank"

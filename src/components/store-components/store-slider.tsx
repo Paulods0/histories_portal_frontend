@@ -14,7 +14,7 @@ const StoreSlider = () => {
             ease: "linear",
           },
         }}
-        className="absolute mt-1 w-[5000px] h-full bg-red-400"
+        className="absolute mt-1 w-[5000px] h-full"
       >
         <img
           src="/banners/banner-movel-loja.jpg"

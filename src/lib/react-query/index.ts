@@ -14,12 +14,14 @@ import {
   getPartners,
   getPostByCategory,
   getSchedulePosts,
+  getSinglePartner,
   getSinglePost,
+  getSingleTip,
   getTips,
   getUserPosts,
   subscribeToNewsletter,
 } from "@/api"
-import { Post } from "@/api/types"
+import { Post, Tip } from "@/api/types"
 import { useMutation, useQuery } from "@tanstack/react-query"
 
 export const useGetPosts = (
@@ -89,10 +91,24 @@ export const useGetTips = (page: number = 1) => {
   })
 }
 
+export const useGetSingleTip = (id: string) => {
+  return useQuery<Tip>({
+    queryKey: ["get-single-tip", id],
+    queryFn: () => getSingleTip(id),
+  })
+}
+
 export const useGetPartners = (page: number = 1) => {
   return useQuery<PartnerResponseData>({
     queryKey: ["get-partners", page],
     queryFn: () => getPartners(page),
+  })
+}
+
+export const useGetSinglePartner = (id: string) => {
+  return useQuery<Tip>({
+    queryKey: ["get-single-partner", id],
+    queryFn: () => getSinglePartner(id),
   })
 }
 

@@ -1,8 +1,8 @@
 import { motion } from "framer-motion"
 import { FC } from "react"
-import { SiYoutube, SiInstagram, SiFacebook } from "react-icons/si"
+import { SiYoutube, SiInstagram, SiFacebook, SiWhatsapp } from "react-icons/si"
 
-export type IconTypes = "facebook" | "youtube" | "instagram"
+export type IconTypes = "facebook" | "youtube" | "instagram" | "whatsapp"
 
 type Props = {
   title: string
@@ -15,11 +15,14 @@ const icons = {
   facebook: <SiFacebook />,
   instagram: <SiInstagram />,
   youtube: <SiYoutube />,
+  whatsapp: <SiWhatsapp />,
 }
 
 const ContactBlock: FC<Props> = ({ title, icon, content, link }) => {
   return (
-    <motion.div
+    <motion.a
+      href={link ?? "#"}
+      target="_blank"
       className="flex flex-col items-center p-8 h-[130px] border w-full gap-4"
       initial={{ y: 0 }}
       whileHover={{ y: -15 }}
@@ -27,23 +30,11 @@ const ContactBlock: FC<Props> = ({ title, icon, content, link }) => {
     >
       <h1 className="font-bold uppercase">{title}</h1>
       {icon ? (
-        <a
-          href={link ?? "#"}
-          target="_blank"
-          className="flex gap-4 items-center text-4xl"
-        >
-          {icons[icon]}
-        </a>
+        <span className="flex gap-4 items-center text-4xl">{icons[icon]}</span>
       ) : (
-        <a
-          href={link ?? "#"}
-          target="_blank"
-          className="flex gap-4 items-center"
-        >
-          {content}
-        </a>
+        <span className="flex gap-4 items-center">{content}</span>
       )}
-    </motion.div>
+    </motion.a>
   )
 }
 

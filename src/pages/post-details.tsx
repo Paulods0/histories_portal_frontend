@@ -15,7 +15,7 @@ import { useEffect } from "react"
 
 const PostDetails = () => {
   const { id } = useParams()
-  
+
   const { pathname } = useLocation()
 
   useEffect(() => {

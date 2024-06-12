@@ -52,7 +52,7 @@ export const SOCIAL_MEDIA_LINKS = [
 
   {
     icon: <FaYoutube />,
-    link: "https://youtube.com/@clubeoverlandangola_1",
+    link: "https://www.youtube.com/@OverlandAngola",
     name: "youtube",
   },
   {
