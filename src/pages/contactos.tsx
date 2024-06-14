@@ -1,4 +1,3 @@
-import FadeInEffect from "@/components/motion/fade-in"
 import ContactBlock, { IconTypes } from "@/components/contact-block"
 
 export const contacts = [
@@ -44,7 +43,7 @@ export const contacts = [
 const Contactos = () => {
   return (
     <main className="flex items-center lg:h-[70vh] justify-center mx-auto w-full md:w-[900px] my-12">
-      <div className="flex flex-col w-full h-full gap-8">
+      <div className="flex flex-col w-full h-full gap-8 px-8">
         <div className="w-full flex items-center justify-center">
           <ContactBlock
             link={contacts[0].link}

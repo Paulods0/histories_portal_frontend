@@ -50,10 +50,16 @@ const Subscribe = () => {
 
   return (
     <FadeInEffect>
-      <main className="w-full flex items-start justify-center">
+      <main className="w-full lg:w-[800px] lg:mx-auto flex items-start justify-center flex-col p-4">
+        <h1 className="my-12 font-Oswald md:text-3xl text-2xl">
+          Subscreve a nossa newsletter de forma gratuita. Inscreve-te com teu
+          endereço de e-mail para receber notícias e atualizações do website
+          Overland Angola, noticias, dicas, informações uteis no teu inbox com
+          regularidade, podes a qualquer momento cancelar a subscrição.
+        </h1>
         <form
           onSubmit={handleSubmit(handleSubmitForm)}
-          className="w-full lg:w-[800px] lg:mx-auto p-4 space-y-4"
+          className="space-y-4 w-full"
         >
           <>
             <div className="p-2 border">

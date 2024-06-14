@@ -15,7 +15,7 @@ const FooterOverland = () => {
         loading="lazy"
         src="/logo/logotipo-texto.png"
         alt="logotipo"
-        className="relative md:-left-4 lg:-left-2 self-start w-28 md:w-44 lg:w-32 lg:h-14 object-contain"
+        className="relative md:-left-4 lg:-left-2 self-start w-32 md:w-44 lg:w-32 lg:h-14 object-contain"
       />
 
       <div className="flex flex-col gap-0">
@@ -23,11 +23,11 @@ const FooterOverland = () => {
           segue-nos
         </h2>
 
-        <ul className="flex mt-3 items-center gap-3 justify-start">
+        <ul className="flex mt-3 items-center gap-6 justify-start">
           {SOCIAL_MEDIA_LINKS.map((link, index) => (
             <li key={index}>
               <a
-                className="text-xl lg:p-0 lg:text-lg"
+                className="text-3xl lg:p-0"
                 key={index}
                 href={link.link}
                 target="_blank"

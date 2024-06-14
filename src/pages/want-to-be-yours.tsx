@@ -59,10 +59,15 @@ const WantToBeYours = () => {
 
   return (
     <FadeInEffect>
-      <main className="w-full flex items-start justify-center">
+      <main className="flex items-start flex-col justify-center w-full p-4 lg:w-[800px] lg:mx-auto ">
+        <h1 className="my-12 font-Oswald md:text-3xl text-2xl">
+          Queres ser nosso parceiro, fornecedor ou cliente? Boa! Este é o ponto
+          de partida. Preenche os campos abaixo e nós entraremos em contacto
+          contigo!
+        </h1>
         <form
           onSubmit={handleSubmit(handleSubmitForm)}
-          className="w-full lg:w-[800px] lg:mx-auto p-4 space-y-6"
+          className="w-full space-y-6"
         >
           <>
             <div className="p-2 border">

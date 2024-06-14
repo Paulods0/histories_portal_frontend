@@ -29,15 +29,16 @@ const ClassifiedCarousel: FC<Props> = ({ images }) => {
   }
   return (
     <Carousel>
-      <CarouselContent className="p-4">
+      <CarouselContent className="md:p-4">
         {images?.map((image, index) => (
           <CarouselItem key={index}>
-            <img src={image} className="w-full h-[300px] p-4" />
+            <img loading="lazy" src={image} className="w-full h-[300px] p-4" />
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious className="size-14" />
-      <CarouselNext className="size-14" />
+      <CarouselPrevious className="md:size-14 bg-zinc-100 ml-6 md:ml-0" />
+      <CarouselNext className="md:size-14 bg-zinc-100 mr-6 md:mr-0" />
+
       <div className="w-full h-12 flex items-center justify-center gap-4">
         <h2 className="text-colorBlack flex items-center gap-2">
           Entrar em contacto <GoArrowRight />

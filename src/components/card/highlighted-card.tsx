@@ -23,24 +23,23 @@ const HighlightedCard = () => {
     return
   }
   return (
-    <Link
-      reloadDocument
-      to={`/post/${post!!._id}`}
-      className="w-full flex flex-col mb-12 items-center justify-center"
-    >
+    <div className="w-full flex flex-col mb-12 items-center justify-center">
       <h1 className="text-[41px] lg:line-clamp-2 text-center text-[#111111] font-Oswald font-normal">
         {post?.title}
       </h1>
       <h5 className="text-[15px] mb-6 text-[#AAAAAA] font-OpenSans font-normal text-center">
         {`${post?.author?.firstname} ${post?.author?.lastname} / ${formatedDate}`}
       </h5>
-      <div className="w-full h-[300px] md:h-[415px] relative">
+      <Link
+        to={`/post/${post?._id}`}
+        className="w-full h-[300px] md:h-[415px] relative"
+      >
         <img
           src={post?.mainImage}
           alt={post?.title}
           className="absolute object-cover inset-0 w-full h-full"
         />
-      </div>
+      </Link>
       <div
         className="text-center line-clamp-3 text-[15px] font-OpenSans my-6"
         dangerouslySetInnerHTML={dataContent}
@@ -49,7 +48,7 @@ const HighlightedCard = () => {
       <button className="py-3 w-[150px] font-OpenSans hover:w-[170px] hover:bg-blueColor/80 duration-200 font-semibold transition-all ease-in text-center text-white uppercase text-[14px] bg-blueColor">
         <Link to={`/post/${post?._id}`}>Ver Post</Link>
       </button>
-    </Link>
+    </div>
   )
 }
 

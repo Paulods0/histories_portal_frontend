@@ -41,7 +41,7 @@ const Navbar = () => {
           <img
             src="/logo/logotipo-tradicional.png"
             alt="logo-tipo"
-            className="w-72 object-contain inset-0 rounded-full"
+            className="w-56 md:w-72 object-contain inset-0 rounded-full"
           />
         </div>
 

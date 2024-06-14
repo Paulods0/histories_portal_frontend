@@ -31,7 +31,7 @@ const MobileCartPage = () => {
         {cart.length === 0 ? (
           <div className="px-6 py-8">
             <h1 className="text-2xl font-semibold">
-              Não há nenhum produto no carrinho.
+              Não há nenhum artigo no carrinho.
             </h1>
           </div>
         ) : (

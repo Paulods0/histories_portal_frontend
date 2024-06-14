@@ -8,9 +8,9 @@ const StoreSlider = () => {
         animate={{
           x: "-100%",
           transition: {
-            duration: 140,
+            duration: 250,
             repeat: Infinity,
-            repeatType: "loop",
+            repeatType: "mirror",
             ease: "linear",
           },
         }}

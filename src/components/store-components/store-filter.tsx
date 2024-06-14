@@ -16,7 +16,7 @@ const StoreFilter = ({ urlQuery, setFilter }: Props) => {
   }
 
   return (
-    <aside className="flex flex-col border-b pb-6 top-14 sticky z-[999] mt-4 lg:mt-0 lg:z-0 lg:h-full bg-white lg:top-16 w-full lg:w-[150px]">
+    <aside className="flex flex-col border-b pb-6 top-14 sticky z-[40] mt-4 lg:mt-0 lg:z-0 lg:h-full bg-white lg:top-16 w-full lg:w-[150px]">
       <div className="flex flex-col w-full gap-2">
         <h1 className="text-lg font-bold uppercase text-center my-6 lg:mb-0">
           Filtros

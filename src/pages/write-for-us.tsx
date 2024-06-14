@@ -43,11 +43,15 @@ const WriteForUs = () => {
 
   return (
     <FadeInEffect>
-      <main className="w-full flex items-start justify-center">
-        <form
-          onSubmit={handleSubmit(handleSubmitForm)}
-          className="w-full p-4 lg:w-[800px] lg:mx-auto space-y-6"
-        >
+      <main className="flex items-start flex-col justify-center w-full p-4 lg:w-[800px] lg:mx-auto ">
+        <h1 className="my-12 font-Oswald md:text-3xl text-2xl">
+          Partilha a tua aventura overland! Conta a tua história e inspira
+          outros exploradores! Escreve sobre o teu passeio overland, paisagens e
+          momentos inesquecíveis. Adiciona fotos, dicas e detalhes para tornar a
+          narrativa envolvente. Daremos os devidos créditos e publicaremos o teu
+          conteúdo.
+        </h1>
+        <form onSubmit={handleSubmit(handleSubmitForm)} className="space-y-6 w-full">
           <>
             <div className="p-2 border">
               <input

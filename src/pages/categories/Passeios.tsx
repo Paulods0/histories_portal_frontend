@@ -23,11 +23,13 @@ const Passeios = () => {
   const { data: posts, isLoading } = useGetPosts(currPage, category)
 
   const postsMapsMemo = useMemo(() => {
-    return postsMaps?.posts.map((post) => <MemoizedPostMarker post={post} />)
+    return postsMaps?.posts.map((post) => (
+      <MemoizedPostMarker key={post._id} post={post} />
+    ))
   }, [postsMaps?.posts])
 
   const memoizedPosts = useMemo(() => {
-    return posts?.posts.map((post) => <MemoizedPostCard post={post} />)
+    return posts?.posts.map((post) => <MemoizedPostCard key={post._id} post={post} />)
   }, [posts?.posts])
 
   if (isLoading) {
