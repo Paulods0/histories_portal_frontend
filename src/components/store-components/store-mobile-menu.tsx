@@ -1,13 +1,14 @@
-import { RiMenu2Fill } from "react-icons/ri"
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet"
-import { NAV_LINKS, SOCIAL_MEDIA_LINKS } from "@/utils/constants"
 import { Link } from "react-router-dom"
+import { RiMenu2Fill } from "react-icons/ri"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
+import { useCartContext } from "@/context/cart-context"
 import { MdOutlineKeyboardArrowRight } from "react-icons/md"
+import { NAV_LINKS, SOCIAL_MEDIA_LINKS } from "@/utils/constants"
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "../ui/sheet"
 
 const StoreMobileMenu = () => {
-  // const { cart } = useCartContext()
-  let cart = []
+  const { cartItems } = useCartContext()
+
   return (
     <Sheet>
       <SheetTrigger asChild className="text-white text-3xl cursor-pointer">
@@ -28,7 +29,7 @@ const StoreMobileMenu = () => {
               <HiOutlineShoppingBag />
             </Link>
             <span className="absolute -top-3 right-0 text-base">
-              {cart.length}
+              {cartItems.length}
             </span>
           </div>
 

@@ -16,7 +16,7 @@ const ResponsiveNavigationBar = () => {
   return (
     <div className="lg:hidden sticky shadow-md  top-0 items-center justify-between flex w-full bg-white p-6 mt-0 h-16">
       <Search />
-      
+
       <Sheet>
         <SheetTrigger asChild>
           <span className="text-4xl text-orangeColor">
@@ -27,11 +27,11 @@ const ResponsiveNavigationBar = () => {
         <SheetContent>
           <ul className="w-full bg-white gap-4 mt-2 flex flex-col items-start justify-between">
             {CATEGORIES.map((link, index) => (
-              <li key={index} className="flex items-center gap-1">
+              <li key={index} className="flex items-center">
                 <MdOutlineKeyboardArrowRight />
                 <SheetClose asChild>
                   <Link
-                    className="font-semibold text-xs md:text-lg uppercase"
+                    className="text-base md:text-lg uppercase"
                     to={`categorias/${link.link}`}
                   >
                     {link.label}
@@ -43,11 +43,11 @@ const ResponsiveNavigationBar = () => {
           <hr className="w-full h-[1px] my-2 bg-orangeColor" />
           <ul className="w-full bg-white gap-4 flex flex-col items-start justify-between">
             {NAV_LINKS?.map((link, index) => (
-              <li key={index} className="flex items-center gap-1">
+              <li key={index} className="flex items-center">
                 <MdOutlineKeyboardArrowRight />
                 <SheetClose asChild>
                   <Link
-                    className="font-semibold text-xs md:text-lg uppercase"
+                    className="text-base md:text-lg uppercase"
                     to={`${link.link}`}
                   >
                     {link.name}
@@ -56,10 +56,10 @@ const ResponsiveNavigationBar = () => {
               </li>
             ))}
           </ul>
-          <img
+          {/* <img
             src="/logo/logotipo-tradicional.png"
-            className="object-contain h-32 w-full mt-12"
-          />
+            className="object-contain h-24 w-full mt-2"
+          /> */}
         </SheetContent>
       </Sheet>
     </div>

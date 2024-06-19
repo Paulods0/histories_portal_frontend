@@ -1,14 +1,13 @@
-import BuyProductDialog from "@/components/store-components/buy-product-dialog"
-import CartCard from "@/components/store-components/cart-card"
+import { Link } from "react-router-dom"
 import { BsArrowLeft } from "react-icons/bs"
 import { HiOutlineShoppingBag } from "react-icons/hi"
-import { Link } from "react-router-dom"
-
-// type Props = {}
+import { useCartContext } from "@/context/cart-context"
+import CartCard from "@/components/store-components/cart-card"
+import BuyProductDialog from "@/components/store-components/buy-product-dialog"
 
 const MobileCartPage = () => {
-  // const { cart } = useCartContext()
-  let cart: any[] = []
+  const { cartItems } = useCartContext()
+
   return (
     <main className="w-full flex flex-col">
       <div className="bg-colorBlack-dark px-8 py-4 w-full flex items-center justify-between">
@@ -23,12 +22,12 @@ const MobileCartPage = () => {
         <div className="relative flex gap-2 uppercase font-bold bg-white/40 rounded-full p-2 w-fit self-end text-2xl">
           <HiOutlineShoppingBag />
 
-          <span className="text-base">{cart.length}</span>
+          <span className="text-base">{cartItems.length}</span>
         </div>
       </div>
 
       <div className="w-full flex flex-col my-8 items-center justify-center h-full">
-        {cart.length === 0 ? (
+        {cartItems.length === 0 ? (
           <div className="px-6 py-8">
             <h1 className="text-2xl font-semibold">
               Não há nenhum artigo no carrinho.
@@ -37,7 +36,7 @@ const MobileCartPage = () => {
         ) : (
           <>
             <div className="w-full">
-              {cart.map((product) => (
+              {cartItems.map((product) => (
                 <CartCard key={product._id} product={product} />
               ))}
             </div>

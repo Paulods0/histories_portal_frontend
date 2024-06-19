@@ -11,6 +11,7 @@ type TCartContext = {
   addProduct: (product: Product) => void
   removeProduct: (product: Product) => void
   deleteProductFromCart: (id: string) => void
+  clearCart: () => void
   cartItems: Product[] | []
   cartQuantity: number
 }
@@ -104,9 +105,15 @@ const CartContextProvider: FC<CartContextProviderProps> = ({ children }) => {
     toast.success("Produto removido do carrinho")
   }
 
+  function clearCart() {
+    setCartItems([])
+    localStorage.removeItem("cart")
+  }
+
   return (
     <CartContext.Provider
       value={{
+        clearCart,
         cartItems,
         addProduct,
         cartQuantity,
