@@ -6,7 +6,7 @@ import FadeInEffect from "@/components/motion/fade-in"
 const AboutUs = () => {
   return (
     <FadeInEffect>
-      <main className="px-8 flex py-3 flex-col w-full h-full items-center justify-center">
+      <main className=" flex py-3 flex-col w-full h-full items-center justify-center">
         <div className="relative w-full h-[500px] mb-8">
           <img
             src="/logo/about.jpg"
@@ -16,12 +16,12 @@ const AboutUs = () => {
           />
         </div>
 
-        <div className="flex w-[70vw] mx-auto text-center h-full items-center justify-center flex-col">
-          <div className="w-full  mb-6">
+        <div className="flex w-full px-4 lg:px-0 lg:w-[80vw] mx-auto text-center h-full items-center justify-center flex-col">
+          <div className="w-full mb-6">
             <h1 className="font-PlayFair text-[36px] font-medium text-center mb-4">
               Quem somos?
             </h1>
-            <p className="font-OpenSans text-lg">
+            <p className="font-OpenSans text-sm lg:text-lg">
               Em 2019, nasceu da união de amigos apaixonados por aventura o
               Clube Overland Angola. Mais do que um mero grupo, somos uma
               irmandade que pulsa com a vontade de explorar, conhecer e celebrar
@@ -44,7 +44,7 @@ const AboutUs = () => {
             <h1 className="font-PlayFair font-medium text-center mb-4 text-[36px]">
               O que é o overland?
             </h1>
-            <p className="font-OpenSans text-lg">
+            <p className="font-OpenSans text-sm lg:text-lg">
               Overland não é só um passeio de Jipe. É um hino à liberdade, um
               desafio para a alma aventureira que pulsa em nós. É a melodia que
               os nossos pés, as nossas rodas, por caminhos inexploradas, que

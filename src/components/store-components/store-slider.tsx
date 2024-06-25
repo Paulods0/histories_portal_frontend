@@ -8,7 +8,7 @@ const StoreSlider = () => {
         animate={{
           left: "-140vw",
           transition: {
-            duration: 8 * SPEED,
+            duration: 45 * SPEED,
             ease: "linear",
             repeat: Infinity,
           },

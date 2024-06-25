@@ -56,7 +56,15 @@ export const writeForUsSchemaType = z.object({
     .min(1, "*Escreva para nós")
     .max(400, "*Número máximo de caracteres: 400"),
   phone: z.coerce.string().min(1, "*Insira o seu número de telefone"),
-  image: z.instanceof(FileList),
+  images: z.array(
+    z.object({
+      image: z.instanceof(FileList).transform((file) => {
+        if (file.item(0) !== null) {
+          return handleImageUpload(file.item(0)!!)
+        }
+      }),
+    })
+  ),
 })
 
 export const wantToBeYoursFormSchema = z.object({

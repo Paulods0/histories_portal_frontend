@@ -29,9 +29,11 @@ const ClassifiedForm = () => {
   })
 
   function addImages() {
-    append({
-      image: undefined,
-    })
+    if (fields.length < 3) {
+      append({
+        image: undefined,
+      })
+    }
   }
   function removeImage(index: number) {
     remove(index)

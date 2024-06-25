@@ -131,7 +131,7 @@ function App() {
           ],
         },
         {
-          path: "formulario",
+          path: "formulario-venda",
           element: <ClassifiedsFormPage />,
         },
         {

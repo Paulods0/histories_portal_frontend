@@ -11,6 +11,8 @@ const bannerImages = [
   "/banners/banner-6.jpg",
 ]
 
+const logotipo = "/logo/logotipo-tradicional.png"
+
 const Navbar = () => {
   const { pathname } = useLocation()
   const isStore = pathname.includes("/pages/loja")
@@ -39,8 +41,8 @@ const Navbar = () => {
       <Link to={"/"} className="w-full h-full relative">
         <div className="w-full flex justify-center absolute top-1/2 -translate-y-1/2">
           <img
-            src="/logo/logotipo-tradicional.png"
-            alt="logo-tipo"
+            src={logotipo}
+            alt="logotipo"
             className="w-56 md:w-72 object-contain inset-0 rounded-full"
           />
         </div>
@@ -48,7 +50,7 @@ const Navbar = () => {
         <img
           loading="lazy"
           src={bannerImage}
-          className="text-center object-cover text-white w-full h-64 flex items-center justify-center"
+          className="text-center object-cover w-full h-64 flex items-center justify-center"
         />
       </Link>
     </header>

@@ -39,10 +39,6 @@ const Classificados = () => {
     )
   }
 
-  // const handlePaginate = (newPage: number) => {
-  //   window.location.href = `?page=${newPage}`
-  // }
-
   return (
     <div className="w-full min-h-screen gap-10 lg:px-12 lg:mb-12 flex-col ">
       <div className="w-full items-center gap-x-3 flex mb-4"></div>

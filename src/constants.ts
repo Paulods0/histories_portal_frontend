@@ -20,31 +20,36 @@ export const sponsors = [
 export const CATEGORIES = [
   {
     label: "reviews",
-    link: "reviews",
+    link: "/categorias/reviews",
   },
   {
     label: "jornal overland",
-    link: "jornal-overland",
+    link: "/categorias/jornal-overland",
   },
   {
     label: "histórias",
-    link: "histórias",
+    link: "/categorias/histórias",
   },
   {
     label: "passeios",
-    link: "passeios",
+    link: "/categorias/passeios",
   },
   {
     label: "agenda ao",
-    link: "agenda-ao",
+    link: "/categorias/agenda-ao",
   },
   {
     label: "classificados",
     link: "classificados",
+    children: [
+      { label: "ver classificados", link: "/categorias/classificados" },
+      { label: "quero comprar", link: "/formulario-compra" },
+      { label: "quero vender", link: "/formulario-venda" },
+    ],
   },
   {
     label: "overland experience",
-    link: "overland-experience",
+    link: "/categorias/overland-experience",
   },
 ]
 

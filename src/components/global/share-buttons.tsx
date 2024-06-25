@@ -13,6 +13,7 @@ type Props = {
 }
 const ShareButtons = ({ image }: Props) => {
   const location = window.location.href
+  console.log(location)
   return (
     <div className="flex items-center w-full gap-x-2">
       <span className="font-semibold text-[14px] italic text-colorGray-light capitalize">

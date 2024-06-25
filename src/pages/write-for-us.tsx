@@ -2,8 +2,10 @@ import { ChangeEvent, useEffect, useState } from "react"
 import { ICountryData, getCountryDataList } from "countries-list"
 import FadeInEffect from "@/components/motion/fade-in"
 import { WriteForUsFormType, writeForUsSchemaType } from "@/lib/validation"
-import { useForm } from "react-hook-form"
+import { useForm, useFieldArray } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { LuImagePlus } from "react-icons/lu"
+import { toast } from "react-toastify"
 
 const WriteForUs = () => {
   const [countries, setCountries] = useState<ICountryData[]>([])
@@ -13,6 +15,7 @@ const WriteForUs = () => {
     register,
     formState: { errors },
     setValue,
+    control,
   } = useForm<WriteForUsFormType>({
     resolver: zodResolver(writeForUsSchemaType),
     defaultValues: {
@@ -20,6 +23,22 @@ const WriteForUs = () => {
       countryCode: "244",
     },
   })
+
+  const { append, remove, fields } = useFieldArray({
+    control,
+    name: "images",
+  })
+
+  function addImages() {
+    if (fields.length < 3) {
+      append({
+        image: undefined,
+      })
+    }
+  }
+  function removeImage(index: number) {
+    remove(index)
+  }
 
   const handleSelectCountry = (e: ChangeEvent<HTMLSelectElement>) => {
     setValue("country", e.target.value)
@@ -31,6 +50,7 @@ const WriteForUs = () => {
 
   const handleSubmitForm = (data: WriteForUsFormType) => {
     console.log(data)
+    toast.success("Enviado com sucesso!")
     try {
     } catch (error) {
       console.error(error)
@@ -51,7 +71,10 @@ const WriteForUs = () => {
           narrativa envolvente. Daremos os devidos créditos e publicaremos o teu
           conteúdo.
         </h1>
-        <form onSubmit={handleSubmit(handleSubmitForm)} className="space-y-6 w-full">
+        <form
+          onSubmit={handleSubmit(handleSubmitForm)}
+          className="space-y-6 w-full"
+        >
           <>
             <div className="p-2 border">
               <input
@@ -133,7 +156,7 @@ const WriteForUs = () => {
           </div>
 
           <>
-            <div className="p-2 border h-[150px]">
+            <div className="p-2 border h-[150px] w-full">
               <input
                 {...register("contextualize")}
                 type="text"
@@ -163,17 +186,37 @@ const WriteForUs = () => {
             )}
           </>
 
-          <div className="p-2 flex flex-col gap-2">
-            {Array.from({ length: 5 }).map((_, i) => (
+          <div className="w-full justify-start flex">
+            <button
+              type="button"
+              className="text-colorBlack text-xl hover:text-zinc-400 duration-200 transition-all bg-zinc-300 p-4 rounded-lg"
+              onClick={addImages}
+            >
+              <LuImagePlus />
+            </button>
+          </div>
+          {fields.map((field, index) => (
+            <div key={index} className="flex flex-col w-full gap-2 items-end">
+              <button
+                type="button"
+                className="w-fit text-red-600 hover:underline duration-300 transition-all"
+                onClick={() => removeImage(index)}
+              >
+                Remover
+              </button>
               <input
-                key={i}
-                id="file"
-                {...register("image")}
                 type="file"
+                key={field.id}
+                {...register(`images.${index}.image`)}
                 className="w-full file:bg-white file:border-none px-3 py-2 border md:file:text-base file:text-xs outline-none bg-transparent file:font-semibold file:capitalize text-orangeColor cursor-pointer"
               />
-            ))}
-          </div>
+            </div>
+          ))}
+          {errors.images && (
+            <span className="text-xs text-red-600">
+              {errors.images.message}
+            </span>
+          )}
 
           <button
             className="p-2 w-32 bg-zinc-900 text-white uppercase md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
