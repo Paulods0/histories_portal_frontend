@@ -42,8 +42,8 @@ export const contacts = [
 
 const Contactos = () => {
   return (
-    <main className="flex items-center lg:h-[70vh] justify-center mx-auto w-full md:w-[900px] my-12">
-      <div className="flex flex-col w-full h-full gap-8 px-8">
+    <main className="flex items-center lg:min-h-[70vh] justify-center mx-auto w-full md:w-[900px] my-12">
+      <div className="flex flex-col w-full items-center h-full gap-8 px-8">
         <div className="w-full flex items-center justify-center">
           <ContactBlock
             link={contacts[0].link}
@@ -88,6 +88,25 @@ const Contactos = () => {
             content={contacts[5]?.content}
           />
         </div>
+
+        <ul className="w-full items-center justify-center flex flex-col p-8 border">
+          <li className="capitalize font-medium text-lg">
+            <span>clube overland admin:</span>
+            <span>ricardo matos</span>
+          </li>
+          <li className="capitalize font-medium text-lg">
+            <span>clube overland public affairs:</span>
+            <span>daniel alberto</span>
+          </li>
+          <li className="capitalize font-medium text-lg">
+            <span>managment/help desk:</span>
+            <span>raul souza/amilcar xavier</span>
+          </li>
+          <li className="capitalize font-medium text-lg">
+            <span>webmaster/content manager:</span>
+            <span>tiago baptista</span>
+          </li>
+        </ul>
       </div>
     </main>
   )

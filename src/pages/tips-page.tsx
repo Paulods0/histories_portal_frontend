@@ -39,7 +39,7 @@ const TipsPage = () => {
 
   return (
     <div className="w-full min-h-screen gap-10 lg:px-12 flex-col">
-      <h1 className="my-12 font-Oswald md:text-3xl text-2xl">
+      <h1 className="my-12 font-Oswald w-full lg:w-[800px] lg:mx-auto md:text-3xl text-2xl">
         Esta secção é dicada a dicas! É uma área de partilha de informação útil
         para overlanders, viajantes, manutenções, dicas off-road, informações
         uteis para quem faz do overland um modo de vida! Podes sempre colaborar

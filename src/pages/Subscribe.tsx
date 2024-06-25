@@ -54,7 +54,7 @@ const Subscribe = () => {
         <h1 className="my-12 font-Oswald md:text-3xl text-2xl">
           Subscreve a nossa newsletter de forma gratuita. Inscreve-te com teu
           endereço de e-mail para receber notícias e atualizações do website
-          Overland Angola, noticias, dicas, informações uteis no teu inbox com
+          Overland Angola, notícias, dicas, informações uteis no teu inbox com
           regularidade, podes a qualquer momento cancelar a subscrição.
         </h1>
         <form
