@@ -6,6 +6,8 @@ import { useForm, useFieldArray } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { LuImagePlus } from "react-icons/lu"
 import { toast } from "react-toastify"
+import axios from "@/config/axios"
+import { uploadImageToFirebaseStorage } from "@/utils/helpers"
 
 const WriteForUs = () => {
   const [countries, setCountries] = useState<ICountryData[]>([])
@@ -13,7 +15,7 @@ const WriteForUs = () => {
   const {
     handleSubmit,
     register,
-    formState: { errors },
+    formState: { errors, isSubmitting },
     setValue,
     control,
   } = useForm<WriteForUsFormType>({
@@ -48,8 +50,18 @@ const WriteForUs = () => {
     setValue("countryCode", e.target.value)
   }
 
-  const handleSubmitForm = (data: WriteForUsFormType) => {
-    console.log(data)
+  const handleSubmitForm = async (data: WriteForUsFormType) => {
+    let images: string[] = []
+    for (let image of data.images!!) {
+      images.push(
+        await uploadImageToFirebaseStorage(image.image!!, "write-for-us")
+      )
+    }
+    await axios.post("/mail/write-for-us", {
+      ...data,
+      phone: `+${data.countryCode} ${data.phone}`,
+      images: images,
+    })
     toast.success("Enviado com sucesso!")
     try {
     } catch (error) {
@@ -219,10 +231,11 @@ const WriteForUs = () => {
           )}
 
           <button
+            disabled={isSubmitting}
             className="p-2 w-32 bg-zinc-900 text-white uppercase md:placeholder:text-base placeholder:text-xs md:text-base text-xs"
             type="submit"
           >
-            Enviar
+            {isSubmitting ? "Submetendo..." : "Enviar"}
           </button>
         </form>
       </main>

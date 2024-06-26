@@ -1,22 +1,10 @@
 import Search from "../search/search"
-import { IoMenu } from "react-icons/io5"
-import { CATEGORIES } from "@/constants"
-import { NAV_LINKS } from "@/utils/constants"
-import { Link, useLocation } from "react-router-dom"
-import { Sheet, SheetClose, SheetContent, SheetTrigger } from "../ui/sheet"
-import { MdOutlineKeyboardArrowRight } from "react-icons/md"
-import { useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { useLocation } from "react-router-dom"
+
 import MobileMenuButton from "../mobile/mobile-menu-button"
 
 const MobileMenu = () => {
   const location = useLocation()
-  const [open, setOpen] = useState(false)
-
-  function handleToggle() {
-    console.log("Clicked!")
-    setOpen((prev) => !prev)
-  }
 
   if (location.pathname.includes("/pages/loja")) {
     return
