@@ -1,17 +1,14 @@
 import { Link, useLocation } from "react-router-dom"
 import NavbarTop from "./navbar-top"
 import { useEffect, useState } from "react"
+import banner1 from "@/assets/banners/banner-1.jpg"
+import banner2 from "@/assets/banners/banner-2.jpg"
+import banner3 from "@/assets/banners/banner-3.jpg"
+import banner4 from "@/assets/banners/banner-4.jpg"
+import banner5 from "@/assets/banners/banner-5.jpg"
+import banner6 from "@/assets/banners/banner-6.jpg"
 
-const bannerImages = [
-  "/banners/banner-1.jpg",
-  "/banners/banner-2.jpg",
-  "/banners/banner-3.jpg",
-  "/banners/banner-4.jpg",
-  "/banners/banner-5.jpg",
-  "/banners/banner-6.jpg",
-]
-
-const logotipo = "/logo/logotipo-tradicional.png"
+const bannerImages = [banner1, banner2, banner3, banner4, banner5, banner6]
 
 const Navbar = () => {
   const { pathname } = useLocation()
@@ -21,7 +18,7 @@ const Navbar = () => {
     return
   }
 
-  const [bannerImage, setBannerImage] = useState("/banner/banner-1.jpg")
+  const [bannerImage, setBannerImage] = useState(banner1)
 
   function changeBannerImage() {
     const bannerIndex = Math.floor(Math.random() * bannerImages.length)
@@ -38,20 +35,19 @@ const Navbar = () => {
     <header className="w-full">
       <NavbarTop />
 
-      <Link to={"/"} className="w-full h-full relative">
+      <Link
+        to="/"
+        style={{ backgroundImage: `url(${bannerImage})` }}
+        className={`w-full h-64 relative flex items-center justify-center bg-center bg-cover bg-no-repeat`}
+      >
         <div className="w-full flex justify-center absolute top-1/2 -translate-y-1/2">
           <img
-            src={logotipo}
+            loading="lazy"
+            src={"/logo/logotipo-tradicional.png"}
             alt="logotipo"
             className="w-56 md:w-72 object-contain inset-0 rounded-full"
           />
         </div>
-
-        <img
-          loading="lazy"
-          src={bannerImage}
-          className="text-center object-cover w-full h-64 flex items-center justify-center"
-        />
       </Link>
     </header>
   )

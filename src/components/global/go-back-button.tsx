@@ -21,7 +21,7 @@ const GoBackButton = () => {
   return (
     <button
       onClick={scrollToTop}
-      className={`bg-orangeColor hover:bg-colorGray-dark/70 cursor-pointer left-24 flex sticky bottom-4 duration-200 transition-all ease-in-out z-50 p-2 w-12 h-12 items-center justify-center ${
+      className={`bg-orangeColor hover:bg-colorGray-dark/70 cursor-pointer left-2 lg:left-24 flex sticky bottom-4 duration-200 transition-all ease-in-out z-20 p-2 w-12 h-12 items-center justify-center ${
         visible ? "block" : "hidden"
       }`}
     >

@@ -89,20 +89,20 @@ const Contactos = () => {
           />
         </div>
 
-        <ul className="w-full items-center justify-center flex flex-col p-8 border">
-          <li className="capitalize font-medium text-lg">
+        <ul className="w-full items-center justify-center gap-2 flex flex-col p-8 border">
+          <li className="capitalize space-x-1 font-medium text-lg">
             <span>clube overland admin:</span>
             <span>ricardo matos</span>
           </li>
-          <li className="capitalize font-medium text-lg">
+          <li className="capitalize space-x-1 font-medium text-lg">
             <span>clube overland public affairs:</span>
             <span>daniel alberto</span>
           </li>
-          <li className="capitalize font-medium text-lg">
+          <li className="capitalize space-x-1 font-medium text-lg">
             <span>managment/help desk:</span>
             <span>raul souza/amilcar xavier</span>
           </li>
-          <li className="capitalize font-medium text-lg">
+          <li className="capitalize space-x-1 font-medium text-lg">
             <span>webmaster/content manager:</span>
             <span>tiago baptista</span>
           </li>
@@ -113,11 +113,3 @@ const Contactos = () => {
 }
 
 export default Contactos
-//  <FadeInEffect key={contact.id} index={contact.id}>
-//             <ContactBlock
-//               link={contact.link}
-//               icon={contact.icon}
-//               title={contact.title}
-//               content={contact?.content}
-//             />
-//           </FadeInEffect>

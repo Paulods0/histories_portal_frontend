@@ -9,7 +9,7 @@ const FooterSponsors = () => {
 
       <div className="grid w-full gap-2 grid-cols-2 place-items-start">
         {sponsors.map((img, i) => (
-          <div key={i} className="relative w-20 h-6">
+          <div key={i} className="relative w-24 h-10">
             <img
               loading="lazy"
               src={img}

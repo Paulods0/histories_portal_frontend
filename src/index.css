@@ -137,3 +137,12 @@ body::-webkit-scrollbar {
 .swiper-button-next {
   color: "red" !important;
 }
+/* className="w-full flex justify-center absolute top-1/2 -translate-y-1/2" */
+
+@supports not (transform: translateY(50%)) {
+  .custom-translate {
+    position: absolute;
+    top: 50%;
+    margin-top: calc(-50px); /* metade da altura do elemento */
+  }
+}
