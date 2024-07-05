@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react"
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import "./index.css"
 
-import MobileCartPage from "./pages/store-pages/mobile-cart-page"
 import RootLayout from "./components/root-layout"
 import Fallback from "./components/global/fallback"
 
@@ -91,10 +90,6 @@ function App() {
         {
           path: "pages/contactos",
           element: <Contactos />,
-        },
-        {
-          path: "pages/loja/cart",
-          element: <MobileCartPage />,
         },
         {
           path: "categorias",

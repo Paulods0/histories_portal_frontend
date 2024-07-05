@@ -17,13 +17,15 @@ const ClassifiedMobileSubmenu: React.FC<Props> = ({
   handleToggle,
 }) => {
   return (
-    <div className="flex ml-4 flex-col gap-2">
+    <div className="flex flex-col w-full gap-4 my-4">
       {category.children.map((child, index) => (
         <Link
           onClick={handleToggle}
           key={index}
           to={child.link}
-          className="text-xl text-orangeColor capitalize"
+          className={`text-2xl text-orangeColor w-full capitalize ${
+            index !== category.children.length - 1 ? "border-b" : ""
+          } `}
         >
           {child.label}
         </Link>

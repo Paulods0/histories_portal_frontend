@@ -32,6 +32,13 @@ const NavbarTop = () => {
                 {link.name}
               </Link>
             ))}
+            <a
+              target="_blank"
+              href="https://overlandangola.flarum.cloud/"
+              className="text-white text-[12px] font-Oswald uppercase font-normal hover:text-orangeColor duration-100 transition-all ease-in"
+            >
+              Fórum
+            </a>
           </div>
         </ul>
       </nav>

@@ -22,11 +22,11 @@ const StoreFilter = ({ urlQuery, setFilter }: Props) => {
           Filtros
         </h1>
 
-        <div className="lg:flex flex-col grid grid-cols-2 place-content-center mx-auto gap-4">
+        <div className="lg:flex-col flex flex-row items-center justify-center flex-wrap mx-auto gap-4">
           <button
             className={`${
               urlQuery === "" ? "text-orangeColor" : ""
-            } px-3 py-2 w-fit border rounded-lg text-center`}
+            } px-3 py-2 w-[150px] border rounded-lg text-center`}
             onClick={() => handleFilter("")}
           >
             Ver todos
@@ -41,7 +41,7 @@ const StoreFilter = ({ urlQuery, setFilter }: Props) => {
             >
               <button
                 onClick={() => handleFilter(category.slug)}
-                className="capitalize  cursor-pointer border text-center rounded-lg px-2 py-2"
+                className="capitalize cursor-pointer border text-center rounded-lg px-2 py-2 w-[150px]"
               >
                 {category.label}
               </button>

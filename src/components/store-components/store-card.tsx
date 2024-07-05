@@ -1,5 +1,5 @@
 import { Product } from "../../api/types"
-
+import LazyImage from "../global/lazy-image"
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
 import { useCartContext } from "@/context/cart-context"
 
@@ -20,11 +20,10 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
       <DialogTrigger>
         <div className=" cursor-pointer hover:bg-zinc-600/5 duration-200 transition-all ease-in-out border border-colorGray-light/20 rounded-md p-2">
           <div className="relative w-[220px] h-[220px]">
-            <img
-              loading="lazy"
-              src={product.image}
+            <LazyImage
+              id={product._id}
+              image={product.image}
               className="object-cover absolute inset-0 p-4 w-full h-full"
-              alt="product image"
             />
           </div>
           <div className="w-full flex flex-col items-center justify-center">
@@ -33,7 +32,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
           </div>
         </div>
       </DialogTrigger>
-      <DialogContent className="grid grid-cols-2">
+      <DialogContent className="grid grid-cols-2 gap-4">
         <div className="w-full h-full items-center flex flex-col">
           <img
             src={product.image}
@@ -71,7 +70,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
 
           <button
             onClick={() => addProduct(product)}
-            className="md:px-3 py-2 lg:py-1 text-xs md:text-sm self-end rounded-md bg-black text-white uppercase"
+            className="md:px-3 py-3 text-xs md:text-sm self-end rounded-md bg-black text-white uppercase"
           >
             Adicionar ao carrinho
           </button>

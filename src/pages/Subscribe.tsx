@@ -51,11 +51,12 @@ const Subscribe = () => {
   return (
     <FadeInEffect>
       <main className="w-full lg:w-[800px] lg:mx-auto flex items-start justify-center flex-col p-4">
-        <h1 className="my-12 font-Oswald md:text-3xl text-2xl">
+        <h1 className="my-12 font-Oswald md:text-3xl text-2xl text-justify">
           Subscreve a nossa newsletter de forma gratuita. Inscreve-te com teu
           endereço de e-mail para receber notícias e atualizações do website
-          Overland Angola, notícias, dicas, informações uteis no teu inbox com
-          regularidade, podes a qualquer momento cancelar a subscrição.
+          Overland Angola, receberás notícias, dicas, informações úteis no teu
+          inbox com regularidade, podes a qualquer momento cancelar a
+          subscrição.
         </h1>
         <form
           onSubmit={handleSubmit(handleSubmitForm)}
@@ -152,7 +153,7 @@ const Subscribe = () => {
             className="p-2 w-32 disabled:bg-zinc-400 bg-zinc-900 text-white uppercase md:text-base text-xs"
             type="submit"
           >
-            {isSubmitting ? "Enviando..." : "Enviar "}
+            {isSubmitting ? "Subscrevendo..." : "Subscreve "}
           </button>
         </form>
       </main>

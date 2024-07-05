@@ -13,22 +13,10 @@ import { Product } from "@/api/types"
 const CartContainer = () => {
   const { cartItems } = useCartContext()
 
-  // const handleSubmitt = async () => {
-  //   try {
-  //     cart.forEach((product) => {
-  //       console.log(
-  //         `O usuário comprou: ${product.name}, Quantidade: ${product.quantity}`
-  //       )
-  //     })
-  //   } catch (error) {
-  //     console.error(error)
-  //   }
-  // }
-
   return (
     <SheetContent>
       <SheetHeader>
-        <SheetTitle className="text-2xl uppercase">Cart</SheetTitle>
+        <SheetTitle className="text-2xl uppercase">Carrinho</SheetTitle>
       </SheetHeader>
       {cartItems.length === 0 ? (
         <SheetHeader>
