@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app"
 import { getStorage } from "firebase/storage"
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAFwO9opVpJWpGGwRp2WO9gEAd_GMIQFEE",
-  authDomain: "history-post.firebaseapp.com",
-  projectId: "history-post",
-  storageBucket: "history-post.appspot.com",
-  messagingSenderId: "352535464331",
-  appId: "1:352535464331:web:31abae39f6ab66cf58c78e",
-  measurementId: "G-M1CKNQ72L6",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 }
 
 // Initialize Firebase

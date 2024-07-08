@@ -1,8 +1,7 @@
 import axios from "axios"
 
-// baseURL: "http://localhost:8080/api/v1",
 export default axios.create({
-  baseURL: "https://overland-angola.onrender.com/api/v1",
+  baseURL: import.meta.env.VITE_RENDER_API,
   headers: {
     "Content-Type": "application/json",
   },

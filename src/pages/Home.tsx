@@ -42,7 +42,7 @@ const Home = () => {
       <div className="w-full flex gap-10 ">
         <FadeInEffect>
           <div className="flex-[3] min-h-screen">
-            <HighlightedCard /> 
+            <HighlightedCard />
             <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
               {memoizedPosts}
             </div>
