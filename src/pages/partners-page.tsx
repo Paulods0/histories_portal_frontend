@@ -38,7 +38,7 @@ const PartnersPage = () => {
   }
 
   return (
-    <div className="w-full min-h-screen gap-10 lg:px-12 flex-col">
+    <div className="w-full min-h-screen gap-10 px-4 lg:px-12 flex-col">
       <FadeInEffect>
         {memoPosts?.length === 0 ? (
           <div className="w-full flex items-center justify-center mt-6">

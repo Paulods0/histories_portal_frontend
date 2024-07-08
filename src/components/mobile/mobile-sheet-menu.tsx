@@ -85,9 +85,9 @@ const MobileSheetMenu: FC<Props> = ({ handleToggle }) => {
           {NAV_LINKS.map((link, index) => (
             <li key={index} className="py-2 w-full border-b">
               <Link
+                onClick={handleToggle}
                 to={link.link}
                 className="text-2xl uppercase flex items-center gap-1"
-                onClick={handleSubmenuOpen}
               >
                 {link.name}
               </Link>

@@ -91,20 +91,20 @@ const Contactos = () => {
 
         <ul className="w-full items-center justify-center gap-2 flex flex-col p-8 border">
           <li className="capitalize space-x-1 font-medium text-lg">
-            <span>clube overland admin:</span>
-            <span>ricardo matos</span>
+            <span >clube overland admin:</span>
+            <span className="text-orangeColor">ricardo matos</span>
           </li>
           <li className="capitalize space-x-1 font-medium text-lg">
-            <span>clube overland public affairs:</span>
-            <span>daniel alberto</span>
+            <span >clube overland public affairs:</span>
+            <span className="text-orangeColor">daniel alberto</span>
           </li>
           <li className="capitalize space-x-1 font-medium text-lg">
-            <span>managment/help desk:</span>
-            <span>raul souza/amilcar xavier</span>
+            <span >managment/help desk:</span>
+            <span className="text-orangeColor">raul souza/amilcar xavier</span>
           </li>
           <li className="capitalize space-x-1 font-medium text-lg">
-            <span>webmaster/content manager:</span>
-            <span>tiago baptista</span>
+            <span >webmaster/content manager:</span>
+            <span className="text-orangeColor">tiago baptista</span>
           </li>
         </ul>
       </div>

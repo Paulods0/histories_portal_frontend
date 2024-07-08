@@ -23,7 +23,7 @@ const ContactBlock: FC<Props> = ({ title, icon, content, link }) => {
     <motion.a
       href={link ?? "#"}
       target="_blank"
-      className="flex flex-col items-center p-8 h-[130px] border w-full gap-4"
+      className="flex flex-col items-center p-8 lg:h-[130px] border w-full gap-4"
       initial={{ y: 0 }}
       whileHover={{ y: -15 }}
       transition={{ duration: 0.3 }}
@@ -32,7 +32,7 @@ const ContactBlock: FC<Props> = ({ title, icon, content, link }) => {
       {icon ? (
         <span className="flex gap-4 items-center text-4xl">{icons[icon]}</span>
       ) : (
-        <span className="flex gap-4 items-center">{content}</span>
+        <span className="flex text-orangeColor gap-4 items-center">{content}</span>
       )}
     </motion.a>
   )
