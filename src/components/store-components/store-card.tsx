@@ -18,7 +18,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
   return (
     <Dialog>
       <DialogTrigger>
-        <div className=" cursor-pointer hover:bg-zinc-600/5 duration-200 transition-all ease-in-out border border-colorGray-light/20 rounded-md p-2">
+        <div className="cursor-pointer hover:bg-zinc-600/5 duration-200 transition-all ease-in-out border border-colorGray-light/20 rounded-md p-2">
           <div className="relative w-[220px] h-[220px]">
             <LazyImage
               id={product._id}
@@ -26,6 +26,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
               className="object-cover absolute inset-0 p-4 w-full h-full"
             />
           </div>
+          
           <div className="w-full flex flex-col items-center justify-center">
             <h1>{product.name}</h1>
             <h3 className="text-[#9D9D9D]">{formatedPrice}</h3>
