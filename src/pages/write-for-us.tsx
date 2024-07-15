@@ -77,11 +77,11 @@ const WriteForUs = () => {
     <FadeInEffect>
       <main className="flex items-start flex-col justify-center w-full p-4 lg:w-[800px] lg:mx-auto ">
         <h1 className="my-12 font-Oswald md:text-3xl text-2xl text-justify">
-          Esta secção é dedicada a dicas! É uma área de partilha de informação
-          útil para overlanders, viajantes, manutenções, dicas off-road,
-          informações uteis para quem faz do overland um modo de vida! Podes
-          sempre colaborar connosco, basta preencheres na aba “Escreve para nós”
-          nós analisaremos e mediante o nosso parecer publicaremos.
+          Partilha a tua aventura overland! Conta a tua história e inspira
+          outros exploradores! Escreve sobre o teu passeio overland, paisagens e
+          momentos inesquecíveis. Adiciona fotos, dicas e detalhes para tornar a
+          narrativa envolvente. Daremos os devidos créditos e publicaremos o teu
+          conteúdo.
         </h1>
         <form
           onSubmit={handleSubmit(handleSubmitForm)}

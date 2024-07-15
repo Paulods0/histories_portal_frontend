@@ -42,12 +42,15 @@ const WantToBeYours = () => {
   const handleSubmitForm = async (data: WantToBeYoursFormType) => {
     try {
       setIsSubmitting(true)
-      await axios.post("/newsletter/want-to-be-yours", data)
+      await axios.post("/mail/want-to-be-yours", {
+        ...data,
+        phone: `${data.countryCode} ${data.phone}`,
+      })
       toast.success("Email enviado com sucesso")
       reset()
-    } catch (error) {
+    } catch (error: any) {
       console.error(error)
-      toast.success("Erro ao enviar o email")
+      toast.error("Erro ao enviar o email")
     } finally {
       setIsSubmitting(false)
     }

@@ -10,6 +10,7 @@ import StoreMobileNavigation from "@/components/store-components/store-mobile-na
 import { useSearchParams } from "react-router-dom"
 import PaginationController from "@/components/pagination/pagination-controller"
 import { memo, useMemo } from "react"
+import { Helmet } from "react-helmet-async"
 
 const MemoStoreCard = memo(StoreCard)
 
@@ -49,41 +50,51 @@ const Store = () => {
   }
 
   return (
-    <main className="relative font-Poppins h-screen flex flex-col w-full">
-      <div className="relative">
-        <>
-          <StoreNavigationBar />
-          <StoreMobileNavigation />
-        </>
-
-        <div className="hidden lg:flex">
-          <StoreSlider />
-        </div>
-
-        <section className="relative w-full flex gap-10 flex-col lg:flex-row lg:py-4 lg:px-8">
-          <StoreFilter urlQuery={category} setFilter={setFilter} />
-
-          <section className="w-full grid grid-cols-1 flex-[5] pl-2 sm:grid-cols-3 border-l mb-12 mt-4 place-items-center lg:grid-cols-4 gap-8">
-            {memoProducts?.length === 0 ? (
-              <div className="lg:col-span-4 md:col-span-2 col-span-1">
-                <h1 className="text-center text-xl font-semibold">
-                  Não há nada ainda.
-                </h1>
-              </div>
-            ) : (
-              memoProducts
-            )}
-          </section>
-        </section>
-        <PaginationController
-          pages={products!!.pages}
-          paginate={handlePaginate}
+    <>
+      <Helmet>
+        <title>Loja Overland</title>
+        <meta
+          name="description"
+          content="Encontre artigos de todos os tipo na nossa loja Overland"
         />
+      </Helmet>
 
-        <GoBackButton />
-        <StoreFooter />
-      </div>
-    </main>
+      <main className="relative font-Poppins h-screen flex flex-col w-full">
+        <div className="relative">
+          <>
+            <StoreNavigationBar />
+            <StoreMobileNavigation />
+          </>
+
+          <div className="hidden lg:flex">
+            <StoreSlider />
+          </div>
+
+          <section className="relative w-full flex gap-10 flex-col lg:flex-row lg:py-4 lg:px-8">
+            <StoreFilter urlQuery={category} setFilter={setFilter} />
+
+            <section className="w-full grid grid-cols-1 flex-[5] pl-2 sm:grid-cols-3 border-l mb-12 mt-4 place-items-center lg:grid-cols-4 gap-8">
+              {memoProducts?.length === 0 ? (
+                <div className="lg:col-span-4 md:col-span-2 col-span-1">
+                  <h1 className="text-center text-xl font-semibold">
+                    Não há nada ainda.
+                  </h1>
+                </div>
+              ) : (
+                memoProducts
+              )}
+            </section>
+          </section>
+          <PaginationController
+            pages={products!!.pages}
+            paginate={handlePaginate}
+          />
+
+          <GoBackButton />
+          <StoreFooter />
+        </div>
+      </main>
+    </>
   )
 }
 

@@ -70,7 +70,7 @@ const StoreBuyProductForm = () => {
         },
         products: products,
       }
-      await axios.post("/product/buy-product", payload)
+      await axios.post("/mail/buy-product", payload)
       toast.success("Pedido enviado")
       clearCart()
     } catch (error: any) {

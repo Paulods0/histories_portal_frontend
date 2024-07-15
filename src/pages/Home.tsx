@@ -8,6 +8,7 @@ import SideBarHome from "@/components/sidebar/side-bar-home"
 import GoBackButton from "../components/global/go-back-button"
 import HighlightedCard from "../components/card/highlighted-card"
 import PaginationController from "../components/pagination/pagination-controller"
+import { Helmet } from "react-helmet-async"
 
 const MemoizedPostCard = memo(PostCard)
 
@@ -38,27 +39,44 @@ const Home = () => {
   }
 
   return (
-    <main className="relative w-full min-h-screen px-8 pb-3 flex-col mt-6">
-      <div className="w-full flex gap-10 ">
-        <FadeInEffect>
-          <div className="flex-[3] min-h-screen">
-            <HighlightedCard />
-            <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-              {memoizedPosts}
+    <>
+      <Helmet>
+        <title>Home | Overland Angola</title>
+        <meta
+          name="description"
+          content="Explore o mundo do overlanding com Overland Angola, seu destino principal para aventuras todo-terreno em Angola. Descubra dicas, roteiros e histórias inspiradoras de exploração."
+        />
+        <meta
+          name="keywords"
+          content="Overland Angola, aventuras todo-terreno Angola, exploração Angola, roteiros overland, dicas de overlanding, histórias de exploração"
+        />
+        <link rel="canonical" href="https://overland-angola-ao.netlify.app/" />
+      </Helmet>
+      <main className="relative w-full min-h-screen px-8 pb-3 flex-col mt-6">
+        <div className="w-full flex gap-10 ">
+          <FadeInEffect>
+            <div className="flex-[3] min-h-screen">
+              <HighlightedCard />
+              <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+                {memoizedPosts}
+              </div>
             </div>
-          </div>
-        </FadeInEffect>
+          </FadeInEffect>
 
-        <aside className="lg:flex flex-col flex-[1] hidden md:hidden">
-          <SideBarHome />
-        </aside>
-      </div>
+          <aside className="lg:flex flex-col flex-[1] hidden md:hidden">
+            <SideBarHome />
+          </aside>
+        </div>
 
-      <div className="w-full flex items-center justify-center">
-        <PaginationController paginate={handlePaginate} pages={posts!!.pages} />
-      </div>
-      <GoBackButton />
-    </main>
+        <div className="w-full flex items-center justify-center">
+          <PaginationController
+            paginate={handlePaginate}
+            pages={posts!!.pages}
+          />
+        </div>
+        <GoBackButton />
+      </main>
+    </>
   )
 }
 

@@ -24,6 +24,7 @@ export type Post = {
   rating: number
   category: string
   author_notes?: string
+  date: string
   createdAt: string
   latitude: number
   longitude: number

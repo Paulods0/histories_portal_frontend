@@ -5,6 +5,7 @@ import { useGetSchedulePost } from "@/lib/react-query"
 import AgendaCard from "@/components/card/agenda-card"
 import SwiperPosts from "@/components/global/SwiperPosts"
 import PaginationController from "@/components/pagination/pagination-controller"
+import { Helmet } from "react-helmet-async"
 
 const MemoizedAgendaCard = memo(AgendaCard)
 
@@ -31,22 +32,32 @@ const AgendaAo = () => {
   }
 
   return (
-    <div className="w-full min-h-screen gap-8 flex-col mb-4">
-      <FadeInEffect>
-        {memoizedPosts?.length === 0 ? (
-          <div className="w-full flex flex-col items-center justify-cenrer">
-            <h1>Não há nenhum post ainda.</h1>
-          </div>
-        ) : (
-          <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-1 gap-8">
-            {memoizedPosts}
-          </div>
-        )}
-        <PaginationController paginate={handlePaginate} pages={posts!!.pages} />
-      </FadeInEffect>
+    <>
+      <Helmet>
+        <title>Agenda AO | Overland Angola</title>
+        <meta name="description" content={`Veja agenda ao no Overland`} />
+      </Helmet>
 
-      <SwiperPosts />
-    </div>
+      <div className="w-full min-h-screen gap-8 flex-col mb-4">
+        <FadeInEffect>
+          {memoizedPosts?.length === 0 ? (
+            <div className="w-full flex flex-col items-center justify-cenrer">
+              <h1>Não há nenhum post ainda.</h1>
+            </div>
+          ) : (
+            <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-1 gap-8">
+              {memoizedPosts}
+            </div>
+          )}
+          <PaginationController
+            paginate={handlePaginate}
+            pages={posts!!.pages}
+          />
+        </FadeInEffect>
+
+        <SwiperPosts />
+      </div>
+    </>
   )
 }
 

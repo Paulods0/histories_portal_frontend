@@ -6,6 +6,7 @@ import FadeInEffect from "@/components/motion/fade-in"
 import SwiperPosts from "@/components/global/SwiperPosts"
 import PaginationController from "@/components/pagination/pagination-controller"
 import { memo, useMemo } from "react"
+import { Helmet } from "react-helmet-async"
 
 const MemoizedPostCard = memo(PostCard)
 
@@ -35,29 +36,36 @@ const OverlandJournal = () => {
   }
 
   return (
-    <div className="w-full min-h-screen gap-10 lg:px-12 flex-col ">
-      <FadeInEffect>
-        {memoizedPosts?.length === 0 ? (
-          <div className="w-full flex justify-center items-center mt-6">
-            <h1>Não há nenhum post ainda</h1>
-          </div>
-        ) : (
-          <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-            {memoizedPosts}
-          </div>
-        )}
-      </FadeInEffect>
+    <>
+      <Helmet>
+        <title>Jornal Overland | Overland Angola</title>
+        <meta name="description" content={`Veja jornal overland no Overland`} />
+      </Helmet>
 
-      <div className="mt-12">
-        <div className="flex flex-col self-start">
-          <PaginationController
-            paginate={handlePaginate}
-            pages={posts!!.pages}
-          />
+      <div className="w-full min-h-screen gap-10 lg:px-12 flex-col ">
+        <FadeInEffect>
+          {memoizedPosts?.length === 0 ? (
+            <div className="w-full flex justify-center items-center mt-6">
+              <h1>Não há nenhum post ainda</h1>
+            </div>
+          ) : (
+            <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+              {memoizedPosts}
+            </div>
+          )}
+        </FadeInEffect>
+
+        <div className="mt-12">
+          <div className="flex flex-col self-start">
+            <PaginationController
+              paginate={handlePaginate}
+              pages={posts!!.pages}
+            />
+          </div>
+          <SwiperPosts />
         </div>
-        <SwiperPosts />
       </div>
-    </div>
+    </>
   )
 }
 

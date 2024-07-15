@@ -8,10 +8,10 @@ type Props = {
 }
 
 const PostCard = ({
-  post: { _id, mainImage, content, author, title, createdAt },
+  post: { _id, mainImage, content, author, title, date },
 }: Props) => {
   const dataContent = createMarkup(content)
-  const date = formateData(createdAt)
+  const postDate = formateData(date)
   return (
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
       <div className="w-full relative">
@@ -45,9 +45,9 @@ const PostCard = ({
           />
           <Link
             to={`/post/user/${author._id}`}
-            className=" text-center text-colorGray-light font-OpenSans font-normal text-[15px]"
+            className=" text-center text-colorGray-light font-OpenSans capitalize font-normal text-[15px]"
           >
-            {`${author?.firstname} ${author?.lastname} / ${date}`}
+            {`${author?.firstname} ${author?.lastname} / ${postDate}`}
           </Link>
         </div>
       </div>
