@@ -1,6 +1,6 @@
+import { memo, useMemo } from "react"
 import { ClipLoader } from "react-spinners"
 import { useNavigate } from "react-router-dom"
-import { memo, useMemo, useState } from "react"
 import { useGetPosts } from "@/lib/react-query"
 import PostCard from "../components/card/post-card"
 import FadeInEffect from "@/components/motion/fade-in"
@@ -13,13 +13,17 @@ import { Helmet } from "react-helmet-async"
 const MemoizedPostCard = memo(PostCard)
 
 const Home = () => {
+  const currPage = 1
   const navigate = useNavigate()
-  const [page, setPage] = useState(1)
-  const { data: posts, isLoading } = useGetPosts(page, "")
+
+  const { data: posts, isLoading } = useGetPosts(currPage, "")
 
   const handlePaginate = (newPage: number) => {
-    setPage(newPage)
-    navigate(`/page/${newPage}`)
+    if (newPage === 1) {
+      navigate("/")
+    } else {
+      navigate(`/page/${newPage}`)
+    }
   }
 
   const memoizedPosts = useMemo(() => {
@@ -70,8 +74,8 @@ const Home = () => {
 
         <div className="w-full flex items-center justify-center">
           <PaginationController
-            paginate={handlePaginate}
-            pages={posts!!.pages}
+            totalPages={posts?.pages}
+            handlePaginate={handlePaginate}
           />
         </div>
         <GoBackButton />

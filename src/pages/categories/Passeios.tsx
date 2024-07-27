@@ -7,7 +7,7 @@ import { MapContainer, TileLayer } from "react-leaflet"
 import { useGetPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 import SwiperPosts from "@/components/global/SwiperPosts"
-import PaginationController from "@/components/pagination/pagination-controller"
+// import PaginationController from "@/components/pagination/pagination-controller"
 import { memo, useMemo } from "react"
 import MapMarker from "@/components/card/map-marker"
 import { Helmet } from "react-helmet-async"
@@ -43,9 +43,9 @@ const Passeios = () => {
     )
   }
 
-  const handlePaginate = (newPage: number) => {
-    window.location.href = `?page=${newPage}`
-  }
+  // const handlePaginate = (newPage: number) => {
+  //   window.location.href = `?page=${newPage}`
+  // }
 
   const CENTER_LOCATION = {
     LATITUDE: -12.39292107197616,
@@ -86,10 +86,7 @@ const Passeios = () => {
 
         <div className="mt-12">
           <div className="flex flex-col self-start">
-            <PaginationController
-              paginate={handlePaginate}
-              pages={posts!!.pages}
-            />
+            {/* <PaginationController pages={posts!!.pages} /> */}
             <div className="text-colorGray font-semibold font-Roboto uppercase text-[12px] flex self-start gap-1">
               <h1 className="text-colorGray-zinc-900">Os mais vistos:</h1>
             </div>

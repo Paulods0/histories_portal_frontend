@@ -8,7 +8,7 @@ import StoreFilter from "@/components/store-components/store-filter"
 import StoreSlider from "@/components/store-components/store-slider"
 import StoreMobileNavigation from "@/components/store-components/store-mobile-navigation"
 import { useSearchParams } from "react-router-dom"
-import PaginationController from "@/components/pagination/pagination-controller"
+// import PaginationController from "@/components/pagination/pagination-controller"
 import { memo, useMemo } from "react"
 import { Helmet } from "react-helmet-async"
 
@@ -34,12 +34,12 @@ const Store = () => {
     ))
   }, [products?.products])
 
-  const handlePaginate = (newPage: number) => {
-    setFilter((prev) => {
-      prev.set("page", newPage.toString())
-      return prev
-    })
-  }
+  // const handlePaginate = (newPage: number) => {
+  //   setFilter((prev) => {
+  //     prev.set("page", newPage.toString())
+  //     return prev
+  //   })
+  // }
 
   if (isProductsLoading) {
     return (
@@ -52,7 +52,7 @@ const Store = () => {
   return (
     <>
       <Helmet>
-        <title>Loja Overland</title>
+        <title>Loja | Overland</title>
         <meta
           name="description"
           content="Encontre artigos de todos os tipo na nossa loja Overland"
@@ -85,10 +85,7 @@ const Store = () => {
               )}
             </section>
           </section>
-          <PaginationController
-            pages={products!!.pages}
-            paginate={handlePaginate}
-          />
+          {/* <PaginationController paginate={handlePaginate} /> */}
 
           <GoBackButton />
           <StoreFooter />

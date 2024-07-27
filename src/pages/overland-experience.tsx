@@ -1,7 +1,7 @@
 import PostCard from "@/components/card/post-card"
 import SwiperPosts from "@/components/global/SwiperPosts"
 import FadeInEffect from "@/components/motion/fade-in"
-import PaginationController from "@/components/pagination/pagination-controller"
+// import PaginationController from "@/components/pagination/pagination-controller"
 import { useGetPosts } from "@/lib/react-query"
 import { useLocation } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
@@ -21,9 +21,9 @@ const OverlandExperience = () => {
     )
   }
 
-  const handlePaginate = (newPage: number) => {
-    window.location.href = `?page=${newPage}`
-  }
+  // const handlePaginate = (newPage: number) => {
+  //   window.location.href = `?page=${newPage}`
+  // }
 
   return (
     <div className="w-full min-h-screen gap-10 lg:px-12 flex-col ">
@@ -36,10 +36,7 @@ const OverlandExperience = () => {
       </FadeInEffect>
       <div className="mt-12">
         <div className="flex flex-col self-start">
-          <PaginationController
-            paginate={handlePaginate}
-            pages={data!!.pages!!}
-          />
+          {/* <PaginationController pages={data!!.pages!!} /> */}
         </div>
 
         <SwiperPosts />

@@ -4,13 +4,13 @@ import FadeInEffect from "@/components/motion/fade-in"
 import { useGetSchedulePost } from "@/lib/react-query"
 import AgendaCard from "@/components/card/agenda-card"
 import SwiperPosts from "@/components/global/SwiperPosts"
-import PaginationController from "@/components/pagination/pagination-controller"
+// import PaginationController from "@/components/pagination/pagination-controller"
 import { Helmet } from "react-helmet-async"
 
 const MemoizedAgendaCard = memo(AgendaCard)
 
 const AgendaAo = () => {
-  const [page, setPage] = useState(1)
+  const [page, _] = useState(1)
   const { data: posts, isLoading } = useGetSchedulePost(page)
 
   const memoizedPosts = useMemo(() => {
@@ -27,9 +27,9 @@ const AgendaAo = () => {
     )
   }
 
-  const handlePaginate = (newPage: number) => {
-    setPage(newPage)
-  }
+  // const handlePaginate = (newPage: number) => {
+  //   setPage(newPage)
+  // }
 
   return (
     <>
@@ -49,10 +49,7 @@ const AgendaAo = () => {
               {memoizedPosts}
             </div>
           )}
-          <PaginationController
-            paginate={handlePaginate}
-            pages={posts!!.pages}
-          />
+          {/* <PaginationController  totalPages={posts!!.pages} /> */}
         </FadeInEffect>
 
         <SwiperPosts />

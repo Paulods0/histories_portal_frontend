@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { useParams } from "react-router-dom"
-import PaginationController from "../components/pagination/pagination-controller"
+// import PaginationController from "../components/pagination/pagination-controller"
 import SideBar from "../components/sidebar/side-bar"
 import PostCard from "../components/card/post-card"
 import GoBackButton from "../components/global/go-back-button"
@@ -13,15 +13,15 @@ const UserPosts = () => {
   const { data: posts, isLoading } = useGetUserPosts(userId!!)
   const author = posts?.map((post) => post.author)[0]
 
-  const [pages, setPages] = useState(1)
+  const [_, setPages] = useState(1)
 
-  const handleNavigate = (page: number) => {
-    if (page === 1) {
-      window.location.href = "/"
-    } else {
-      window.location.href = `/page/${page}`
-    }
-  }
+  // const handleNavigate = (page: number) => {
+  //   if (page === 1) {
+  //     window.location.href = "/"
+  //   } else {
+  //     window.location.href = `/page/${page}`
+  //   }
+  // }
   const h = () => setPages(2)
   if (isLoading) {
     return (
@@ -65,7 +65,7 @@ const UserPosts = () => {
         </div>
 
         <div className="w-full flex items-center justify-center">
-          <PaginationController paginate={handleNavigate} pages={pages} />
+          {/* <PaginationController paginate={handleNavigate} pages={pages} /> */}
         </div>
       </main>
       <GoBackButton />

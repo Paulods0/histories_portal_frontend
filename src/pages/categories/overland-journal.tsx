@@ -4,7 +4,7 @@ import { ClipLoader } from "react-spinners"
 import { useGetPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 import SwiperPosts from "@/components/global/SwiperPosts"
-import PaginationController from "@/components/pagination/pagination-controller"
+// import PaginationController from "@/components/pagination/pagination-controller"
 import { memo, useMemo } from "react"
 import { Helmet } from "react-helmet-async"
 
@@ -31,9 +31,9 @@ const OverlandJournal = () => {
     )
   }
 
-  const handlePaginate = (newPage: number) => {
-    window.location.href = `?page=${newPage}`
-  }
+  // const handlePaginate = (newPage: number) => {
+  //   window.location.href = `?page=${newPage}`
+  // }
 
   return (
     <>
@@ -57,10 +57,7 @@ const OverlandJournal = () => {
 
         <div className="mt-12">
           <div className="flex flex-col self-start">
-            <PaginationController
-              paginate={handlePaginate}
-              pages={posts!!.pages}
-            />
+            {/* <PaginationController pages={posts!!.pages} /> */}
           </div>
           <SwiperPosts />
         </div>

@@ -1,24 +1,18 @@
+import { ClipLoader } from "react-spinners"
+import { useGetPosts } from "@/lib/react-query"
+import PostCard from "../components/card/post-card"
+import SideBar from "../components/sidebar/side-bar"
 import { useNavigate, useParams } from "react-router-dom"
 import GoBackButton from "../components/global/go-back-button"
-import SideBar from "../components/sidebar/side-bar"
-import PostCard from "../components/card/post-card"
-import { ClipLoader } from "react-spinners"
 import PaginationController from "../components/pagination/pagination-controller"
-import { useGetPosts } from "@/lib/react-query"
 import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 
 const Page = () => {
   const navigate = useNavigate()
   const { page } = useParams()
-  const { data: posts, isLoading } = useGetPosts(parseInt(page!!))
+  const newPage = parseInt(page!!)
 
-  const handleNavigate = (page: number) => {
-    if (page === 1) {
-      navigate("/")
-    } else {
-      navigate(`/page/${page}`)
-    }
-  }
+  const { data: posts, isLoading } = useGetPosts(newPage)
 
   if (!posts?.posts) {
     return (
@@ -28,6 +22,15 @@ const Page = () => {
         </div>
       </div>
     )
+  }
+
+  const handlePaginate = (newPage: number) => {
+    if (newPage === 1) {
+      navigate("/")
+    } else {
+      navigate(`/page/${newPage}`)
+      window.scrollTo(0, 0)
+    }
   }
 
   return (
@@ -58,7 +61,10 @@ const Page = () => {
         </div>
 
         <div className="w-full flex items-center justify-center">
-          <PaginationController paginate={handleNavigate} pages={posts.pages} />
+          <PaginationController
+            totalPages={posts.pages}
+            handlePaginate={handlePaginate}
+          />
         </div>
       </main>
       <GoBackButton />

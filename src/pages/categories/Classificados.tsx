@@ -4,24 +4,24 @@ import { useGetClassifiedPosts } from "@/lib/react-query"
 import FadeInEffect from "@/components/motion/fade-in"
 import { memo, useMemo } from "react"
 import SwiperPosts from "@/components/global/SwiperPosts"
-import PaginationController from "@/components/pagination/pagination-controller"
+// import PaginationController from "@/components/pagination/pagination-controller"
 import { useSearchParams } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
 
 const MemoizedClassifiedCard = memo(ClassifiedCard)
 
 const Classificados = () => {
-  const [page, setPage] = useSearchParams({ page: "1" })
+  const [page, _] = useSearchParams({ page: "1" })
   const currentPage = Number(page.get("page"))
   const { data: posts, isLoading } = useGetClassifiedPosts(currentPage)
 
-  const handlePaginate = (newPage: number) => {
-    setPage((prev) => {
-      prev.set("page", String(newPage))
-      return prev
-    })
-    window.scrollTo(0, 0)
-  }
+  // const handlePaginate = (newPage: number) => {
+  //   setPage((prev) => {
+  //     prev.set("page", String(newPage))
+  //     return prev
+  //   })
+  //   window.scrollTo(0, 0)
+  // }
 
   const memoizedPosts = useMemo(() => {
     return posts?.posts
@@ -68,7 +68,7 @@ const Classificados = () => {
             </div>
           )}
         </FadeInEffect>
-        <PaginationController pages={posts!!.pages} paginate={handlePaginate} />
+        {/* <PaginationController pages={posts!!.pages} paginate={handlePaginate} /> */}
         <SwiperPosts />
         <p className="w-full items-center text-justify gap-x-3 flex font-normal lg:text-xl text-base font-Oswald mt-6 mb-10">
           Nota: O sistema de classificados é uma montra digital gratuita e
