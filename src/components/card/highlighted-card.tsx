@@ -5,8 +5,6 @@ import { createMarkup, formateData } from "../../utils/helpers"
 
 const HighlightedCard = () => {
   const { data: post, isLoading } = useGetHighlightedPost()
-  const dataContent = createMarkup(post?.content)
-  const formatedDate = post?.createdAt ? formateData(post?.createdAt) : ""
 
   if (isLoading) {
     return (
@@ -19,9 +17,11 @@ const HighlightedCard = () => {
     )
   }
 
-  if (!post) {
-    return
-  }
+  if (!post) return null
+
+  const dataContent = createMarkup(post?.content)
+  const formatedDate = post?.createdAt ? formateData(post?.createdAt) : ""
+
   return (
     <div className="w-full flex flex-col mb-12 items-center justify-center">
       <h1 className="text-[41px] lg:line-clamp-2 text-center text-[#111111] font-Oswald font-normal">

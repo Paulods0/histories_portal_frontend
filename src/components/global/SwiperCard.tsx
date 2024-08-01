@@ -5,6 +5,7 @@ import { createMarkup, formateData } from "../../utils/helpers"
 const SwiperCard = ({ post }: { post: Post }) => {
   const content = createMarkup(post.content)
   const date = formateData(post?.createdAt)
+  
   // const navigateToDetailPage = () => {
   //   window.location.href = `/post/${post._id}`
   // }

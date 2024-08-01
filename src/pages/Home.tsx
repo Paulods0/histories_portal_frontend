@@ -15,7 +15,6 @@ const MemoizedPostCard = memo(PostCard)
 const Home = () => {
   const currPage = 1
   const navigate = useNavigate()
-
   const { data: posts, isLoading } = useGetPosts(currPage, "")
 
   const handlePaginate = (newPage: number) => {
@@ -28,7 +27,7 @@ const Home = () => {
 
   const memoizedPosts = useMemo(() => {
     return posts?.posts
-      .filter((post) => !post.highlighted)
+      ?.filter((post) => post.highlighted)
       .map((post) => {
         return <MemoizedPostCard post={post} key={post._id} />
       })
@@ -41,6 +40,8 @@ const Home = () => {
       </div>
     )
   }
+
+  console.log(memoizedPosts)
 
   return (
     <>
@@ -56,6 +57,7 @@ const Home = () => {
         />
         <link rel="canonical" href="https://overland-angola-ao.netlify.app/" />
       </Helmet>
+
       <main className="relative w-full min-h-screen px-8 pb-3 flex-col mt-6">
         <div className="w-full flex gap-10 ">
           <FadeInEffect>

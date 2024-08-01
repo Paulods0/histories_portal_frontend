@@ -12,6 +12,7 @@ import { memo, useMemo } from "react"
 import MapMarker from "@/components/card/map-marker"
 import { Helmet } from "react-helmet-async"
 
+
 const MemoizedPostMarker = memo(MapMarker)
 const MemoizedPostCard = memo(PostCard)
 
@@ -65,7 +66,7 @@ const Passeios = () => {
               <h1>Não há posts ainda.</h1>
             </div>
           ) : (
-            <div className="w-full  flex flex-col">
+            <div className="w-full flex flex-col">
               <MapContainer
                 className="leaflet-container"
                 center={[CENTER_LOCATION.LATITUDE, CENTER_LOCATION.LONGITUDE]}
@@ -87,9 +88,6 @@ const Passeios = () => {
         <div className="mt-12">
           <div className="flex flex-col self-start">
             {/* <PaginationController pages={posts!!.pages} /> */}
-            <div className="text-colorGray font-semibold font-Roboto uppercase text-[12px] flex self-start gap-1">
-              <h1 className="text-colorGray-zinc-900">Os mais vistos:</h1>
-            </div>
           </div>
           <SwiperPosts />
         </div>

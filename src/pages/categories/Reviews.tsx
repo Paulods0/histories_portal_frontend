@@ -31,14 +31,6 @@ const Reviews = () => {
     )
   }
 
-  if (posts?.posts.length === 0) {
-    return (
-      <div className="col-span-2 flex items-center justify-center">
-        <h1>Nenhum post ainda.</h1>
-      </div>
-    )
-  }
-
   // const handlePaginate = (newPage: number) => {
   //   window.location.href = `?page=${newPage}`
   // }
@@ -52,14 +44,20 @@ const Reviews = () => {
 
       <div className="w-full min-h-screen gap-10 lg:px-12 flex-col">
         <FadeInEffect>
-          <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-            {memoPosts}
-          </div>
+          {memoPosts?.length === 0 ? (
+            <div className="w-full flex justify-center items-center mt-6">
+              <h1>Não há nenhum post ainda</h1>
+            </div>
+          ) : (
+            <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+              {memoPosts}
+            </div>
+          )}
         </FadeInEffect>
 
         <div className="mt-12">
           <div className="flex flex-col self-start">
-            {/* <PaginationController pages={posts!!.pages} /> */}
+            {/* <PaginationController handlePaginate={} totalPages={posts!!.pages} /> */}
           </div>
 
           <SwiperPosts />

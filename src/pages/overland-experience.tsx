@@ -5,6 +5,9 @@ import FadeInEffect from "@/components/motion/fade-in"
 import { useGetPosts } from "@/lib/react-query"
 import { useLocation } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
+import { memo, useMemo } from "react"
+
+const MemoizedPostCard = memo(PostCard)
 
 const OverlandExperience = () => {
   const path = useLocation()
@@ -13,6 +16,12 @@ const OverlandExperience = () => {
 
   const { data, isLoading } = useGetPosts(currPage, category)
 
+  const memoizedPosts = useMemo(() => {
+    return data?.posts.map((post) => (
+      <MemoizedPostCard post={post} key={post._id} />
+    ))
+  }, [data?.posts])
+
   if (isLoading) {
     return (
       <div className="col-span-2 flex items-center justify-center">
@@ -20,7 +29,7 @@ const OverlandExperience = () => {
       </div>
     )
   }
-
+  
   // const handlePaginate = (newPage: number) => {
   //   window.location.href = `?page=${newPage}`
   // }
@@ -28,11 +37,15 @@ const OverlandExperience = () => {
   return (
     <div className="w-full min-h-screen gap-10 lg:px-12 flex-col ">
       <FadeInEffect>
-        <div className="place-items-center h-full grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-          {data?.posts.map((post) => (
-            <PostCard key={post._id} post={post} />
-          ))}
-        </div>
+        {memoizedPosts?.length === 0 ? (
+          <div className="w-full flex justify-center items-center mt-6">
+            <h1>Não há nenhum post ainda</h1>
+          </div>
+        ) : (
+          <div className="place-items-center h-full grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
+            {memoizedPosts}
+          </div>
+        )}
       </FadeInEffect>
       <div className="mt-12">
         <div className="flex flex-col self-start">

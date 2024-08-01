@@ -10,10 +10,11 @@ import {
 } from "react-share"
 type Props = {
   image: string
+  postTitle?: string
 }
-const ShareButtons = ({ image }: Props) => {
+const ShareButtons = ({ image, postTitle }: Props) => {
   const location = window.location.href
-  console.log(location)
+
   return (
     <div className="flex items-center w-full gap-x-2">
       <span className="font-semibold text-[14px] italic text-colorGray-light capitalize">
@@ -21,17 +22,18 @@ const ShareButtons = ({ image }: Props) => {
       </span>
       <div className="flex items-center gap-x-2">
         <FacebookShareButton
-          children={<FacebookIcon size={30} />}
           url={location}
+          content={postTitle}
+          children={<FacebookIcon size={30} />}
         />
         <PinterestShareButton
-          children={<PinterestIcon size={30} />}
-          url={location}
           media={image}
+          url={location}
+          children={<PinterestIcon size={30} />}
         />
         <WhatsappShareButton
-          children={<WhatsappIcon size={30} />}
           url={location}
+          children={<WhatsappIcon size={30} />}
         />
         <EmailShareButton children={<EmailIcon size={30} />} url={location} />
       </div>

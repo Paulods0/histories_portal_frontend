@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom"
-import { createMarkup, formateData } from "../../utils/helpers"
 import { Post } from "@/api/types"
+import { Link } from "react-router-dom"
 import LazyImage from "../global/lazy-image"
+import { createMarkup, formateData } from "../../utils/helpers"
 
 type Props = {
   post: Post
@@ -12,6 +12,7 @@ const PostCard = ({
 }: Props) => {
   const dataContent = createMarkup(content)
   const postDate = formateData(date)
+  
   return (
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
       <div className="w-full relative">
@@ -43,8 +44,9 @@ const PostCard = ({
             className="w-9 h-9 rounded-full object-contain"
             alt={title}
           />
+
           <Link
-            to={`/post/user/${author._id}`}
+            to={`/post/user/${author!!._id}`}
             className=" text-center text-colorGray-light font-OpenSans capitalize font-normal text-[15px]"
           >
             {`${author?.firstname} ${author?.lastname} / ${postDate}`}
