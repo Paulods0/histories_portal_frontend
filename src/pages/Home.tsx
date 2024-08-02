@@ -1,4 +1,4 @@
-import { memo, useMemo } from "react"
+// import { memo } from "react"
 import { ClipLoader } from "react-spinners"
 import { useNavigate } from "react-router-dom"
 import { useGetPosts } from "@/lib/react-query"
@@ -10,7 +10,7 @@ import HighlightedCard from "../components/card/highlighted-card"
 import PaginationController from "../components/pagination/pagination-controller"
 import { Helmet } from "react-helmet-async"
 
-const MemoizedPostCard = memo(PostCard)
+// const MemoizedPostCard = memo(PostCard)
 
 const Home = () => {
   const currPage = 1
@@ -25,13 +25,13 @@ const Home = () => {
     }
   }
 
-  const memoizedPosts = useMemo(() => {
-    return posts?.posts
-      ?.filter((post) => post.highlighted)
-      .map((post) => {
-        return <MemoizedPostCard post={post} key={post._id} />
-      })
-  }, [posts?.posts])
+  // const memoizedPosts = useMemo(() => {
+  //   return posts?.posts
+  //     ?.filter((post) => post.highlighted)
+  //     .map((post) => {
+  //       return <MemoizedPostCard post={post} key={post._id} />
+  //     })
+  // }, [posts?.posts])
 
   if (isLoading) {
     return (
@@ -40,8 +40,6 @@ const Home = () => {
       </div>
     )
   }
-
-  console.log(memoizedPosts)
 
   return (
     <>
@@ -64,7 +62,10 @@ const Home = () => {
             <div className="flex-[3] min-h-screen">
               <HighlightedCard />
               <div className="place-items-center grid md:grid-cols-1 grid-cols-1 lg:grid-cols-2 gap-8">
-                {memoizedPosts}
+                {/* {memoizedPosts} */}
+                {posts?.posts.map((post) => (
+                  <PostCard post={post} key={post._id} />
+                ))}
               </div>
             </div>
           </FadeInEffect>

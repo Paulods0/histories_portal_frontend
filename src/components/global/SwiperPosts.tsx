@@ -1,16 +1,9 @@
 import { ClipLoader } from "react-spinners"
 import SwiperCard from "./SwiperCard"
 import { useGetMostViewsPosts } from "@/lib/react-query"
-import { memo, useMemo } from "react"
-
-const MemoSwiperCard = memo(SwiperCard)
 
 const SwiperPosts = () => {
   const { data: posts, isLoading } = useGetMostViewsPosts()
-
-  const memoPosts = useMemo(() => {
-    return posts?.map((post) => <MemoSwiperCard post={post} key={post._id} />)
-  }, [posts])
 
   if (isLoading) {
     return (
@@ -29,8 +22,8 @@ const SwiperPosts = () => {
       </h1>
 
       <div className="lg:w-[65vw] border px-3 rounded-md w-[80vw] flex md:w-full self-start scroll-bar mt-2 mb-4 overflow-x-auto scroll-bar py-3 lg:flex gap-2 ">
-        {posts?.map((_, index) => (
-          <div key={index}>{memoPosts}</div>
+        {posts?.map((post) => (
+          <SwiperCard post={post} key={post._id} />
         ))}
       </div>
     </div>

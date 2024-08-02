@@ -11,8 +11,9 @@ const PostCard = ({
   post: { _id, mainImage, content, author, title, date },
 }: Props) => {
   const dataContent = createMarkup(content)
-  const postDate = formateData(date)
-  
+  const newDate = date.split("-").reverse().join("-")
+  const postDate = formateData(newDate)
+
   return (
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
       <div className="w-full relative">
