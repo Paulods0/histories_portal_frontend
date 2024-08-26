@@ -16,6 +16,8 @@ const Home = () => {
   const currPage = 1
   const navigate = useNavigate()
   const { data: posts, isLoading } = useGetPosts(currPage, "")
+  
+  console.log(posts?.posts)
 
   const handlePaginate = (newPage: number) => {
     if (newPage === 1) {

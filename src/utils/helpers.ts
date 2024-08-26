@@ -1,22 +1,31 @@
-import { format } from "date-fns"
 import { pt } from "date-fns/locale"
-import imageCompression from "browser-image-compression"
-import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import { toast } from "react-toastify"
 import { storage } from "@/config/firebase"
+import { format, isValid, parseISO } from "date-fns"
+import imageCompression from "browser-image-compression"
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 
 export const createMarkup = (value?: string) => {
   return { __html: value!! }
 }
 
-export const formateData = (originalDate: string) => {
-  const data = format(originalDate, "dd 'de' LLLL 'de' yyyy", {
-    locale: pt,
-  })
-  return data
+export function formateData(date: string): string {
+  if (date && date !== "" && typeof date === "string") {
+    const parsedISODate = parseISO(date)
+    const isValidDate = isValid(parsedISODate)
+    console.log(parsedISODate)
+
+    if (isValidDate) {
+      const newDate = format(parsedISODate, "dd 'de' MMMM 'de' yyyy", {
+        locale: pt,
+      })
+      return newDate
+    }
+  }
+  return ""
 }
 
-export async function handleImageUpload(img: File) {
+export async function handleCompressImage(img: File) {
   const imageFile = img
   // console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`)
 

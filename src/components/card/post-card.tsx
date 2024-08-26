@@ -11,8 +11,7 @@ const PostCard = ({
   post: { _id, mainImage, content, author, title, date },
 }: Props) => {
   const dataContent = createMarkup(content)
-  const newDate = date.split("-").reverse().join("-")
-  const postDate = formateData(newDate)
+  const postDate = formateData(date)
 
   return (
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
@@ -22,8 +21,8 @@ const PostCard = ({
             <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
             <LazyImage
               id={_id}
-              image={mainImage}
               className="w-full h-full object-cover"
+              image={mainImage}
             />
           </Link>
         </div>
@@ -41,7 +40,7 @@ const PostCard = ({
         <div className="flex items-center gap-2 justify-center mt-4">
           <img
             loading="lazy"
-            src={author!!.image}
+            src={author!!.image ? author.image : "/user.png"}
             className="w-9 h-9 rounded-full object-contain"
             alt={title}
           />
