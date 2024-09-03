@@ -51,16 +51,16 @@ const ClassifiedFormBuyPage = () => {
       }
       const newPostData: NewClassifiedPost = {
         author: {
-          firstname: data.author.firstname,
-          lastname: data.author.lastname,
-          email: data.author.email,
-          phone: data.author.phone,
+          firstname: data.author!.firstname,
+          lastname: data.author!.lastname,
+          email: data.author!.email,
+          phone: data.author!.phone,
         },
-        content: data.content,
+        content: data!.content as string,
         mainImage: imageURL,
         images: imagesURL,
-        price: data.price,
-        title: data.name,
+        price: data!.price as string,
+        title: data!.name as string,
         type: data.type!!,
       }
       mutate(newPostData)

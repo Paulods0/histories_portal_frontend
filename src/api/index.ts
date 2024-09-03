@@ -90,11 +90,6 @@ export const getPostByCategory = async (
   return response.data
 }
 
-export const getAllProdutCategories = async (): Promise<PostCategory[]> => {
-  const response = await axios.get("/product-category")
-  return response.data
-}
-
 export const getMostViewedPosts = async (): Promise<Post[]> => {
   const response = await axios.get("/post/get/most-views-post")
   return response.data

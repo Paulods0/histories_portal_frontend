@@ -1,4 +1,3 @@
-import { handleImageUpload } from "@/utils/helpers"
 import { z } from "zod"
 
 export const ClassifiedFormValidation = z.object({
@@ -60,7 +59,7 @@ export const writeForUsSchemaType = z.object({
     z.object({
       image: z.instanceof(FileList).transform((file) => {
         if (file.item(0) !== null) {
-          return handleImageUpload(file.item(0)!!)
+          return file.item(0)!!
         }
       }),
     })
@@ -92,7 +91,7 @@ export const classifiedFormSchema = z.object({
       z.object({
         image: z.instanceof(FileList).transform((file) => {
           if (file.item(0) !== null) {
-            return handleImageUpload(file.item(0)!!)
+            return file.item(0)!!
           }
         }),
       })
@@ -107,7 +106,7 @@ export const classifiedFormSchema = z.object({
     }, "*Insira uma imagem")
     .transform((image) => {
       if (image.item(0) !== null) {
-        return handleImageUpload(image.item(0)!!)
+        return image.item(0)!!
       }
     }),
   content: z.string().min(1, "*Insira uma descrição"),

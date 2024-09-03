@@ -40,13 +40,13 @@ const PostCard = ({
         <div className="flex items-center gap-2 justify-center mt-4">
           <img
             loading="lazy"
-            src={author!!.image ? author.image : "/user.png"}
+            src={author?.image ? author.image : "/user.png"}
             className="w-9 h-9 rounded-full object-contain"
             alt={title}
           />
 
           <Link
-            to={`/post/user/${author!!._id}`}
+            to={`/post/user/${author?._id!}`}
             className=" text-center text-colorGray-light font-OpenSans capitalize font-normal text-[15px]"
           >
             {`${author?.firstname} ${author?.lastname} / ${postDate}`}

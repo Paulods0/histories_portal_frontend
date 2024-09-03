@@ -6,7 +6,6 @@ import {
   createClassifiedPost,
   getAllPosts,
   getAllProducts,
-  getAllProdutCategories,
   getClassifiedPosts,
   getHighlightedPost,
   getMostLikedPosts,
@@ -130,13 +129,6 @@ export const useGetProduts = (page: number = 0, category: string = "") => {
   return useQuery({
     queryKey: ["get-products", page, category],
     queryFn: () => getAllProducts(page, category),
-  })
-}
-
-export const useGetProductCategories = () => {
-  return useQuery({
-    queryKey: ["get-product-category"],
-    queryFn: getAllProdutCategories,
   })
 }
 
