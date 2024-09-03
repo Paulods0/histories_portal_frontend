@@ -1,5 +1,5 @@
-import { ClipLoader } from "react-spinners"
 import SwiperCard from "./SwiperCard"
+import { ClipLoader } from "react-spinners"
 import { useGetMostViewsPosts } from "@/lib/react-query"
 
 const SwiperPosts = () => {

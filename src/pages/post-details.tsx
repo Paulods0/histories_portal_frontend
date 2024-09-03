@@ -95,11 +95,6 @@ const PostDetails = () => {
                 </div>
               </div>
 
-              <div className="flex flex-col self-start">
-                <div className="text-colorGray font-semibold font-Roboto uppercase text-[12px] flex self-start gap-1">
-                  <h1 className="text-colorGray-zinc-900">Os mais vistos:</h1>
-                </div>
-              </div>
               <SwiperPosts />
             </div>
             <aside className="lg:flex flex-col flex-[1.5] hidden md:hidden">

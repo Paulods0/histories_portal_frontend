@@ -2,7 +2,6 @@ import axios from "@/config/axios"
 import { url } from "../utils/constants"
 import { API_URL } from "../utils/enums"
 import {
-  PostCategory,
   Post,
   Product,
   SchedulePost,
