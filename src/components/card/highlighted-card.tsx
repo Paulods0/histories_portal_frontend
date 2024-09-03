@@ -20,7 +20,7 @@ const HighlightedCard = () => {
   if (!post) return null
 
   const dataContent = createMarkup(post?.content)
-  const formatedDate = post?.createdAt ? formateData(post?.createdAt) : ""
+  const formatedDate = formateData(post?.date)
 
   return (
     <div className="w-full flex flex-col mb-12 items-center justify-center">
