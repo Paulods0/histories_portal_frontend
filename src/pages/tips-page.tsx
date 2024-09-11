@@ -1,12 +1,11 @@
 import { memo, useMemo } from "react"
+import { Helmet } from "react-helmet-async"
 import { ClipLoader } from "react-spinners"
 import { useGetTips } from "@/lib/react-query"
 import TipCard from "@/components/card/tip-card"
 import { useSearchParams } from "react-router-dom"
 import FadeInEffect from "@/components/motion/fade-in"
 import SwiperPosts from "@/components/global/SwiperPosts"
-import { Helmet } from "react-helmet-async"
-// import PaginationController from "@/components/pagination/pagination-controller"
 
 const MemoTipCard = memo(TipCard)
 
@@ -29,14 +28,6 @@ const TipsPage = () => {
       </div>
     )
   }
-
-  // const handlePaginate = (newPage: number) => {
-  //   setPage((prev) => {
-  //     prev.set("page", String(newPage))
-  //     return prev
-  //   })
-  //   window.scrollTo(0, 0)
-  // }
 
   return (
     <>

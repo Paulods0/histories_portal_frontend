@@ -17,7 +17,7 @@ const TipCard: FC<Props> = ({ post }) => {
       className="relative w-full h-fit flex flex-col items-center justify-center"
     >
       <div className="w-full relative">
-        <div className="cursor-pointer relative w-full md:h-[350px] lg:h-[270px]">
+        <div className="cursor-pointer relative w-full md:h-[200px]">
           <Link className="h-full w-full" to={`/dica/${post._id}`}>
             <div className="absolute inset-0 w-full h-full hover:bg-colorGray-light/30 transition-all duration-200 ease-linear" />
             <LazyImage
@@ -41,9 +41,9 @@ const TipCard: FC<Props> = ({ post }) => {
         <div className="flex items-center gap-2 justify-center mt-4">
           <img
             loading="lazy"
-            src={post.author!!.image}
-            className="w-9 h-9 rounded-full object-contain"
             alt={post.title}
+            className="w-9 h-9 rounded-full object-contain"
+            src={post.author ? post.author?.image : "/user.png"}
           />
           <div className=" text-center text-colorGray-light font-OpenSans font-normal text-[15px]">
             {`${post.author?.firstname} ${post.author?.lastname} `}

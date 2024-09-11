@@ -1,5 +1,3 @@
-import { Link } from "react-router-dom"
-
 import SwiperPosts from "../components/global/SwiperPosts"
 import FadeInEffect from "@/components/motion/fade-in"
 import { Helmet } from "react-helmet-async"
@@ -11,7 +9,7 @@ const AboutUs = () => {
         <title>Sobre Nós | Overland</title>
       </Helmet>
       <FadeInEffect>
-        <main className=" flex py-3 flex-col w-full h-full items-center justify-center">
+        <main className="flex px-8 py-3 flex-col w-full h-full items-center justify-center">
           <div className="relative w-full h-[500px] mb-8">
             <img
               src="/logo/about.jpg"
@@ -75,10 +73,6 @@ const AboutUs = () => {
           </div>
 
           <div className="mt-20 w-full flex flex-col">
-            <div className="text-colorGray font-semibold font-Roboto  uppercase text-[12px] flex self-start gap-1">
-              <h1 className="text-colorGray-light">Também em</h1>
-              <Link to="/">www.overlandangola.com</Link>
-            </div>
             <SwiperPosts />
           </div>
         </main>

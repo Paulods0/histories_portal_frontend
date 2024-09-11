@@ -11,7 +11,7 @@ const MemoizedPostCard = memo(PostCard)
 
 const OverlandExperience = () => {
   const path = useLocation()
-  const category = "reviews"
+  const category = path.pathname.split("/")[2]
   const currPage = parseInt(path.search.split("=")[1]) || 1
 
   const { data, isLoading } = useGetPosts(currPage, category)
@@ -29,10 +29,6 @@ const OverlandExperience = () => {
       </div>
     )
   }
-  
-  // const handlePaginate = (newPage: number) => {
-  //   window.location.href = `?page=${newPage}`
-  // }
 
   return (
     <div className="w-full min-h-screen gap-10 lg:px-12 flex-col ">
