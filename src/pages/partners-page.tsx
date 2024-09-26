@@ -1,7 +1,7 @@
 import { memo, useMemo } from "react"
 import { ClipLoader } from "react-spinners"
 import { useSearchParams } from "react-router-dom"
-import { useGetPartners } from "@/lib/tanstack-query"
+import { useGetPartners } from "@/lib/tanstack-query/partner"
 import FadeInEffect from "@/components/motion/fade-in"
 import PartnerCard from "@/components/card/partner-card"
 import { Helmet } from "react-helmet-async"

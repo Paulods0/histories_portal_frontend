@@ -1,7 +1,7 @@
-import { Product } from "../../api/types"
 import LazyImage from "../global/lazy-image"
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
+import { Product } from "@/api/product/product.type"
 import { useCartContext } from "@/context/cart-context"
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
 
 interface IStoreProducs {
   product: Product
@@ -26,7 +26,7 @@ const StoreCard: React.FC<IStoreProducs> = ({ product }) => {
               className="object-cover absolute inset-0 p-4 w-full h-full"
             />
           </div>
-          
+
           <div className="w-full flex flex-col items-center justify-center">
             <h1>{product.name}</h1>
             <h3 className="text-[#9D9D9D]">{formatedPrice}</h3>

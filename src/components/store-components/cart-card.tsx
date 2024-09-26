@@ -1,4 +1,4 @@
-import { Product } from "../../api/types"
+import { Product } from "@/api/product/product.type"
 import { useCartContext } from "../../context/cart-context"
 
 type CartCardProps = {

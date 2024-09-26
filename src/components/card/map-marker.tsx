@@ -1,7 +1,7 @@
 import { FC } from "react"
 import { Icon } from "leaflet"
-import { Post } from "@/api/types"
 import { Link } from "react-router-dom"
+import { Post } from "@/api/post/post.types"
 import { Popup, Marker } from "react-leaflet"
 
 type Props = {

@@ -1,8 +1,8 @@
-import { SchedulePost } from "@/api/types"
+import { Link } from "react-router-dom"
 import { formateData } from "@/utils/helpers"
 import React from "react"
 import { PiDownloadSimpleThin } from "react-icons/pi"
-import { Link } from "react-router-dom"
+import { SchedulePost } from "@/api/schedule/schedule.type"
 
 type Props = {
   post: SchedulePost

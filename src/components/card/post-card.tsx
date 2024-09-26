@@ -1,7 +1,7 @@
-import { Post } from "@/api/types"
 import { Link } from "react-router-dom"
 import LazyImage from "../global/lazy-image"
 import { createMarkup, formateData } from "../../utils/helpers"
+import { Post } from "@/api/post/post.types"
 
 type Props = {
   post: Post

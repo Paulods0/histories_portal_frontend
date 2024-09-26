@@ -5,13 +5,13 @@ import FadeInEffect from "@/components/motion/fade-in"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SubscribeFormType, subscribeFormSchema } from "@/lib/validation"
-import { subscribeToNewsletter } from "@/api"
 import { toast } from "react-toastify"
 import { Helmet } from "react-helmet-async"
+import { useSubscribe } from "@/lib/tanstack-query/subscription"
 
 const Subscribe = () => {
   const [countries, setCountries] = useState<ICountryData[]>([])
-
+  const { mutateAsync } = useSubscribe()
   const {
     handleSubmit,
     register,
@@ -36,12 +36,11 @@ const Subscribe = () => {
 
   const handleSubmitForm = async (data: SubscribeFormType) => {
     try {
-      await subscribeToNewsletter(data)
-      toast.success("Subscrição realizada com sucesso")
+      const response = await mutateAsync(data)
+      toast.success(response.message)
       reset()
     } catch (error: any) {
-      console.error(error.response.data.message)
-      toast.error(error.response.data.message)
+      toast.error(error.message)
     }
   }
 

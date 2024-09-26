@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import { Post } from "../../../api/types"
+import { Post } from "@/api/post/post.types"
 import { createMarkup, formateData } from "../../../utils/helpers"
 
 const MoreViewedCard = ({ post }: { post: Post }) => {

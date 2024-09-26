@@ -8,7 +8,7 @@ import {
   SheetTitle,
 } from "../ui/sheet"
 import BuyProductDialog from "./buy-product-dialog"
-import { Product } from "@/api/types"
+import { Product } from "@/api/product/product.type"
 
 const CartContainer = () => {
   const { cartItems } = useCartContext()

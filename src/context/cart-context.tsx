@@ -1,6 +1,6 @@
-import { Product } from "@/api/types"
-import { FC, createContext, useContext, useState } from "react"
 import { toast } from "react-toastify"
+import { Product } from "@/api/product/product.type"
+import { FC, createContext, useContext, useState } from "react"
 
 type CartContextProviderProps = {
   children: React.ReactNode

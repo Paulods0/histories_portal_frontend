@@ -1,8 +1,8 @@
 import { FC } from "react"
 import { Link } from "react-router-dom"
-import { createMarkup } from "../../utils/helpers"
-import { Tip } from "@/api/types"
+import { Tip } from "@/api/tip/tip.type"
 import LazyImage from "../global/lazy-image"
+import { createMarkup } from "../../utils/helpers"
 
 type Props = {
   post: Tip

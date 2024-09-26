@@ -1,5 +1,5 @@
-import { Post } from "@/api/types"
 import { Link } from "react-router-dom"
+import { Post } from "@/api/post/post.types"
 
 type Props = {
   post: Post

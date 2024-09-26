@@ -1,5 +1,3 @@
-import { ClassifiedPost } from "@/api/types"
-import { formateData } from "@/utils/helpers"
 import {
   WhatsappIcon,
   WhatsappShareButton,
@@ -10,12 +8,13 @@ import {
   PinterestShareButton,
   PinterestIcon,
 } from "react-share"
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
-
+import { formateData } from "@/utils/helpers"
 import ClassifiedCarousel from "./classified-carousel"
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog"
+import { Classified } from "@/api/classified/classified.type"
 
 type ClassifiedCardProps = {
-  post: ClassifiedPost
+  post: Classified
 }
 
 const ClassifiedCard = ({ post }: ClassifiedCardProps) => {
