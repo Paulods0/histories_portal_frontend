@@ -6,7 +6,7 @@ export const storeSwiperImages = [
   "/store-slider/5.jpg",
 ]
 
-export const sponsors = [
+export const partners = [
   "/sponsors/arb.png",
   "/sponsors/bggoodrich.png",
   "/sponsors/centtro.png",

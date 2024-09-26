@@ -1,11 +1,11 @@
-import { NewClassifiedPost } from "@/api/types"
-import { useCreateClassifiedPost } from "@/lib/react-query"
-import { ClassifiedFormType, classifiedFormSchema } from "@/lib/validation"
-import { uploadImageToFirebaseStorage } from "@/utils/helpers"
+import { toast } from "react-toastify"
+import { LuImagePlus } from "react-icons/lu"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useFieldArray, useForm } from "react-hook-form"
-import { LuImagePlus } from "react-icons/lu"
-import { toast } from "react-toastify"
+import { uploadImageToFirebaseStorage } from "@/utils/helpers"
+import { NewClassifiedPost } from "../api/classified/classified.type"
+import { ClassifiedFormType, classifiedFormSchema } from "@/lib/validation"
+import { useCreateClassifiedPost } from "@/lib/tanstack-query/classified/mutation"
 
 const ClassifiedFormBuyPage = () => {
   const { mutate } = useCreateClassifiedPost()

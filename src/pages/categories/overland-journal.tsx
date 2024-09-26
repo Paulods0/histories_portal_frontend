@@ -1,12 +1,11 @@
-import PostCard from "../../components/card/post-card"
-import { useLocation } from "react-router-dom"
-import { ClipLoader } from "react-spinners"
-import { useGetPosts } from "@/lib/react-query"
-import FadeInEffect from "@/components/motion/fade-in"
-import SwiperPosts from "@/components/global/SwiperPosts"
-// import PaginationController from "@/components/pagination/pagination-controller"
 import { memo, useMemo } from "react"
+import { ClipLoader } from "react-spinners"
 import { Helmet } from "react-helmet-async"
+import { useLocation } from "react-router-dom"
+import FadeInEffect from "@/components/motion/fade-in"
+import PostCard from "../../components/card/post-card"
+import { useGetPosts } from "@/lib/tanstack-query/post/query"
+import MoreViewedContainer from "@/components/global/more-viewed/more-viewed-container"
 
 const MemoizedPostCard = memo(PostCard)
 
@@ -31,10 +30,6 @@ const OverlandJournal = () => {
     )
   }
 
-  // const handlePaginate = (newPage: number) => {
-  //   window.location.href = `?page=${newPage}`
-  // }
-
   return (
     <>
       <Helmet>
@@ -56,10 +51,7 @@ const OverlandJournal = () => {
         </FadeInEffect>
 
         <div className="mt-12">
-          <div className="flex flex-col self-start">
-            {/* <PaginationController pages={posts!!.pages} /> */}
-          </div>
-          <SwiperPosts />
+          <MoreViewedContainer />
         </div>
       </div>
     </>

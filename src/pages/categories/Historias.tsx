@@ -1,12 +1,11 @@
-import PostCard from "../../components/card/post-card"
-import { useLocation } from "react-router-dom"
-import { ClipLoader } from "react-spinners"
-import { useGetPosts } from "@/lib/react-query"
-import FadeInEffect from "@/components/motion/fade-in"
-import SwiperPosts from "@/components/global/SwiperPosts"
-// import PaginationController from "@/components/pagination/pagination-controller"
 import { memo, useMemo } from "react"
 import { Helmet } from "react-helmet-async"
+import { ClipLoader } from "react-spinners"
+import { useLocation } from "react-router-dom"
+import FadeInEffect from "@/components/motion/fade-in"
+import PostCard from "../../components/card/post-card"
+import { useGetPosts } from "@/lib/tanstack-query/post/query"
+import MoreViewedContainer from "@/components/global/more-viewed/more-viewed-container"
 
 const MemoizedPostCard = memo(PostCard)
 
@@ -58,7 +57,7 @@ const Historias = () => {
           <div className="flex flex-col self-start">
             {/* <PaginationController pages={posts!!.pages} /> */}
           </div>
-          <SwiperPosts />
+          <MoreViewedContainer />
         </div>
       </div>
     </>

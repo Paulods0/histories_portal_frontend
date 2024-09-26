@@ -1,12 +1,11 @@
-import { ClipLoader } from "react-spinners"
-import { useLocation } from "react-router-dom"
-import { useGetPosts } from "@/lib/react-query"
-import PostCard from "../../components/card/post-card"
-import FadeInEffect from "@/components/motion/fade-in"
-import SwiperPosts from "@/components/global/SwiperPosts"
-// import PaginationController from "@/components/pagination/pagination-controller"
 import { memo, useMemo } from "react"
 import { Helmet } from "react-helmet-async"
+import { ClipLoader } from "react-spinners"
+import { useLocation } from "react-router-dom"
+import PostCard from "../../components/card/post-card"
+import FadeInEffect from "@/components/motion/fade-in"
+import { useGetPosts } from "@/lib/tanstack-query/post/query"
+import MoreViewedContainer from "@/components/global/more-viewed/more-viewed-container"
 
 const MemoPostCard = memo(PostCard)
 
@@ -31,10 +30,6 @@ const Reviews = () => {
     )
   }
 
-  // const handlePaginate = (newPage: number) => {
-  //   window.location.href = `?page=${newPage}`
-  // }
-
   return (
     <>
       <Helmet>
@@ -56,11 +51,7 @@ const Reviews = () => {
         </FadeInEffect>
 
         <div className="mt-12">
-          <div className="flex flex-col self-start">
-            {/* <PaginationController handlePaginate={} totalPages={posts!!.pages} /> */}
-          </div>
-
-          <SwiperPosts />
+          <MoreViewedContainer />
         </div>
       </div>
     </>

@@ -1,9 +1,9 @@
+import { ClipLoader } from "react-spinners"
 import { useLocation } from "react-router-dom"
 import PostCard from "../components/card/post-card"
 import SideBar from "../components/sidebar/side-bar"
-import { ClipLoader } from "react-spinners"
-import SwiperPosts from "../components/global/SwiperPosts"
-import { useGetSearchResults } from "@/lib/react-query"
+import { useGetSearchResults } from "@/lib/tanstack-query/post/query"
+import SwiperPosts from "../components/global/more-viewed/more-viewed-container"
 import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 
 const Search = () => {
@@ -12,7 +12,6 @@ const Search = () => {
   const decodedSearchValue = decodeURIComponent(search)
 
   const { data, isLoading } = useGetSearchResults(decodedSearchValue)
-  // const {data:posts, isLoading } = useGetPosts(1)
 
   if (isLoading) {
     return (
@@ -22,14 +21,14 @@ const Search = () => {
     )
   }
 
-  if (data?.posts.length == 0) {
+  if (data && data?.length < 1) {
     return (
       <main className="w-full flex items-center justify-center">
         <h1>Não há posts ainda.</h1>
       </main>
     )
   }
-  const posts = data?.posts.filter((post) =>
+  const posts = data?.filter((post) =>
     post.title.toLowerCase().includes(search!!)
   )
 

@@ -1,9 +1,9 @@
-import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { ClipLoader } from "react-spinners"
-import { useSubscribeToNewsletter } from "@/lib/react-query"
 import { toast } from "react-toastify"
+import { useForm } from "react-hook-form"
+import { ClipLoader } from "react-spinners"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useSubscribe } from "@/lib/tanstack-query/subscription"
 
 const formSchema = z.object({
   name: z.string().min(2, "*Insira o seu nome."),
@@ -13,7 +13,7 @@ const formSchema = z.object({
 type FormSchemaType = z.infer<typeof formSchema>
 
 const NewsletterForm = () => {
-  const { mutateAsync, isPending } = useSubscribeToNewsletter()
+  const { mutateAsync, isPending } = useSubscribe()
   const {
     reset,
     handleSubmit,

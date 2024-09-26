@@ -1,14 +1,14 @@
-import { sponsors } from "@/constants"
+import { partners } from "@/constants"
 
 const FooterSponsors = () => {
   return (
     <div className="h-full w-full lg:w-fit flex items-start flex-col ">
       <h1 className="text-2xl lg:text-base font-normal uppercase text-white mb-4">
-        Patrocinadores
+        Parceiros
       </h1>
 
       <div className="grid w-full gap-2 grid-cols-2 place-items-start">
-        {sponsors.map((img, i) => (
+        {partners.map((img, i) => (
           <div key={i} className="relative w-24 h-10">
             <img
               loading="lazy"

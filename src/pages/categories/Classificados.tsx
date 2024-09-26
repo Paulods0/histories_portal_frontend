@@ -1,12 +1,11 @@
-import { ClipLoader } from "react-spinners"
-import ClassifiedCard from "../../components/global/classified-card"
-import { useGetClassifiedPosts } from "@/lib/react-query"
-import FadeInEffect from "@/components/motion/fade-in"
 import { memo, useMemo } from "react"
-import SwiperPosts from "@/components/global/SwiperPosts"
-// import PaginationController from "@/components/pagination/pagination-controller"
-import { useSearchParams } from "react-router-dom"
 import { Helmet } from "react-helmet-async"
+import { ClipLoader } from "react-spinners"
+import { useSearchParams } from "react-router-dom"
+import FadeInEffect from "@/components/motion/fade-in"
+import ClassifiedCard from "../../components/global/classified-card"
+import { useGetClassifiedPosts } from "@/lib/tanstack-query/classified/query"
+import MoreViewedContainer from "@/components/global/more-viewed/more-viewed-container"
 
 const MemoizedClassifiedCard = memo(ClassifiedCard)
 
@@ -14,14 +13,6 @@ const Classificados = () => {
   const [page, _] = useSearchParams({ page: "1" })
   const currentPage = Number(page.get("page"))
   const { data: posts, isLoading } = useGetClassifiedPosts(currentPage)
-
-  // const handlePaginate = (newPage: number) => {
-  //   setPage((prev) => {
-  //     prev.set("page", String(newPage))
-  //     return prev
-  //   })
-  //   window.scrollTo(0, 0)
-  // }
 
   const memoizedPosts = useMemo(() => {
     return posts?.posts
@@ -68,8 +59,9 @@ const Classificados = () => {
             </div>
           )}
         </FadeInEffect>
-        {/* <PaginationController pages={posts!!.pages} paginate={handlePaginate} /> */}
-        <SwiperPosts />
+
+        <MoreViewedContainer />
+
         <p className="w-full items-center text-justify gap-x-3 flex font-normal lg:text-xl text-base font-Oswald mt-6 mb-10">
           Nota: O sistema de classificados é uma montra digital gratuita e
           dedicada a pessoas singulares com foco nos negócios de ocasião,

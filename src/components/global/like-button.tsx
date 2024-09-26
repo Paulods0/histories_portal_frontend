@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react"
-import { BsStarFill } from "react-icons/bs"
+import { useState } from "react"
 import { BsStar } from "react-icons/bs"
-import { deslikePost, getSinglePost, likePost } from "../../api"
-// import { FaStar, FaUser } from "react-icons/fa"
+import { BsStarFill } from "react-icons/bs"
+import { useDeslikePost, useLikePost } from "@/lib/tanstack-query/post/mutation"
 
 const LikeButton = ({ postId }: { postId: string }) => {
-  const [clicked, setClicked] = useState(false)
+  const { mutateAsync: likePost } = useLikePost()
+  const { mutateAsync: deslikePost } = useDeslikePost()
+
   const [likes, setLikes] = useState(0)
+  const [clicked, setClicked] = useState(false)
+
   const handleLike = async () => {
     try {
       const like = await likePost(postId)
@@ -26,13 +29,13 @@ const LikeButton = ({ postId }: { postId: string }) => {
     }
   }
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      const data = await getSinglePost(postId)
-      setLikes(data.rating)
-    }
-    fetchPost()
-  }, [clicked])
+  // useEffect(() => {
+  //   const fetchPost = async () => {
+  //     const data = await getSinglePost(postId)
+  //     setLikes(data.rating)
+  //   }
+  //   fetchPost()
+  // }, [clicked])
 
   return (
     <div className="flex gap-x-2 items-center">

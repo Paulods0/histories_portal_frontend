@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { ClipLoader } from "react-spinners"
-import { useGetHighlightedPost } from "@/lib/react-query"
 import { createMarkup, formateData } from "../../utils/helpers"
+import { useGetHighlightedPost } from "@/lib/tanstack-query/post/query"
 
 const HighlightedCard = () => {
   const { data: post, isLoading } = useGetHighlightedPost()

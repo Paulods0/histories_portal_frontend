@@ -1,11 +1,10 @@
 import { ClipLoader } from "react-spinners"
+import { Helmet } from "react-helmet-async"
 import { memo, useMemo, useState } from "react"
 import FadeInEffect from "@/components/motion/fade-in"
-import { useGetSchedulePost } from "@/lib/react-query"
 import AgendaCard from "@/components/card/agenda-card"
-import SwiperPosts from "@/components/global/SwiperPosts"
-// import PaginationController from "@/components/pagination/pagination-controller"
-import { Helmet } from "react-helmet-async"
+import { useGetSchedulePost } from "@/lib/tanstack-query/schedule"
+import MoreViewedContainer from "@/components/global/more-viewed/more-viewed-container"
 
 const MemoizedAgendaCard = memo(AgendaCard)
 
@@ -27,10 +26,6 @@ const AgendaAo = () => {
     )
   }
 
-  // const handlePaginate = (newPage: number) => {
-  //   setPage(newPage)
-  // }
-
   return (
     <>
       <Helmet>
@@ -49,10 +44,9 @@ const AgendaAo = () => {
               {memoizedPosts}
             </div>
           )}
-          {/* <PaginationController  totalPages={posts!!.pages} /> */}
         </FadeInEffect>
 
-        <SwiperPosts />
+        <MoreViewedContainer />
       </div>
     </>
   )

@@ -28,7 +28,7 @@ const ClassifiedCard = ({ post }: ClassifiedCardProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <div className="relative w-full h-fit flex flex-col items-center justify-center border pb-4">
+        <div className="relative w-full h-[400px] flex flex-col items-center justify-center border pb-4">
           <div className="cursor-pointer relative w-full h-[170px]">
             <h1 className="absolute top-2 left-2 bg-orangeColor text-white rounded-lg px-2 py-1 text-sm">
               {post.type === "buy" ? "Quero comprar" : "Estou a vender"}

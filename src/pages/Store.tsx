@@ -1,16 +1,15 @@
-import StoreNavigationBar from "../components/store-components/store-navigation-bar"
-import StoreCard from "../components/store-components/store-card"
-import StoreFooter from "../components/store-components/store-footer"
-import GoBackButton from "../components/global/go-back-button"
-import { useGetProduts } from "@/lib/react-query"
-import { ClipLoader } from "react-spinners"
-import StoreFilter from "@/components/store-components/store-filter"
-import StoreSlider from "@/components/store-components/store-slider"
-import StoreMobileNavigation from "@/components/store-components/store-mobile-navigation"
-import { useSearchParams } from "react-router-dom"
-// import PaginationController from "@/components/pagination/pagination-controller"
 import { memo, useMemo } from "react"
 import { Helmet } from "react-helmet-async"
+import { ClipLoader } from "react-spinners"
+import { useSearchParams } from "react-router-dom"
+import { useGetProduts } from "@/lib/tanstack-query/product"
+import GoBackButton from "../components/global/go-back-button"
+import StoreCard from "../components/store-components/store-card"
+import StoreFooter from "../components/store-components/store-footer"
+import StoreFilter from "@/components/store-components/store-filter"
+import StoreSlider from "@/components/store-components/store-slider"
+import StoreNavigationBar from "../components/store-components/store-navigation-bar"
+import StoreMobileNavigation from "@/components/store-components/store-mobile-navigation"
 
 const MemoStoreCard = memo(StoreCard)
 
@@ -33,13 +32,6 @@ const Store = () => {
       <MemoStoreCard product={product} key={product._id} />
     ))
   }, [products?.products])
-
-  // const handlePaginate = (newPage: number) => {
-  //   setFilter((prev) => {
-  //     prev.set("page", newPage.toString())
-  //     return prev
-  //   })
-  // }
 
   if (isProductsLoading) {
     return (
@@ -85,7 +77,6 @@ const Store = () => {
               )}
             </section>
           </section>
-          {/* <PaginationController paginate={handlePaginate} /> */}
 
           <GoBackButton />
           <StoreFooter />

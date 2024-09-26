@@ -1,14 +1,14 @@
 // import { memo } from "react"
+import { Helmet } from "react-helmet-async"
 import { ClipLoader } from "react-spinners"
 import { useNavigate } from "react-router-dom"
-import { useGetPosts } from "@/lib/react-query"
 import PostCard from "../components/card/post-card"
 import FadeInEffect from "@/components/motion/fade-in"
+import { useGetPosts } from "@/lib/tanstack-query/post/query"
 import SideBarHome from "@/components/sidebar/side-bar-home"
 import GoBackButton from "../components/global/go-back-button"
 import HighlightedCard from "../components/card/highlighted-card"
 import PaginationController from "../components/pagination/pagination-controller"
-import { Helmet } from "react-helmet-async"
 
 // const MemoizedPostCard = memo(PostCard)
 
@@ -16,7 +16,7 @@ const Home = () => {
   const currPage = 1
   const navigate = useNavigate()
   const { data: posts, isLoading } = useGetPosts(currPage, "")
-  
+
   console.log(posts?.posts)
 
   const handlePaginate = (newPage: number) => {

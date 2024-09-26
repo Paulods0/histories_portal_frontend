@@ -1,16 +1,16 @@
 import { useEffect } from "react"
 import { ClipLoader } from "react-spinners"
 import { CiShoppingTag } from "react-icons/ci"
-import { useGetSinglePost } from "@/lib/react-query"
 import SideBar from "../components/sidebar/side-bar"
 import LikeButton from "../components/global/like-button"
 import { useLocation, useParams } from "react-router-dom"
-import SwiperPosts from "../components/global/SwiperPosts"
 import { createMarkup, formateData } from "../utils/helpers"
 import SlideDownEffect from "@/components/motion/slide-down"
 import ShareButtons from "../components/global/share-buttons"
 import GoBackButton from "../components/global/go-back-button"
+import { useGetSinglePost } from "@/lib/tanstack-query/post/query"
 import AuthorNotes from "../components/author-notes/author-notes"
+import SwiperPosts from "../components/global/more-viewed/more-viewed-container"
 import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 
 const PostDetails = () => {
@@ -31,11 +31,9 @@ const PostDetails = () => {
     )
   }
 
-  console.log(post)
+
 
   const createdAt = formateData(post!.date)
-  console.log(createdAt)
-
   const content = createMarkup(post!.content)
 
   return (
@@ -68,7 +66,7 @@ const PostDetails = () => {
               </div>
 
               <div
-                className="text-left font-OpenSans quill text-[15px] text-colorBlack-dark text-base pb-8"
+                className="text-left font-OpenSans tip-tap-content text-[15px] text-colorBlack-dark text-base pb-8"
                 dangerouslySetInnerHTML={content}
               />
 

@@ -1,4 +1,4 @@
-import { useCreateClassifiedPost } from "@/lib/react-query"
+import { useCreateClassifiedPost } from "@/lib/tanstack-query"
 import { toast } from "react-toastify"
 import { useForm, useFieldArray } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"

@@ -1,12 +1,11 @@
 import { memo, useMemo } from "react"
 import { ClipLoader } from "react-spinners"
 import { useSearchParams } from "react-router-dom"
-import { useGetPartners } from "@/lib/react-query"
+import { useGetPartners } from "@/lib/tanstack-query"
 import FadeInEffect from "@/components/motion/fade-in"
 import PartnerCard from "@/components/card/partner-card"
-import SwiperPosts from "@/components/global/SwiperPosts"
 import { Helmet } from "react-helmet-async"
-// import PaginationController from "@/components/pagination/pagination-controller"
+import MoreViewedContainer from "@/components/global/more-viewed/more-viewed-container"
 
 const MemoPostCard = memo(PartnerCard)
 
@@ -30,14 +29,6 @@ const PartnersPage = () => {
     )
   }
 
-  // const handlePaginate = (newPage: number) => {
-  //   setPage((prev) => {
-  //     prev.set("page", String(newPage))
-  //     return prev
-  //   })
-  //   window.scrollTo(0, 0)
-  // }
-
   return (
     <>
       <Helmet>
@@ -58,11 +49,7 @@ const PartnersPage = () => {
         </FadeInEffect>
 
         <div className="mt-12">
-          <div className="flex flex-col self-start">
-            {/* <PaginationController pages={posts!!.pages} /> */}
-          </div>
-
-          <SwiperPosts />
+          <MoreViewedContainer />
         </div>
       </div>
     </>

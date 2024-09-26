@@ -1,5 +1,5 @@
 import { ClipLoader } from "react-spinners"
-import { useGetPosts } from "@/lib/react-query"
+import { useGetPosts } from "@/lib/tanstack-query"
 import PostCard from "../components/card/post-card"
 import SideBar from "../components/sidebar/side-bar"
 import { useNavigate, useParams } from "react-router-dom"

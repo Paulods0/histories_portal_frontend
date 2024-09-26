@@ -1,11 +1,11 @@
 import { memo, useMemo } from "react"
 import { Helmet } from "react-helmet-async"
 import { ClipLoader } from "react-spinners"
-import { useGetTips } from "@/lib/react-query"
+import { useGetTips } from "@/lib/tanstack-query"
 import TipCard from "@/components/card/tip-card"
 import { useSearchParams } from "react-router-dom"
 import FadeInEffect from "@/components/motion/fade-in"
-import SwiperPosts from "@/components/global/SwiperPosts"
+import MoreViewedContainer from "@/components/global/more-viewed/more-viewed-container"
 
 const MemoTipCard = memo(TipCard)
 
@@ -61,10 +61,7 @@ const TipsPage = () => {
         </FadeInEffect>
 
         <div className="mt-12">
-          <div className="flex flex-col self-start">
-            {/* <PaginationController pages={posts!!.pages} /> */}
-          </div>
-          <SwiperPosts />
+          <MoreViewedContainer />
         </div>
       </div>
     </>

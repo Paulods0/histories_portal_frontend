@@ -1,11 +1,10 @@
 import { useState } from "react"
 import { ClipLoader } from "react-spinners"
 import { useParams } from "react-router-dom"
-// import PaginationController from "../components/pagination/pagination-controller"
 import SideBar from "../components/sidebar/side-bar"
 import PostCard from "../components/card/post-card"
+import { useGetUserPosts } from "@/lib/tanstack-query/post/query"
 import GoBackButton from "../components/global/go-back-button"
-import { useGetUserPosts } from "@/lib/react-query"
 import HomeCategoryControlller from "@/components/home_category/home-category-controlller"
 
 const UserPosts = () => {
@@ -15,14 +14,8 @@ const UserPosts = () => {
 
   const [_, setPages] = useState(1)
 
-  // const handleNavigate = (page: number) => {
-  //   if (page === 1) {
-  //     window.location.href = "/"
-  //   } else {
-  //     window.location.href = `/page/${page}`
-  //   }
-  // }
   const h = () => setPages(2)
+
   if (isLoading) {
     return (
       <div className="w-full my-12 flex items-center justify-center">
@@ -62,10 +55,6 @@ const UserPosts = () => {
           <aside className="lg:flex flex-col flex-[1] hidden md:hidden">
             <SideBar />
           </aside>
-        </div>
-
-        <div className="w-full flex items-center justify-center">
-          {/* <PaginationController paginate={handleNavigate} pages={pages} /> */}
         </div>
       </main>
       <GoBackButton />

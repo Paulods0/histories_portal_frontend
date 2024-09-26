@@ -106,22 +106,34 @@ body::-webkit-scrollbar {
   height: 6px;
 }
 
-.quill h1 {
+.tip-tap-content h1 {
   font-family: "Playfair Display", sans-serif;
   font-size: 36px !important;
   font-weight: 500;
 }
-.quill h2 {
+.tip-tap-content a {
+  color: #f59d37;
+}
+
+body img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+}
+
+.tip-tap-content h2 {
   font-family: "Playfair Display", sans-serif;
   font-size: 28 !important;
   font-weight: 400;
 }
-.quill ul {
+.tip-tap-content ul {
   margin-left: 25px;
   list-style: circle;
 }
 
-.quill iframe {
+.tip-tap-content iframe {
   width: 100%;
   height: 400px;
 }

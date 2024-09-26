@@ -1,7 +1,7 @@
 import TopPosts from "../global/top-posts"
 import { ClipLoader } from "react-spinners"
 import SideSearchBar from "../search/side-search-bar"
-import { useGetMostLikedPosts } from "@/lib/react-query"
+import { useGetMostLikedPosts } from "@/lib/tanstack-query/post/query"
 
 const SideBarHome = () => {
   const { data: post, isLoading } = useGetMostLikedPosts()

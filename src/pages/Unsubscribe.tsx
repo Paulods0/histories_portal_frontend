@@ -1,4 +1,3 @@
-import { useNavigate } from "react-router-dom"
 import {
   Dialog,
   DialogContent,
@@ -7,20 +6,26 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
-import { Button } from "@/components/ui/button"
-import { FormEvent, useState } from "react"
 import { toast } from "react-toastify"
-import { unsubscribeNewsletter } from "@/api"
+import { FormEvent, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { Button } from "@/components/ui/button"
+import { useUnSubscribe } from "@/lib/tanstack-query/subscription"
 
 const Unsubscribe = () => {
   const navigate = useNavigate()
   const [email, setEmail] = useState("")
+  const { mutateAsync } = useUnSubscribe()
 
   const handleUnsubscribe = async (e: FormEvent) => {
     e.preventDefault()
-    await unsubscribeNewsletter(email)
-    toast.success("Subscrição cancelada com sucesso")
-    navigate("/")
+    try {
+      await mutateAsync(email)
+      toast.success("Subscrição cancelada com sucesso.")
+      navigate("/")
+    } catch (error) {
+      console.log(error)
+    }
   }
   return (
     <main className="h-screen w-full flex items-start justify-center bg-[#EEEEEE]">

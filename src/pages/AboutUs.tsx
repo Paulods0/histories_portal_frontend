@@ -1,6 +1,6 @@
-import SwiperPosts from "../components/global/SwiperPosts"
-import FadeInEffect from "@/components/motion/fade-in"
 import { Helmet } from "react-helmet-async"
+import FadeInEffect from "@/components/motion/fade-in"
+import MoreViewedContainer from "../components/global/more-viewed/more-viewed-container"
 
 const AboutUs = () => {
   return (
@@ -73,7 +73,7 @@ const AboutUs = () => {
           </div>
 
           <div className="mt-20 w-full flex flex-col">
-            <SwiperPosts />
+            <MoreViewedContainer />
           </div>
         </main>
       </FadeInEffect>
