@@ -48,18 +48,17 @@ const ClassifiedCard = ({ post }: ClassifiedCardProps) => {
             {post.content}
           </p>
 
-          <div className="flex text-colorGray-light mt-1 items-center justify-center">
+          <div className="flex text-colorGray-light border-t w-full mt-1 items-center justify-center">
+            <span className="mr-1">Anúncio de: </span>
             <div className="text-center text-xs md:text-[15px] space-x-1 font-OpenSans ">
               <span>{post.author.firstname}</span>
               <span>{post.author.lastname}</span>
             </div>
-
-            <span className="mx-1">/</span>
-
-            <p className="text-center text-xs md:text-[15px] font-OpenSans ">
-              {date}
-            </p>
           </div>
+
+          <p className="text-center text-xs md:text-[15px] font-OpenSans ">
+            {date}
+          </p>
 
           <div className="flex items-center flex-col justify-center mt-2">
             <p className=" text-start text-colorGray-light font-OpenSans font-normal text-xs md:text-[15px]">
