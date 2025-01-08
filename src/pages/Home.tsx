@@ -1,4 +1,3 @@
-// import { memo } from "react"
 import { Helmet } from "react-helmet-async"
 import { ClipLoader } from "react-spinners"
 import { useNavigate } from "react-router-dom"
@@ -9,8 +8,6 @@ import SideBarHome from "@/components/sidebar/side-bar-home"
 import GoBackButton from "../components/global/go-back-button"
 import HighlightedCard from "../components/card/highlighted-card"
 import PaginationController from "../components/pagination/pagination-controller"
-
-// const MemoizedPostCard = memo(PostCard)
 
 const Home = () => {
   const currPage = 1
@@ -26,14 +23,6 @@ const Home = () => {
       navigate(`/page/${newPage}`)
     }
   }
-
-  // const memoizedPosts = useMemo(() => {
-  //   return posts?.posts
-  //     ?.filter((post) => post.highlighted)
-  //     .map((post) => {
-  //       return <MemoizedPostCard post={post} key={post._id} />
-  //     })
-  // }, [posts?.posts])
 
   if (isLoading) {
     return (

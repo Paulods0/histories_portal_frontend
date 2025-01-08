@@ -45,7 +45,7 @@ const Classificados = () => {
           reposto na montra. Esta plataforma de anúncios compra/venda é
           exclusiva para os membros da comunidade Clube Overland Angola. Tens um
           negócio profissional? Queres anunciar connosco? Entra em contacto na
-          opção “Quero ver vosso”.
+          opção “Quero ser vosso”.
         </p>
 
         <FadeInEffect>

@@ -1,9 +1,8 @@
 import { useLocation } from "react-router-dom"
-
 import NewsletterForm from "./newsletter-form"
-import FooterSponsors from "./footer-sponsors"
-import FooterNavigation from "./footer-navigation"
 import FooterOverland from "./footer-overland"
+import FooterNavigation from "./footer-navigation"
+import FooterSponsors from "./footer-sponsors"
 
 const Footer = () => {
   const path = useLocation()

@@ -1,15 +1,15 @@
-import FadeInEffect from "@/components/motion/fade-in"
-import axios from "@/config/axios"
 import {
   WantToBeYoursFormType,
   wantToBeYoursFormSchema,
 } from "@/lib/validation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { ICountryData, getCountryDataList } from "countries-list"
-import { ChangeEvent, useEffect, useState } from "react"
-import { Helmet } from "react-helmet-async"
-import { useForm } from "react-hook-form"
+import axios from "@/config/axios"
 import { toast } from "react-toastify"
+import { useForm } from "react-hook-form"
+import { Helmet } from "react-helmet-async"
+import { zodResolver } from "@hookform/resolvers/zod"
+  import FadeInEffect from "@/components/motion/fade-in"
+import { ChangeEvent, useEffect, useState } from "react"
+import { ICountryData, getCountryDataList } from "countries-list"
 
 const WantToBeYours = () => {
   const [isSubmitting, setIsSubmitting] = useState(false)
