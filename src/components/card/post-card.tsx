@@ -1,17 +1,18 @@
-import { Link } from "react-router-dom"
-import LazyImage from "../global/lazy-image"
-import { createMarkup, formateData } from "../../utils/helpers"
-import { Post } from "@/api/post/post.types"
+import { Link } from "react-router-dom";
+import LazyImage from "../global/lazy-image";
+import { createMarkup, formateData } from "../../utils/helpers";
+import { Post } from "@/api/post/post.types";
 
 type Props = {
-  post: Post
-}
+  post: Post;
+};
 
 const PostCard = ({
   post: { _id, mainImage, content, author, title, date },
 }: Props) => {
-  const dataContent = createMarkup(content)
-  const postDate = formateData(date)
+  const dataContent = createMarkup(content);
+  const postDate = formateData(date);
+  const postContent = dataContent.__html.substring(0, 120).concat("...");
 
   return (
     <div className="relative w-full h-fit flex flex-col items-center justify-center">
@@ -34,7 +35,7 @@ const PostCard = ({
         </Link>
         <div
           className="text-center text-[15px] font-OpenSans line-clamp-4"
-          dangerouslySetInnerHTML={dataContent}
+          dangerouslySetInnerHTML={{ __html: postContent }}
         />
 
         <div className="flex items-center gap-2 justify-center mt-4">
@@ -54,7 +55,7 @@ const PostCard = ({
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default PostCard
+export default PostCard;

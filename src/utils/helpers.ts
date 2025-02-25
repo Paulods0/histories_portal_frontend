@@ -6,7 +6,7 @@ import imageCompression from "browser-image-compression"
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 
 export const createMarkup = (value?: string) => {
-  return { __html: value!!.substring(0,120).concat("...") }
+  return { __html: value!!}
 }
 
 export function formateData(date: string): string {
