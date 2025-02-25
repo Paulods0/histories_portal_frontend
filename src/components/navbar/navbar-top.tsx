@@ -1,10 +1,10 @@
-import { NAV_LINKS } from "@/utils/constants"
-import { Link, useLocation } from "react-router-dom"
-import Search from "../search/search"
+import { NAV_LINKS } from "@/utils/constants";
+import { Link, useLocation } from "react-router-dom";
+import Search from "../search/Search";
 
 const NavbarTop = () => {
-  const { pathname } = useLocation()
-  const path = pathname.split("/")[2]
+  const { pathname } = useLocation();
+  const path = pathname.split("/")[2];
 
   return (
     <div className="hidden md:hidden lg:flex w-full py-3 px-8 items-center bg-blueColor justify-between">
@@ -46,7 +46,7 @@ const NavbarTop = () => {
         <Search />
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default NavbarTop
+export default NavbarTop;

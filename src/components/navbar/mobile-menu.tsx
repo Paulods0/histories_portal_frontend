@@ -1,7 +1,7 @@
-import Search from "../search/search"
 import { useLocation } from "react-router-dom"
 
 import MobileMenuButton from "../mobile/mobile-menu-button"
+import Search from "../search/Search"
 
 const MobileMenu = () => {
   const location = useLocation()

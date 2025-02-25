@@ -1,8 +1,8 @@
-import Footer from "./footer/footer"
-import Navbar from "./navbar/navbar"
-import CategoriesNavBar from "./navbar/categories-nav-bar"
-import MobileMenu from "./navbar/mobile-menu"
-import { Outlet } from "react-router-dom"
+import Footer from "./footer/Footer";
+import CategoriesNavBar from "./navbar/categories-nav-bar";
+import MobileMenu from "./navbar/mobile-menu";
+import { Outlet } from "react-router-dom";
+import Navbar from "./navbar/Navbar";
 
 const RootLayout = () => {
   return (
@@ -15,7 +15,7 @@ const RootLayout = () => {
       <Outlet />
       <Footer />
     </main>
-  )
-}
+  );
+};
 
-export default RootLayout
+export default RootLayout;
