@@ -1,6 +1,6 @@
 import { NAV_LINKS } from "../../utils/constants"
 import { Link, useLocation } from "react-router-dom"
-import Search from "../search/search"
+import Search from "../search/Search"
 import { useCartContext } from "../../context/cart-context"
 import CartContainer from "./cart-container"
 import { HiOutlineShoppingBag } from "react-icons/hi2"
